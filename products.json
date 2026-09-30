@@ -1,0 +1,6203 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Technical Performance Joggers",
+      "price": "2499",
+      "oldPrice": "2999",
+      "shortDescription": "Lightweight water-resistant joggers with zippered cuffs and secure pockets.",
+      "category": "pants",
+      "subcategory": "sweatpants",
+      "rating": 4.8,
+      "reviewsCount": 34,
+      "isFeatured": false,
+      "colors": [
+        {
+          "name": "Dark Grey",
+          "value": "#424850",
+          "images": {
+            "front": "/images/product_1_grey_front.jpeg",
+            "back": "/images/product_1_grey_front.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL", "XXL"],
+      "inventory": [
+        {
+          "color": "Dark Grey",
+          "size": "S",
+          "quantity": 5
+        },
+        {
+          "color": "Dark Grey",
+          "size": "M",
+          "quantity": 12
+        },
+        {
+          "color": "Dark Grey",
+          "size": "L",
+          "quantity": 8
+        },
+        {
+          "color": "Dark Grey",
+          "size": "XL",
+          "quantity": 3
+        },
+        {
+          "color": "Dark Grey",
+          "size": "XXL",
+          "quantity": 0
+        }
+      ],
+      "description": "Engineered for active movement and everyday urban commuting. These technical joggers feature a flexible elastic waistband with an adjustable drawstring, articulated knees for enhanced mobility, and convenient ankle zippers for easy wear. Crafted from breathable, quick-drying fabric to keep you comfortable throughout the day.",
+      "details": {
+        "material": "90% Nylon, 10% Spandex",
+        "fit": "Athletic / Tapered",
+        "gender": "Men",
+        "season": "All-season",
+        "care": "Machine wash cold with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Water-resistant technical fabric",
+          "Secure zippered side pockets",
+          "Adjustable ankle cuffs with zippers",
+          "Articulated knee design for mobility"
+        ]
+      },
+      "tags": [
+        "joggers",
+        "pants",
+        "streetwear",
+        "gym",
+        "athletic",
+        "technical"
+      ],
+      "styles": ["casual", "gym"]
+    },
+    {
+      "id": "2",
+      "name": "Parachute Utility Cargo Pants",
+      "price": "2799",
+      "oldPrice": null,
+      "shortDescription": "Wide-leg technical cargo pants with adjustable bungee drawstring hems and spacious utility pockets.",
+      "category": "pants",
+      "subcategory": "cargo",
+      "rating": 4.7,
+      "reviewsCount": 28,
+      "isFeatured": false,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_2_black_front.jpeg",
+            "back": "/images/product_2_black_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 14
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 10
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 5
+        }
+      ],
+      "description": "Bold streetwear silhouette meets maximum utility. These parachute cargo pants feature a relaxed, wide-leg fit with deep flap pockets on the sides and adjustable bungee cords at the ankles to easily switch up your styling. Made from durable lightweight nylon fabric designed for everyday comfort and modern urban style.",
+      "details": {
+        "material": "100% Nylon",
+        "fit": "Relaxed / Wide-leg",
+        "gender": "Men",
+        "season": "All-season",
+        "care": "Machine wash cold. Hang to dry. Do not iron.",
+        "country": "Ukraine",
+        "features": [
+          "Spacious snap-button cargo pockets",
+          "Adjustable bungee hem drawstrings",
+          "Elastic waistband with external drawcords",
+          "Lightweight, wind-resistant fabric"
+        ]
+      },
+      "tags": [
+        "cargo",
+        "pants",
+        "streetwear",
+        "relaxed",
+        "parachute",
+        "utility"
+      ],
+      "styles": ["casual"]
+    },
+    {
+      "id": "3",
+      "name": "Essential Fleece Sweatpants",
+      "price": "1999",
+      "oldPrice": null,
+      "shortDescription": "Classic heavyweight cotton fleece sweatpants with a cozy brushed interior and ribbed cuffs.",
+      "category": "pants",
+      "subcategory": "sweatpants",
+      "rating": 4.9,
+      "reviewsCount": 42,
+      "isFeatured": false,
+      "colors": [
+        {
+          "name": "Heather Grey",
+          "value": "#C4C4C4",
+          "images": {
+            "front": "/images/product_3_grey_front.jpeg",
+            "back": "/images/product_3_grey_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL", "XXL"],
+      "inventory": [
+        {
+          "color": "Heather Grey",
+          "size": "S",
+          "quantity": 10
+        },
+        {
+          "color": "Heather Grey",
+          "size": "M",
+          "quantity": 18
+        },
+        {
+          "color": "Heather Grey",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Heather Grey",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "Heather Grey",
+          "size": "XXL",
+          "quantity": 0
+        }
+      ],
+      "description": "Your ultimate go-to for rest days and casual outings. These sweatpants are crafted from a soft, high-density cotton fleece blend with a brushed interior for maximum warmth and comfort. Features a comfortable elastic waistband with chunky contrast drawcords, deep side pockets, and snug ribbed ankle cuffs.",
+      "details": {
+        "material": "80% Cotton, 20% Polyester",
+        "fit": "Regular / Tapered",
+        "gender": "Men",
+        "season": "Autumn/Winter",
+        "care": "Machine wash warm with like colors. Do not bleach. Tumble dry medium.",
+        "country": "Ukraine",
+        "features": [
+          "Soft brushed fleece interior",
+          "Adjustable cotton drawcords",
+          "Deep side slip pockets",
+          "Ribbed ankle cuffs for a secure fit"
+        ]
+      },
+      "tags": ["sweatpants", "fleece", "casual", "loungewear", "gym", "pants"],
+      "styles": ["casual", "gym"]
+    },
+    {
+      "id": "4",
+      "name": "Relaxed Wide-Leg Lounge Pants",
+      "price": "2199",
+      "oldPrice": null,
+      "shortDescription": "Modern wide-leg sweatpants crafted from premium heavyweight cotton with a clean, unstructured drape.",
+      "category": "pants",
+      "subcategory": "sweatpants",
+      "rating": 4.6,
+      "reviewsCount": 19,
+      "isFeatured": false,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_4_black_front.jpeg",
+            "back": "/images/product_4_black_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 6
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 9
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 4
+        }
+      ],
+      "description": "Embrace effortless streetwear style with these wide-leg lounge pants. Designed with an open, straight fit from hip to hem, they offer maximum comfort and a contemporary silhouette. Made from thick loopback cotton jersey featuring a clean elasticated waistband and discreet side pockets.",
+      "details": {
+        "material": "100% Cotton",
+        "fit": "Loose / Wide-leg",
+        "gender": "Men",
+        "season": "All-season",
+        "care": "Machine wash cold with similar colors. Do not tumble dry. Iron on low.",
+        "country": "Ukraine",
+        "features": [
+          "Contemporary wide-leg silhouette",
+          "Heavyweight loopback cotton jersey",
+          "Comfortable encased elastic waistband",
+          "Clean minimalist pocket design"
+        ]
+      },
+      "tags": ["lounge", "pants", "streetwear", "wide-leg", "casual", "cotton"],
+      "styles": ["casual"]
+    },
+    {
+      "id": "5",
+      "name": "Tailored Flare Suit Trousers",
+      "price": "3499",
+      "oldPrice": "3999",
+      "shortDescription": "Sophisticated high-waisted trousers with a structured fit and dramatic flared hem.",
+      "category": "pants",
+      "subcategory": "trousers",
+      "rating": 4.9,
+      "reviewsCount": 15,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Dark Brown",
+          "value": "#3A261D",
+          "images": {
+            "front": "/images/product_5_brown_front.jpeg",
+            "back": "/images/product_5_brown_front.jpeg"
+          }
+        },
+        {
+          "name": "Dark Grey",
+          "value": "#424850",
+          "images": {
+            "front": "/images/product_5_grey_front.jpeg",
+            "back": "/images/product_5_grey_front.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Dark Brown",
+          "size": "S",
+          "quantity": 4
+        },
+        {
+          "color": "Dark Brown",
+          "size": "M",
+          "quantity": 8
+        },
+        {
+          "color": "Dark Brown",
+          "size": "L",
+          "quantity": 6
+        },
+        {
+          "color": "Dark Brown",
+          "size": "XL",
+          "quantity": 2
+        },
+        {
+          "color": "Dark Grey",
+          "size": "S",
+          "quantity": 5
+        },
+        {
+          "color": "Dark Grey",
+          "size": "M",
+          "quantity": 10
+        },
+        {
+          "color": "Dark Grey",
+          "size": "L",
+          "quantity": 7
+        },
+        {
+          "color": "Dark Grey",
+          "size": "XL",
+          "quantity": 3
+        }
+      ],
+      "description": "Elevate your formal and statement looks with these tailored flare trousers. Designed with a clean waistband, crease-pressed legs, and a pronounced flare from the knee down for a retro-modern silhouette. Crafted from premium suit fabric that holds its shape impeccably.",
+      "details": {
+        "material": "65% Polyester, 32% Viscose, 3% Elastane",
+        "fit": "Tailored / Flared",
+        "gender": "Women",
+        "season": "All-season",
+        "care": "Dry clean only. Iron on low temperature if needed.",
+        "country": "Ukraine",
+        "features": [
+          "Structured high-waisted fit",
+          "Crisp pressed creases along the front",
+          "Dramatic flared hemline",
+          "Discreet welt pocket detailing"
+        ]
+      },
+      "tags": ["trousers", "flare", "formal", "tailored", "suit", "pants"],
+      "styles": ["formal", "party"]
+    },
+    {
+      "id": "6",
+      "name": "Tailored Pleated Wide-Leg Trousers",
+      "price": "3299",
+      "oldPrice": null,
+      "shortDescription": "Classic high-waisted wool-blend trousers with sharp front creases and a relaxed wide-leg cut.",
+      "category": "pants",
+      "subcategory": "trousers",
+      "rating": 4.8,
+      "reviewsCount": 21,
+      "isFeatured": false,
+      "colors": [
+        {
+          "name": "Charcoal Grey",
+          "value": "#4A4D52",
+          "images": {
+            "front": "/images/product_6_grey_front.jpeg",
+            "back": "/images/product_6_grey_front.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Charcoal Grey",
+          "size": "S",
+          "quantity": 6
+        },
+        {
+          "color": "Charcoal Grey",
+          "size": "M",
+          "quantity": 11
+        },
+        {
+          "color": "Charcoal Grey",
+          "size": "L",
+          "quantity": 8
+        },
+        {
+          "color": "Charcoal Grey",
+          "size": "XL",
+          "quantity": 3
+        }
+      ],
+      "description": "Redefine smart-casual tailoring with these wide-leg trousers. Designed with a structured waistband, crisp front pressed creases, and a generous straight drape that offers both comfort and a sophisticated silhouette. Crafted from premium suit fabric ideal for cooler seasons.",
+      "details": {
+        "material": "60% Wool, 38% Polyester, 2% Elastane",
+        "fit": "Relaxed / Wide-leg",
+        "gender": "Men",
+        "season": "Autumn/Winter",
+        "care": "Dry clean only. Iron on low heat.",
+        "country": "Ukraine",
+        "features": [
+          "Structured waistband with belt loops",
+          "Clean pressed front creases",
+          "Spacious wide-leg silhouette",
+          "Durable wool-blend fabric"
+        ]
+      },
+      "tags": ["trousers", "wide-leg", "formal", "tailored", "wool", "pants"],
+      "styles": ["formal", "casual"]
+    },
+    {
+      "id": "7",
+      "name": "Drop Crotch Harem Lounge Pants",
+      "price": "2399",
+      "oldPrice": null,
+      "shortDescription": "Avant-garde drop crotch lounge pants with an elastic waist and tapered ankles.",
+      "category": "Pants",
+      "subcategory": "sweatpants",
+      "rating": 4.7,
+      "reviewsCount": 12,
+      "isFeatured": false,
+      "colors": [
+        {
+          "name": "White",
+          "value": "#F5F5F5",
+          "images": {
+            "front": "/images/product_7_white_front.jpeg",
+            "back": "/images/product_7_white_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "White",
+          "size": "S",
+          "quantity": 6
+        },
+        {
+          "color": "White",
+          "size": "M",
+          "quantity": 10
+        },
+        {
+          "color": "White",
+          "size": "L",
+          "quantity": 8
+        },
+        {
+          "color": "White",
+          "size": "XL",
+          "quantity": 4
+        }
+      ],
+      "description": "Express your unique style with these distinctive drop-crotch harem pants. Featuring a relaxed, low-slung silhouette, an elasticated waistband with long adjustable drawstrings, and gathered cuffs at the ankles. Crafted from soft, breathable cotton jersey for ultimate comfort and freedom of movement.",
+      "details": {
+        "material": "100% Cotton",
+        "fit": "Dropped Crotch / Relaxed",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Avant-garde drop-crotch design",
+          "Soft breathable cotton jersey",
+          "Elastic waistband with long drawstrings",
+          "Tapered ankles with gathered cuffs"
+        ]
+      },
+      "tags": ["harem", "pants", "streetwear", "unisex", "lounge", "casual"],
+      "styles": ["casual"]
+    },
+    {
+      "id": "8",
+      "name": "Pleated Tailored Wide-Leg Trousers",
+      "price": "3199",
+      "oldPrice": null,
+      "shortDescription": "Sophisticated high-waisted trousers featuring crisp pressed creases and a relaxed wide-leg cut.",
+      "category": "pants",
+      "subcategory": "trousers",
+      "rating": 4.8,
+      "reviewsCount": 16,
+      "isFeatured": false,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_8_black_front.jpeg",
+            "back": "/images/product_8_black_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 7
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 14
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 10
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 5
+        }
+      ],
+      "description": "Exude effortless elegance with these tailored wide-leg trousers[cite: 8]. Designed with a structured waistband featuring belt loops, classic rear welt pocket detailing, and sharp front creases for a clean drape[cite: 8]. Crafted from premium suiting fabric that balances formal structure with everyday comfort.",
+      "details": {
+        "material": "65% Polyester, 33% Viscose, 2% Elastane",
+        "fit": "Tailored / Wide-leg",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Dry clean only. Iron on low temperature.",
+        "country": "Ukraine",
+        "features": [
+          "Structured waistband with belt loops",
+          "Crisp pressed creases down the legs",
+          "Clean rear welt pocket",
+          "Flowing wide-leg silhouette"
+        ]
+      },
+      "tags": ["trousers", "pants", "formal", "tailored", "wide-leg", "unisex"],
+      "styles": ["formal", "casual"]
+    },
+    {
+      "id": "9",
+      "name": "Structured Button Pocket Trousers",
+      "price": "3299",
+      "oldPrice": null,
+      "shortDescription": "Tailored wide-leg trousers featuring a buttoned rear pocket and classic pressed creases.",
+      "category": "pants",
+      "subcategory": "trousers",
+      "rating": 4.9,
+      "reviewsCount": 18,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_9_black_front.jpeg",
+            "back": "/images/product_9_black_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 5
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 9
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 4
+        }
+      ],
+      "description": "Refine your wardrobe with these impeccably tailored wide-leg trousers[cite: 9]. Styled with a structured waistband, belt loops, sharp vertical creases, and a distinctive single welt pocket with a button closure on the back[cite: 9]. Crafted from high-quality fabric for a smooth drape and polished look[cite: 9].",
+      "details": {
+        "material": "65% Polyester, 33% Viscose, 2% Elastane",
+        "fit": "Tailored / Wide-leg",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Dry clean only. Iron on low heat.",
+        "country": "Ukraine",
+        "features": [
+          "Structured waistband with sturdy belt loops[cite: 9]",
+          "Classic pressed center creases[cite: 9]",
+          "Single button-secured rear pocket[cite: 9]",
+          "Clean wide-leg silhouette[cite: 9]"
+        ]
+      },
+      "tags": ["trousers", "pants", "formal", "tailored", "wide-leg", "unisex"],
+      "styles": ["formal", "casual"]
+    },
+    {
+      "id": "10",
+      "name": "Utility Tech Cargo Trousers",
+      "price": "2899",
+      "oldPrice": null,
+      "shortDescription": "Functional technical cargo trousers featuring multiple utility pockets and adjustable ankle cuffs.",
+      "category": "pants",
+      "subcategory": "cargo",
+      "rating": 4.8,
+      "reviewsCount": 24,
+      "isFeatured": false,
+      "colors": [
+        {
+          "name": "Grey",
+          "value": "#54585D",
+          "images": {
+            "front": "/images/product_10_grey_front.jpeg",
+            "back": "/images/product_10_grey_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Grey",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Grey",
+          "size": "M",
+          "quantity": 15
+        },
+        {
+          "color": "Grey",
+          "size": "L",
+          "quantity": 11
+        },
+        {
+          "color": "Grey",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Equip yourself for urban exploration with these technical cargo trousers. Built with a comfortable elasticated waistband, integrated belt detailing, spacious buttoned cargo pockets on the thighs, rear welt pockets, and adjustable hook-and-loop ankle closures for a customizable fit.",
+      "details": {
+        "material": "88% Nylon, 12% Spandex",
+        "fit": "Relaxed / Utility",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold. Hang to dry. Do not iron.",
+        "country": "Ukraine",
+        "features": [
+          "Durable water-resistant technical fabric",
+          "Elasticated waistband with built-in adjuster",
+          "Multiple tactical cargo and welt pockets",
+          "Velcro-adjustable cuffs at the ankles"
+        ]
+      },
+      "tags": ["cargo", "pants", "utility", "techwear", "streetwear", "unisex"],
+      "styles": ["casual", "sporty"]
+    },
+    {
+      "id": "11",
+      "name": "Heavyweight Oversized Boxy T-Shirt",
+      "price": "1299",
+      "oldPrice": null,
+      "shortDescription": "Essential relaxed-fit boxy t-shirt crafted from heavy cotton jersey with a structured drape.",
+      "category": "t-shirts",
+      "subcategory": "crop-top",
+      "rating": 4.8,
+      "reviewsCount": 29,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_11_black_front.jpeg",
+            "back": "/images/product_11_black_back.jpeg"
+          }
+        },
+        {
+          "name": "White",
+          "value": "#F5F5F5",
+          "images": {
+            "front": "/images/product_11_white_front.jpeg",
+            "back": "/images/product_11_white_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 10
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 20
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 15
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 8
+        },
+        {
+          "color": "White",
+          "size": "S",
+          "quantity": 10
+        },
+        {
+          "color": "White",
+          "size": "M",
+          "quantity": 20
+        },
+        {
+          "color": "White",
+          "size": "L",
+          "quantity": 15
+        },
+        {
+          "color": "White",
+          "size": "XL",
+          "quantity": 8
+        }
+      ],
+      "description": "Master effortless streetwear styling with this heavyweight boxy t-shirt. Designed with dropped shoulders, a wider body cut, and a thick ribbed collar that holds its shape. Crafted from premium combed cotton for a soft hand-feel and structured silhouette.",
+      "details": {
+        "material": "100% Combed Cotton",
+        "fit": "Oversized / Boxy",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold with similar colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Heavyweight 280gsm cotton jersey",
+          "Relaxed dropped shoulder silhouette",
+          "Reinforced ribbed crewneck collar",
+          "Clean blind-stitched hem and cuffs"
+        ]
+      },
+      "tags": [
+        "t-shirt",
+        "basic",
+        "streetwear",
+        "oversized",
+        "cotton",
+        "unisex"
+      ],
+      "styles": ["casual"]
+    },
+    {
+      "id": "12",
+      "name": "Essential Relaxed Fit T-Shirt",
+      "price": "999",
+      "oldPrice": null,
+      "shortDescription": "Versatile and comfortable everyday basic t-shirt with a clean classic cut.",
+      "category": "t-shirts",
+      "subcategory": "basic",
+      "rating": 4.7,
+      "reviewsCount": 21,
+      "isFeatured": false,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_12_black_front.jpeg",
+            "back": "/images/product_12_black_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 25
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 18
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 10
+        }
+      ],
+      "description": "Your new everyday favorite. This basic t-shirt offers a comfortable regular fit, smooth cotton fabrication, and neat reinforced stitching along the collar and hems. Perfect for standalone casual wear or seamless layering.",
+      "details": {
+        "material": "100% Cotton",
+        "fit": "Regular / Basic",
+        "gender": "Men",
+        "season": "All-season",
+        "care": "Machine wash warm with similar colors. Do not tumble dry on high.",
+        "country": "Ukraine",
+        "features": [
+          "Soft breathable cotton fabric",
+          "Durable ribbed crew neckline",
+          "Clean straight hemline",
+          "Versatile everyday essential"
+        ]
+      },
+      "tags": ["t-shirt", "basic", "casual", "cotton", "unisex"],
+      "styles": ["casual"]
+    },
+    {
+      "id": "13",
+      "name": "Ringer Trim Cropped T-Shirt",
+      "price": "1099",
+      "oldPrice": null,
+      "shortDescription": "Sporty cropped t-shirt featuring contrasting ringer stripes on the collar and cuffs.",
+      "category": "t-shirts",
+      "subcategory": "crop-top",
+      "rating": 4.9,
+      "reviewsCount": 22,
+      "isFeatured": false,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_13_black_front.jpeg",
+            "back": "/images/product_13_black_back.jpeg"
+          }
+        },
+        {
+          "name": "White",
+          "value": "#F5F5F5",
+          "images": {
+            "front": "/images/product_13_white_front.jpeg",
+            "back": "/images/product_13_white_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "White",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "White",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "White",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "White",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Add a retro athletic touch to your rotation with this cropped ringer t-shirt. Designed with a modern boxy crop, dropped shoulders, and crisp contrasting stripe trims along the ribbed neckline and sleeve cuffs. Crafted from soft cotton jersey for a comfortable, breathable fit.",
+      "details": {
+        "material": "95% Cotton, 5% Spandex",
+        "fit": "Cropped / Relaxed",
+        "gender": "Men",
+        "season": "All-season",
+        "care": "Machine wash cold with similar colors. Do not tumble dry.",
+        "country": "Ukraine",
+        "features": [
+          "Trendy cropped length with relaxed fit",
+          "Contrasting ringer stripes on collar and cuffs",
+          "Soft and stretchy cotton jersey fabric",
+          "Durable ribbed crewneck"
+        ]
+      },
+      "tags": [
+        "crop-top",
+        "t-shirt",
+        "ringer",
+        "streetwear",
+        "casual",
+        "unisex"
+      ],
+      "styles": ["casual", "sporty"]
+    },
+    {
+      "id": "14",
+      "name": "Boxy Cropped Everyday T-Shirt",
+      "price": "999",
+      "oldPrice": null,
+      "shortDescription": "Minimalist boxy cropped t-shirt with a clean modern drape and wide sleeves.",
+      "category": "t-shirts",
+      "subcategory": "crop-top",
+      "rating": 4.8,
+      "reviewsCount": 19,
+      "isFeatured": false,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_14_black_front.jpeg",
+            "back": "/images/product_14_black_back.jpeg"
+          }
+        },
+        {
+          "name": "White",
+          "value": "#F5F5F5",
+          "images": {
+            "front": "/images/product_14_white_front.jpeg",
+            "back": "/images/product_14_white_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 9
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 18
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 14
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 7
+        },
+        {
+          "color": "White",
+          "size": "S",
+          "quantity": 9
+        },
+        {
+          "color": "White",
+          "size": "M",
+          "quantity": 18
+        },
+        {
+          "color": "White",
+          "size": "L",
+          "quantity": 14
+        },
+        {
+          "color": "White",
+          "size": "XL",
+          "quantity": 7
+        }
+      ],
+      "description": "Keep it casual and contemporary with this boxy cropped t-shirt. Featuring a relaxed wide cut, dropped shoulders, and a clean cropped hemline that pairs effortlessly with high-waisted bottoms[cite: 9]. Crafted from soft, breathable cotton jersey for comfortable all-day wear.",
+      "details": {
+        "material": "100% Cotton",
+        "fit": "Cropped / Boxy",
+        "gender": "Men",
+        "season": "All-season",
+        "care": "Machine wash cold with like colors. Tumble dry on low heat.",
+        "country": "Ukraine",
+        "features": [
+          "Modern boxy cropped silhouette[cite: 9]",
+          "Wide short sleeves with dropped shoulders[cite: 9]",
+          "Soft and breathable cotton fabric",
+          "Durable reinforced collar neckline"
+        ]
+      },
+      "tags": [
+        "crop-top",
+        "t-shirt",
+        "cropped",
+        "casual",
+        "streetwear",
+        "unisex"
+      ],
+      "styles": ["casual"]
+    },
+    {
+      "id": "15",
+      "name": "Forest Wear Graphic Striped T-Shirt",
+      "price": "1199",
+      "oldPrice": null,
+      "shortDescription": "Relaxed fit graphic t-shirt featuring horizontal stripes and a circular forest emblem print.",
+      "category": "t-shirts",
+      "subcategory": "graphic",
+      "rating": 4.8,
+      "reviewsCount": 14,
+      "isFeatured": false,
+      "colors": [
+        {
+          "name": "Green",
+          "value": "#1E3F20",
+          "images": {
+            "front": "/images/product_15_green_front.jpeg",
+            "back": "/images/product_15_green_back.jpeg"
+          }
+        },
+        {
+          "name": "White",
+          "value": "#F5F5F5",
+          "images": {
+            "front": "/images/product_15_white_front.jpeg",
+            "back": "/images/product_15_white_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Green",
+          "size": "S",
+          "quantity": 7
+        },
+        {
+          "color": "Green",
+          "size": "M",
+          "quantity": 14
+        },
+        {
+          "color": "Green",
+          "size": "L",
+          "quantity": 10
+        },
+        {
+          "color": "Green",
+          "size": "XL",
+          "quantity": 5
+        },
+        {
+          "color": "White",
+          "size": "S",
+          "quantity": 7
+        },
+        {
+          "color": "White",
+          "size": "M",
+          "quantity": 14
+        },
+        {
+          "color": "White",
+          "size": "L",
+          "quantity": 10
+        },
+        {
+          "color": "White",
+          "size": "XL",
+          "quantity": 5
+        }
+      ],
+      "description": "Refresh your casual rotation with this distinctive graphic t-shirt. Designed with dual horizontal stripes across the chest and a vintage-inspired 'Forest Wear Est. 1999' circular emblem on the left chest. Cut from soft, breathable cotton for a comfortable everyday fit.",
+      "details": {
+        "material": "100% Cotton",
+        "fit": "Relaxed",
+        "gender": "Men",
+        "season": "All-season",
+        "care": "Machine wash cold with like colors. Do not iron directly on graphic print.",
+        "country": "Ukraine",
+        "features": [
+          "Unique circular chest graphic and horizontal striping[cite: 9]",
+          "Soft and breathable cotton jersey",
+          "Durable ribbed crewneck collar",
+          "Comfortable relaxed silhouette"
+        ]
+      },
+      "tags": ["t-shirt", "graphic", "streetwear", "casual", "men"],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "16",
+      "name": "Minimalist Graphic Boxy T-Shirt",
+      "price": "1199",
+      "oldPrice": null,
+      "shortDescription": "Relaxed boxy fit graphic t-shirt crafted from breathable cotton jersey.",
+      "category": "t-shirts",
+      "subcategory": "graphic",
+      "rating": 4.8,
+      "reviewsCount": 17,
+      "isFeatured": false,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_16_black_front.jpeg",
+            "back": "/images/product_16_black_back.jpeg"
+          }
+        },
+        {
+          "name": "White",
+          "value": "#F5F5F5",
+          "images": {
+            "front": "/images/product_16_white_front.jpeg",
+            "back": "/images/product_16_white_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "White",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "White",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "White",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "White",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Elevate your streetwear style with this relaxed boxy graphic t-shirt[cite: 10]. Designed with a comfortable silhouette, wide short sleeves, and a clean neckline for effortless everyday wear[cite: 10]. Crafted from premium cotton fabric that ensures softness and durability.",
+      "details": {
+        "material": "100% Cotton",
+        "fit": "Boxy / Relaxed",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold with like colors. Do not tumble dry on high.",
+        "country": "Ukraine",
+        "features": [
+          "Modern boxy silhouette[cite: 10]",
+          "Soft and breathable cotton jersey",
+          "Durable ribbed crew neckline",
+          "Clean straight hemline"
+        ]
+      },
+      "tags": ["t-shirt", "graphic", "streetwear", "casual", "unisex"],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "17",
+      "name": "Essential Boxy Cropped T-Shirt",
+      "price": "999",
+      "oldPrice": null,
+      "shortDescription": "Minimalist boxy cropped t-shirt crafted from breathable cotton jersey with a clean finish.",
+      "category": "t-shirts",
+      "subcategory": "crop-top",
+      "rating": 4.8,
+      "reviewsCount": 15,
+      "isFeatured": false,
+      "colors": [
+        {
+          "name": "Red",
+          "value": "#A9242E",
+          "images": {
+            "front": "/images/product_17_red_front.jpeg",
+            "back": "/images/product_17_red_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Red",
+          "size": "S",
+          "quantity": 10
+        },
+        {
+          "color": "Red",
+          "size": "M",
+          "quantity": 20
+        },
+        {
+          "color": "Red",
+          "size": "L",
+          "quantity": 15
+        },
+        {
+          "color": "Red",
+          "size": "XL",
+          "quantity": 8
+        }
+      ],
+      "description": "Make a bold statement with this vibrant boxy cropped t-shirt[cite: 11]. Featuring a modern relaxed fit, dropped shoulders, and a clean cropped hemline[cite: 11]. Crafted from soft, lightweight cotton for effortless everyday comfort[cite: 11].",
+      "details": {
+        "material": "100% Cotton",
+        "fit": "Cropped / Boxy",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Modern boxy cropped silhouette[cite: 11]",
+          "Soft and breathable cotton jersey[cite: 11]",
+          "Durable ribbed crewneck collar[cite: 11]",
+          "Clean straight hemline[cite: 11]"
+        ]
+      },
+      "tags": ["crop-top", "t-shirt", "cropped", "casual", "unisex"],
+      "styles": ["casual"]
+    },
+    {
+      "id": "18",
+      "name": "Striped Relaxed Fit T-Shirt",
+      "price": "1099",
+      "oldPrice": null,
+      "shortDescription": "Classic horizontal striped t-shirt tailored with a comfortable relaxed silhouette.",
+      "category": "t-shirts",
+      "subcategory": "crop-top",
+      "rating": 4.7,
+      "reviewsCount": 16,
+      "isFeatured": false,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_18_black_front.jpeg",
+            "back": "/images/product_18_black_back.jpeg"
+          }
+        },
+        {
+          "name": "Green",
+          "value": "#1E3F20",
+          "images": {
+            "front": "/images/product_18_green_front.jpeg",
+            "back": "/images/product_18_green_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "Green",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Green",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Green",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Green",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Bring timeless pattern into your casual rotation with this striped t-shirt[cite: 11]. Designed with a clean crew neckline, short sleeves, and an all-over horizontal stripe layout[cite: 11]. Crafted from soft, breathable cotton jersey for comfortable everyday wear[cite: 11].",
+      "details": {
+        "material": "100% Cotton",
+        "fit": "Relaxed",
+        "gender": "Men",
+        "season": "All-season",
+        "care": "Machine wash cold with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "All-over horizontal stripe pattern[cite: 11]",
+          "Soft and breathable cotton jersey[cite: 11]",
+          "Durable ribbed crewneck collar[cite: 11]",
+          "Comfortable relaxed fit for men[cite: 11]"
+        ]
+      },
+      "tags": ["t-shirt", "striped", "casual", "men"],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "18",
+      "name": "Striped Relaxed Fit T-Shirt",
+      "price": "1099",
+      "oldPrice": null,
+      "shortDescription": "Classic horizontal striped t-shirt tailored with a comfortable relaxed silhouette.",
+      "category": "t-shirts",
+      "subcategory": "basic",
+      "rating": 4.7,
+      "reviewsCount": 16,
+      "isFeatured": false,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_18_black_front.jpeg",
+            "back": "/images/product_18_black_back.jpeg"
+          }
+        },
+        {
+          "name": "Green",
+          "value": "#1E3F20",
+          "images": {
+            "front": "/images/product_18_green_front.jpeg",
+            "back": "/images/product_18_green_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "Green",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Green",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Green",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Green",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Bring timeless pattern into your casual rotation with this striped t-shirt[cite: 11]. Designed with a clean crew neckline, short sleeves, and an all-over horizontal stripe layout[cite: 11]. Crafted from soft, breathable cotton jersey for comfortable everyday wear[cite: 11].",
+      "details": {
+        "material": "100% Cotton",
+        "fit": "Relaxed",
+        "gender": "Men",
+        "season": "All-season",
+        "care": "Machine wash cold with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "All-over horizontal stripe pattern[cite: 11]",
+          "Soft and breathable cotton jersey[cite: 11]",
+          "Durable ribbed crewneck collar[cite: 11]",
+          "Comfortable relaxed fit for men[cite: 11]"
+        ]
+      },
+      "tags": ["t-shirt", "basic", "striped", "casual", "men"],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "20",
+      "name": "Striped Trim Cropped T-Shirt",
+      "price": "1099",
+      "oldPrice": null,
+      "shortDescription": "Stylish cropped t-shirt featuring contrast striped banding on the collar, cuffs, and hem.",
+      "category": "t-shirts",
+      "subcategory": "crop-top",
+      "rating": 4.7,
+      "reviewsCount": 15,
+      "isFeatured": false,
+      "colors": [
+        {
+          "name": "Brown",
+          "value": "#4A3530",
+          "images": {
+            "front": "/images/product_20_brown_front.jpeg",
+            "back": "/images/product_20_brown_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Brown",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Brown",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Brown",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Brown",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Redefine casual styling with this modern cropped t-shirt[cite: 13]. Featuring a relaxed boxy fit, dropped shoulders, and distinctive contrasting striped trim details along the neckline, sleeve ends, and hemline[cite: 13]. Crafted from soft, breathable cotton jersey[cite: 13].",
+      "details": {
+        "material": "100% Cotton",
+        "fit": "Cropped / Relaxed",
+        "gender": "Men",
+        "season": "All-season",
+        "care": "Machine wash cold with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Trendy cropped length with relaxed fit[cite: 13]",
+          "Contrast striped banding on collar, cuffs, and hem[cite: 13]",
+          "Soft and breathable cotton jersey[cite: 13]",
+          "Durable stitched construction[cite: 13]"
+        ]
+      },
+      "tags": ["crop-top", "t-shirt", "striped", "streetwear", "casual", "men"],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "21",
+      "name": "Classic Embroidered Pique Polo",
+      "price": "1399",
+      "oldPrice": null,
+      "shortDescription": "Timeless short-sleeve polo shirt crafted from breathable cotton pique with subtle chest embroidery.",
+      "category": "polos",
+      "subcategory": "classic",
+      "rating": 4.9,
+      "reviewsCount": 22,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_21_black_front.jpeg",
+            "back": "/images/product_21_black_back.jpeg"
+          }
+        },
+        {
+          "name": "White",
+          "value": "#F5F5F5",
+          "images": {
+            "front": "/images/product_21_white_front.jpeg",
+            "back": "/images/product_21_white_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 10
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 18
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 14
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 8
+        },
+        {
+          "color": "White",
+          "size": "S",
+          "quantity": 10
+        },
+        {
+          "color": "White",
+          "size": "M",
+          "quantity": 18
+        },
+        {
+          "color": "White",
+          "size": "L",
+          "quantity": 14
+        },
+        {
+          "color": "White",
+          "size": "XL",
+          "quantity": 8
+        }
+      ],
+      "description": "Upgrade your smart-casual wardrobe with this classic pique polo shirt[cite: 14]. Featuring a traditional button placket, ribbed collar and sleeve cuffs, and elegant embroidered detailing on the chest[cite: 14]. Tailored from premium cotton pique for superior comfort and breathability[cite: 14].",
+      "details": {
+        "material": "100% Cotton Pique",
+        "fit": "Regular",
+        "gender": "Men",
+        "season": "All-season",
+        "care": "Machine wash cold with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Breathable textured cotton pique fabric[cite: 14]",
+          "Classic multi-button placket and collar[cite: 14]",
+          "Subtle chest embroidery accent[cite: 14]",
+          "Ribbed collar and sleeve cuffs[cite: 14]"
+        ]
+      },
+      "tags": ["polo", "shirt", "smart-casual", "classic", "men"],
+      "styles": ["smart-casual", "classic"]
+    },
+    {
+      "id": "22",
+      "name": "Relaxed Short-Sleeve Polo",
+      "price": "1399",
+      "oldPrice": null,
+      "shortDescription": "Modern casual polo shirt tailored with a relaxed silhouette and classic collar.",
+      "category": "polos",
+      "subcategory": "casual",
+      "rating": 4.8,
+      "reviewsCount": 18,
+      "isFeatured": false,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_22_black_front.jpeg",
+            "back": "/images/product_22_black_back.jpeg"
+          }
+        },
+        {
+          "name": "White",
+          "value": "#F5F5F5",
+          "images": {
+            "front": "/images/product_22_white_front.jpeg",
+            "back": "/images/product_22_white_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 10
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 8
+        },
+        {
+          "color": "White",
+          "size": "S",
+          "quantity": 10
+        },
+        {
+          "color": "White",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "White",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "White",
+          "size": "XL",
+          "quantity": 8
+        }
+      ],
+      "description": "Combine comfort and elegance with this basic polo shirt. The model features a relaxed silhouette, a classic turn-down collar, and a neat button placket. Crafted from breathable cotton fabric for everyday style.",
+      "details": {
+        "material": "100% Cotton",
+        "fit": "Relaxed / Regular",
+        "gender": "Men",
+        "season": "All-season",
+        "care": "Machine wash cold with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Classic turn-down collar",
+          "Soft and breathable cotton fabric",
+          "Convenient button placket",
+          "Versatile casual design"
+        ]
+      },
+      "tags": ["polo", "shirt", "casual", "smart-casual", "men"],
+      "styles": ["casual", "smart-casual"]
+    },
+    {
+      "id": "23",
+      "name": "Classic Short-Sleeve Shirt",
+      "price": "1499",
+      "oldPrice": null,
+      "shortDescription": "Stylish casual short-sleeve shirt tailored with a classic collar and button placket.",
+      "category": "t-shirts",
+      "subcategory": "shirts",
+      "rating": 4.8,
+      "reviewsCount": 15,
+      "isFeatured": false,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_23_black_front.jpeg",
+            "back": "/images/product_23_black_back.jpeg"
+          }
+        },
+        {
+          "name": "White",
+          "value": "#F5F5F5",
+          "images": {
+            "front": "/images/product_23_white_front.jpeg",
+            "back": "/images/product_23_white_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "White",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "White",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "White",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "White",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Add elegance to your wardrobe with this classic short-sleeve shirt[cite: 14]. Featuring a neat collar, front button placket, and a comfortable regular fit for everyday wear[cite: 14]. Crafted from high-quality breathable cotton[cite: 14].",
+      "details": {
+        "material": "100% Cotton",
+        "fit": "Regular",
+        "gender": "Men",
+        "season": "All-season",
+        "care": "Machine wash cold with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Classic short-sleeve design[cite: 14]",
+          "Soft and breathable cotton fabric[cite: 14]",
+          "Convenient front button closure[cite: 14]",
+          "Versatile style for casual outfits[cite: 14]"
+        ]
+      },
+      "tags": ["shirts", "casual", "smart-casual", "men"],
+      "styles": ["casual", "smart-casual"]
+    },
+    {
+      "id": "24",
+      "name": "Classic Long-Sleeve Shirt",
+      "price": "1599",
+      "oldPrice": null,
+      "shortDescription": "Versatile long-sleeve button-down shirt crafted from breathable cotton for a clean, timeless look.",
+      "category": "t-shirts",
+      "subcategory": "shirts",
+      "rating": 4.8,
+      "reviewsCount": 14,
+      "isFeatured": false,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_24_black_front.jpeg",
+            "back": "/images/product_24_black_back.jpeg"
+          }
+        },
+        {
+          "name": "White",
+          "value": "#F5F5F5",
+          "images": {
+            "front": "/images/product_24_white_front.jpeg",
+            "back": "/images/product_24_white_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "White",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "White",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "White",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "White",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Elevate your everyday wardrobe with this classic long-sleeve shirt. Designed with a structured collar, front button placket, and buttoned cuffs, offering a polished unisex fit suitable for any occasion.",
+      "details": {
+        "material": "100% Cotton",
+        "fit": "Regular / Unisex",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Classic long-sleeve button-down design",
+          "Soft and breathable cotton fabric",
+          "Structured collar and buttoned cuffs",
+          "Versatile unisex fit"
+        ]
+      },
+      "tags": ["shirts", "long-sleeve", "casual", "smart-casual", "unisex"],
+      "styles": ["casual", "smart-casual"]
+    },
+    {
+      "id": "25",
+      "name": "Cropped Long-Sleeve Button-Up Shirt",
+      "price": "1499",
+      "oldPrice": null,
+      "shortDescription": "Modern cropped long-sleeve shirt crafted from crisp cotton for a contemporary silhouette.",
+      "category": "t-shirts",
+      "subcategory": "shirts",
+      "rating": 4.8,
+      "reviewsCount": 16,
+      "isFeatured": false,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_25_black_front.jpeg",
+            "back": "/images/product_25_black_back.jpeg"
+          }
+        },
+        {
+          "name": "White",
+          "value": "#F5F5F5",
+          "images": {
+            "front": "/images/product_25_white_front.jpeg",
+            "back": "/images/product_25_white_front.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "White",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "White",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "White",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "White",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Give your style a modern update with this cropped long-sleeve button-up shirt[cite: 13]. Featuring a structured collar, buttoned cuffs, and a sharp cropped hemline that pairs effortlessly with high-waisted bottoms[cite: 13]. Crafted from breathable cotton fabric[cite: 13]for all-day comfort.",
+      "details": {
+        "material": "100% Cotton",
+        "fit": "Cropped / Unisex",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Trendy cropped length with long sleeves[cite: 13]",
+          "Crisp and breathable cotton fabric[cite: 13]",
+          "Structured collar and buttoned cuffs[cite: 13]",
+          "Versatile unisex design[cite: 13]"
+        ]
+      },
+      "tags": ["shirts", "cropped", "long-sleeve", "casual", "unisex"],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "25",
+      "name": "Cropped Long-Sleeve Button-Up Shirt",
+      "price": "1499",
+      "oldPrice": null,
+      "shortDescription": "Modern cropped long-sleeve shirt crafted from crisp cotton for a contemporary silhouette.",
+      "category": "t-shirts",
+      "subcategory": "shirts",
+      "rating": 4.8,
+      "reviewsCount": 16,
+      "isFeatured": false,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_25_black_front.jpeg",
+            "back": "/images/product_25_black_back.jpeg"
+          }
+        },
+        {
+          "name": "White",
+          "value": "#F5F5F5",
+          "images": {
+            "front": "/images/product_25_white_front.jpeg",
+            "back": "/images/product_25_white_front.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "White",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "White",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "White",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "White",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Give your style a modern update with this cropped long-sleeve button-up shirt[cite: 13]. Featuring a structured collar, buttoned cuffs, and a sharp cropped hemline that pairs effortlessly with high-waisted bottoms[cite: 13]. Crafted from breathable cotton fabric[cite: 13]for all-day comfort.",
+      "details": {
+        "material": "100% Cotton",
+        "fit": "Cropped / Unisex",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Trendy cropped length with long sleeves[cite: 13]",
+          "Crisp and breathable cotton fabric[cite: 13]",
+          "Structured collar and buttoned cuffs[cite: 13]",
+          "Versatile unisex design[cite: 13]"
+        ]
+      },
+      "tags": ["shirts", "cropped", "long-sleeve", "casual", "unisex"],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "26",
+      "name": "Anime Graphic Long-Sleeve T-Shirt",
+      "price": "1699",
+      "oldPrice": null,
+      "shortDescription": "Bold graphic long-sleeve t-shirt featuring a striking anime character print.",
+      "category": "t-shirts",
+      "subcategory": "shirts",
+      "rating": 4.9,
+      "reviewsCount": 21,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_26_black_front.jpeg",
+            "back": "/images/product_26_black_back.jpeg"
+          }
+        },
+        {
+          "name": "White",
+          "value": "#F5F5F5",
+          "images": {
+            "front": "/images/product_26_white_front.jpeg",
+            "back": "/images/product_26_white_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "White",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "White",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "White",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "White",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Make a strong statement with this anime graphic long-sleeve t-shirt[cite: 13]. Featuring a clean crew neckline, long sleeves, and a vibrant character graphic printed across the front[cite: 13]. Crafted from soft, breathable cotton for a comfortable streetwear edge[cite: 13].",
+      "details": {
+        "material": "100% Cotton",
+        "fit": "Regular / Unisex",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold with like colors. Do not iron directly on the graphic print.",
+        "country": "Ukraine",
+        "features": [
+          "Bold anime graphic print on the front[cite: 13]",
+          "Comfortable long sleeves and crew neckline[cite: 13]",
+          "Soft and breathable cotton fabric[cite: 13]",
+          "Versatile unisex streetwear fit[cite: 13]"
+        ]
+      },
+      "tags": [
+        "t-shirts",
+        "shirts",
+        "graphic",
+        "long-sleeve",
+        "streetwear",
+        "casual",
+        "unisex"
+      ],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "27",
+      "name": "Washed Grey Baggy Jeans",
+      "price": "1899",
+      "oldPrice": null,
+      "shortDescription": "Relaxed baggy fit jeans in a vintage washed grey finish for effortless streetwear style.",
+      "category": "jeans",
+      "subcategory": "baggy",
+      "rating": 4.9,
+      "reviewsCount": 24,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Grey",
+          "value": "#6B6B6B",
+          "images": {
+            "front": "/images/product_27_grey_front.jpeg",
+            "back": "/images/product_27_grey_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Grey",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Grey",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Grey",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Grey",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Complete your streetwear collection with these washed grey baggy jeans. Designed with a loose, wide-leg silhouette, classic five-pocket styling, and durable denim fabric for maximum comfort and an authentic vintage aesthetic.",
+      "details": {
+        "material": "100% Cotton Denim",
+        "fit": "Baggy / Unisex",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Relaxed wide-leg baggy silhouette",
+          "Vintage washed grey denim finish",
+          "Classic five-pocket layout with belt loops",
+          "Durable and comfortable everyday wear"
+        ]
+      },
+      "tags": ["jeans", "baggy", "denim", "streetwear", "casual", "unisex"],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "28",
+      "name": "Classic Black Baggy Jeans",
+      "price": "1899",
+      "oldPrice": null,
+      "shortDescription": "Relaxed baggy fit jeans in versatile solid black for an effortless streetwear aesthetic.",
+      "category": "jeans",
+      "subcategory": "baggy",
+      "rating": 4.9,
+      "reviewsCount": 19,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_28_black_front.jpeg",
+            "back": "/images/product_28_black_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Upgrade your streetwear rotation with these classic black baggy jeans. Featuring a loose wide-leg cut, traditional five-pocket design, and sturdy denim fabric built for everyday comfort and style.",
+      "details": {
+        "material": "100% Cotton Denim",
+        "fit": "Baggy / Unisex",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Relaxed wide-leg baggy silhouette",
+          "Solid black denim finish",
+          "Classic five-pocket layout with belt loops",
+          "Durable and comfortable everyday wear"
+        ]
+      },
+      "tags": ["jeans", "baggy", "denim", "streetwear", "casual", "unisex"],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "29",
+      "name": "Light Grey Baggy Jeans",
+      "price": "1899",
+      "oldPrice": null,
+      "shortDescription": "Relaxed baggy fit jeans in a light grey wash for an effortless, casual look.",
+      "category": "jeans",
+      "subcategory": "baggy",
+      "rating": 4.8,
+      "reviewsCount": 17,
+      "isFeatured": false,
+      "colors": [
+        {
+          "name": "Grey",
+          "value": "#9E9E9E",
+          "images": {
+            "front": "/images/product_29_grey_front.jpeg",
+            "back": ""
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Grey",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Grey",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Grey",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Grey",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Add versatility to your wardrobe with these light grey baggy jeans. Designed with a loose wide-leg silhouette, classic front button and zipper fly, and a comfortable mid-rise fit for everyday streetwear style.",
+      "details": {
+        "material": "100% Cotton Denim",
+        "fit": "Baggy / Unisex",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Relaxed wide-leg baggy silhouette",
+          "Light grey denim wash",
+          "Classic multi-pocket styling with belt loops",
+          "Comfortable and durable everyday wear"
+        ]
+      },
+      "tags": ["jeans", "baggy", "denim", "streetwear", "casual", "unisex"],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "30",
+      "name": "Light Grey Flare Jeans",
+      "price": "1899",
+      "oldPrice": null,
+      "shortDescription": "Stylish flare fit jeans in a light grey wash featuring a dramatic wide-leg hem.",
+      "category": "jeans",
+      "subcategory": "flare",
+      "rating": 4.8,
+      "reviewsCount": 16,
+      "isFeatured": false,
+      "colors": [
+        {
+          "name": "Grey",
+          "value": "#9E9E9E",
+          "images": {
+            "front": "/images/product_30_grey_front.jpeg",
+            "back": ""
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Grey",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Grey",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Grey",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Grey",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Make a statement with these light grey flare jeans. Crafted with a fitted waist and thighs that gracefully flare out into an exaggerated wide hem, bringing retro-inspired streetwear style to your wardrobe.",
+      "details": {
+        "material": "100% Cotton Denim",
+        "fit": "Flare / Unisex",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Retro flare silhouette with dramatic wide leg opening",
+          "Light grey denim wash",
+          "Classic multi-pocket styling with belt loops",
+          "Durable denim construction for daily wear"
+        ]
+      },
+      "tags": ["jeans", "flare", "denim", "streetwear", "casual", "unisex"],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "31",
+      "name": "Light Blue Baggy Jeans",
+      "price": "1899",
+      "oldPrice": null,
+      "shortDescription": "Relaxed baggy fit jeans in a classic light blue wash for a timeless streetwear look.",
+      "category": "jeans",
+      "subcategory": "baggy",
+      "rating": 4.9,
+      "reviewsCount": 21,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Blue",
+          "value": "#7A92A5",
+          "images": {
+            "front": "/images/product_31_blue_front.jpeg",
+            "back": "/images/product_31_blue_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Blue",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Blue",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Blue",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Blue",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Essential light blue baggy jeans designed with a comfortable loose fit, wide leg silhouette, and classic five-pocket styling. Crafted from durable denim to provide an authentic vintage aesthetic for everyday streetwear wear.",
+      "details": {
+        "material": "100% Cotton Denim",
+        "fit": "Baggy / Unisex",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Relaxed wide-leg baggy silhouette",
+          "Classic light blue denim wash",
+          "Traditional five-pocket layout with belt loops",
+          "Durable construction for daily wear"
+        ]
+      },
+      "tags": ["jeans", "baggy", "denim", "streetwear", "casual", "unisex"],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "32",
+      "name": "Black Baggy Jeans",
+      "price": "1899",
+      "oldPrice": null,
+      "shortDescription": "Edgy baggy fit jeans combining solid black and dark green camouflage patterns for a standout streetwear look.",
+      "category": "jeans",
+      "subcategory": "baggy",
+      "rating": 4.9,
+      "reviewsCount": 22,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_32_black_front.jpeg",
+            "back": "/images/product_32_black_back.jpeg"
+          }
+        },
+        {
+          "name": "Dark Green Camouflage",
+          "value": "#3B4D3C",
+          "images": {
+            "front": "/images/product_32_green_front.jpeg",
+            "back": "/images/product_32_green_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "Dark Green Camouflage",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Dark Green Camouflage",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Dark Green Camouflage",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Dark Green Camouflage",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Make a bold statement with these baggy jeans, available in solid black and rugged dark green camouflage. Designed with a loose wide-leg silhouette and durable denim fabric, bringing an authentic tactical edge to your streetwear collection.",
+      "details": {
+        "material": "100% Cotton Denim",
+        "fit": "Baggy / Unisex",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Relaxed wide-leg baggy silhouette",
+          "Available in solid black and dark green camouflage",
+          "Classic multi-pocket layout with belt loops",
+          "Durable construction for everyday wear"
+        ]
+      },
+      "tags": [
+        "jeans",
+        "baggy",
+        "camouflage",
+        "denim",
+        "streetwear",
+        "casual",
+        "unisex"
+      ],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "33",
+      "name": "Classic Black Bootcut Jeans",
+      "price": "1899",
+      "oldPrice": null,
+      "shortDescription": "Sleek and flattering black bootcut jeans designed for women with a gentle flare at the hem.",
+      "category": "jeans",
+      "subcategory": "bootcut",
+      "rating": 4.9,
+      "reviewsCount": 18,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_33_black_front.jpeg",
+            "back": "/images/product_33_black_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Refine your everyday wardrobe with these classic black bootcut jeans. Tailored specifically for women, featuring a fitted silhouette through the hips and thighs that subtly flares from the knee down for a balanced, elongating effect.",
+      "details": {
+        "material": "98% Cotton, 2% Elastane",
+        "fit": "Bootcut / Women",
+        "gender": "Women",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Flattering bootcut silhouette with subtle lower leg flare",
+          "Solid black denim finish with a touch of stretch",
+          "Classic five-pocket layout with belt loops",
+          "Comfortable fitted design through hips and thighs"
+        ]
+      },
+      "tags": ["jeans", "bootcut", "denim", "casual", "women"],
+      "styles": ["casual", "chic"]
+    },
+    {
+      "id": "34",
+      "name": "Essential Bootcut Denim Jeans",
+      "price": "1899",
+      "oldPrice": null,
+      "shortDescription": "Versatile bootcut denim jeans tailored with a comfortable unisex fit and slight lower leg flare.",
+      "category": "jeans",
+      "subcategory": "bootcut",
+      "rating": 4.9,
+      "reviewsCount": 20,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_34_black_front.jpeg",
+            "back": "/images/product_34_black_back.jpeg"
+          }
+        },
+        {
+          "name": "Blue",
+          "value": "#7A92A5",
+          "images": {
+            "front": "/images/product_34_blue_front.jpeg",
+            "back": "/images/product_34_blue_back.jpeg"
+          }
+        },
+        {
+          "name": "Grey",
+          "value": "#9E9E9E",
+          "images": {
+            "front": "/images/product_34_grey_front.jpeg",
+            "back": "/images/product_34_grey_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "Blue",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Blue",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Blue",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Blue",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "Grey",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Grey",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Grey",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Grey",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Add timeless style to your casual rotation with these essential bootcut denim jeans. Featuring a balanced unisex fit with a subtle flare at the hem, classic multi-pocket layout, and sturdy denim construction for long-lasting wear.",
+      "details": {
+        "material": "100% Cotton Denim",
+        "fit": "Bootcut / Unisex",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Classic bootcut silhouette with a subtle lower leg flare",
+          "Available in versatile black, blue, and grey washes",
+          "Traditional five-pocket layout with sturdy belt loops",
+          "Durable denim fabric built for everyday comfort"
+        ]
+      },
+      "tags": ["jeans", "bootcut", "denim", "streetwear", "casual", "unisex"],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "35",
+      "name": "Vintage Flare Denim Jeans",
+      "price": "1899",
+      "oldPrice": null,
+      "shortDescription": "Bold flare fit jeans featuring an exaggerated wide-leg hem in versatile black and grey washes.",
+      "category": "jeans",
+      "subcategory": "flare",
+      "rating": 4.9,
+      "reviewsCount": 23,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_35_black_front.jpeg",
+            "back": ""
+          }
+        },
+        {
+          "name": "Grey",
+          "value": "#9E9E9E",
+          "images": {
+            "front": "/images/product_35_grey_front.jpeg",
+            "back": ""
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "Grey",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Grey",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Grey",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Grey",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Make a striking statement with these vintage flare denim jeans. Crafted with a fitted waist and thighs that dramaticially flare outward into a wide opening, bringing authentic retro streetwear style to your wardrobe.",
+      "details": {
+        "material": "100% Cotton Denim",
+        "fit": "Flare / Unisex",
+        "gender": "Women",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Retro flare silhouette with dramatic wide leg opening",
+          "Available in black and grey denim washes",
+          "Classic multi-pocket styling with belt loops",
+          "Durable denim construction for daily wear"
+        ]
+      },
+      "tags": ["jeans", "flare", "denim", "streetwear", "casual", "unisex"],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "36",
+      "name": "High-Waist Flare Denim Jeans",
+      "price": "1899",
+      "oldPrice": null,
+      "shortDescription": "Sleek and flattering black flare jeans designed for women with an exaggerated wide hem.",
+      "category": "jeans",
+      "subcategory": "flare",
+      "rating": 4.9,
+      "reviewsCount": 19,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_36_black_front.jpeg",
+            "back": "/images/product_36_black_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Elevate your wardrobe with these high-waist flare denim jeans tailored specifically for women[cite: 13]. Featuring a fitted silhouette through the hips and thighs that dramatically flares out from the knee, creating an elongating and retro-inspired silhouette[cite: 13].",
+      "details": {
+        "material": "98% Cotton, 2% Elastane",
+        "fit": "Flare / Women",
+        "gender": "Women",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Flattering high-waist fit tailored for women[cite: 13]",
+          "Dramatic retro flare silhouette from the knee down[cite: 13]",
+          "Solid black stretch denim wash[cite: 13]",
+          "Classic five-pocket layout with belt loops[cite: 13]"
+        ]
+      },
+      "tags": ["jeans", "flare", "denim", "casual", "women"],
+      "styles": ["casual", "chic"]
+    },
+    {
+      "id": "37",
+      "name": "Vintage Washed Baggy Jeans",
+      "price": "1499",
+      "oldPrice": "1899",
+      "shortDescription": "Relaxed baggy fit jeans in a vintage medium blue wash for an effortless streetwear aesthetic.",
+      "category": "jeans",
+      "subcategory": "baggy",
+      "rating": 4.9,
+      "reviewsCount": 25,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Blue",
+          "value": "#5B738C",
+          "images": {
+            "front": "/images/product_37_blue_front.jpeg",
+            "back": "/images/product_37_blue_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Blue",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Blue",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Blue",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Blue",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Complete your streetwear rotation with these vintage washed blue baggy jeans[cite: 14]. Designed with a loose wide-leg cut, traditional five-pocket design, and sturdy denim fabric built for everyday comfort and style[cite: 14].",
+      "details": {
+        "material": "100% Cotton Denim",
+        "fit": "Baggy / Unisex",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Relaxed wide-leg baggy silhouette[cite: 14]",
+          "Vintage medium blue denim wash[cite: 14]",
+          "Classic five-pocket layout with belt loops[cite: 14]",
+          "Durable and comfortable everyday wear[cite: 14]"
+        ]
+      },
+      "tags": ["jeans", "baggy", "denim", "streetwear", "casual", "unisex"],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "37",
+      "name": "Vintage Washed Baggy Jeans",
+      "price": "1499",
+      "oldPrice": "1899",
+      "shortDescription": "Relaxed baggy fit jeans in a vintage medium blue wash for an effortless streetwear aesthetic.",
+      "category": "jeans",
+      "subcategory": "baggy",
+      "rating": 4.9,
+      "reviewsCount": 25,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Blue",
+          "value": "#5B738C",
+          "images": {
+            "front": "/images/product_37_blue_front.jpeg",
+            "back": "/images/product_37_blue_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Blue",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Blue",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Blue",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Blue",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Complete your streetwear rotation with these vintage washed blue baggy jeans[cite: 14]. Designed with a loose wide-leg cut, traditional five-pocket design, and sturdy denim fabric built for everyday comfort and style[cite: 14].",
+      "details": {
+        "material": "100% Cotton Denim",
+        "fit": "Baggy / Unisex",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Relaxed wide-leg baggy silhouette[cite: 14]",
+          "Vintage medium blue denim wash[cite: 14]",
+          "Classic five-pocket layout with belt loops[cite: 14]",
+          "Durable and comfortable everyday wear[cite: 14]"
+        ]
+      },
+      "tags": ["jeans", "baggy", "denim", "streetwear", "casual", "unisex"],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "39",
+      "name": "Patchwork Baggy Jeans",
+      "price": "1899",
+      "oldPrice": "2199",
+      "shortDescription": "Statement baggy fit jeans featuring a striking dark patchwork pattern and wide-leg silhouette.",
+      "category": "jeans",
+      "subcategory": "baggy",
+      "rating": 4.9,
+      "reviewsCount": 26,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_39_black_front.jpeg",
+            "back": "/images/product_39_black_back.jpeg"
+          }
+        },
+        {
+          "name": "Acid Wash",
+          "value": "#9AAEC1",
+          "images": {
+            "front": "/images/product_39_blue_front.jpeg",
+            "back": "/images/product_39_blue_back.jpeg"
+          }
+        },
+        {
+          "name": "Dark Green Camouflage",
+          "value": "#3B4D3C",
+          "images": {
+            "front": "/images/product_39_green_front.jpeg",
+            "back": "/images/product_39_green_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "Acid Wash",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Acid Wash",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Acid Wash",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Acid Wash",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "Dark Green Camouflage",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Dark Green Camouflage",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Dark Green Camouflage",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Dark Green Camouflage",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Make an unmistakable streetwear impact with these patchwork baggy jeans[cite: 13]. Designed with an intricate all-over panel pattern, loose wide-leg fit, and durable cotton denim construction for unmatched style and comfort[cite: 13].",
+      "details": {
+        "material": "100% Cotton Denim",
+        "fit": "Baggy / Unisex",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Unique all-over panel patchwork aesthetic[cite: 13]",
+          "Relaxed wide-leg baggy silhouette[cite: 13]",
+          "Available in black, acid wash, and dark green camouflage[cite: 13]",
+          "Classic multi-pocket layout with sturdy belt loops[cite: 13]"
+        ]
+      },
+      "tags": [
+        "jeans",
+        "baggy",
+        "patchwork",
+        "denim",
+        "streetwear",
+        "casual",
+        "unisex"
+      ],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "40",
+      "name": "Patchwork Baggy Jeans",
+      "price": "1899",
+      "oldPrice": null,
+      "shortDescription": "Statement baggy fit jeans featuring an intricate patchwork pattern in a dark blue wash.",
+      "category": "jeans",
+      "subcategory": "baggy",
+      "rating": 4.9,
+      "reviewsCount": 22,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Blue",
+          "value": "#3B4E63",
+          "images": {
+            "front": "/images/product_40_blue_front.jpeg",
+            "back": ""
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Blue",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Blue",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Blue",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Blue",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Make an unmistakable streetwear impact with these patchwork baggy jeans[cite: 13]. Designed with an intricate all-over panel pattern, loose wide-leg fit, and durable cotton denim construction for unmatched style and comfort[cite: 13].",
+      "details": {
+        "material": "100% Cotton Denim",
+        "fit": "Baggy / Unisex",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Unique all-over panel patchwork aesthetic[cite: 13]",
+          "Relaxed wide-leg baggy silhouette[cite: 13]",
+          "Versatile dark blue denim wash[cite: 14]",
+          "Classic multi-pocket layout with sturdy belt loops[cite: 13]"
+        ]
+      },
+      "tags": [
+        "jeans",
+        "baggy",
+        "patchwork",
+        "denim",
+        "streetwear",
+        "casual",
+        "unisex"
+      ],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "41",
+      "name": "Acid Wash Baggy Jeans",
+      "price": "1899",
+      "oldPrice": "2199",
+      "shortDescription": "Edgy baggy fit jeans featuring a bold acid wash finish and relaxed wide-leg cut.",
+      "category": "jeans",
+      "subcategory": "baggy",
+      "rating": 4.9,
+      "reviewsCount": 24,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Blue",
+          "value": "#5A6B7C",
+          "images": {
+            "front": "/images/product_41_blue_front.jpeg",
+            "back": "/images/product_41_blue_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Blue",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Blue",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Blue",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Blue",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Bring vintage grunge back to your streetwear rotation with these acid wash baggy jeans. Designed with a loose wide-leg silhouette, classic multi-pocket layout, and striking mottled denim wash for a standout aesthetic.",
+      "details": {
+        "material": "100% Cotton Denim",
+        "fit": "Baggy / Unisex",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Relaxed wide-leg baggy silhouette",
+          "Bold blue acid wash finish",
+          "Classic multi-pocket layout with sturdy belt loops",
+          "Durable denim construction for everyday wear"
+        ]
+      },
+      "tags": [
+        "jeans",
+        "baggy",
+        "acidwash",
+        "denim",
+        "streetwear",
+        "casual",
+        "unisex"
+      ],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "42",
+      "name": "Mixed Panel Baggy Jeans",
+      "price": "1899",
+      "oldPrice": null,
+      "shortDescription": "Unique baggy fit jeans combining patchwork details and acid wash panels for an ultimate streetwear look.",
+      "category": "jeans",
+      "subcategory": "baggy",
+      "rating": 4.9,
+      "reviewsCount": 21,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Blue",
+          "value": "#4B5E71",
+          "images": {
+            "front": "/images/product_42_blue_front.jpeg",
+            "back": "/images/product_42_blue_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Blue",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Blue",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Blue",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Blue",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Stand out from the crowd with these mixed panel baggy jeans[cite: 13]. Featuring a creative blend of patchwork blocks and mottled acid wash textures, tailored with a relaxed wide-leg silhouette and durable denim fabric[cite: 13].",
+      "details": {
+        "material": "100% Cotton Denim",
+        "fit": "Baggy / Unisex",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Hybrid patchwork and acid wash panel design[cite: 13]",
+          "Relaxed wide-leg baggy silhouette[cite: 13]",
+          "Versatile blue denim washes",
+          "Classic multi-pocket layout with sturdy belt loops[cite: 13]"
+        ]
+      },
+      "tags": [
+        "jeans",
+        "baggy",
+        "patchwork",
+        "acidwash",
+        "denim",
+        "streetwear",
+        "casual",
+        "unisex"
+      ],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "42",
+      "name": "Mixed Panel Baggy Jeans",
+      "price": "1899",
+      "oldPrice": null,
+      "shortDescription": "Unique baggy fit jeans combining patchwork details and acid wash panels for an ultimate streetwear look.",
+      "category": "jeans",
+      "subcategory": "baggy",
+      "rating": 4.9,
+      "reviewsCount": 21,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Blue",
+          "value": "#4B5E71",
+          "images": {
+            "front": "/images/product_42_blue_front.jpeg",
+            "back": "/images/product_42_blue_back.jpeg"
+          }
+        },
+        {
+          "name": "Grey",
+          "value": "#7A7A7A",
+          "images": {
+            "front": "/images/product_42_grey_front.jpeg",
+            "back": "/images/product_42_grey_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Blue",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Blue",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Blue",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Blue",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "Grey",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Grey",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Grey",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Grey",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Stand out from the crowd with these mixed panel baggy jeans[cite: 13]. Featuring a creative blend of patchwork blocks and mottled acid wash textures, tailored with a relaxed wide-leg silhouette and durable denim fabric[cite: 13].",
+      "details": {
+        "material": "100% Cotton Denim",
+        "fit": "Baggy / Unisex",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Hybrid patchwork and acid wash panel design[cite: 13]",
+          "Relaxed wide-leg baggy silhouette[cite: 13]",
+          "Available in blue and grey denim washes",
+          "Classic multi-pocket layout with sturdy belt loops[cite: 13]"
+        ]
+      },
+      "tags": [
+        "jeans",
+        "baggy",
+        "patchwork",
+        "acidwash",
+        "denim",
+        "streetwear",
+        "casual",
+        "unisex"
+      ],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "43",
+      "name": "Gradient Wash Baggy Jeans",
+      "price": "1899",
+      "oldPrice": null,
+      "shortDescription": "Bold baggy fit jeans featuring a striking dark-to-light gradient wash and relaxed wide-leg silhouette.",
+      "category": "jeans",
+      "subcategory": "baggy",
+      "rating": 4.9,
+      "reviewsCount": 19,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_43_black_front.jpeg",
+            "back": "/images/product_43_black_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Make a distinct streetwear statement with these gradient wash baggy jeans. Designed with a loose wide-leg cut, fading tonal gradient effect, and durable cotton denim construction for everyday style and comfort.",
+      "details": {
+        "material": "100% Cotton Denim",
+        "fit": "Baggy / Unisex",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Relaxed wide-leg baggy silhouette",
+          "Striking dark-to-light gradient wash effect",
+          "Classic multi-pocket layout with sturdy belt loops",
+          "Durable denim fabric built for streetwear comfort"
+        ]
+      },
+      "tags": [
+        "jeans",
+        "baggy",
+        "gradient",
+        "denim",
+        "streetwear",
+        "casual",
+        "unisex"
+      ],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "44",
+      "name": "Paint Splatter Baggy Jeans",
+      "price": "1899",
+      "oldPrice": "2199",
+      "shortDescription": "Artistic baggy fit jeans featuring a dramatic paint splatter effect and relaxed wide-leg cut.",
+      "category": "jeans",
+      "subcategory": "baggy",
+      "rating": 4.9,
+      "reviewsCount": 20,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Grey",
+          "value": "#6E6E6E",
+          "images": {
+            "front": "/images/product_44_grey_front.jpeg",
+            "back": "/images/product_44_grey_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Grey",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Grey",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Grey",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Grey",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Express your unique creative style with these paint splatter baggy jeans. Built with a loose wide-leg silhouette, classic multi-pocket layout, and an eye-catching distressed wash featuring artistic paint splashes.",
+      "details": {
+        "material": "100% Cotton Denim",
+        "fit": "Baggy / Unisex",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Relaxed wide-leg baggy silhouette",
+          "Artistic paint splatter wash effect",
+          "Classic multi-pocket layout with sturdy belt loops",
+          "Durable denim fabric built for everyday comfort"
+        ]
+      },
+      "tags": [
+        "jeans",
+        "baggy",
+        "paintsplatter",
+        "denim",
+        "streetwear",
+        "casual",
+        "unisex"
+      ],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "45",
+      "name": "Tonal Patchwork Baggy Jeans",
+      "price": "1899",
+      "oldPrice": "2199",
+      "shortDescription": "Statement baggy fit jeans featuring a subtle tonal patchwork pattern and wide-leg silhouette.",
+      "category": "jeans",
+      "subcategory": "baggy",
+      "rating": 4.9,
+      "reviewsCount": 23,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Blue",
+          "value": "#8DA4C4",
+          "images": {
+            "front": "/images/product_45_blue_front.jpeg",
+            "back": "/images/product_45_blue_back.jpeg"
+          }
+        },
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_45_black_front.jpeg",
+            "back": "/images/product_45_black_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Blue",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Blue",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Blue",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Blue",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Elevate your streetwear look with these tonal patchwork baggy jeans. Designed with a loose wide-leg cut, subtle multi-panel detailing, and durable denim fabric for an effortless, standout style.",
+      "details": {
+        "material": "100% Cotton Denim",
+        "fit": "Baggy / Unisex",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Relaxed wide-leg baggy silhouette",
+          "Subtle all-over tonal patchwork pattern",
+          "Available in blue and black washes",
+          "Classic multi-pocket layout with sturdy belt loops"
+        ]
+      },
+      "tags": [
+        "jeans",
+        "baggy",
+        "patchwork",
+        "denim",
+        "streetwear",
+        "casual",
+        "unisex"
+      ],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "46",
+      "name": "Camo Accent Baggy Jeans",
+      "price": "1899",
+      "oldPrice": null,
+      "shortDescription": "Bold baggy fit jeans featuring a solid black wash combined with distinct camouflage accents.",
+      "category": "jeans",
+      "subcategory": "baggy",
+      "rating": 4.9,
+      "reviewsCount": 18,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_46_black_front.jpeg",
+            "back": ""
+          }
+        },
+        {
+          "name": "Camouflage",
+          "value": "#4B5320",
+          "images": {
+            "front": "/images/product_46_green_front.jpeg",
+            "back": ""
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "Camouflage",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Camouflage",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Camouflage",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Camouflage",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Bring an edge to your everyday streetwear wardrobe with these camo accent baggy jeans. Designed with a loose wide-leg silhouette, durable denim fabric, and a utilitarian blend of solid and camo styling.",
+      "details": {
+        "material": "100% Cotton Denim",
+        "fit": "Baggy / Unisex",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Relaxed wide-leg baggy silhouette",
+          "Available in black and camouflage styles",
+          "Classic multi-pocket layout with sturdy belt loops",
+          "Durable cotton construction for daily wear"
+        ]
+      },
+      "tags": [
+        "jeans",
+        "baggy",
+        "camouflage",
+        "denim",
+        "streetwear",
+        "casual",
+        "unisex"
+      ],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "47",
+      "name": "Two-Tone Split Baggy Jeans",
+      "price": "1899",
+      "oldPrice": "2199",
+      "shortDescription": "Bold two-tone split baggy jeans featuring contrasting dark and light denim washes.",
+      "category": "jeans",
+      "subcategory": "baggy",
+      "rating": 4.9,
+      "reviewsCount": 22,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Blue",
+          "value": "#3B4E63",
+          "images": {
+            "front": "/images/product_47_blue_front.jpeg",
+            "back": "/images/product_47_blue_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Blue",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Blue",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Blue",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Blue",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Make a striking streetwear impact with these two-tone split baggy jeans[cite: 13]. Designed with a bold half-and-half color block layout, wide-leg silhouette, and durable cotton denim construction for a standout look[cite: 13].",
+      "details": {
+        "material": "100% Cotton Denim",
+        "fit": "Baggy / Unisex",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Unique two-tone split leg design[cite: 13]",
+          "Relaxed wide-leg baggy silhouette[cite: 13]",
+          "Contrasting dark and light blue denim washes",
+          "Classic multi-pocket layout with sturdy belt loops[cite: 13]"
+        ]
+      },
+      "tags": [
+        "jeans",
+        "baggy",
+        "twotone",
+        "denim",
+        "streetwear",
+        "casual",
+        "unisex"
+      ],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "48",
+      "name": "Essential Zip-Up Hoodie",
+      "price": "1599",
+      "oldPrice": null,
+      "shortDescription": "Comfortable oversized zip-up hoodie featuring a classic hooded design and premium fleece fleece-lined cotton.",
+      "category": "hoodies",
+      "subcategory": "zip-up",
+      "rating": 4.9,
+      "reviewsCount": 24,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_48_black_front.jpeg",
+            "back": "/images/product_48_black_back.jpeg"
+          }
+        },
+        {
+          "name": "Camouflage",
+          "value": "#555B4E",
+          "images": {
+            "front": "/images/product_48_green_front.jpeg",
+            "back": "/images/product_48_green_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "Camouflage",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Camouflage",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Camouflage",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Camouflage",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Layer up in style with this essential zip-up hoodie. Crafted from soft, durable cotton blend fleece, it features a relaxed fit, a spacious hood, and a full zip front for effortless everyday streetwear layering.",
+      "details": {
+        "material": "80% Cotton, 20% Polyester",
+        "fit": "Relaxed / Unisex",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Relaxed oversized streetwear silhouette",
+          "Full front zipper closure",
+          "Available in classic black and light camouflage",
+          "Ribbed cuffs and hem for a snug fit"
+        ]
+      },
+      "tags": [
+        "hoodie",
+        "zip-up",
+        "sweatshirt",
+        "streetwear",
+        "casual",
+        "unisex"
+      ],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "49",
+      "name": "Vintage Wash Zip-Up Hoodie",
+      "price": "1599",
+      "oldPrice": "1899",
+      "shortDescription": "Relaxed vintage-washed zip-up hoodie featuring a worn-in finish and soft fleece interior.",
+      "category": "hoodies",
+      "subcategory": "zip-up",
+      "rating": 4.9,
+      "reviewsCount": 21,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#222222",
+          "images": {
+            "front": "/images/product_49_black_front.jpeg",
+            "back": "/images/product_49_black_back.jpeg"
+          }
+        },
+        {
+          "name": "Grey",
+          "value": "#7A7A7A",
+          "images": {
+            "front": "/images/product_49_grey_front.jpeg",
+            "back": "/images/product_49_grey_back.jpeg"
+          }
+        },
+        {
+          "name": "Red",
+          "value": "#8C2525",
+          "images": {
+            "front": "/images/product_49_red_front.jpeg",
+            "back": "/images/product_49_red_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "Grey",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Grey",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Grey",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Grey",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "Red",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Red",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Red",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Red",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Achieve effortless streetwear style with this vintage wash zip-up hoodie[cite: 11]. Tailored with a comfortable relaxed fit, full-zip front, and soft fleece-lined cotton blend for ultimate daily warmth and comfort[cite: 11].",
+      "details": {
+        "material": "80% Cotton, 20% Polyester",
+        "fit": "Relaxed / Unisex",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Relaxed oversized streetwear silhouette[cite: 11]",
+          "Worn-in vintage wash effect[cite: 11]",
+          "Full front zipper closure",
+          "Available in black, grey, and red[cite: 11]"
+        ]
+      },
+      "tags": [
+        "hoodie",
+        "zip-up",
+        "sweatshirt",
+        "streetwear",
+        "casual",
+        "unisex"
+      ],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "50",
+      "name": "Classic Zip-Up Hoodie",
+      "price": "1599",
+      "oldPrice": null,
+      "shortDescription": "Comfortable oversized zip-up hoodie featuring a classic hooded design and premium fleece-lined cotton.",
+      "category": "hoodies",
+      "subcategory": "zip-up",
+      "rating": 4.9,
+      "reviewsCount": 20,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_50_black_front.jpeg",
+            "back": "/images/product_50_black_back.jpeg"
+          }
+        },
+        {
+          "name": "Blue",
+          "value": "#3B4E63",
+          "images": {
+            "front": "/images/product_50_blue_front.jpeg",
+            "back": "/images/product_50_blue_back.jpeg"
+          }
+        },
+        {
+          "name": "Grey",
+          "value": "#7A7A7A",
+          "images": {
+            "front": "/images/product_50_grey_front.jpeg",
+            "back": "/images/product_50_grey_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "Blue",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Blue",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Blue",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Blue",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "Grey",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Grey",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Grey",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Grey",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Layer up in style with this classic zip-up hoodie[cite: 11]. Crafted from soft, durable cotton blend fleece, it features a relaxed fit, a spacious hood, and a full zip front for effortless everyday streetwear layering[cite: 11].",
+      "details": {
+        "material": "80% Cotton, 20% Polyester",
+        "fit": "Relaxed / Unisex",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Relaxed oversized streetwear silhouette[cite: 11]",
+          "Full front zipper closure[cite: 11]",
+          "Available in black, blue, and grey washes[cite: 11]",
+          "Ribbed cuffs and hem for a snug fit[cite: 11]"
+        ]
+      },
+      "tags": [
+        "hoodie",
+        "zip-up",
+        "sweatshirt",
+        "streetwear",
+        "casual",
+        "unisex"
+      ],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "51",
+      "name": "Patchwork Zip-Up Hoodie",
+      "price": "1799",
+      "oldPrice": "2099",
+      "shortDescription": "Edgy zip-up hoodie featuring an intricate dark patchwork design and exposed seam details.",
+      "category": "hoodies",
+      "subcategory": "zip-up",
+      "rating": 4.9,
+      "reviewsCount": 17,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_51_black_front.jpeg",
+            "back": "/images/product_51_black_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Make a bold statement with this patchwork zip-up hoodie[cite: 12]. Crafted with multi-panel distressed textures, exposed raw seams, and a comfortable relaxed fit for an ultimate avant-garde streetwear aesthetic[cite: 12].",
+      "details": {
+        "material": "80% Cotton, 20% Polyester",
+        "fit": "Relaxed / Men",
+        "gender": "Men",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "All-over complex dark patchwork construction[cite: 12]",
+          "Exposed raw-edge seam accents[cite: 12]",
+          "Full front zipper closure[cite: 12]",
+          "Ribbed cuffs and hem for structure[cite: 12]"
+        ]
+      },
+      "tags": ["hoodie", "zip-up", "patchwork", "streetwear", "casual", "men"],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "52",
+      "name": "Acid Wash Zip-Up Hoodie",
+      "price": "1699",
+      "oldPrice": "1999",
+      "shortDescription": "Edgy zip-up hoodie featuring a bold acid wash finish, split kangaroo pocket, and relaxed fit.",
+      "category": "hoodies",
+      "subcategory": "zip-up",
+      "rating": 4.9,
+      "reviewsCount": 19,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_52_black_front.jpeg",
+            "back": ""
+          }
+        },
+        {
+          "name": "Grey",
+          "value": "#7A7A7A",
+          "images": {
+            "front": "/images/product_52_grey_front.jpeg",
+            "back": ""
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "Grey",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Grey",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Grey",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Grey",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Upgrade your streetwear rotation with this acid wash zip-up hoodie[cite: 13]. Designed with a striking mottled wash pattern, comfortable full-zip front, and soft fleece interior for ultimate warmth and style[cite: 13].",
+      "details": {
+        "material": "80% Cotton, 20% Polyester",
+        "fit": "Relaxed / Men",
+        "gender": "Men",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Unique acid wash mottled aesthetic[cite: 13]",
+          "Full front zipper closure[cite: 13]",
+          "Convenient split kangaroo front pocket[cite: 13]",
+          "Available in black and grey washes[cite: 13]"
+        ]
+      },
+      "tags": ["hoodie", "zip-up", "acidwash", "streetwear", "casual", "men"],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "53",
+      "name": "Vintage Wash Zip-Up Hoodie",
+      "price": "1699",
+      "oldPrice": null,
+      "shortDescription": "Comfortable vintage wash zip-up hoodie featuring a soft fleece interior and relaxed fit.",
+      "category": "hoodies",
+      "subcategory": "zip-up",
+      "rating": 4.9,
+      "reviewsCount": 18,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Blue",
+          "value": "#3B4E63",
+          "images": {
+            "front": "/images/product_53_blue_front.jpeg",
+            "back": "/images/product_53_blue_back.jpeg"
+          }
+        },
+        {
+          "name": "Green",
+          "value": "#4A5D4E",
+          "images": {
+            "front": "/images/product_53_green_front.jpeg",
+            "back": "/images/product_53_green_back.jpeg"
+          }
+        },
+        {
+          "name": "Grey",
+          "value": "#7A7A7A",
+          "images": {
+            "front": "/images/product_53_grey_front.jpeg",
+            "back": "/images/product_53_grey_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Blue",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Blue",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Blue",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Blue",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "Green",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Green",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Green",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Green",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "Grey",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Grey",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Grey",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Grey",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Achieve an effortless casual look with this vintage wash zip-up hoodie[cite: 14]. Crafted from soft cotton fleece, it features a relaxed fit, a spacious hood, and a full-length zipper for ultimate comfort[cite: 14].",
+      "details": {
+        "material": "80% Cotton, 20% Polyester",
+        "fit": "Relaxed / Men",
+        "gender": "Men",
+        "season": "All-season",
+        "care": "Machine wash cold inside out on a gentle cycle. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Relaxed streetwear silhouette[cite: 14]",
+          "Vintage worn-in wash effect[cite: 14]",
+          "Full front zipper closure[cite: 14]",
+          "Available in blue, green, and grey[cite: 14]"
+        ]
+      },
+      "tags": ["hoodie", "zip-up", "sweatshirt", "streetwear", "casual", "men"],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "54",
+      "name": "Essential Pullover Hoodie",
+      "price": "1499",
+      "oldPrice": null,
+      "shortDescription": "Класичне худі-пуловер вільного крою з м'якою флісовою підкладкою та просторою кишенею-кенгуру.",
+      "category": "hoodies",
+      "subcategory": "pullover",
+      "rating": 4.9,
+      "reviewsCount": 22,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_54_black_front.jpeg",
+            "back": "/images/product_54_black_back.jpeg"
+          }
+        },
+        {
+          "name": "Brown",
+          "value": "#5C4033",
+          "images": {
+            "front": "/images/product_54_brown_front.jpeg",
+            "back": "/images/product_54_brown_back.jpeg"
+          }
+        },
+        {
+          "name": "White",
+          "value": "#F0F0F0",
+          "images": {
+            "front": "/images/product_54_white_front.jpeg",
+            "back": "/images/product_54_white_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "Brown",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Brown",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Brown",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Brown",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "White",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "White",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "White",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "White",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Створіть затишний повсякденний образ із цим класичним худі-пуловером. Виготовлене з високоякісного сумішевого флісу на основі бавовни, воно забезпечує максимальний комфорт, тепла та стиль у будь-яку пору року.",
+      "details": {
+        "material": "80% Бавовна, 20% Поліестер",
+        "fit": "Вільний / Чоловічий",
+        "gender": "Чоловіки",
+        "season": "Усесезонний",
+        "care": "Прання в машинці на делікатному режимі з вивороту. Не відбілювати. Сушити при низькій температурі.",
+        "country": "Україна",
+        "features": [
+          "Вільний силует у вуличному стилі",
+          "Містка передня кишеня-кенгуру",
+          "Подвійний капюшон без шнурків для лаконічного вигляду",
+          "Доступно в чорному, коричневому та білому кольорах"
+        ]
+      },
+      "tags": [
+        "hoodie",
+        "pullover",
+        "sweatshirt",
+        "streetwear",
+        "casual",
+        "men"
+      ],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "55",
+      "name": "Textured Patchwork Pullover Hoodie",
+      "price": "1699",
+      "oldPrice": "1999",
+      "shortDescription": "Avant-garde pullover hoodie featuring an intricate textured patchwork design and cozy fleece interior.",
+      "category": "hoodies",
+      "subcategory": "pullover",
+      "rating": 4.9,
+      "reviewsCount": 16,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_55_black_front.jpeg",
+            "back": "/images/product_55_black_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Make a distinct streetwear statement with this textured patchwork pullover hoodie[cite: 13]. Crafted with complex multi-panel dimensional detailing, raw seam accents, and a comfortable relaxed fit for an ultimate modern aesthetic[cite: 13].",
+      "details": {
+        "material": "80% Cotton, 20% Polyester",
+        "fit": "Relaxed / Men",
+        "gender": "Men",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "All-over complex textured patchwork construction[cite: 13]",
+          "Spacious front kangaroo pocket[cite: 13]",
+          "Relaxed streetwear pullover silhouette[cite: 13]",
+          "Ribbed cuffs and hem for structure[cite: 13]"
+        ]
+      },
+      "tags": [
+        "hoodie",
+        "pullover",
+        "patchwork",
+        "streetwear",
+        "casual",
+        "men"
+      ],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "56",
+      "name": "Minimalist Pullover Hoodie",
+      "price": "1499",
+      "oldPrice": null,
+      "shortDescription": "Clean and comfortable blue pullover hoodie featuring a soft fleece interior and minimalist design.",
+      "category": "hoodies",
+      "subcategory": "pullover",
+      "rating": 4.9,
+      "reviewsCount": 15,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Blue",
+          "value": "#2C3E50",
+          "images": {
+            "front": "/images/product_56_blue_front.jpeg",
+            "back": "/images/product_56_blue_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Blue",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Blue",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Blue",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Blue",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Keep it effortless and clean with this minimalist blue pullover hoodie. Crafted from soft cotton fleece, it offers a relaxed streetwear fit, clean silhouette, and exceptional everyday comfort.",
+      "details": {
+        "material": "80% Cotton, 20% Polyester",
+        "fit": "Relaxed / Men",
+        "gender": "Men",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Clean minimalist pullover design",
+          "Soft brushed fleece interior",
+          "Spacious double-layered hood",
+          "Ribbed cuffs and hem for a structured look"
+        ]
+      },
+      "tags": [
+        "hoodie",
+        "pullover",
+        "sweatshirt",
+        "streetwear",
+        "casual",
+        "men"
+      ],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "56",
+      "name": "Minimalist Pullover Hoodie",
+      "price": "1499",
+      "oldPrice": null,
+      "shortDescription": "Clean and comfortable blue pullover hoodie featuring a soft fleece interior and minimalist design.",
+      "category": "hoodies",
+      "subcategory": "pullover",
+      "rating": 4.9,
+      "reviewsCount": 15,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Blue",
+          "value": "#2C3E50",
+          "images": {
+            "front": "/images/product_56_blue_front.jpeg",
+            "back": "/images/product_56_blue_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Blue",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Blue",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Blue",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Blue",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Keep it effortless and clean with this minimalist blue pullover hoodie. Crafted from soft cotton fleece, it offers a relaxed streetwear fit, clean silhouette, and exceptional everyday comfort.",
+      "details": {
+        "material": "80% Cotton, 20% Polyester",
+        "fit": "Relaxed / Men",
+        "gender": "Men",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Clean minimalist pullover design",
+          "Soft brushed fleece interior",
+          "Spacious double-layered hood",
+          "Ribbed cuffs and hem for a structured look"
+        ]
+      },
+      "tags": [
+        "hoodie",
+        "pullover",
+        "sweatshirt",
+        "streetwear",
+        "casual",
+        "men"
+      ],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "59",
+      "name": "Pastel Blue Pullover Hoodie",
+      "price": "1499",
+      "oldPrice": null,
+      "shortDescription": "Soft and cozy pastel blue unisex pullover hoodie featuring a relaxed fit and fleece interior.",
+      "category": "hoodies",
+      "subcategory": "pullover",
+      "rating": 4.8,
+      "reviewsCount": 13,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Blue",
+          "value": "#A9C4E2",
+          "images": {
+            "front": "/images/product_59_blue_front.jpeg",
+            "back": "/images/product_59_blue_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Blue",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Blue",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Blue",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Blue",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Brighten up your casual wardrobe with this pastel blue pullover hoodie. Crafted from a soft cotton-poly blend with a brushed fleece interior, it offers effortless comfort and a versatile unisex fit.",
+      "details": {
+        "material": "80% Cotton, 20% Polyester",
+        "fit": "Relaxed / Unisex",
+        "gender": "Unisex",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Versatile unisex relaxed silhouette",
+          "Soft brushed fleece interior",
+          "Spacious double-layered hood",
+          "Ribbed cuffs and hem for structural shape"
+        ]
+      },
+      "tags": [
+        "hoodie",
+        "pullover",
+        "sweatshirt",
+        "streetwear",
+        "casual",
+        "unisex"
+      ],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "60",
+      "name": "Classic Bomber Jacket",
+      "price": "2499",
+      "oldPrice": null,
+      "shortDescription": "Sleek and versatile black bomber jacket featuring a durable outer shell, ribbed trims, and a clean modern fit.",
+      "category": "outerwear",
+      "subcategory": "bombers",
+      "rating": 4.9,
+      "reviewsCount": 21,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_60_black_front.jpeg",
+            "back": "/images/product_60_black_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Complete your outerwear rotation with this classic black bomber jacket[cite: 14]. Engineered with a sturdy wind-resistant shell, comfortable insulated lining, and classic ribbed collar, cuffs, and hem for an effortless streetwear aesthetic[cite: 14].",
+      "details": {
+        "material": "100% Nylon Outer, 100% Polyester Lining",
+        "fit": "Relaxed / Men",
+        "gender": "Men",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Classic bomber silhouette with structured ribbed trims[cite: 14]",
+          "Durable wind-resistant outer shell[cite: 14]",
+          "Smooth front zipper closure[cite: 14]",
+          "Secure utility pockets for daily essentials[cite: 14]"
+        ]
+      },
+      "tags": ["outerwear", "bomber", "jacket", "streetwear", "casual", "men"],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "61",
+      "name": "Embroidered Logo Bomber Jacket",
+      "price": "2699",
+      "oldPrice": "2999",
+      "shortDescription": "Bold black bomber jacket featuring a striking embroidered chest emblem, ribbed trims, and modern fit.",
+      "category": "outerwear",
+      "subcategory": "bombers",
+      "rating": 4.9,
+      "reviewsCount": 19,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_61_black_front.jpeg",
+            "back": "/images/product_61_black_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Elevate your outerwear statement with this embroidered logo bomber jacket[cite: 14]. Crafted from durable wind-resistant shell fabric, it showcases a bold chest emblem, classic ribbed trims, and a sleek modern silhouette[cite: 14].",
+      "details": {
+        "material": "100% Nylon Outer, 100% Polyester Lining",
+        "fit": "Relaxed / Men",
+        "gender": "Men",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Striking embroidered chest emblem detail[cite: 14]",
+          "Classic bomber silhouette with ribbed collar and cuffs[cite: 14]",
+          "Durable wind-resistant fabric[cite: 14]",
+          "Secure snap-button front pockets[cite: 14]"
+        ]
+      },
+      "tags": ["outerwear", "bomber", "jacket", "streetwear", "casual", "men"],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "61",
+      "name": "Embroidered Logo Bomber Jacket",
+      "price": "2699",
+      "oldPrice": "2999",
+      "shortDescription": "Bold black bomber jacket featuring a striking embroidered chest emblem, ribbed trims, and modern fit.",
+      "category": "outerwear",
+      "subcategory": "bombers",
+      "rating": 4.9,
+      "reviewsCount": 19,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_61_black_front.jpeg",
+            "back": "/images/product_61_black_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Elevate your outerwear statement with this embroidered logo bomber jacket[cite: 14]. Crafted from durable wind-resistant shell fabric, it showcases a bold chest emblem, classic ribbed trims, and a sleek modern silhouette[cite: 14].",
+      "details": {
+        "material": "100% Nylon Outer, 100% Polyester Lining",
+        "fit": "Relaxed / Men",
+        "gender": "Men",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Striking embroidered chest emblem detail[cite: 14]",
+          "Classic bomber silhouette with ribbed collar and cuffs[cite: 14]",
+          "Durable wind-resistant fabric[cite: 14]",
+          "Secure snap-button front pockets[cite: 14]"
+        ]
+      },
+      "tags": ["outerwear", "bomber", "jacket", "streetwear", "casual", "men"],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "62",
+      "name": "Contrast Collar Bomber Jacket",
+      "price": "2799",
+      "oldPrice": "3099",
+      "shortDescription": "Sophisticated black bomber jacket featuring a crisp white contrast shirt collar and modern relaxed fit.",
+      "category": "outerwear",
+      "subcategory": "bombers",
+      "rating": 4.9,
+      "reviewsCount": 17,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_62_black_front.jpeg",
+            "back": "/images/product_62_black_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Blend smart tailoring with streetwear edge in this contrast collar bomber jacket[cite: 15]. Crafted from a sleek, durable outer shell, it features a distinctive white pointed collar, concealed zip closure, and ribbed hem and cuffs[cite: 15].",
+      "details": {
+        "material": "100% Nylon Outer, 100% Polyester Lining",
+        "fit": "Relaxed / Men",
+        "gender": "Men",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Distinctive white contrast shirt collar[cite: 15]",
+          "Concealed zipper and snap front placket[cite: 15]",
+          "Durable wind-resistant nylon shell[cite: 15]",
+          "Structured ribbed cuffs and hem[cite: 15]"
+        ]
+      },
+      "tags": ["outerwear", "bomber", "jacket", "streetwear", "casual", "men"],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "63",
+      "name": "Reversible Bomber Jacket",
+      "price": "2899",
+      "oldPrice": "3199",
+      "shortDescription": "Versatile reversible men's bomber jacket offering two distinct styling options in black and brown.",
+      "category": "outerwear",
+      "subcategory": "bombers",
+      "rating": 4.9,
+      "reviewsCount": 18,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_63_black_front.jpeg",
+            "back": "/images/product_63_black_back.jpeg"
+          }
+        },
+        {
+          "name": "Brown",
+          "value": "#4A3B32",
+          "images": {
+            "front": "/images/product_63_brown_front.jpeg",
+            "back": "/images/product_63_brown_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "Brown",
+          "size": "S",
+          "quantity": 6
+        },
+        {
+          "color": "Brown",
+          "size": "M",
+          "quantity": 14
+        },
+        {
+          "color": "Brown",
+          "size": "L",
+          "quantity": 10
+        },
+        {
+          "color": "Brown",
+          "size": "XL",
+          "quantity": 5
+        }
+      ],
+      "description": "Maximize your wardrobe flexibility with this reversible bomber jacket[cite: 16]. Designed to seamlessly switch between a sleek black side and a rich brown side, it features a durable outer shell, clean concealed zip placket, and comfortable ribbed trims[cite: 16].",
+      "details": {
+        "material": "100% Nylon Reversible Shell, 100% Polyester Filling",
+        "fit": "Relaxed / Men",
+        "gender": "Men",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Fully reversible design featuring black and brown options[cite: 16]",
+          "Clean concealed front zipper and snap placket[cite: 16]",
+          "Durable wind-resistant construction[cite: 16]",
+          "Structured ribbed collar, cuffs, and hem[cite: 16]"
+        ]
+      },
+      "tags": [
+        "outerwear",
+        "bomber",
+        "jacket",
+        "reversible",
+        "streetwear",
+        "casual",
+        "men"
+      ],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "64",
+      "name": "Overlay Detail Bomber Jacket",
+      "price": "2699",
+      "oldPrice": "2999",
+      "shortDescription": "Contemporary dark grey men's bomber jacket featuring unique overlay yoke construction and ribbed trims.",
+      "category": "outerwear",
+      "subcategory": "bombers",
+      "rating": 4.9,
+      "reviewsCount": 16,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Grey",
+          "value": "#4A4D52",
+          "images": {
+            "front": "/images/product_64_grey_front.jpeg",
+            "back": "/images/product_64_grey_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Grey",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Grey",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Grey",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Grey",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Redefine your outerwear style with this contemporary dark grey bomber jacket[cite: 17]. Featuring an engineered structural overlay yoke detail on the back, durable weather-resistant fabric, and a comfortable relaxed silhouette[cite: 17].",
+      "details": {
+        "material": "100% Nylon Outer, 100% Polyester Lining",
+        "fit": "Relaxed / Men",
+        "gender": "Men",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Unique structural overlay yoke detail on the back[cite: 17]",
+          "Durable wind-resistant outer shell[cite: 17]",
+          "Smooth front zipper closure[cite: 17]",
+          "Structured ribbed collar, cuffs, and hem[cite: 17]"
+        ]
+      },
+      "tags": ["outerwear", "bomber", "jacket", "streetwear", "casual", "men"],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "65",
+      "name": "Piped Overlay Bomber Jacket",
+      "price": "2799",
+      "oldPrice": "3099",
+      "shortDescription": "Sleek black men's bomber jacket featuring striking white sleeve piping, structural overlay yoke, and ribbed trims.",
+      "category": "outerwear",
+      "subcategory": "bombers",
+      "rating": 4.9,
+      "reviewsCount": 20,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_65_black_front.jpeg",
+            "back": "/images/product_65_black_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Upgrade your outerwear lineup with this piped overlay bomber jacket[cite: 14]. Designed with contrasting white sleeve piping, an architectural back overlay yoke, durable weather-resistant fabric, and a comfortable relaxed fit[cite: 14].",
+      "details": {
+        "material": "100% Nylon Outer, 100% Polyester Lining",
+        "fit": "Relaxed / Men",
+        "gender": "Men",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Contrasting white piping along the sleeves[cite: 14]",
+          "Structural overlay yoke detail on the back[cite: 14]",
+          "Durable wind-resistant nylon outer shell[cite: 14]",
+          "Comfortable ribbed collar, cuffs, and hem[cite: 14]"
+        ]
+      },
+      "tags": ["outerwear", "bomber", "jacket", "streetwear", "casual", "men"],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "66",
+      "name": "Wide Sleeve Bomber Jacket",
+      "price": "2599",
+      "oldPrice": "2899",
+      "shortDescription": "Modern black men's bomber jacket styled with dramatic wide sleeves, exposed front zip, and snap pockets.",
+      "category": "outerwear",
+      "subcategory": "bombers",
+      "rating": 4.9,
+      "reviewsCount": 15,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_66_black_front.jpeg",
+            "back": "/images/product_66_black_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Make a distinct streetwear statement with this wide sleeve bomber jacket[cite: 15]. Featuring an oversized silhouette with exaggerated wide sleeves, prominent silver-tone front zipper, and secure snap-button pockets[cite: 15].",
+      "details": {
+        "material": "100% Nylon Outer, 100% Polyester Lining",
+        "fit": "Oversized / Relaxed / Men",
+        "gender": "Men",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Dramatic oversized wide sleeves[cite: 15]",
+          "Exaggerated metal front zipper closure[cite: 15]",
+          "Durable wind-resistant nylon fabric[cite: 15]",
+          "Angled front snap pockets[cite: 15]"
+        ]
+      },
+      "tags": ["outerwear", "bomber", "jacket", "streetwear", "casual", "men"],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "67",
+      "name": "Cropped Bomber Jacket",
+      "price": "2499",
+      "oldPrice": null,
+      "shortDescription": "Sleek light grey women's cropped bomber jacket featuring a clean silhouette, wide sleeves, and ribbed trims.",
+      "category": "outerwear",
+      "subcategory": "bombers",
+      "rating": 4.8,
+      "reviewsCount": 14,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Grey",
+          "value": "#A3A7AC",
+          "images": {
+            "front": "/images/product_67_grey_front.jpeg",
+            "back": "/images/product_67_grey_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Grey",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Grey",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Grey",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Grey",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Complete your casual streetwear look with this light grey cropped bomber jacket[cite: 14]. Designed with a modern shorter hemline, comfortable wide sleeves, durable wind-resistant shell fabric, and classic ribbed trims[cite: 14].",
+      "details": {
+        "material": "100% Nylon Outer, 100% Polyester Lining",
+        "fit": "Cropped / Relaxed / Women",
+        "gender": "Women",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Modern cropped silhouette[cite: 14]",
+          "Comfortable wide sleeves[cite: 14]",
+          "Durable wind-resistant nylon outer shell[cite: 14]",
+          "Ribbed collar, cuffs, and hem[cite: 14]"
+        ]
+      },
+      "tags": [
+        "outerwear",
+        "bomber",
+        "jacket",
+        "streetwear",
+        "casual",
+        "women"
+      ],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "68",
+      "name": "Embroidered Logo Cropped Bomber",
+      "price": "2599",
+      "oldPrice": "2899",
+      "shortDescription": "Crisp white women's cropped bomber jacket featuring a subtle embroidered chest logo, wide sleeves, and silver front zip.",
+      "category": "outerwear",
+      "subcategory": "bombers",
+      "rating": 4.9,
+      "reviewsCount": 19,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "White",
+          "value": "#F5F5F5",
+          "images": {
+            "front": "/images/product_68_white_front.jpeg",
+            "back": "/images/product_68_white_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "White",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "White",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "White",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "White",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Refresh your outerwear wardrobe with this clean white cropped bomber jacket[cite: 15]. Styled with a refined embroidered logo on the chest, an exposed silver-tone metal zipper, wide sleeves, and classic ribbed trims[cite: 15].",
+      "details": {
+        "material": "100% Nylon Outer, 100% Polyester Lining",
+        "fit": "Cropped / Relaxed / Women",
+        "gender": "Women",
+        "season": "All-season",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Tumble dry low.",
+        "country": "Ukraine",
+        "features": [
+          "Subtle embroidered logo on the chest[cite: 15]",
+          "Modern cropped silhouette with wide sleeves[cite: 15]",
+          "Durable wind-resistant nylon outer shell[cite: 15]",
+          "Exposed front metal zipper and ribbed finishes[cite: 15]"
+        ]
+      },
+      "tags": [
+        "outerwear",
+        "bomber",
+        "jacket",
+        "streetwear",
+        "casual",
+        "women"
+      ],
+      "styles": ["casual", "streetwear"]
+    },
+    {
+      "id": "69",
+      "name": "Colorblock Windbreaker Jacket",
+      "price": "2999",
+      "oldPrice": "3299",
+      "shortDescription": "Dynamic men's windbreaker jacket combining black and green panels with a high stand collar and lightweight weather-resistant build.",
+      "category": "outerwear",
+      "subcategory": "windbreakers",
+      "rating": 4.9,
+      "reviewsCount": 21,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_69_black_front.jpeg",
+            "back": "/images/product_69_black_back.jpeg"
+          }
+        },
+        {
+          "name": "Green",
+          "value": "#2E3B2E",
+          "images": {
+            "front": "/images/product_69_green_front.jpeg",
+            "back": "/images/product_69_green_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        },
+        {
+          "color": "Green",
+          "size": "S",
+          "quantity": 6
+        },
+        {
+          "color": "Green",
+          "size": "M",
+          "quantity": 14
+        },
+        {
+          "color": "Green",
+          "size": "L",
+          "quantity": 10
+        },
+        {
+          "color": "Green",
+          "size": "XL",
+          "quantity": 5
+        }
+      ],
+      "description": "Stay protected against the elements in style with this colorblock windbreaker jacket[cite: 16]. Featuring a lightweight, wind-resistant construction, high protective stand collar, full-zip front, and elasticated cuffs and hem[cite: 16].",
+      "details": {
+        "material": "100% Lightweight Technical Nylon, 100% Polyester Mesh Lining",
+        "fit": "Relaxed / Men",
+        "gender": "Men",
+        "season": "Spring / Fall",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Hang dry.",
+        "country": "Ukraine",
+        "features": [
+          "Lightweight wind-resistant technical shell[cite: 16]",
+          "Protective high stand collar[cite: 16]",
+          "Full front zip closure with storm flap[cite: 16]",
+          "Elasticized cuffs and hem for a secure fit[cite: 16]"
+        ]
+      },
+      "tags": [
+        "outerwear",
+        "windbreaker",
+        "jacket",
+        "sportswear",
+        "streetwear",
+        "casual",
+        "men"
+      ],
+      "styles": ["casual", "streetwear", "sporty"]
+    },
+    {
+      "id": "70",
+      "name": "Piped Track Windbreaker Jacket",
+      "price": "2899",
+      "oldPrice": "3199",
+      "shortDescription": "Sleek black men's windbreaker jacket featuring contrasting white piping accents, stand collar, and elasticated hem.",
+      "category": "outerwear",
+      "subcategory": "windbreakers",
+      "rating": 4.9,
+      "reviewsCount": 18,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_70_black_front.jpeg",
+            "back": "/images/product_70_black_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Combine athletic aesthetics with everyday utility in this piped track windbreaker jacket[cite: 15]. Styled with distinctive white contrast piping, a protective stand collar, full-zip front closure, and a comfortable relaxed fit[cite: 15].",
+      "details": {
+        "material": "100% Lightweight Technical Nylon, 100% Polyester Lining",
+        "fit": "Relaxed / Men",
+        "gender": "Men",
+        "season": "Spring / Fall",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Hang dry.",
+        "country": "Ukraine",
+        "features": [
+          "Contrasting white piping details across the back and sleeves[cite: 15]",
+          "Lightweight wind-resistant technical nylon fabric[cite: 15]",
+          "Protective high stand collar[cite: 15]",
+          "Elasticated cuffs and hem for secure structure[cite: 15]"
+        ]
+      },
+      "tags": [
+        "outerwear",
+        "windbreaker",
+        "jacket",
+        "sportswear",
+        "streetwear",
+        "casual",
+        "men"
+      ],
+      "styles": ["casual", "streetwear", "sporty"]
+    },
+    {
+      "id": "71",
+      "name": "Minimalist Technical Windbreaker",
+      "price": "2799",
+      "oldPrice": "3099",
+      "shortDescription": "Sleek dark grey men's windbreaker jacket designed with a clean minimal aesthetic, ribbed collar, and weather-resistant shell.",
+      "category": "outerwear",
+      "subcategory": "windbreakers",
+      "rating": 4.8,
+      "reviewsCount": 16,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Grey",
+          "value": "#505358",
+          "images": {
+            "front": "/images/product_71_grey_front.jpeg",
+            "back": "/images/product_71_grey_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Grey",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Grey",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Grey",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Grey",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Embrace clean architectural lines with this minimalist technical windbreaker jacket[cite: 16]. Crafted from a durable weather-resistant technical shell, featuring a ribbed collar and cuffs, clean seam detailing, and a comfortable relaxed silhouette[cite: 16].",
+      "details": {
+        "material": "100% Lightweight Technical Nylon, 100% Polyester Lining",
+        "fit": "Relaxed / Men",
+        "gender": "Men",
+        "season": "Spring / Fall",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Hang dry.",
+        "country": "Ukraine",
+        "features": [
+          "Clean minimalist styling with subtle seam accents[cite: 16]",
+          "Lightweight wind-resistant technical nylon outer shell[cite: 16]",
+          "Comfortable ribbed collar, cuffs, and hem[cite: 16]",
+          "Secure front zip closure[cite: 16]"
+        ]
+      },
+      "tags": [
+        "outerwear",
+        "windbreaker",
+        "jacket",
+        "minimalist",
+        "streetwear",
+        "casual",
+        "men"
+      ],
+      "styles": ["casual", "streetwear", "minimalist"]
+    },
+    {
+      "id": "72",
+      "name": "Overlay Yoke Windbreaker Jacket",
+      "price": "2899",
+      "oldPrice": "3199",
+      "shortDescription": "Sleek black men's windbreaker featuring a structural back overlay yoke, ribbed trims, and weather-resistant nylon.",
+      "category": "outerwear",
+      "subcategory": "windbreakers",
+      "rating": 4.9,
+      "reviewsCount": 17,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_72_black_front.jpeg",
+            "back": "/images/product_72_black_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Elevate your transitional wardrobe with this overlay yoke windbreaker jacket[cite: 17]. Designed with an architectural back yoke overlay, durable wind-resistant technical nylon, a full-zip front, and comfortable ribbed trims[cite: 17].",
+      "details": {
+        "material": "100% Lightweight Technical Nylon, 100% Polyester Lining",
+        "fit": "Relaxed / Men",
+        "gender": "Men",
+        "season": "Spring / Fall",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Hang dry.",
+        "country": "Ukraine",
+        "features": [
+          "Structural overlay yoke detail on the back[cite: 17]",
+          "Lightweight wind-resistant technical nylon outer shell[cite: 17]",
+          "Comfortable ribbed collar, cuffs, and hem[cite: 17]",
+          "Secure front zip closure[cite: 17]"
+        ]
+      },
+      "tags": [
+        "outerwear",
+        "windbreaker",
+        "jacket",
+        "streetwear",
+        "casual",
+        "men"
+      ],
+      "styles": ["casual", "streetwear", "sporty"]
+    },
+    {
+      "id": "73",
+      "name": "Patchwork Technical Windbreaker",
+      "price": "3199",
+      "oldPrice": "3499",
+      "shortDescription": "Avant-garde black men's windbreaker featuring tonal technical patchwork panels, ribbed finishes, and full zip.",
+      "category": "outerwear",
+      "subcategory": "windbreakers",
+      "rating": 4.9,
+      "reviewsCount": 24,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_73_black_front.jpeg",
+            "back": "/images/product_73_black_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Make a bold statement with this patchwork technical windbreaker[cite: 15]. Crafted from mixed tonal technical nylon panels, it offers a textured streetwear aesthetic combined with wind-resistant protection[cite: 15], a secure front zip[cite: 15], and comfortable ribbed trims[cite: 15].",
+      "details": {
+        "material": "100% Technical Nylon Panels, 100% Polyester Lining",
+        "fit": "Relaxed / Men",
+        "gender": "Men",
+        "season": "Spring / Fall",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Hang dry.",
+        "country": "Ukraine",
+        "features": [
+          "Tonal technical patchwork panel construction[cite: 15]",
+          "Durable wind-resistant outer shell[cite: 15]",
+          "Comfortable ribbed collar, cuffs, and hem[cite: 15]",
+          "Secure front zipper closure[cite: 15]"
+        ]
+      },
+      "tags": [
+        "outerwear",
+        "windbreaker",
+        "jacket",
+        "patchwork",
+        "streetwear",
+        "casual",
+        "men"
+      ],
+      "styles": ["casual", "streetwear", "avant-garde"]
+    },
+    {
+      "id": "74",
+      "name": "Acid Wash Patchwork Windbreaker",
+      "price": "3299",
+      "oldPrice": "3599",
+      "shortDescription": "Edgy black and grey acid-wash patchwork men's windbreaker featuring ribbed trims and dual-zipper front.",
+      "category": "outerwear",
+      "subcategory": "windbreakers",
+      "rating": 4.9,
+      "reviewsCount": 22,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_74_black_front.jpeg",
+            "back": "/images/product_74_black_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Stand out with this unique acid wash patchwork windbreaker jacket[cite: 16]. Combining distressed black and grey technical panels with a modern streetwear silhouette, wind-resistant construction[cite: 16], dual front zippers, and ribbed finishes[cite: 16].",
+      "details": {
+        "material": "100% Acid-Wash Technical Nylon, 100% Polyester Lining",
+        "fit": "Relaxed / Men",
+        "gender": "Men",
+        "season": "Spring / Fall",
+        "care": "Machine wash cold inside out with like colors. Do not bleach. Hang dry.",
+        "country": "Ukraine",
+        "features": [
+          "Acid-wash patterned technical patchwork construction[cite: 16]",
+          "Durable wind-resistant outer shell[cite: 16]",
+          "Comfortable ribbed collar, cuffs, and hem[cite: 16]",
+          "Secure two-way front zipper closure[cite: 16]"
+        ]
+      },
+      "tags": [
+        "outerwear",
+        "windbreaker",
+        "jacket",
+        "patchwork",
+        "acid-wash",
+        "streetwear",
+        "casual",
+        "men"
+      ],
+      "styles": ["casual", "streetwear", "edgy"]
+    },
+    {
+      "id": "75",
+      "name": "Hooded Technical Puffer Jacket",
+      "price": "3499",
+      "oldPrice": "3899",
+      "shortDescription": "Essential black men's puffer jacket featuring a warm insulated build, detachable hood, and secure zip pockets.",
+      "category": "outerwear",
+      "subcategory": "puffer-jackets",
+      "rating": 4.9,
+      "reviewsCount": 26,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_75_black_front.jpeg",
+            "back": "/images/product_75_black_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Brave cold weather in style with this hooded technical puffer jacket[cite: 15]. Engineered with high-performance synthetic insulation, a durable weather-resistant outer shell[cite: 15], a protective adjustable hood[cite: 15], and secure zippered front pockets[cite: 15].",
+      "details": {
+        "material": "100% Weather-Resistant Technical Nylon, Premium Synthetic Insulation",
+        "fit": "Relaxed / Men",
+        "gender": "Men",
+        "season": "Winter / Fall",
+        "care": "Machine wash cold separately on gentle cycle. Tumble dry low with clean tennis balls.",
+        "country": "Ukraine",
+        "features": [
+          "High-performance synthetic thermal insulation[cite: 15]",
+          "Adjustable protective hood[cite: 15]",
+          "Durable wind and water-resistant outer shell[cite: 15]",
+          "Secure front zip closure and side pockets[cite: 15]"
+        ]
+      },
+      "tags": [
+        "outerwear",
+        "puffer",
+        "jacket",
+        "winter",
+        "streetwear",
+        "casual",
+        "men"
+      ],
+      "styles": ["casual", "streetwear", "winter"]
+    },
+    {
+      "id": "76",
+      "name": "Piped Puffer Jacket with Hood",
+      "price": "3699",
+      "oldPrice": "3999",
+      "shortDescription": "Sophisticated black men's puffer jacket featuring contrast white piping, embroidered logo, and removable hood.",
+      "category": "outerwear",
+      "subcategory": "puffer-jackets",
+      "rating": 4.9,
+      "reviewsCount": 29,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_76_black_front.jpeg",
+            "back": "/images/product_76_black_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Combine superior warmth and athletic luxury in this piped puffer jacket[cite: 16]. Enhanced with contrasting white piping accents, a high collar with drawstrings, a detachable hood, and a signature chest logo[cite: 16].",
+      "details": {
+        "material": "100% Weather-Resistant Technical Nylon, Premium Synthetic Insulation",
+        "fit": "Relaxed / Men",
+        "gender": "Men",
+        "season": "Winter / Fall",
+        "care": "Machine wash cold separately on gentle cycle. Tumble dry low with clean tennis balls.",
+        "country": "Ukraine",
+        "features": [
+          "Contrasting white piping details on the collar, pockets, and shoulders[cite: 16]",
+          "Removable hood with adjustable drawstrings[cite: 16]",
+          "Embroidered chest logo detail[cite: 16]",
+          "High-performance thermal insulation and full two-way front zip[cite: 16]"
+        ]
+      },
+      "tags": [
+        "outerwear",
+        "puffer",
+        "jacket",
+        "winter",
+        "sporty",
+        "streetwear",
+        "men"
+      ],
+      "styles": ["casual", "streetwear", "sporty", "winter"]
+    },
+    {
+      "id": "77",
+      "name": "Contrast Trim Hooded Puffer Jacket",
+      "price": "3799",
+      "oldPrice": "4099",
+      "shortDescription": "Bold black and white men's hooded puffer jacket featuring sporty contrast striping and embroidered logo.",
+      "category": "outerwear",
+      "subcategory": "puffer-jackets",
+      "rating": 4.9,
+      "reviewsCount": 31,
+      "isFeatured": true,
+      "colors": [
+        {
+          "name": "Black",
+          "value": "#1A1A1A",
+          "images": {
+            "front": "/images/product_77_black_front.jpeg",
+            "back": "/images/product_77_black_back.jpeg"
+          }
+        }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "inventory": [
+        {
+          "color": "Black",
+          "size": "S",
+          "quantity": 8
+        },
+        {
+          "color": "Black",
+          "size": "M",
+          "quantity": 16
+        },
+        {
+          "color": "Black",
+          "size": "L",
+          "quantity": 12
+        },
+        {
+          "color": "Black",
+          "size": "XL",
+          "quantity": 6
+        }
+      ],
+      "description": "Make a striking statement with this contrast trim hooded puffer jacket[cite: 17]. Engineered with high-performance insulation, bold white sleeve striping, zipper piping, a built-in adjustable hood[cite: 17], and a subtle embroidered logo[cite: 17].",
+      "details": {
+        "material": "100% Weather-Resistant Technical Nylon, Premium Synthetic Insulation",
+        "fit": "Relaxed / Men",
+        "gender": "Men",
+        "season": "Winter / Fall",
+        "care": "Machine wash cold separately on gentle cycle. Tumble dry low with clean tennis balls.",
+        "country": "Ukraine",
+        "features": [
+          "Bold white contrast piping and sleeve striping[cite: 17]",
+          "Integrated adjustable hood with drawstrings[cite: 17]",
+          "Embroidered chest logo detail[cite: 17]",
+          "Two-way full front zipper closure and thermal insulation[cite: 17]"
+        ]
+      },
+      "tags": [
+        "outerwear",
+        "puffer",
+        "jacket",
+        "winter",
+        "sporty",
+        "streetwear",
+        "men"
+      ],
+      "styles": ["casual", "streetwear", "sporty", "winter"]
+    }
+  ]
+}
