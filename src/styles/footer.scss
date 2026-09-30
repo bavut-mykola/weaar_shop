@@ -1,0 +1,229 @@
+@use 'variables' as *;
+
+.footer {
+  width: 100%;
+  background: $color-white;
+  color: $color-black;
+  padding: 0 0 24px;
+}
+
+.footer__content {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 48px;
+  width: calc(100% - 280px);
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 38px 0 0;
+  box-sizing: border-box;
+}
+
+.footer__brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__logo,
+.footer__bottom-logo {
+  margin: 0;
+  font-family: $font-logo;
+  font-weight: $font-weight-extra-bold;
+  font-size: $font-size-40;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: $color-black;
+}
+
+.footer__description {
+  margin: 28px 0 0;
+  color: $color-black;
+  font-family: $font-main;
+  font-size: $font-size-22;
+  line-height: 1.35;
+  font-weight: $font-weight-regular;
+}
+
+.footer__socials {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 26px;
+}
+
+.footer__social {
+  width: 42px;
+  height: 42px;
+  padding: 8px;
+  border: none;
+  border-radius: 0;
+  object-fit: contain;
+  box-sizing: border-box;
+  background: transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.08);
+  }
+}
+
+.footer__column {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__title {
+  margin: 0 0 18px;
+  color: $color-black;
+  font-family: $font-caption;
+  font-size: $font-size-24;
+  font-weight: $font-weight-extra-bold;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+
+.footer__links,
+.footer__contact {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer__links a,
+.footer__contact a,
+.footer__contact p {
+  margin: 0;
+  color: $color-black;
+  text-decoration: none;
+  font-family: $font-main;
+  font-size: $font-size-22;
+  line-height: 1.3;
+  font-weight: $font-weight-regular;
+  position: relative;
+  width: fit-content;
+}
+
+.footer__links a::after,
+.footer__contact a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: $color-black;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
+}
+
+.footer__links a:hover::after,
+.footer__contact a:hover::after {
+  transform: scaleX(1);
+}
+
+.footer__contact a,
+.footer__contact p {
+  width: fit-content;
+}
+
+.footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(100% - 280px);
+  max-width: 100%;
+  margin: 28px auto 0;
+  padding: 18px 0 0;
+  border-top: 1px solid $color-gray-line;
+  box-sizing: border-box;
+}
+
+.footer__copyright {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  color: $color-black;
+  font-family: $font-main;
+  font-size: $font-size-22;
+  line-height: 1.2;
+}
+
+.footer__bottom-logo {
+  font-size: $font-size-40;
+}
+
+.footer__divider {
+  width: 1px;
+  height: 28px;
+  background: $color-black;
+}
+
+.footer__privacy {
+  position: relative;
+  padding-left: 26px;
+  color: $color-black;
+  text-decoration: none;
+  font-family: $font-caption;
+  font-size: $font-size-22;
+  font-weight: $font-weight-extra-bold;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.footer__privacy::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 28px;
+  background: $color-black;
+}
+
+@media (max-width: 1024px) {
+  .footer__content {
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+    gap: 36px 48px;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer__content,
+  .footer__bottom {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .footer__content {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .footer__copyright {
+    flex-wrap: wrap;
+    gap: 10px 14px;
+  }
+
+  .footer__logo,
+  .footer__bottom-logo {
+    font-size: $font-size-32;
+  }
+
+  .footer__description,
+  .footer__links a,
+  .footer__contact a,
+  .footer__contact p,
+  .footer__title,
+  .footer__privacy,
+  .footer__copyright {
+    font-size: $font-size-18;
+  }
+}
