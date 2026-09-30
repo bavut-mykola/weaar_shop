@@ -96,6 +96,7 @@
 
 .search-title {
     display: none;
+    font-family: $font-caption;
 }
 
 .header-buttons-box {
@@ -184,6 +185,7 @@
         width: 100%;
         height: calc(100vh - 60px); // На всю висоту екрана під хедером
         background: $color-white;
+        border-bottom: 1px solid $color-gray;
         flex-direction: column;
         align-items: flex-start; 
         padding: 20px;
