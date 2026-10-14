@@ -1,0 +1,356 @@
+@use "variables" as *;
+
+.cart-title,
+.cart-main-box {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  box-sizing: border-box;
+}
+
+.cart-title {
+  margin-top: 0;
+  margin-bottom: 20px;
+  padding: 90px clamp(36px, 7vw, 96px) 0;
+  color: $color-black;
+  font-family: $font-logo;
+  font-size: $font-size-24;
+  font-weight: $font-weight-extra-bold;
+  line-height: 1;
+}
+
+.cart-main-box {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 32px;
+  padding: 0 clamp(36px, 7vw, 96px) 64px;
+}
+
+.cart-empty-state {
+  display: flex;
+  width: min(100% - 72px, 520px);
+  min-height: 280px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 14px;
+  margin: 94px auto 32px;
+  padding: 20px 32px 32px;
+  border-radius: 4px;
+  background: $color-white;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.cart-empty-title {
+  margin: 0;
+  color: $color-black;
+  font-family: $font-logo;
+  font-size: $font-size-22;
+}
+
+.cart-empty-text {
+  margin: 0;
+  color: $color-gray-text;
+  font-family: $font-main;
+  font-size: $font-size-16;
+}
+
+.cart-empty-button {
+  margin-top: auto;
+  text-decoration: none;
+}
+
+.cart-empty-button:hover,
+.cart-empty-button:focus-visible {
+  text-decoration: none;
+}
+
+.cart-products-container,
+.summary-main-container {
+  min-width: 0;
+  border-radius: 4px;
+  background: $color-white;
+}
+
+.cart-products-container {
+  padding: 14px 20px 16px;
+}
+
+.cart-clear-btn-box {
+  margin-bottom: 20px;
+}
+
+.cart-product-box {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr) 112px;
+  gap: 12px;
+  min-height: 146px;
+  padding: 0 0 22px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #d9d9d9;
+  box-sizing: border-box;
+}
+
+.cart-image-box {
+  width: 110px;
+  height: 120px;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #e9e7e7;
+}
+
+.product-cart-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-cart-info-box {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1px 0 0;
+}
+
+.product-cart-info-top {
+  min-width: 0;
+}
+
+.product-cart-name,
+.product-cart-size,
+.product-cart-color,
+.product-cart-price {
+  margin: 0;
+  color: $color-black;
+}
+
+.product-cart-name,
+.product-cart-price {
+  font-family: $font-caption;
+  font-size: $font-size-14;
+  font-weight: $font-weight-extra-bold;
+  line-height: 1.4;
+}
+
+.product-cart-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.product-cart-size,
+.product-cart-color {
+  margin-top: 5px;
+  font-family: $font-main;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.product-cart-price span {
+  margin-left: 6px;
+  color: $color-discount-light;
+  font-size: 0.85em;
+  font-weight: $font-weight-regular;
+  text-decoration: line-through;
+}
+
+.product-cart-actions-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 1px 0 0;
+}
+
+.product-cart-actions-top {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.product-cart-delete-btn {
+  display: block;
+  width: 20px;
+  height: 20px;
+  color: $color-black;
+  cursor: pointer;
+  transition:
+    color 160ms ease,
+    transform 160ms ease;
+
+  &:hover {
+    color: $color-discount;
+    transform: scale(1.08);
+  }
+}
+
+.product-cart-actions-bottom {
+  display: flex;
+  width: 112px;
+  height: 32px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 0 14px;
+  border-radius: 20px;
+  background: $color-background;
+  box-sizing: border-box;
+}
+
+.product-cart-arithmetic-btn {
+  width: 20px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: $color-black;
+  background: transparent;
+  font-family: Arial, sans-serif;
+  font-size: $font-size-20;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    color 160ms ease,
+    transform 160ms ease;
+
+  &:disabled {
+    cursor: not-allowed;
+    &:hover {
+      color: $color-black;
+      transform: scale(1);
+    }
+  }
+
+  &:hover {
+    color: $color-discount;
+    transform: scale(1.15);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-discount;
+    outline-offset: 2px;
+  }
+}
+
+.product-cart-quantity {
+  min-width: 8px;
+  color: $color-black;
+  font-family: $font-caption;
+  font-size: $font-size-14;
+  font-weight: $font-weight-extra-bold;
+  text-align: center;
+}
+
+.summary-main-container {
+  padding: 18px 20px 20px;
+  color: $color-black;
+  font-family: $font-main;
+}
+
+.summary-title h2 {
+  margin: 0 0 26px;
+  font-family: $font-caption;
+  font-size: $font-size-16;
+  font-weight: $font-weight-extra-bold;
+  line-height: 1.3;
+}
+
+.summary-price-info-boxe {
+  display: flex;
+  justify-content: space-between;
+  font-size: $font-size-14;
+  line-height: 2;
+}
+
+.summary-info p,
+.summary-prices p {
+  margin: 0;
+}
+
+.summary-info {
+  color: $color-gray-text;
+}
+
+.summary-prices {
+  text-align: right;
+}
+
+.discount-text {
+  color: $color-discount;
+}
+
+.total-box {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 22px;
+  padding-top: 12px;
+  border-top: 1px solid #d9d9d9;
+  font-size: $font-size-16;
+}
+
+.total-box h3,
+.total-box h4 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: $font-weight-regular;
+}
+
+.checkout-btn-box {
+  margin-top: 36px;
+}
+
+.checkout-btn-box button,
+.cart-clear-btn-box button,
+.cart-empty-button {
+  display: flex;
+  width: 100%;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 12px;
+  border: $border-width solid $color-black;
+  border-radius: 20px;
+  color: $color-white;
+  background: $color-black;
+  font-family: $font-main;
+  font-size: $font-size-16;
+  cursor: pointer;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease;
+
+  &:hover {
+    color: $color-black;
+    background: $color-white;
+  }
+}
+
+.checkout-btn-box button span {
+  font-family: Arial, sans-serif;
+  font-size: $font-size-24;
+  line-height: 1;
+}
+
+.cart-clear-btn-box button {
+  display: inline-flex;
+  width: auto;
+  height: auto;
+  justify-content: flex-start;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  color: $color-black;
+  background: transparent;
+  text-align: left;
+  text-decoration: none;
+
+  &:hover,
+  &:focus-visible {
+    color: $color-gray-text;
+    background: transparent;
+    text-decoration: underline;
+  }
+}

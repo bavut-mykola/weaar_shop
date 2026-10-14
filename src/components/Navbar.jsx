@@ -1,56 +1,107 @@
-import { useState } from 'react'
+import { useState, useEffect } from "react";
+import searchIcon from "../assets/icons/search.svg";
+import cartIcon from "../assets/icons/cart.svg";
+import phoneIcon from "../assets/icons/phone.svg";
+import userIcon from "../assets/icons/user.svg";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import "../styles/navbar.scss";
 
-import searchIcon from '../assets/icons/search.svg'
-import cartIcon from '../assets/icons/cart.svg'
-import phoneIcon from '../assets/icons/phone.svg'
-import userIcon from '../assets/icons/user.svg'
-import { use } from 'react'
-import '../styles/navbar.scss';
+function Navbar({ cartCount }) {
+  const [isBurgerClicked, setISBurgerClicked] = useState(false);
 
-function Navbar() {
-    const [isBurgerClicked, setISBurgerClicked] = useState(false)
-    return (
-        <header className="head">
-            <div className="logo-box">
-                <div className={`burger-btn ${isBurgerClicked ? 'active' : ''}`}
-                onClick={() => {
-                    setISBurgerClicked(!isBurgerClicked)
-                }}>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <h2 className="logo">
-                    WEA.R
-                </h2>
-            </div>
+  const [searchterm, setSearchTerm] = useState("");
 
-            <nav className={`navigation ${isBurgerClicked ? 'opened' : ''}`}>
-                    <ul className="nav-links">
-                        <a href="" className="nav-link">Catalog</a>
-                        <a href="" className="nav-link">SpotLight</a>
-                    </ul>
+  const navigate = useNavigate();
+  const location = useLocation();
 
-                    <div className="search-box">
-                        <div className="search-title">
-                            <h3>
-                                LOOKING FOR SOMETHING
-                            </h3>
-                        </div>
-                        <div className="search">
-                            <img src={searchIcon} alt="search" className='search-icon' />
-                            <input type="text" className="search-input" />
-                        </div>
-                    </div>
-                </nav>    
+  const locPath = location.pathname;
 
-                <div className="header-buttons-box">
-                    <img src={cartIcon} alt="" className="head-btn" />
-                    <img src={userIcon} alt="" className="head-btn" />
-                    <img src={phoneIcon} alt="" className="head-btn" />
-                </div>
-        </header>
-    )
+  function handleKeyDown(e) {
+    if (searchterm !== "" && e.key === "Enter") {
+      navigate(`/search?query=${encodeURIComponent(searchterm)}`);
+    }
+  }
+
+  useEffect(() => {
+    if (locPath !== "/search") {
+      setSearchTerm("");
+    }
+  }, [locPath]);
+
+  return (
+    <header className="head">
+      <div className="logo-box">
+        <button
+          className={`burger-btn ${isBurgerClicked ? "active" : ""}`}
+          type="button"
+          aria-label={
+            isBurgerClicked ? "Close navigation menu" : "Open navigation menu"
+          }
+          aria-expanded={isBurgerClicked}
+          onClick={() => setISBurgerClicked(!isBurgerClicked)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <Link className="logo-link" to="/" aria-label="WEA.R home">
+          <h2 className="logo">WEA.R</h2>
+        </Link>
+      </div>
+
+      <nav className={`navigation ${isBurgerClicked ? "opened" : ""}`}>
+        <ul className="nav-links">
+          <Link
+            to="/catalog"
+            className="nav-link"
+            onClick={() => setISBurgerClicked(false)}
+          >
+            Catalog
+          </Link>
+          <a href="" className="nav-link">
+            SpotLight
+          </a>
+        </ul>
+
+        <div className="search-box">
+          <div className="search-title">
+            <h3>LOOKING FOR SOMETHING</h3>
+          </div>
+          <div className="search">
+            <Link
+              to={
+                searchterm.trim()
+                  ? `/search?query=${encodeURIComponent(searchterm)}`
+                  : "#"
+              }
+            >
+              <img src={searchIcon} alt="search" className="search-icon" />
+            </Link>
+            <input
+              type="text"
+              className="search-input"
+              value={searchterm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              onKeyDown={handleKeyDown}
+            />
+          </div>
+        </div>
+      </nav>
+
+      <div className="header-buttons-box">
+        <Link
+          to={"/cart"}
+          className="cart-button-link"
+          aria-label={`Cart${cartCount > 0 ? `, ${cartCount} items` : ""}`}
+        >
+          <img src={cartIcon} alt="Cart" className="head-btn" />
+          {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
+        </Link>
+        <img src={userIcon} alt="Account" className="head-btn" />
+        <img src={phoneIcon} alt="Contact" className="head-btn" />
+      </div>
+    </header>
+  );
 }
 
-export default Navbar
+export default Navbar;

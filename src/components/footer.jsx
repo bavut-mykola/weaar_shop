@@ -1,5 +1,6 @@
 import instagramIcon from '../assets/icons/instagram.svg';
 import facebookIcon from '../assets/icons/facebook.svg';
+import { Link } from 'react-router-dom';
 
 import '../styles/footer.scss';
 
@@ -27,7 +28,9 @@ const Footer = () => {
         </div>
 
         <div className="footer__column">
-          <h3 className="footer__title">Catalog</h3>
+          <h3 className="footer__title">
+            <Link className="footer__catalog-link" to="/catalog">Catalog</Link>
+          </h3>
 
           <nav className="footer__links">
             <a href="#">Pants</a>
@@ -64,6 +67,7 @@ const Footer = () => {
 
       <div className="footer__bottom">
         <div className="footer__copyright">
+          <span className="footer__copyright-icon" aria-hidden="true">©</span>
           <span className="footer__bottom-logo">WEA.R</span>
           <span className="footer__divider"></span>
           <span>All rights reserved.</span>

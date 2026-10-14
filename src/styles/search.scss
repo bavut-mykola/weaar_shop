@@ -1,0 +1,34 @@
+.search-results {
+  .catalog__heading {
+    display: block;
+  }
+
+  .catalog__heading-main {
+    width: 100%;
+  }
+
+  .catalog__layout {
+    display: block;
+  }
+
+  .catalog__products,
+  .products-container {
+    width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .search-results {
+    .catalog__heading {
+      margin-bottom: 12px;
+    }
+
+    .catalog__heading-main {
+      display: flex;
+    }
+
+    .catalog__layout {
+      display: block;
+    }
+  }
+}

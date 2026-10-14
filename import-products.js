@@ -51,7 +51,8 @@ async function importProducts() {
           description
         )
         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
-        ON CONFLICT (id) DO NOTHING`,
+        ON CONFLICT (id)
+        DO UPDATE SET rating = EXCLUDED.rating`,
         [
           Number(product.id),
           product.name,
@@ -171,12 +172,15 @@ async function importProducts() {
       for (const [index, feature] of product.details.features.entries()) {
         await client.query(
           `
-            INSERT INTO product_features (
+          INSERT INTO product_features (
               product_id,
               feature,
               feature_order
-            )
-            VALUES ($1, $2, $3)
+          )
+          VALUES ($1, $2, $3)
+          ON CONFLICT (product_id, feature_order)
+          DO UPDATE SET feature = EXCLUDED.feature
+
           `,
           [Number(product.id), feature, index + 1],
         );

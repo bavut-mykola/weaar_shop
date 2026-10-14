@@ -8,7 +8,7 @@
       "shortDescription": "Lightweight water-resistant joggers with zippered cuffs and secure pockets.",
       "category": "pants",
       "subcategory": "sweatpants",
-      "rating": 4.8,
+      "rating": 2.6,
       "reviewsCount": 34,
       "isFeatured": false,
       "colors": [
@@ -17,7 +17,7 @@
           "value": "#424850",
           "images": {
             "front": "/images/product_1_grey_front.jpeg",
-            "back": "/images/product_1_grey_front.jpeg"
+            "back": "/images/product_1_grey_back.jpeg"
           }
         }
       ],
@@ -82,7 +82,7 @@
       "shortDescription": "Wide-leg technical cargo pants with adjustable bungee drawstring hems and spacious utility pockets.",
       "category": "pants",
       "subcategory": "cargo",
-      "rating": 4.7,
+      "rating": 4.1,
       "reviewsCount": 28,
       "isFeatured": false,
       "colors": [
@@ -151,7 +151,7 @@
       "shortDescription": "Classic heavyweight cotton fleece sweatpants with a cozy brushed interior and ribbed cuffs.",
       "category": "pants",
       "subcategory": "sweatpants",
-      "rating": 4.9,
+      "rating": 3.5,
       "reviewsCount": 42,
       "isFeatured": false,
       "colors": [
@@ -218,7 +218,7 @@
       "shortDescription": "Modern wide-leg sweatpants crafted from premium heavyweight cotton with a clean, unstructured drape.",
       "category": "pants",
       "subcategory": "sweatpants",
-      "rating": 4.6,
+      "rating": 4.0,
       "reviewsCount": 19,
       "isFeatured": false,
       "colors": [
@@ -280,7 +280,7 @@
       "shortDescription": "Sophisticated high-waisted trousers with a structured fit and dramatic flared hem.",
       "category": "pants",
       "subcategory": "trousers",
-      "rating": 4.9,
+      "rating": 4.5,
       "reviewsCount": 15,
       "isFeatured": true,
       "colors": [
@@ -289,7 +289,7 @@
           "value": "#3A261D",
           "images": {
             "front": "/images/product_5_brown_front.jpeg",
-            "back": "/images/product_5_brown_front.jpeg"
+            "back": "/images/product_5_brown_back.jpeg"
           }
         },
         {
@@ -297,7 +297,7 @@
           "value": "#424850",
           "images": {
             "front": "/images/product_5_grey_front.jpeg",
-            "back": "/images/product_5_grey_front.jpeg"
+            "back": "/images/product_5_grey_back.jpeg"
           }
         }
       ],
@@ -370,7 +370,7 @@
       "shortDescription": "Classic high-waisted wool-blend trousers with sharp front creases and a relaxed wide-leg cut.",
       "category": "pants",
       "subcategory": "trousers",
-      "rating": 4.8,
+      "rating": 3.7,
       "reviewsCount": 21,
       "isFeatured": false,
       "colors": [
@@ -379,7 +379,7 @@
           "value": "#4A4D52",
           "images": {
             "front": "/images/product_6_grey_front.jpeg",
-            "back": "/images/product_6_grey_front.jpeg"
+            "back": "/images/product_6_grey_back.jpeg"
           }
         }
       ],
@@ -432,7 +432,7 @@
       "shortDescription": "Avant-garde drop crotch lounge pants with an elastic waist and tapered ankles.",
       "category": "Pants",
       "subcategory": "sweatpants",
-      "rating": 4.7,
+      "rating": 2.6,
       "reviewsCount": 12,
       "isFeatured": false,
       "colors": [
@@ -494,7 +494,7 @@
       "shortDescription": "Sophisticated high-waisted trousers featuring crisp pressed creases and a relaxed wide-leg cut.",
       "category": "pants",
       "subcategory": "trousers",
-      "rating": 4.8,
+      "rating": 1.4,
       "reviewsCount": 16,
       "isFeatured": false,
       "colors": [
@@ -556,7 +556,7 @@
       "shortDescription": "Tailored wide-leg trousers featuring a buttoned rear pocket and classic pressed creases.",
       "category": "pants",
       "subcategory": "trousers",
-      "rating": 4.9,
+      "rating": 3.4,
       "reviewsCount": 18,
       "isFeatured": true,
       "colors": [
@@ -618,7 +618,7 @@
       "shortDescription": "Functional technical cargo trousers featuring multiple utility pockets and adjustable ankle cuffs.",
       "category": "pants",
       "subcategory": "cargo",
-      "rating": 4.8,
+      "rating": 2.1,
       "reviewsCount": 24,
       "isFeatured": false,
       "colors": [
@@ -680,7 +680,7 @@
       "shortDescription": "Essential relaxed-fit boxy t-shirt crafted from heavy cotton jersey with a structured drape.",
       "category": "t-shirts",
       "subcategory": "crop-top",
-      "rating": 4.8,
+      "rating": 4.1,
       "reviewsCount": 29,
       "isFeatured": true,
       "colors": [
@@ -777,7 +777,7 @@
       "shortDescription": "Versatile and comfortable everyday basic t-shirt with a clean classic cut.",
       "category": "t-shirts",
       "subcategory": "basic",
-      "rating": 4.7,
+      "rating": 3.6,
       "reviewsCount": 21,
       "isFeatured": false,
       "colors": [
@@ -839,7 +839,7 @@
       "shortDescription": "Sporty cropped t-shirt featuring contrasting ringer stripes on the collar and cuffs.",
       "category": "t-shirts",
       "subcategory": "crop-top",
-      "rating": 4.9,
+      "rating": 3.9,
       "reviewsCount": 22,
       "isFeatured": false,
       "colors": [
@@ -936,7 +936,7 @@
       "shortDescription": "Minimalist boxy cropped t-shirt with a clean modern drape and wide sleeves.",
       "category": "t-shirts",
       "subcategory": "crop-top",
-      "rating": 4.8,
+      "rating": 4.1,
       "reviewsCount": 19,
       "isFeatured": false,
       "colors": [
@@ -1033,7 +1033,7 @@
       "shortDescription": "Relaxed fit graphic t-shirt featuring horizontal stripes and a circular forest emblem print.",
       "category": "t-shirts",
       "subcategory": "graphic",
-      "rating": 4.8,
+      "rating": 3.4,
       "reviewsCount": 14,
       "isFeatured": false,
       "colors": [
@@ -1123,7 +1123,7 @@
       "shortDescription": "Relaxed boxy fit graphic t-shirt crafted from breathable cotton jersey.",
       "category": "t-shirts",
       "subcategory": "graphic",
-      "rating": 4.8,
+      "rating": 4.6,
       "reviewsCount": 17,
       "isFeatured": false,
       "colors": [
@@ -1213,7 +1213,7 @@
       "shortDescription": "Minimalist boxy cropped t-shirt crafted from breathable cotton jersey with a clean finish.",
       "category": "t-shirts",
       "subcategory": "crop-top",
-      "rating": 4.8,
+      "rating": 4.3,
       "reviewsCount": 15,
       "isFeatured": false,
       "colors": [
@@ -1275,7 +1275,7 @@
       "shortDescription": "Classic horizontal striped t-shirt tailored with a comfortable relaxed silhouette.",
       "category": "t-shirts",
       "subcategory": "crop-top",
-      "rating": 4.7,
+      "rating": 3.8,
       "reviewsCount": 16,
       "isFeatured": false,
       "colors": [
@@ -1365,7 +1365,7 @@
       "shortDescription": "Classic horizontal striped t-shirt tailored with a comfortable relaxed silhouette.",
       "category": "t-shirts",
       "subcategory": "basic",
-      "rating": 4.7,
+      "rating": 4.5,
       "reviewsCount": 16,
       "isFeatured": false,
       "colors": [
@@ -1455,7 +1455,7 @@
       "shortDescription": "Stylish cropped t-shirt featuring contrast striped banding on the collar, cuffs, and hem.",
       "category": "t-shirts",
       "subcategory": "crop-top",
-      "rating": 4.7,
+      "rating": 3.2,
       "reviewsCount": 15,
       "isFeatured": false,
       "colors": [
@@ -1517,7 +1517,7 @@
       "shortDescription": "Timeless short-sleeve polo shirt crafted from breathable cotton pique with subtle chest embroidery.",
       "category": "polos",
       "subcategory": "classic",
-      "rating": 4.9,
+      "rating": 4.1,
       "reviewsCount": 22,
       "isFeatured": true,
       "colors": [
@@ -1607,7 +1607,7 @@
       "shortDescription": "Modern casual polo shirt tailored with a relaxed silhouette and classic collar.",
       "category": "polos",
       "subcategory": "casual",
-      "rating": 4.8,
+      "rating": 3.7,
       "reviewsCount": 18,
       "isFeatured": false,
       "colors": [
@@ -1697,7 +1697,7 @@
       "shortDescription": "Stylish casual short-sleeve shirt tailored with a classic collar and button placket.",
       "category": "t-shirts",
       "subcategory": "shirts",
-      "rating": 4.8,
+      "rating": 4.6,
       "reviewsCount": 15,
       "isFeatured": false,
       "colors": [
@@ -1787,7 +1787,7 @@
       "shortDescription": "Versatile long-sleeve button-down shirt crafted from breathable cotton for a clean, timeless look.",
       "category": "t-shirts",
       "subcategory": "shirts",
-      "rating": 4.8,
+      "rating": 2.7,
       "reviewsCount": 14,
       "isFeatured": false,
       "colors": [
@@ -1877,7 +1877,7 @@
       "shortDescription": "Modern cropped long-sleeve shirt crafted from crisp cotton for a contemporary silhouette.",
       "category": "t-shirts",
       "subcategory": "shirts",
-      "rating": 4.8,
+      "rating": 4.0,
       "reviewsCount": 16,
       "isFeatured": false,
       "colors": [
@@ -1894,7 +1894,7 @@
           "value": "#F5F5F5",
           "images": {
             "front": "/images/product_25_white_front.jpeg",
-            "back": "/images/product_25_white_front.jpeg"
+            "back": "/images/product_25_white_back.jpeg"
           }
         }
       ],
@@ -1967,7 +1967,7 @@
       "shortDescription": "Modern cropped long-sleeve shirt crafted from crisp cotton for a contemporary silhouette.",
       "category": "t-shirts",
       "subcategory": "shirts",
-      "rating": 4.8,
+      "rating": 3.9,
       "reviewsCount": 16,
       "isFeatured": false,
       "colors": [
@@ -1984,7 +1984,7 @@
           "value": "#F5F5F5",
           "images": {
             "front": "/images/product_25_white_front.jpeg",
-            "back": "/images/product_25_white_front.jpeg"
+            "back": "/images/product_25_white_back.jpeg"
           }
         }
       ],
@@ -2057,7 +2057,7 @@
       "shortDescription": "Bold graphic long-sleeve t-shirt featuring a striking anime character print.",
       "category": "t-shirts",
       "subcategory": "shirts",
-      "rating": 4.9,
+      "rating": 4.4,
       "reviewsCount": 21,
       "isFeatured": true,
       "colors": [
@@ -2155,7 +2155,7 @@
       "shortDescription": "Relaxed baggy fit jeans in a vintage washed grey finish for effortless streetwear style.",
       "category": "jeans",
       "subcategory": "baggy",
-      "rating": 4.9,
+      "rating": 3.5,
       "reviewsCount": 24,
       "isFeatured": true,
       "colors": [
@@ -2217,7 +2217,7 @@
       "shortDescription": "Relaxed baggy fit jeans in versatile solid black for an effortless streetwear aesthetic.",
       "category": "jeans",
       "subcategory": "baggy",
-      "rating": 4.9,
+      "rating": 4.8,
       "reviewsCount": 19,
       "isFeatured": true,
       "colors": [
@@ -2279,7 +2279,7 @@
       "shortDescription": "Relaxed baggy fit jeans in a light grey wash for an effortless, casual look.",
       "category": "jeans",
       "subcategory": "baggy",
-      "rating": 4.8,
+      "rating": 3.3,
       "reviewsCount": 17,
       "isFeatured": false,
       "colors": [
@@ -2341,7 +2341,7 @@
       "shortDescription": "Stylish flare fit jeans in a light grey wash featuring a dramatic wide-leg hem.",
       "category": "jeans",
       "subcategory": "flare",
-      "rating": 4.8,
+      "rating": 4.2,
       "reviewsCount": 16,
       "isFeatured": false,
       "colors": [
@@ -2403,7 +2403,7 @@
       "shortDescription": "Relaxed baggy fit jeans in a classic light blue wash for a timeless streetwear look.",
       "category": "jeans",
       "subcategory": "baggy",
-      "rating": 4.9,
+      "rating": 4.7,
       "reviewsCount": 21,
       "isFeatured": true,
       "colors": [
@@ -2465,7 +2465,7 @@
       "shortDescription": "Edgy baggy fit jeans combining solid black and dark green camouflage patterns for a standout streetwear look.",
       "category": "jeans",
       "subcategory": "baggy",
-      "rating": 4.9,
+      "rating": 3.6,
       "reviewsCount": 22,
       "isFeatured": true,
       "colors": [
@@ -2563,7 +2563,7 @@
       "shortDescription": "Sleek and flattering black bootcut jeans designed for women with a gentle flare at the hem.",
       "category": "jeans",
       "subcategory": "bootcut",
-      "rating": 4.9,
+      "rating": 4.1,
       "reviewsCount": 18,
       "isFeatured": true,
       "colors": [
@@ -2743,7 +2743,7 @@
       "shortDescription": "Bold flare fit jeans featuring an exaggerated wide-leg hem in versatile black and grey washes.",
       "category": "jeans",
       "subcategory": "flare",
-      "rating": 4.9,
+      "rating": 3.8,
       "reviewsCount": 23,
       "isFeatured": true,
       "colors": [
@@ -2833,7 +2833,7 @@
       "shortDescription": "Sleek and flattering black flare jeans designed for women with an exaggerated wide hem.",
       "category": "jeans",
       "subcategory": "flare",
-      "rating": 4.9,
+      "rating": 4.3,
       "reviewsCount": 19,
       "isFeatured": true,
       "colors": [
@@ -2895,7 +2895,7 @@
       "shortDescription": "Relaxed baggy fit jeans in a vintage medium blue wash for an effortless streetwear aesthetic.",
       "category": "jeans",
       "subcategory": "baggy",
-      "rating": 4.9,
+      "rating": 4.0,
       "reviewsCount": 25,
       "isFeatured": true,
       "colors": [
@@ -2957,7 +2957,7 @@
       "shortDescription": "Relaxed baggy fit jeans in a vintage medium blue wash for an effortless streetwear aesthetic.",
       "category": "jeans",
       "subcategory": "baggy",
-      "rating": 4.9,
+      "rating": 3.4,
       "reviewsCount": 25,
       "isFeatured": true,
       "colors": [
@@ -3019,7 +3019,7 @@
       "shortDescription": "Statement baggy fit jeans featuring a striking dark patchwork pattern and wide-leg silhouette.",
       "category": "jeans",
       "subcategory": "baggy",
-      "rating": 4.9,
+      "rating": 4.6,
       "reviewsCount": 26,
       "isFeatured": true,
       "colors": [
@@ -3145,7 +3145,7 @@
       "shortDescription": "Statement baggy fit jeans featuring an intricate patchwork pattern in a dark blue wash.",
       "category": "jeans",
       "subcategory": "baggy",
-      "rating": 4.9,
+      "rating": 3.7,
       "reviewsCount": 22,
       "isFeatured": true,
       "colors": [
@@ -3215,7 +3215,7 @@
       "shortDescription": "Edgy baggy fit jeans featuring a bold acid wash finish and relaxed wide-leg cut.",
       "category": "jeans",
       "subcategory": "baggy",
-      "rating": 4.9,
+      "rating": 4.5,
       "reviewsCount": 24,
       "isFeatured": true,
       "colors": [
@@ -3285,7 +3285,7 @@
       "shortDescription": "Unique baggy fit jeans combining patchwork details and acid wash panels for an ultimate streetwear look.",
       "category": "jeans",
       "subcategory": "baggy",
-      "rating": 4.9,
+      "rating": 3.1,
       "reviewsCount": 21,
       "isFeatured": true,
       "colors": [
@@ -3356,7 +3356,7 @@
       "shortDescription": "Unique baggy fit jeans combining patchwork details and acid wash panels for an ultimate streetwear look.",
       "category": "jeans",
       "subcategory": "baggy",
-      "rating": 4.9,
+      "rating": 4.2,
       "reviewsCount": 21,
       "isFeatured": true,
       "colors": [
@@ -3455,7 +3455,7 @@
       "shortDescription": "Bold baggy fit jeans featuring a striking dark-to-light gradient wash and relaxed wide-leg silhouette.",
       "category": "jeans",
       "subcategory": "baggy",
-      "rating": 4.9,
+      "rating": 3.9,
       "reviewsCount": 19,
       "isFeatured": true,
       "colors": [
@@ -3525,7 +3525,7 @@
       "shortDescription": "Artistic baggy fit jeans featuring a dramatic paint splatter effect and relaxed wide-leg cut.",
       "category": "jeans",
       "subcategory": "baggy",
-      "rating": 4.9,
+      "rating": 4.4,
       "reviewsCount": 20,
       "isFeatured": true,
       "colors": [
@@ -3595,7 +3595,7 @@
       "shortDescription": "Statement baggy fit jeans featuring a subtle tonal patchwork pattern and wide-leg silhouette.",
       "category": "jeans",
       "subcategory": "baggy",
-      "rating": 4.9,
+      "rating": 3.6,
       "reviewsCount": 23,
       "isFeatured": true,
       "colors": [
@@ -3693,7 +3693,7 @@
       "shortDescription": "Bold baggy fit jeans featuring a solid black wash combined with distinct camouflage accents.",
       "category": "jeans",
       "subcategory": "baggy",
-      "rating": 4.9,
+      "rating": 4.8,
       "reviewsCount": 18,
       "isFeatured": true,
       "colors": [
@@ -3791,7 +3791,7 @@
       "shortDescription": "Bold two-tone split baggy jeans featuring contrasting dark and light denim washes.",
       "category": "jeans",
       "subcategory": "baggy",
-      "rating": 4.9,
+      "rating": 2.9,
       "reviewsCount": 22,
       "isFeatured": true,
       "colors": [
@@ -3861,7 +3861,7 @@
       "shortDescription": "Comfortable oversized zip-up hoodie featuring a classic hooded design and premium fleece fleece-lined cotton.",
       "category": "hoodies",
       "subcategory": "zip-up",
-      "rating": 4.9,
+      "rating": 4.1,
       "reviewsCount": 24,
       "isFeatured": true,
       "colors": [
@@ -3958,7 +3958,7 @@
       "shortDescription": "Relaxed vintage-washed zip-up hoodie featuring a worn-in finish and soft fleece interior.",
       "category": "hoodies",
       "subcategory": "zip-up",
-      "rating": 4.9,
+      "rating": 3.5,
       "reviewsCount": 21,
       "isFeatured": true,
       "colors": [
@@ -4083,7 +4083,7 @@
       "shortDescription": "Comfortable oversized zip-up hoodie featuring a classic hooded design and premium fleece-lined cotton.",
       "category": "hoodies",
       "subcategory": "zip-up",
-      "rating": 4.9,
+      "rating": 4.7,
       "reviewsCount": 20,
       "isFeatured": true,
       "colors": [
@@ -4208,7 +4208,7 @@
       "shortDescription": "Edgy zip-up hoodie featuring an intricate dark patchwork design and exposed seam details.",
       "category": "hoodies",
       "subcategory": "zip-up",
-      "rating": 4.9,
+      "rating": 4.0,
       "reviewsCount": 17,
       "isFeatured": true,
       "colors": [
@@ -4270,7 +4270,7 @@
       "shortDescription": "Edgy zip-up hoodie featuring a bold acid wash finish, split kangaroo pocket, and relaxed fit.",
       "category": "hoodies",
       "subcategory": "zip-up",
-      "rating": 4.9,
+      "rating": 3.8,
       "reviewsCount": 19,
       "isFeatured": true,
       "colors": [
@@ -4360,7 +4360,7 @@
       "shortDescription": "Comfortable vintage wash zip-up hoodie featuring a soft fleece interior and relaxed fit.",
       "category": "hoodies",
       "subcategory": "zip-up",
-      "rating": 4.9,
+      "rating": 4.3,
       "reviewsCount": 18,
       "isFeatured": true,
       "colors": [
@@ -4478,7 +4478,7 @@
       "shortDescription": "Класичне худі-пуловер вільного крою з м'якою флісовою підкладкою та просторою кишенею-кенгуру.",
       "category": "hoodies",
       "subcategory": "pullover",
-      "rating": 4.9,
+      "rating": 3.2,
       "reviewsCount": 22,
       "isFeatured": true,
       "colors": [
@@ -4603,7 +4603,7 @@
       "shortDescription": "Avant-garde pullover hoodie featuring an intricate textured patchwork design and cozy fleece interior.",
       "category": "hoodies",
       "subcategory": "pullover",
-      "rating": 4.9,
+      "rating": 4.6,
       "reviewsCount": 16,
       "isFeatured": true,
       "colors": [
@@ -4672,7 +4672,7 @@
       "shortDescription": "Clean and comfortable blue pullover hoodie featuring a soft fleece interior and minimalist design.",
       "category": "hoodies",
       "subcategory": "pullover",
-      "rating": 4.9,
+      "rating": 3.9,
       "reviewsCount": 15,
       "isFeatured": true,
       "colors": [
@@ -4741,7 +4741,7 @@
       "shortDescription": "Clean and comfortable blue pullover hoodie featuring a soft fleece interior and minimalist design.",
       "category": "hoodies",
       "subcategory": "pullover",
-      "rating": 4.9,
+      "rating": 4.5,
       "reviewsCount": 15,
       "isFeatured": true,
       "colors": [
@@ -4810,7 +4810,7 @@
       "shortDescription": "Soft and cozy pastel blue unisex pullover hoodie featuring a relaxed fit and fleece interior.",
       "category": "hoodies",
       "subcategory": "pullover",
-      "rating": 4.8,
+      "rating": 3.7,
       "reviewsCount": 13,
       "isFeatured": true,
       "colors": [
@@ -4879,7 +4879,7 @@
       "shortDescription": "Sleek and versatile black bomber jacket featuring a durable outer shell, ribbed trims, and a clean modern fit.",
       "category": "outerwear",
       "subcategory": "bombers",
-      "rating": 4.9,
+      "rating": 4.2,
       "reviewsCount": 21,
       "isFeatured": true,
       "colors": [
@@ -4941,7 +4941,7 @@
       "shortDescription": "Bold black bomber jacket featuring a striking embroidered chest emblem, ribbed trims, and modern fit.",
       "category": "outerwear",
       "subcategory": "bombers",
-      "rating": 4.9,
+      "rating": 3.4,
       "reviewsCount": 19,
       "isFeatured": true,
       "colors": [
@@ -5003,7 +5003,7 @@
       "shortDescription": "Bold black bomber jacket featuring a striking embroidered chest emblem, ribbed trims, and modern fit.",
       "category": "outerwear",
       "subcategory": "bombers",
-      "rating": 4.9,
+      "rating": 4.8,
       "reviewsCount": 19,
       "isFeatured": true,
       "colors": [
@@ -5065,7 +5065,7 @@
       "shortDescription": "Sophisticated black bomber jacket featuring a crisp white contrast shirt collar and modern relaxed fit.",
       "category": "outerwear",
       "subcategory": "bombers",
-      "rating": 4.9,
+      "rating": 4.1,
       "reviewsCount": 17,
       "isFeatured": true,
       "colors": [
@@ -5127,7 +5127,7 @@
       "shortDescription": "Versatile reversible men's bomber jacket offering two distinct styling options in black and brown.",
       "category": "outerwear",
       "subcategory": "bombers",
-      "rating": 4.9,
+      "rating": 3.6,
       "reviewsCount": 18,
       "isFeatured": true,
       "colors": [
@@ -5225,7 +5225,7 @@
       "shortDescription": "Contemporary dark grey men's bomber jacket featuring unique overlay yoke construction and ribbed trims.",
       "category": "outerwear",
       "subcategory": "bombers",
-      "rating": 4.9,
+      "rating": 4.4,
       "reviewsCount": 16,
       "isFeatured": true,
       "colors": [
@@ -5287,7 +5287,7 @@
       "shortDescription": "Sleek black men's bomber jacket featuring striking white sleeve piping, structural overlay yoke, and ribbed trims.",
       "category": "outerwear",
       "subcategory": "bombers",
-      "rating": 4.9,
+      "rating": 2.7,
       "reviewsCount": 20,
       "isFeatured": true,
       "colors": [
@@ -5349,7 +5349,7 @@
       "shortDescription": "Modern black men's bomber jacket styled with dramatic wide sleeves, exposed front zip, and snap pockets.",
       "category": "outerwear",
       "subcategory": "bombers",
-      "rating": 4.9,
+      "rating": 3.9,
       "reviewsCount": 15,
       "isFeatured": true,
       "colors": [
@@ -5411,7 +5411,7 @@
       "shortDescription": "Sleek light grey women's cropped bomber jacket featuring a clean silhouette, wide sleeves, and ribbed trims.",
       "category": "outerwear",
       "subcategory": "bombers",
-      "rating": 4.8,
+      "rating": 4.6,
       "reviewsCount": 14,
       "isFeatured": true,
       "colors": [
@@ -5480,7 +5480,7 @@
       "shortDescription": "Crisp white women's cropped bomber jacket featuring a subtle embroidered chest logo, wide sleeves, and silver front zip.",
       "category": "outerwear",
       "subcategory": "bombers",
-      "rating": 4.9,
+      "rating": 3.3,
       "reviewsCount": 19,
       "isFeatured": true,
       "colors": [
@@ -5549,7 +5549,7 @@
       "shortDescription": "Dynamic men's windbreaker jacket combining black and green panels with a high stand collar and lightweight weather-resistant build.",
       "category": "outerwear",
       "subcategory": "windbreakers",
-      "rating": 4.9,
+      "rating": 4.0,
       "reviewsCount": 21,
       "isFeatured": true,
       "colors": [
@@ -5647,7 +5647,7 @@
       "shortDescription": "Sleek black men's windbreaker jacket featuring contrasting white piping accents, stand collar, and elasticated hem.",
       "category": "outerwear",
       "subcategory": "windbreakers",
-      "rating": 4.9,
+      "rating": 4.5,
       "reviewsCount": 18,
       "isFeatured": true,
       "colors": [
@@ -5717,7 +5717,7 @@
       "shortDescription": "Sleek dark grey men's windbreaker jacket designed with a clean minimal aesthetic, ribbed collar, and weather-resistant shell.",
       "category": "outerwear",
       "subcategory": "windbreakers",
-      "rating": 4.8,
+      "rating": 3.7,
       "reviewsCount": 16,
       "isFeatured": true,
       "colors": [
@@ -5787,7 +5787,7 @@
       "shortDescription": "Sleek black men's windbreaker featuring a structural back overlay yoke, ribbed trims, and weather-resistant nylon.",
       "category": "outerwear",
       "subcategory": "windbreakers",
-      "rating": 4.9,
+      "rating": 4.2,
       "reviewsCount": 17,
       "isFeatured": true,
       "colors": [
@@ -5856,7 +5856,7 @@
       "shortDescription": "Avant-garde black men's windbreaker featuring tonal technical patchwork panels, ribbed finishes, and full zip.",
       "category": "outerwear",
       "subcategory": "windbreakers",
-      "rating": 4.9,
+      "rating": 3.8,
       "reviewsCount": 24,
       "isFeatured": true,
       "colors": [
@@ -5926,7 +5926,7 @@
       "shortDescription": "Edgy black and grey acid-wash patchwork men's windbreaker featuring ribbed trims and dual-zipper front.",
       "category": "outerwear",
       "subcategory": "windbreakers",
-      "rating": 4.9,
+      "rating": 4.7,
       "reviewsCount": 22,
       "isFeatured": true,
       "colors": [
@@ -5997,7 +5997,7 @@
       "shortDescription": "Essential black men's puffer jacket featuring a warm insulated build, detachable hood, and secure zip pockets.",
       "category": "outerwear",
       "subcategory": "puffer-jackets",
-      "rating": 4.9,
+      "rating": 3.5,
       "reviewsCount": 26,
       "isFeatured": true,
       "colors": [
@@ -6067,7 +6067,7 @@
       "shortDescription": "Sophisticated black men's puffer jacket featuring contrast white piping, embroidered logo, and removable hood.",
       "category": "outerwear",
       "subcategory": "puffer-jackets",
-      "rating": 4.9,
+      "rating": 4.3,
       "reviewsCount": 29,
       "isFeatured": true,
       "colors": [
@@ -6137,7 +6137,7 @@
       "shortDescription": "Bold black and white men's hooded puffer jacket featuring sporty contrast striping and embroidered logo.",
       "category": "outerwear",
       "subcategory": "puffer-jackets",
-      "rating": 4.9,
+      "rating": 4.1,
       "reviewsCount": 31,
       "isFeatured": true,
       "colors": [

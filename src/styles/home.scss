@@ -1,0 +1,122 @@
+@use "variables" as *;
+
+.app-content {
+  background: $color-background;
+}
+
+.home-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
+  align-items: stretch;
+  gap: 32px;
+  min-height: 600px;
+  margin-top: 60px;
+  padding: 40px 140px 0;
+  box-sizing: border-box;
+  background: $color-background;
+}
+
+.home-hero__copy {
+  min-width: 0;
+}
+
+.home-hero__title {
+  margin: 0;
+  transform: translateY(36px);
+  color: $color-black;
+  font-family: $font-logo;
+  font-size: $font-size-60;
+  font-weight: $font-weight-extra-bold;
+  line-height: 1.2;
+}
+
+.home-hero__description {
+  margin: 8px 0 0;
+  transform: translateY(36px);
+  color: $color-black;
+  font-family: $font-caption;
+  font-size: $font-size-24;
+  font-weight: $font-weight-extra-bold;
+  line-height: 1.5;
+}
+
+.home-hero__button {
+  display: inline-flex;
+  min-width: 172px;
+  min-height: 50px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 116px;
+  padding: 0 18px;
+  border: 1px solid $color-black;
+  box-sizing: border-box;
+  color: $color-black;
+  background: $color-white;
+  font-family: $font-caption;
+  font-size: 16px;
+  font-weight: $font-weight-extra-bold;
+  text-decoration: none;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease;
+
+  &:hover {
+    color: $color-white;
+    background: $color-black;
+  }
+}
+
+.home-hero__stats {
+  display: flex;
+  gap: 50px;
+  margin-top: 30px;
+}
+
+.home-hero__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: $color-black;
+  font-family: $font-caption;
+  font-size: 15px;
+  font-weight: $font-weight-extra-bold;
+  line-height: 1.35;
+
+  strong {
+    font-size: 18px;
+  }
+}
+
+.home-hero__placeholder {
+  width: 100%;
+  height: 480px;
+  align-self: end;
+  background: $color-gray;
+}
+
+@media (max-width: 640px) {
+  .home-hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    min-height: 600px;
+    padding: 32px 20px 0;
+  }
+
+  .home-hero__title {
+    font-size: 32px;
+  }
+
+  .home-hero__description {
+    font-size: 18px;
+  }
+
+  .home-hero__button {
+    margin-top: 104px;
+  }
+
+  .home-hero__placeholder {
+    width: min(100%, 360px);
+    height: 280px;
+    justify-self: end;
+  }
+}
