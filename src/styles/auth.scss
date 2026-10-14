@@ -1,0 +1,168 @@
+.main-form-box {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  box-sizing: border-box;
+  background: #f0f0f0;
+  font-family: "Coda", sans-serif;
+}
+
+.form-content-box {
+  width: 400px;
+  max-width: 100%;
+  padding: 28px 40px 25px;
+  box-sizing: border-box;
+  border: 1px solid #e3e3e3;
+  background: #fff;
+}
+
+.form-logo {
+  margin-bottom: 28px;
+}
+
+.form-logo h2 {
+  margin: 0;
+  color: #000;
+  font-family: "Coda Caption", "Coda", sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 20px;
+}
+
+.form-inputs-box + .form-inputs-box {
+  margin-top: 29px;
+}
+
+.input-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-box label {
+  margin-bottom: 5px;
+  color: #111;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.form-input {
+  width: 100%;
+  height: 38px;
+  padding: 0 40px 0 10px;
+  box-sizing: border-box;
+  border: 1px solid #888;
+  border-radius: 7px;
+  outline: none;
+  background: #fff;
+  color: #111;
+  font: inherit;
+}
+
+.form-input:focus {
+  border-color: #111;
+}
+
+.eye-btn-box {
+  position: absolute;
+  right: 9px;
+  bottom: 4px;
+  display: grid;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.eye-btn-img {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.form-buttons-box {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 27px;
+}
+
+.account-btn,
+.google-btn {
+  width: 100%;
+  height: 40px;
+  padding: 0 10px;
+  border: 1px solid #000;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.account-btn {
+  background: #000;
+  color: #fff;
+  transition:
+    background-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.account-btn:hover {
+  background: #fff;
+  color: #000;
+}
+
+.google-btn {
+  background: #fff;
+  color: #111;
+  transition:
+    background-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.google-btn:hover {
+  background: #000;
+  color: #fff;
+}
+
+.form-bottom-box {
+  margin-top: 22px;
+}
+
+.form-bottom-text {
+  display: flex;
+  justify-content: center;
+  gap: 17px;
+  margin: 0;
+  color: #d4d4d4;
+  font-size: 15px;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.form-bottom-text span {
+  color: #111;
+  cursor: pointer;
+}
+
+.form-bottom-text span:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 420px) {
+  .form-content-box {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  .form-bottom-text {
+    gap: 10px;
+    font-size: 13px;
+  }
+}
