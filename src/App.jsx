@@ -7,6 +7,7 @@ import Catalog from "./pages/Catalog";
 import SearchResult from "./components/SearchResult";
 import ProductPage from "./pages/ProductPage";
 import Cart from "./pages/Cart";
+import Auth from "./components/Auth"; // Імпортуємо твій новий компонент
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 
@@ -27,6 +28,7 @@ function App() {
   useEffect(() => {
     refreshCart();
   }, []);
+
   return (
     <BrowserRouter>
       <div className="app-shell">
@@ -44,6 +46,8 @@ function App() {
           </Routes>
         </main>
         <Footer />
+        <Auth />{" "}
+        {/* Додаємо компонент авторизації сюди, щоб він відображався */}
       </div>
     </BrowserRouter>
   );
