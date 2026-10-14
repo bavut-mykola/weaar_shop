@@ -97,7 +97,9 @@ function Navbar({ cartCount }) {
           <img src={cartIcon} alt="Cart" className="head-btn" />
           {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
         </Link>
-        <img src={userIcon} alt="Account" className="head-btn" />
+        <Link to={"/auth"}>
+          <img src={userIcon} alt="Account" className="head-btn" />
+        </Link>
         <img src={phoneIcon} alt="Contact" className="head-btn" />
       </div>
     </header>

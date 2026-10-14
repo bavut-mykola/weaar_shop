@@ -376,9 +376,21 @@
   .product-images-box {
     grid-column: 1;
     grid-row: auto;
-    grid-template-columns: minmax(72px, 24%) minmax(0, 1fr);
-    gap: 14px;
+    grid-template-columns: minmax(72px, 29%) minmax(0, 1fr);
+    column-gap: clamp(12px, 5vw, 25px);
     margin-bottom: 28px;
+  }
+
+  .images-options {
+    gap: clamp(16px, 6vw, 28px);
+
+    img {
+      aspect-ratio: 0.74;
+    }
+  }
+
+  .selected-image-box {
+    aspect-ratio: 0.77;
   }
 
   .product-actions-box,
@@ -409,8 +421,7 @@
   }
 
   .product-images-box {
-    grid-template-columns: 68px minmax(0, 1fr);
-    gap: 10px;
+    grid-template-columns: minmax(72px, 29%) minmax(0, 1fr);
   }
 
   .product-info .rating-box {

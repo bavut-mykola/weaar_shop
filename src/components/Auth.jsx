@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import eyeOffIcon from "../assets/icons/eyeOff.svg";
 import eyeIcon from "../assets/icons/eye.svg";
 import "../styles/auth.scss";
@@ -76,6 +77,10 @@ function Auth() {
             </p>
           </div>
         </div>
+
+        <Link to="/" className="back-to-home-box">
+          Back to Home
+        </Link>
       </div>
     </>
   );

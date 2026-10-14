@@ -43,11 +43,10 @@ function App() {
               element={<ProductPage refreshCart={refreshCart} />}
             />
             <Route path="/cart" element={<Cart refreshCart={refreshCart} />} />
+            <Route path="/auth" element={<Auth />} />
           </Routes>
         </main>
         <Footer />
-        <Auth />{" "}
-        {/* Додаємо компонент авторизації сюди, щоб він відображався */}
       </div>
     </BrowserRouter>
   );

@@ -2,8 +2,11 @@
   position: fixed;
   inset: 0;
   z-index: 1000;
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 45px;
   padding: 24px;
   box-sizing: border-box;
   background: #f0f0f0;
@@ -153,6 +156,29 @@
 
 .form-bottom-text span:hover {
   text-decoration: underline;
+}
+
+.back-to-home-box {
+  display: inline-flex;
+  min-height: 48px;
+  padding: 12px 28px;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border: 1px solid #000;
+  background: #000;
+  color: #fff;
+  font-family: "Coda", sans-serif;
+  font-size: 15px;
+  text-decoration: none;
+  transition:
+    background-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.back-to-home-box:hover {
+  background: #fff;
+  color: #000;
 }
 
 @media (max-width: 420px) {

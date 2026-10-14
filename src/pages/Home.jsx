@@ -1,5 +1,6 @@
 import "../styles/home.scss";
 import { Link } from "react-router-dom";
+import homeBg from "../../images/home_background.png";
 
 function Home() {
   return (
@@ -18,28 +19,32 @@ function Home() {
         <Link className="home-hero__button" to="/catalog">
           View collection
         </Link>
-
-        <div className="home-hero__stats" aria-label="Store statistics">
-          <div className="home-hero__stat">
-            <strong>2500+</strong>
-            <span>
-              high-quality
-              <br />
-              Products
-            </span>
-          </div>
-          <div className="home-hero__stat">
-            <strong>18,000+</strong>
-            <span>
-              happy
-              <br />
-              Customers
-            </span>
-          </div>
-        </div>
       </div>
 
-      <div className="home-hero__placeholder" aria-hidden="true" />
+      <div
+        className="home-hero__placeholder"
+        style={{ backgroundImage: `url("${homeBg}")` }}
+        aria-hidden="true"
+      />
+
+      <div className="home-hero__stats" aria-label="Store statistics">
+        <div className="home-hero__stat">
+          <strong>2500+</strong>
+          <span>
+            high-quality
+            <br />
+            Products
+          </span>
+        </div>
+        <div className="home-hero__stat">
+          <strong>18,000+</strong>
+          <span>
+            happy
+            <br />
+            Customers
+          </span>
+        </div>
+      </div>
     </section>
   );
 }
