@@ -4,6 +4,8 @@ import "../styles/productPage.scss";
 
 import checkIcon from "../assets/icons/check.svg";
 
+import { API_URL } from "./api";
+
 function ProductPage({ refreshCart }) {
   const [isLoading, setIsLoading] = useState(true);
   const [isFailedToLoad, setIsFailedToLoad] = useState(false);
@@ -27,7 +29,7 @@ function ProductPage({ refreshCart }) {
         setIsLoading(true);
         setIsFailedToLoad(false);
 
-        const res = await fetch(`http://localhost:3000/api/products/${id}`);
+        const res = await fetch(`${API_URL}/api/products/${id}`);
 
         if (!res.ok) {
           throw new Error(`Product request failed: ${res.status}`);
@@ -77,7 +79,7 @@ function ProductPage({ refreshCart }) {
     };
 
     try {
-      const response = await fetch("http://localhost:3000/api/cart", {
+      const response = await fetch(`${API_URL}/api/cart`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -232,8 +234,7 @@ function ProductPage({ refreshCart }) {
             <div className="out-stock-message-slot" aria-live="polite">
               {maxQuantity === 0 && (
                 <p className="out-stock-text">
-                  Product with selected size and color is currently out of
-                  stock
+                  Product with selected size and color is currently out of stock
                 </p>
               )}
             </div>

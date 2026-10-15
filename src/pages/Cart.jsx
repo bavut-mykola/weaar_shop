@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 
 import "../styles/cart.scss";
 
+import { API_URL } from "./api";
+
 function Cart({ refreshCart }) {
   const [products, setProducts] = useState([]);
 
@@ -10,7 +12,7 @@ function Cart({ refreshCart }) {
 
   async function loadProducts() {
     try {
-      const res = await fetch("http://localhost:3000/api/cart");
+      const res = await fetch(`${API_URL}/api/cart`);
 
       if (!res.ok) {
         throw new Error(res.status);
@@ -29,7 +31,7 @@ function Cart({ refreshCart }) {
 
   async function clearCart() {
     try {
-      const result = await fetch("http://localhost:3000/api/cart", {
+      const result = await fetch(`${API_URL}/api/cart`, {
         method: "DELETE",
       });
 
@@ -74,7 +76,7 @@ function Cart({ refreshCart }) {
     }
 
     try {
-      const res = await fetch(`http://localhost:3000/api/cart/${p.id}`, {
+      const res = await fetch(`${API_URL}/api/cart/${p.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ quantity: p.quantity + 1 }),
@@ -103,7 +105,7 @@ function Cart({ refreshCart }) {
     }
 
     try {
-      const res = await fetch(`http://localhost:3000/api/cart/${p.id}`, {
+      const res = await fetch(`${API_URL}/api/cart/${p.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ quantity: p.quantity - 1 }),
@@ -126,7 +128,7 @@ function Cart({ refreshCart }) {
 
   async function deleteFromCart(p) {
     try {
-      const res = await fetch(`http://localhost:3000/api/cart/${p.id}`, {
+      const res = await fetch(`${API_URL}/api/cart/${p.id}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: "",

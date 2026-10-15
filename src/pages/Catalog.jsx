@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "../styles/catalog.scss";
 
+import { API_URL } from "./api";
+
 const sortOptions = ["More Popular", "More Expensive", "Cheaper"];
 
 function Catalog() {
@@ -26,7 +28,7 @@ function Catalog() {
   async function getProducts() {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/products?page=${page}&sort=${sortParam}`,
+        `${API_URL}/api/products?page=${page}&sort=${sortParam}`,
       );
 
       setIsLoading(true);
@@ -126,7 +128,7 @@ function Catalog() {
     console.log("FILTER DATA:", filterData);
 
     try {
-      const req = await fetch("http://localhost:3000/api/products/filter", {
+      const req = await fetch(`${API_URL}/api/products/filter`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

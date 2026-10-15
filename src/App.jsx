@@ -11,12 +11,14 @@ import Auth from "./components/Auth"; // Імпортуємо твій нови�
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 
+import { API_URL } from "./api";
+
 function App() {
   const [cartCount, setCartCount] = useState(null);
 
   async function refreshCart() {
     try {
-      const res = await fetch("http://localhost:3000/api/cart");
+      const res = await fetch(`${API_URL}/api/cart`);
       const data = await res.json();
       const total = data.reduce((sum, item) => sum + item.quantity, 0);
       setCartCount(total);

@@ -4,6 +4,8 @@ import { useSearchParams } from "react-router-dom";
 import "../styles/catalog.scss";
 import "../styles/search.scss";
 
+import { API_URL } from "./api";
+
 const sortOptions = ["More Popular", "More Expensive", "Cheaper"];
 
 function SearchResult() {
@@ -57,7 +59,7 @@ function SearchResult() {
       setIsLoading(true);
 
       const response = await fetch(
-        `http://localhost:3000/api/products?page=${page}&sort=${sortParam}`,
+        `${API_URL}/api/products?page=${page}&sort=${sortParam}`,
       );
 
       const data = await response.json();
@@ -112,9 +114,7 @@ function SearchResult() {
   useEffect(() => {
     async function getSearchProducts() {
       try {
-        const response = await fetch(
-          "http://localhost:3000/api/products/search-data",
-        );
+        const response = await fetch(`${API_URL}/api/products/search-data`);
 
         const data = await response.json();
 
