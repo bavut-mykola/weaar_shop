@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import "../styles/catalog.scss";
 import "../styles/search.scss";
 
-import { API_URL } from "./api";
+import { API_URL } from "../api";
 
 const sortOptions = ["More Popular", "More Expensive", "Cheaper"];
 

@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "../styles/catalog.scss";
 
-import { API_URL } from "./api";
+import { API_URL } from "../api";
 
 const sortOptions = ["More Popular", "More Expensive", "Cheaper"];
 

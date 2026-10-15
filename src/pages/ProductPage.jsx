@@ -4,7 +4,7 @@ import "../styles/productPage.scss";
 
 import checkIcon from "../assets/icons/check.svg";
 
-import { API_URL } from "./api";
+import { API_URL } from "../api";
 
 function ProductPage({ refreshCart }) {
   const [isLoading, setIsLoading] = useState(true);

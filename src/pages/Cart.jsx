@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import "../styles/cart.scss";
 
-import { API_URL } from "./api";
+import { API_URL } from "../api";
 
 function Cart({ refreshCart }) {
   const [products, setProducts] = useState([]);
