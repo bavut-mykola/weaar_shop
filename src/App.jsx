@@ -11,7 +11,7 @@ import Auth from "./components/Auth"; // Імпортуємо твій нови�
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 
-import { API_URL } from "../api";
+import { API_URL } from "./api";
 
 function App() {
   const [cartCount, setCartCount] = useState(null);
