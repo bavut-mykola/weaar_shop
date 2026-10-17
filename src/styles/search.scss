@@ -7,14 +7,17 @@
     width: 100%;
   }
 
-  .catalog__layout {
-    display: block;
-  }
-
   .catalog__products,
   .products-container {
     width: 100%;
   }
+}
+.search-catalog__title {
+  font-size: 14px;
+}
+.search-results__empty {
+  margin: 12px 0;
+  font-size: 14px;
 }
 
 @media (max-width: 420px) {
@@ -27,8 +30,12 @@
       display: flex;
     }
 
-    .catalog__layout {
-      display: block;
+    .catalog-skeleton {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .skeleton-left-box {
+      display: none;
     }
   }
 }

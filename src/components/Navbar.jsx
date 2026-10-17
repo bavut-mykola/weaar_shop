@@ -19,6 +19,7 @@ function Navbar({ cartCount }) {
   function handleKeyDown(e) {
     if (searchterm !== "" && e.key === "Enter") {
       navigate(`/search?query=${encodeURIComponent(searchterm)}`);
+      setISBurgerClicked(false);
     }
   }
 

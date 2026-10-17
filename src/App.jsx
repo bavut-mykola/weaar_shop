@@ -7,14 +7,16 @@ import Catalog from "./pages/Catalog";
 import SearchResult from "./components/SearchResult";
 import ProductPage from "./pages/ProductPage";
 import Cart from "./pages/Cart";
-import Auth from "./components/Auth"; // Імпортуємо твій новий компонент
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Auth from "./components/Auth";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 
 import { API_URL } from "./api";
 
 function App() {
   const [cartCount, setCartCount] = useState(null);
+
+  const location = useLocation();
 
   async function refreshCart() {
     try {
