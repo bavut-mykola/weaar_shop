@@ -13,7 +13,8 @@ function Home() {
         <p className="home-hero__description">
           Simple clothes for every day.
           <br />
-          Made to fit your style.
+          <span className="home-hero__description-leading">M</span>ade to fit
+          your style.
         </p>
 
         <Link className="home-hero__button" to="/catalog">
@@ -31,7 +32,7 @@ function Home() {
         <div className="home-hero__stat">
           <strong>2500+</strong>
           <span>
-            high-quality
+            High-quality
             <br />
             Products
           </span>
@@ -39,7 +40,7 @@ function Home() {
         <div className="home-hero__stat">
           <strong>18,000+</strong>
           <span>
-            happy
+            Happy
             <br />
             Customers
           </span>

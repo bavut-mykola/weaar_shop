@@ -12,7 +12,7 @@
   gap: 24px 32px;
   min-height: 550px;
   margin-top: 60px;
-  padding: 24px 140px;
+  padding: 24px clamp(36px, 7vw, 96px);
   box-sizing: border-box;
   background: $color-background;
 }
@@ -31,6 +31,7 @@
   font-size: $font-size-60;
   font-weight: $font-weight-extra-bold;
   line-height: 1.2;
+  letter-spacing: 1px;
 }
 
 .home-hero__description {
@@ -43,6 +44,11 @@
   line-height: 1.5;
 }
 
+.home-hero__description-leading {
+  display: inline-block;
+  margin-right: -0.08em;
+}
+
 .home-hero__button {
   display: inline-flex;
   min-width: 172px;
@@ -50,22 +56,22 @@
   align-items: center;
   justify-content: center;
   margin-top: 64px;
-  padding: 0 18px;
+  padding: 16px 32px;
   border: 1px solid $color-black;
   box-sizing: border-box;
-  color: $color-black;
-  background: $color-white;
-  font-family: $font-caption;
+  color: $color-white;
+  background: $color-black;
+  font-family: $font-logo;
   font-size: 16px;
-  font-weight: $font-weight-extra-bold;
+  font-weight: $font-weight-regular;
   text-decoration: none;
   transition:
     color 160ms ease,
     background-color 160ms ease;
 
   &:hover {
-    color: $color-white;
-    background: $color-black;
+    color: $color-black;
+    background: $color-white;
   }
 }
 
@@ -103,6 +109,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
+  filter: drop-shadow(0px 16px 32px rgba(0, 0, 0, 0.2));
 }
 
 @media (max-width: 640px) {

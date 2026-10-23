@@ -2,21 +2,20 @@
 // Colors
 // =========================
 
-$color-white: #FFFFFF;
-$color-black: #000000;
-$color-background: #F0F0F0;
-$color-gray: #D9D9D9;
-$color-gray-button: #DEDEDE;
-$color-gray-text: #6E6E6E;
-$color-gray-line: #9A9999;
+$color-white: #ffffff;
+$color-black: #0a0a0a;
+$color-background: #f0f0f0;
+$color-gray: #d9d9d9;
+$color-gray-button: #dedede;
+$color-gray-text: #6e6e6e;
+$color-gray-line: #9a9999;
 
-$color-rating: #EBFB02;
-$color-top-product: #3D06BF;
-$color-featured: #FE0505;
-$color-review: #02FF6C;
-$color-discount: #FF0000;
-$color-discount-light: #FF9999;
-
+$color-rating: #383434;
+$color-top-product: #3d06bf;
+$color-featured: #fe0505;
+$color-review: #02ff6c;
+$color-discount: #ff0000;
+$color-discount-light: #332727;
 
 // =========================
 // Fonts
@@ -25,7 +24,6 @@ $color-discount-light: #FF9999;
 $font-logo: "Candal", sans-serif;
 $font-main: "Coda", sans-serif;
 $font-caption: "Coda Caption", sans-serif;
-
 
 // =========================
 // Font sizes
@@ -46,7 +44,6 @@ $font-size-42: 42px;
 $font-size-48: 48px;
 $font-size-60: 60px;
 
-
 // =========================
 // Font weights
 // =========================
@@ -54,14 +51,12 @@ $font-size-60: 60px;
 $font-weight-regular: 400;
 $font-weight-extra-bold: 800;
 
-
 // =========================
 // Border
 // =========================
 
 $border-width: 1px;
 $border-color: $color-black;
-
 
 // =========================
 // Border radius

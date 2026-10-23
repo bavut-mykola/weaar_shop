@@ -114,7 +114,39 @@ function ProductPage({ refreshCart }) {
   return (
     <>
       {isLoading ? (
-        <h2>Loading product...</h2>
+        <div className="product-skeleton-container">
+          <div className="left-product-skeleton-box">
+            <div className="small-skeleton-images">
+              <div></div>
+              <div></div>
+            </div>
+            <div className="big-skeleton-images"></div>
+          </div>
+
+          <div className="right-product-skeleton-box">
+            <div className="top-info-skeleton">
+              <div className="skeleton-product-page-name"></div>
+              <div className="skeleton-product-page-rating"></div>
+              <div className="skeleton-product-page-price"></div>
+              <div className="skeleton-product-page-description"></div>
+            </div>
+
+            <div className="colors-skeleton">
+              {[1, 2, 3].map((color) => (
+                <div className="skeleton-product-color" key={color}></div>
+              ))}
+            </div>
+            <div className="sizes-skeleton">
+              {[1, 2, 3, 4].map((size) => (
+                <div className="skeleton-product-size" key={size}></div>
+              ))}
+            </div>
+            <div className="skeleton-product-page-buttons">
+              <div className="skeleton-arithmetic-buttons"></div>
+              <div className="skeleton-add-to-cart-button"></div>
+            </div>
+          </div>
+        </div>
       ) : isFailedToLoad || !product ? (
         <h2>Unable to load product.</h2>
       ) : (
@@ -175,7 +207,8 @@ function ProductPage({ refreshCart }) {
               </div>
               {product.oldPrice ? (
                 <div>
-                  <p>${product.price}</p> <p>${product.oldPrice}</p>{" "}
+                  <p>${product.price}</p>
+                  <p className="product-old-price">${product.oldPrice}</p>{" "}
                 </div>
               ) : (
                 <p>${product.price}</p>
@@ -283,13 +316,13 @@ function ProductPage({ refreshCart }) {
             <div className="add-to-cart-box">
               <button
                 className="add-to-cart-btn"
-                disabled={isBeingAdded}
+                disabled={isBeingAdded || maxQuantity === 0}
                 onClick={() => {
                   setIsBeingAdded(true);
                   addProduct();
                 }}
               >
-                {isBeingAdded ? "Adding" : "Add to Cart"}
+                {isBeingAdded ? "ADDING" : "ADD TO CART"}
               </button>
               {addError && (
                 <p className="quantity-message" role="alert">

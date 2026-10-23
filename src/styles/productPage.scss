@@ -1,5 +1,140 @@
 @use "variables" as *;
 
+$product-skeleton-color: #e5e5e5;
+
+.product-skeleton-container {
+  display: grid;
+  grid-template-columns: minmax(0, 1.62fr) minmax(220px, 1fr);
+  align-items: start;
+  column-gap: clamp(24px, 4.4vw, 56px);
+  width: min(100% - 64px, 1280px);
+  margin: 136px auto 72px;
+}
+
+.left-product-skeleton-box {
+  display: grid;
+  grid-template-columns: minmax(72px, 28.5%) minmax(0, 1fr);
+  gap: clamp(14px, 2.6vw, 24px);
+  min-width: 0;
+}
+
+.small-skeleton-images {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(18px, 3.6vw, 30px);
+
+  div {
+    width: 100%;
+    aspect-ratio: 0.95;
+    border-radius: 5px;
+    background: $product-skeleton-color;
+  }
+}
+
+.big-skeleton-images {
+  min-width: 0;
+  aspect-ratio: 1.07;
+  border-radius: 5px;
+  background: $product-skeleton-color;
+}
+
+.right-product-skeleton-box {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.top-info-skeleton,
+.colors-skeleton,
+.sizes-skeleton {
+  padding: 4px 0 12px;
+  border-bottom: 1px solid rgba($color-black, 0.16);
+}
+
+.top-info-skeleton > div,
+.skeleton-product-color,
+.skeleton-product-size,
+.skeleton-arithmetic-buttons,
+.skeleton-add-to-cart-button {
+  background: $product-skeleton-color;
+}
+
+.skeleton-product-page-name {
+  width: 74%;
+  height: 30px;
+  margin-bottom: 12px;
+  border-radius: 4px;
+}
+
+.skeleton-product-page-rating {
+  width: 38%;
+  height: 18px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.skeleton-product-page-price {
+  width: 30%;
+  height: 18px;
+  margin-bottom: 12px;
+  border-radius: 4px;
+}
+
+.skeleton-product-page-description {
+  width: 100%;
+  height: 42px;
+  border-radius: 4px;
+}
+
+.colors-skeleton,
+.sizes-skeleton {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.colors-skeleton {
+  min-height: 48px;
+}
+
+.skeleton-product-color {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+
+.sizes-skeleton {
+  gap: 8px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.skeleton-product-size {
+  flex: 1 1 42px;
+  height: 28px;
+  border-radius: $radius-button;
+}
+
+.skeleton-product-page-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.skeleton-arithmetic-buttons {
+  flex: 0 0 90px;
+  height: 32px;
+  border-radius: $radius-button;
+}
+
+.skeleton-add-to-cart-button {
+  flex: 1 1 auto;
+  height: 32px;
+  border-radius: $radius-button;
+}
+
 .main-product-container {
   display: grid;
   grid-template-columns: minmax(0, 1.62fr) minmax(220px, 1fr);
@@ -147,6 +282,10 @@
     font-size: 14px;
     line-height: 1.5;
   }
+}
+
+.product-old-price {
+  color: $color-discount-light !important;
 }
 
 .product-colors-box,
@@ -358,6 +497,9 @@
     background-color 150ms ease,
     color 150ms ease;
 
+  &:disabled {
+    cursor: not-allowed;
+  }
   &:hover {
     background: transparent;
     color: $color-black;
@@ -365,6 +507,30 @@
 }
 
 @media (max-width: 760px) {
+  .product-skeleton-container {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 48px;
+    width: min(100% - 40px, 560px);
+    margin-top: 136px;
+  }
+
+  .left-product-skeleton-box {
+    grid-template-columns: minmax(72px, 29%) minmax(0, 1fr);
+    column-gap: clamp(12px, 5vw, 25px);
+  }
+
+  .small-skeleton-images {
+    gap: clamp(16px, 6vw, 28px);
+
+    div {
+      aspect-ratio: 0.74;
+    }
+  }
+
+  .big-skeleton-images {
+    aspect-ratio: 0.77;
+  }
+
   .main-product-container {
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: none;
@@ -415,6 +581,11 @@
 }
 
 @media (max-width: 420px) {
+  .product-skeleton-container {
+    width: calc(100% - 32px);
+    margin-top: 108px;
+  }
+
   .main-product-container {
     width: calc(100% - 32px);
     margin-top: 108px;

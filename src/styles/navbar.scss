@@ -28,9 +28,10 @@
   color: $color-black;
   text-decoration: none;
 
-  font-size: 14px;
-  font-family: $font-caption;
+  font-size: 12px;
+  font-family: $font-logo;
   font-weight: 500;
+  letter-spacing: 1.3px;
 
   position: relative;
 
@@ -42,6 +43,7 @@
     height: 1px;
     bottom: -2px;
     left: 0;
+    transform-origin: left;
     transform: scaleX(0);
     transition: 0.3s ease;
   }
@@ -131,8 +133,8 @@
 
 .cart-count {
   position: absolute;
-  right: -5px;
-  bottom: -4px;
+  right: -12px;
+  top: -6px;
   z-index: 1;
   display: grid;
   min-width: 21px;
@@ -149,6 +151,17 @@
   line-height: 1;
   text-align: center;
   text-indent: -1px;
+}
+
+.active-user-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-left: -8px;
+  border-radius: 50%;
+  background-color: #61ed76;
+  position: relative;
+  top: -21px;
 }
 
 .head-btn {
@@ -222,6 +235,18 @@
   .head-btn {
     width: 20px;
     height: 20px;
+  }
+
+  .cart-count {
+    min-width: 17px;
+    height: 17px;
+    padding: 0 3px;
+    font-size: 7px;
+  }
+
+  .active-user-dot {
+    margin-left: -5px;
+    top: -17px;
   }
 
   .burger-btn {

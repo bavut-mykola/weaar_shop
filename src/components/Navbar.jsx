@@ -6,7 +6,7 @@ import userIcon from "../assets/icons/user.svg";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import "../styles/navbar.scss";
 
-function Navbar({ cartCount }) {
+function Navbar({ cartCount, isAuthenticated }) {
   const [isBurgerClicked, setISBurgerClicked] = useState(false);
 
   const [searchterm, setSearchTerm] = useState("");
@@ -57,10 +57,10 @@ function Navbar({ cartCount }) {
             className="nav-link"
             onClick={() => setISBurgerClicked(false)}
           >
-            Catalog
+            CATALOG
           </Link>
           <a href="" className="nav-link">
-            SpotLight
+            SPOTLIGHT
           </a>
         </ul>
 
@@ -98,8 +98,9 @@ function Navbar({ cartCount }) {
           <img src={cartIcon} alt="Cart" className="head-btn" />
           {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
         </Link>
-        <Link to={"/auth"}>
+        <Link to={isAuthenticated ? "/account" : "/auth"}>
           <img src={userIcon} alt="Account" className="head-btn" />
+          {isAuthenticated && <span className="active-user-dot"></span>}
         </Link>
         <img src={phoneIcon} alt="Contact" className="head-btn" />
       </div>

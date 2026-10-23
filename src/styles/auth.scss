@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 .main-form-box {
   position: fixed;
   inset: 0;
@@ -69,6 +71,11 @@
   border-color: #111;
 }
 
+.form-error {
+  font-size: $font-size-14;
+  color: $color-featured;
+}
+
 .eye-btn-box {
   position: absolute;
   right: 9px;
@@ -122,11 +129,31 @@
 }
 
 .google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   background: #fff;
   color: #111;
   transition:
     background-color 0.18s ease,
     color 0.18s ease;
+}
+
+.auth__google-btn {
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.auth__google-btn svg {
+  display: block;
 }
 
 .google-btn:hover {
@@ -143,7 +170,7 @@
   justify-content: center;
   gap: 17px;
   margin: 0;
-  color: #d4d4d4;
+  color: $color-gray-text;
   font-size: 15px;
   line-height: 24px;
   white-space: nowrap;
@@ -165,20 +192,13 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  border: 1px solid #000;
-  background: #000;
-  color: #fff;
+  color: $color-black;
   font-family: "Coda", sans-serif;
   font-size: 15px;
   text-decoration: none;
-  transition:
-    background-color 0.18s ease,
-    color 0.18s ease;
-}
-
-.back-to-home-box:hover {
-  background: #fff;
-  color: #000;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 @media (max-width: 420px) {

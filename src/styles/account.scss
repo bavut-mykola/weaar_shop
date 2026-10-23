@@ -1,0 +1,155 @@
+@use "variables" as *;
+
+.account-page {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 55px;
+  padding: 36px 24px;
+  box-sizing: border-box;
+  background: $color-background;
+  font-family: $font-main;
+}
+
+.account-card {
+  width: 100%;
+  max-width: 450px;
+  padding: 32px 34px 29px;
+  box-sizing: border-box;
+  background: $color-white;
+}
+
+.account-profile {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 0 12px 18px;
+  border-bottom: $border-width solid #e5e5e5;
+}
+
+.account-profile-icon {
+  width: 28px;
+  height: 28px;
+}
+
+.account-eyebrow,
+.account-email,
+.account-menu-copy p,
+.account-menu-copy span {
+  margin: 0;
+}
+
+.account-eyebrow {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.account-email {
+  font-family: $font-caption;
+  font-size: 12px;
+  font-weight: $font-weight-extra-bold;
+  line-height: 16px;
+}
+
+.account-menu {
+  padding: 12px 0 16px;
+  border-bottom: $border-width solid #e5e5e5;
+}
+
+.account-menu-item,
+.account-logout {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: $radius-small-button;
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.account-menu-item {
+  min-height: 62px;
+  gap: 18px;
+  padding: 7px 12px;
+}
+
+.account-menu-item:hover,
+.account-logout:hover {
+  background: #f5f5f5;
+}
+
+.account-menu-icon,
+.account-logout-icon {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+}
+
+.account-menu-copy {
+  min-width: 0;
+  flex: 1;
+}
+
+.account-menu-copy p,
+.account-logout span {
+  font-family: $font-caption;
+  font-size: 13px;
+  font-weight: $font-weight-extra-bold;
+}
+
+.account-menu-copy span {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.account-menu-arrow {
+  padding: 0 2px;
+  font-family: Arial, sans-serif;
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.account-logout {
+  gap: 18px;
+  margin-top: 16px;
+  padding: 11px 12px;
+  color: $color-featured;
+}
+
+.account-logout:hover span {
+  text-decoration: underline;
+}
+
+.account-logout:hover .account-logout-icon {
+  filter: brightness(0.75);
+}
+
+.account-back-home {
+  color: $color-black;
+  font-size: $font-size-18;
+  text-decoration: none;
+}
+
+.account-back-home:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .account-page {
+    padding: 24px 16px;
+  }
+
+  .account-card {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}

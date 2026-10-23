@@ -3,6 +3,8 @@ const express = require("express");
 const { Client } = require("pg");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const argon2 = require("argon2");
+const session = require("express-session");
 
 dotenv.config({ path: "../.env" });
 
@@ -24,8 +26,37 @@ db.connect()
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  }),
+);
 app.use(express.json());
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      secure: false,
+      sameSite: "lax",
+      maxAge: 24 * 60 * 60 * 1000,
+    },
+  }),
+);
+
+function requireAuth(req, res, next) {
+  if (req.session.accountId) {
+    next();
+  } else {
+    return res.status(401).json({
+      message: "Not authenticated",
+    });
+  }
+}
 
 app.get("/api/products", async (req, res) => {
   const {
@@ -703,6 +734,188 @@ app.post("/api/products/filter", async (req, res) => {
       currentPage: pageNumber,
       limit,
     },
+  });
+});
+
+// ACCOUNTS
+
+// REGISTRATION
+app.post("/api/accounts/register", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (typeof email !== "string" || typeof password !== "string") {
+      return res.status(400).json({
+        message: "Введіть email і пароль",
+      });
+    }
+
+    const normalizedEmail = email.trim().toLowerCase();
+
+    if (
+      normalizedEmail.length > 255 ||
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)
+    ) {
+      return res.status(400).json({
+        message: "Введіть коректний email",
+      });
+    }
+
+    if (password.length < 8 || password.length > 128) {
+      return res.status(400).json({
+        message: "Пароль має містити від 8 до 128 символів",
+      });
+    }
+
+    const existingAccount = await db.query(
+      "SELECT id FROM accounts WHERE email = $1",
+      [normalizedEmail],
+    );
+
+    if (existingAccount.rows.length > 0) {
+      return res.status(409).json({
+        message: "An account with this email already exists.",
+      });
+    }
+
+    const passwordHash = await argon2.hash(password, {
+      type: argon2.argon2id,
+    });
+
+    const result = await db.query(
+      `INSERT INTO accounts (email, password_hash)
+       VALUES ($1, $2)
+       RETURNING id, email, created_at`,
+      [normalizedEmail, passwordHash],
+    );
+
+    return res.status(201).json({
+      message: "Акаунт успішно створено",
+      account: result.rows[0],
+    });
+  } catch (error) {
+    if (error.code === "23505") {
+      return res.status(409).json({
+        message: "Акаунт із таким email уже існує",
+      });
+    }
+
+    console.error("Registration error:", error);
+
+    return res.status(500).json({
+      message: "Помилка сервера. Спробуйте пізніше",
+    });
+  }
+});
+
+// LOG IN
+
+app.post("/api/accounts/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (typeof email !== "string" || typeof password !== "string") {
+      return res.status(400).json({
+        message: "Enter your email and password",
+      });
+    }
+
+    const normalizedEmail = email.trim().toLowerCase();
+
+    const result = await db.query(
+      "SELECT id, email, password_hash FROM accounts WHERE email = $1",
+      [normalizedEmail],
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(401).json({
+        message: "Invalid email or password",
+      });
+    }
+
+    const account = result.rows[0];
+
+    const passwordIsValid = await argon2.verify(
+      account.password_hash,
+      password,
+    );
+
+    if (!passwordIsValid) {
+      return res.status(401).json({
+        message: "Invalid email or password",
+      });
+    }
+
+    req.session.accountId = account.id;
+
+    return res.status(200).json({
+      message: "Login successful",
+      account: {
+        id: account.id,
+        email: account.email,
+      },
+    });
+  } catch (error) {
+    console.error("Login error:", error);
+
+    return res.status(500).json({
+      message: "Server error. Please try again later.",
+    });
+  }
+});
+
+app.get("/api/accounts/me", async (req, res) => {
+  const accountId = req.session.accountId;
+
+  if (!accountId) {
+    return res.status(401).json({
+      message: "Not authenticated",
+    });
+  }
+
+  try {
+    const result = await db.query(
+      `
+            SELECT id, email
+            FROM accounts
+            WHERE id = $1
+      `,
+      [accountId],
+    );
+
+    if (!result.rows[0]) {
+      return res.status(401).json({
+        message: "Account not found",
+      });
+    }
+
+    const account = result.rows[0];
+
+    return res.json({
+      account: {
+        id: account.id,
+        email: account.email,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Internal server error",
+    });
+  }
+});
+
+app.post("/api/accounts/logout", (req, res) => {
+  req.session.destroy((error) => {
+    if (error) {
+      return res.status(500).json({
+        message: "Logout failed",
+      });
+    }
+
+    return res.status(200).json({
+      message: "Logout successful",
+    });
   });
 });
 
