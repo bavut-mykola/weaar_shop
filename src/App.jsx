@@ -114,7 +114,10 @@ function App() {
               />
             }
           />
-          <Route path="/account-settings" element={<AccountSettings />} />
+          <Route
+            path="/account-settings"
+            element={<AccountSettings userEmail={userEmail} />}
+          />
         </Routes>
       </main>
       <Footer />

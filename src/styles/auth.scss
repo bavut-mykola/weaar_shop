@@ -76,6 +76,77 @@
   color: $color-featured;
 }
 
+.google-error {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+  background: rgba($color-black, 0.28);
+  backdrop-filter: blur(7px);
+}
+
+.google-error-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(420px, 100%);
+  padding: 30px;
+  box-sizing: border-box;
+  border: $border-width solid $color-gray-line;
+  border-radius: $radius-card;
+  background: $color-white;
+  box-shadow: 0 18px 50px rgba($color-black, 0.2);
+}
+
+.google-error-menu h3 {
+  margin: 0 0 12px;
+  color: $color-black;
+  font-family: $font-caption;
+  font-size: $font-size-18;
+  font-weight: $font-weight-extra-bold;
+  line-height: 24px;
+  text-align: center;
+}
+
+.google-error-message {
+  width: 100%;
+  margin: 0 0 26px;
+  color: $color-gray-text;
+  font-family: $font-main;
+  font-size: $font-size-14;
+  line-height: 24px;
+  text-align: center;
+}
+
+.google-error-button {
+  width: 100%;
+  min-height: 40px;
+  padding: 0 16px;
+  border: $border-width solid $color-black;
+  border-radius: $radius-small-button;
+  background: $color-black;
+  color: $color-white;
+  font-family: $font-main;
+  font-size: $font-size-14;
+  cursor: pointer;
+}
+
+.google-error-button:hover {
+  background: $color-white;
+  color: $color-black;
+}
+
+@media (max-width: 420px) {
+  .google-error-menu {
+    padding: 24px 20px;
+  }
+}
+
 .eye-btn-box {
   position: absolute;
   right: 9px;

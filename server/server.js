@@ -5,6 +5,11 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const argon2 = require("argon2");
 const session = require("express-session");
+const multer = require("multer");
+const path = require("path");
+const fs = require("fs");
+const passport = require("passport");
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
 dotenv.config({ path: "../.env" });
 
@@ -48,6 +53,21 @@ app.use(
   }),
 );
 
+app.use(passport.initialize());
+
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: "http://localhost:3000/api/auth/google/callback",
+    },
+    (accessToken, refreshToken, profile, done) => {
+      done(null, profile);
+    },
+  ),
+);
+
 function requireAuth(req, res, next) {
   if (req.session.accountId) {
     next();
@@ -57,6 +77,38 @@ function requireAuth(req, res, next) {
     });
   }
 }
+
+const uploadDir = path.join(__dirname, "uploads");
+
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, uploadDir);
+  },
+  filename: (req, file, cb) => {
+    const uniqueName = `${Date.now()}-${Math.round(Math.random() * 1e9)}${path.extname(file.originalname).toLowerCase()}`;
+    cb(null, uniqueName);
+  },
+});
+
+const upload = multer({
+  storage,
+  limits: {
+    fileSize: 5 * 1024 * 1024,
+  },
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype.startsWith("image/")) {
+      cb(null, true);
+    } else {
+      cb(new Error("Only image files are allowed"));
+    }
+  },
+});
+
+app.use("/uploads", express.static(uploadDir));
 
 app.get("/api/products", async (req, res) => {
   const {
@@ -835,6 +887,12 @@ app.post("/api/accounts/login", async (req, res) => {
 
     const account = result.rows[0];
 
+    if (!account.password_hash) {
+      return res.status(401).json({
+        message: "Invalid email or password",
+      });
+    }
+
     const passwordIsValid = await argon2.verify(
       account.password_hash,
       password,
@@ -918,6 +976,161 @@ app.post("/api/accounts/logout", (req, res) => {
     });
   });
 });
+
+app.get("/api/accounts/profile", async (req, res) => {
+  const accountId = req.session.accountId;
+
+  if (!accountId) {
+    return res.status(401).json({
+      message: "Not authenticated",
+    });
+  }
+
+  try {
+    const result = await db.query(
+      `
+            SELECT
+              name, phone, profile_image
+            FROM accounts
+              WHERE id = $1
+      `,
+      [accountId],
+    );
+
+    if (result.rows.length <= 0) {
+      return res.status(404).json({
+        message: "no account found",
+      });
+    } else {
+      return res.json(result.rows[0]);
+    }
+  } catch (error) {
+    console.error("Error fetching profile:", error);
+
+    return res.status(500).json({
+      message: "Internal server error",
+    });
+  }
+});
+
+app.patch("/api/accounts/profile", upload.single("image"), async (req, res) => {
+  const accountId = req.session.accountId;
+  const { name, phone, profile_image } = req.body;
+
+  if (!accountId) {
+    return res.status(401).json({
+      message: "Not authenticated",
+    });
+  }
+
+  try {
+    const profileImage = req.file
+      ? `/uploads/${req.file.filename}`
+      : profile_image;
+
+    const result = await db.query(
+      `
+        UPDATE accounts
+        SET 
+          name = $2,
+          phone = $3,
+          profile_image = COALESCE($4, profile_image)
+        WHERE id = $1
+        RETURNING name, phone, profile_image
+      `,
+      [accountId, name, phone, profileImage],
+    );
+
+    if (result.rows.length <= 0) {
+      return res.status(404).json({
+        message: "no account found",
+      });
+    } else {
+      return res.json(result.rows[0]);
+    }
+  } catch (error) {
+    console.error("Error updating profile:", error);
+
+    return res.status(500).json({
+      message: "Internal server error",
+    });
+  }
+});
+
+app.get(
+  "/api/auth/google/callback",
+  passport.authenticate("google", {
+    failureRedirect: "http://localhost:5173/auth",
+    session: false,
+  }),
+  async (req, res) => {
+    try {
+      const googleId = req.user.id;
+      const email = req.user.emails?.[0]?.value?.trim().toLowerCase();
+      const emailVerified = req.user._json?.email_verified === true;
+
+      if (!email || !emailVerified) {
+        return res.redirect("http://localhost:5173/auth?error=google_email");
+      }
+
+      const googleAccount = await db.query(
+        "SELECT id FROM accounts WHERE google_id = $1",
+        [googleId],
+      );
+
+      if (googleAccount.rows.length > 0) {
+        req.session.accountId = googleAccount.rows[0].id;
+
+        return req.session.save((error) => {
+          if (error) {
+            console.error("Google login session error:", error);
+            return res.status(500).send("Login failed");
+          }
+
+          res.redirect("http://localhost:5173/account");
+        });
+      }
+
+      const existingAccount = await db.query(
+        "SELECT id FROM accounts WHERE email = $1",
+        [email],
+      );
+
+      if (existingAccount.rows.length > 0) {
+        return res.redirect("http://localhost:5173/auth?error=account_exists");
+      }
+
+      const result = await db.query(
+        `INSERT INTO accounts (email, google_id, name)
+         VALUES ($1, $2, $3)
+         RETURNING id`,
+        [email, googleId, req.user.displayName || null],
+      );
+
+      req.session.accountId = result.rows[0].id;
+
+      return req.session.save((error) => {
+        if (error) {
+          console.error("Google login session error:", error);
+          return res.status(500).send("Login failed");
+        }
+
+        res.redirect("http://localhost:5173/account");
+      });
+    } catch (error) {
+      console.error("Google callback error:", error);
+      return res.status(500).send("Google login failed");
+    }
+  },
+);
+
+app.get(
+  "/api/auth/google",
+  passport.authenticate("google", {
+    scope: ["profile", "email"],
+    session: false,
+  }),
+);
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");

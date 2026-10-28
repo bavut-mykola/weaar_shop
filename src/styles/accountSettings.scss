@@ -38,6 +38,14 @@
   background: #d9d9d9;
 }
 
+.account-settings-avatar-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 .account-settings-pencil {
   position: absolute;
   right: -1px;
@@ -199,6 +207,11 @@
   transition:
     background-color 0.18s ease,
     color 0.18s ease;
+
+  &:disabled {
+    opacity: 0.9;
+    cursor: not-allowed;
+  }
 }
 
 .account-settings-close:hover {
@@ -220,4 +233,67 @@
     padding-right: 20px;
     padding-left: 20px;
   }
+}
+
+.account-settings-input-wrap {
+  position: relative;
+  flex: 0 0 176px;
+  width: 176px;
+  height: 38px;
+}
+
+.account-settings-input-wrap input {
+  width: 100%;
+  height: 100%;
+  padding: 0 34px 0 14px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 50px;
+  outline: none;
+  background: #ededed;
+  color: $color-black;
+  font: 12px $font-main;
+}
+
+.account-settings-input-wrap .phone-prefix + .phone-edit-input {
+  padding-left: 48px;
+}
+
+.phone-prefix {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  z-index: 1;
+  color: $color-gray-text;
+  font: 12px $font-main;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.account-settings-input-wrap input:focus {
+  box-shadow: 0 0 0 1px #d5d5d5;
+}
+
+.account-settings-input-clear {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  display: flex;
+  width: 20px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: $color-gray-text;
+  font:
+    18px/1 Arial,
+    sans-serif;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.account-settings-input-clear:hover {
+  color: $color-black;
 }
