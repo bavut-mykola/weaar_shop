@@ -14,21 +14,18 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
 dotenv.config({ path: "../.env" });
 
-const db = new Client({
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  database: process.env.DB_NAME,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-});
+const dbConfig = process.env.DATABASE_URL
+  ? { connectionString: process.env.DATABASE_URL }
+  : {
+      host: process.env.DB_HOST,
+      port: process.env.DB_PORT,
+      database: process.env.DB_NAME,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+    };
 
-const sessionPool = new Pool({
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  database: process.env.DB_NAME,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-});
+const db = new Client(dbConfig);
+const sessionPool = new Pool(dbConfig);
 
 db.connect()
   .then(() => {
@@ -40,11 +37,18 @@ db.connect()
 
 const app = express();
 
+const isProduction = process.env.NODE_ENV === "production";
+const frontendUrl = process.env.FRONTEND_URL || "http://localhost:5173";
+
+if (isProduction) {
+  app.set("trust proxy", 1);
+}
+
 const PgSession = connectPgSimple(session);
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: frontendUrl,
     credentials: true,
   }),
 );
@@ -61,8 +65,8 @@ app.use(
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
-      secure: false,
-      sameSite: "lax",
+      secure: isProduction,
+      sameSite: isProduction ? "none" : "lax",
       maxAge: 24 * 60 * 60 * 1000,
     },
   }),
@@ -70,18 +74,22 @@ app.use(
 
 app.use(passport.initialize());
 
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:3000/api/auth/google/callback",
-    },
-    (accessToken, refreshToken, profile, done) => {
-      done(null, profile);
-    },
-  ),
-);
+if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
+  passport.use(
+    new GoogleStrategy(
+      {
+        clientID: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        callbackURL:
+          process.env.GOOGLE_CALLBACK_URL ||
+          "http://localhost:3000/api/auth/google/callback",
+      },
+      (accessToken, refreshToken, profile, done) => {
+        done(null, profile);
+      },
+    ),
+  );
+}
 
 function requireAuth(req, res, next) {
   if (req.session.accountId) {
@@ -1205,6 +1213,8 @@ app.get(
   }),
 );
 
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
