@@ -1,15 +1,23 @@
 import "../styles/accountSettings.scss";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 
 import editIcon from "../assets/icons/edit.svg";
 
 import { API_URL } from "../api";
 
-function AccountSettings({ userEmail }) {
+function AccountSettings({
+  userEmail,
+  setIsAuthenticated,
+  setUserEmail,
+}) {
   const [isNameClicked, setIsNameClicked] = useState(false);
   const [isPhoneClicked, setIsPhoneClicked] = useState(false);
+  const [isDeleteConfirmationOpen, setIsDeleteConfirmationOpen] =
+    useState(false);
+
+  const navigate = useNavigate();
 
   const [isInvalidPhone, setIsInvalidPhone] = useState(false);
 
@@ -120,6 +128,28 @@ function AccountSettings({ userEmail }) {
     }
   }
 
+  async function deleteAccount() {
+    try {
+      const res = await fetch(`${API_URL}/api/accounts/me`, {
+        method: "DELETE",
+        credentials: "include",
+      });
+
+      if (res.ok) {
+        setIsAuthenticated(false);
+        setUserEmail("");
+        localStorage.removeItem("isAuthenticated");
+        localStorage.removeItem("userEmail");
+        navigate("/");
+      } else {
+        const result = await res.json().catch(() => null);
+        throw new Error(result?.message || "Failed to delete account");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <section className="account-settings-page" aria-label="Account settings">
       <div className="account-settings-card">
@@ -165,11 +195,6 @@ function AccountSettings({ userEmail }) {
         </div>
 
         <div className="account-settings-fields">
-          <div className="account-settings-field account-settings-field--readonly">
-            <span>Email</span>
-            <span className="account-settings-readonly">{userEmail}</span>
-          </div>
-
           <div className="account-settings-field">
             <span>Name</span>
 
@@ -252,7 +277,48 @@ function AccountSettings({ userEmail }) {
               </div>
             )}
           </div>
+
+          <div className="account-settings-field account-settings-danger">
+            <span>Delete account</span>
+            <button
+              type="button"
+              className="account-settings-delete"
+              onClick={() => setIsDeleteConfirmationOpen(true)}
+            >
+              DELETE ACCOUNT
+            </button>
+          </div>
         </div>
+
+        {isDeleteConfirmationOpen && (
+          <div
+            className="account-settings-confirmation"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="account-delete-title"
+          >
+            <p id="account-delete-title">Do you want to remove your account?</p>
+            <div className="account-settings-confirmation-actions">
+              <button
+                type="button"
+                className="account-settings-confirmation-button"
+                onClick={() => setIsDeleteConfirmationOpen(false)}
+              >
+                No
+              </button>
+              <button
+                type="button"
+                className="account-settings-confirmation-button account-settings-confirmation-button--yes"
+                onClick={() => {
+                  setIsDeleteConfirmationOpen(false);
+                  deleteAccount();
+                }}
+              >
+                Yes
+              </button>
+            </div>
+          </div>
+        )}
 
         <button
           type="button"

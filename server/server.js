@@ -1,10 +1,11 @@
 const express = require("express");
 
-const { Client } = require("pg");
+const { Client, Pool } = require("pg");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const argon2 = require("argon2");
 const session = require("express-session");
+const connectPgSimple = require("connect-pg-simple");
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
@@ -14,6 +15,14 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 dotenv.config({ path: "../.env" });
 
 const db = new Client({
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  database: process.env.DB_NAME,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+});
+
+const sessionPool = new Pool({
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
   database: process.env.DB_NAME,
@@ -31,6 +40,8 @@ db.connect()
 
 const app = express();
 
+const PgSession = connectPgSimple(session);
+
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -41,6 +52,10 @@ app.use(express.json());
 
 app.use(
   session({
+    store: new PgSession({
+      pool: sessionPool,
+      createTableIfMissing: true,
+    }),
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
@@ -905,13 +920,24 @@ app.post("/api/accounts/login", async (req, res) => {
     }
 
     req.session.accountId = account.id;
+    console.log("Login session ID:", req.sessionID);
+    console.log("Login account ID:", req.session.accountId);
 
-    return res.status(200).json({
-      message: "Login successful",
-      account: {
-        id: account.id,
-        email: account.email,
-      },
+    return req.session.save((error) => {
+      if (error) {
+        console.error("Login session save failed:", error);
+        return res.status(500).json({
+          message: "Login failed",
+        });
+      }
+
+      return res.status(200).json({
+        message: "Login successful",
+        account: {
+          id: account.id,
+          email: account.email,
+        },
+      });
     });
   } catch (error) {
     console.error("Login error:", error);
@@ -1053,6 +1079,53 @@ app.patch("/api/accounts/profile", upload.single("image"), async (req, res) => {
 
     return res.status(500).json({
       message: "Internal server error",
+    });
+  }
+});
+
+app.delete("/api/accounts/me", async (req, res) => {
+  console.log("Session:", req.session);
+  const accountId = req.session.accountId;
+
+  console.log("Delete session ID:", req.sessionID);
+  console.log("Delete account ID:", req.session.accountId);
+
+  if (!accountId) {
+    return res.status(401).json({
+      message: "Not authenticated",
+    });
+  }
+  try {
+    const result = await db.query(
+      `
+      DELETE FROM accounts
+      WHERE id = $1
+      `,
+      [accountId],
+    );
+
+    if (result.rowCount === 0) {
+      return res.status(404).json({
+        message: "Account not found",
+      });
+    }
+
+    req.session.destroy((error) => {
+      if (error) {
+        console.error("Failed to destroy session:", error);
+        return res.status(500).json({
+          error: "Account deleted, but session destruction failed",
+        });
+      }
+
+      return res.status(200).json({
+        message: "Account deleted successfully",
+      });
+    });
+  } catch (error) {
+    console.error("Failed to delete account:", error);
+    return res.status(500).json({
+      error: "Failed to delete account",
     });
   }
 });

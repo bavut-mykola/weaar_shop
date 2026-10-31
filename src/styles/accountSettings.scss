@@ -224,6 +224,86 @@
   color: $color-black;
 }
 
+.account-settings-danger {
+  min-height: 70px;
+  gap: 16px;
+}
+
+.account-settings-danger > span {
+  flex: 1;
+  font-size: 13px;
+}
+
+.account-settings-delete {
+  flex: 0 0 auto;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid #d00000;
+  background: $color-white;
+  color: #d00000;
+  font-family: $font-main;
+  font-size: 11px;
+  font-weight: $font-weight-regular;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition:
+    background-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.account-settings-delete:hover {
+  background: #d00000;
+  color: $color-white;
+}
+
+.account-settings-confirmation {
+  margin-top: 14px;
+  padding: 14px;
+  border: 1px solid #d00000;
+  background: $color-white;
+  color: $color-black;
+}
+
+.account-settings-confirmation p {
+  margin: 0 0 12px;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.account-settings-confirmation-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.account-settings-confirmation-button {
+  min-width: 58px;
+  min-height: 30px;
+  padding: 0 10px;
+  border: 1px solid #d00000;
+  background: $color-white;
+  color: #d00000;
+  font-family: $font-main;
+  font-size: 11px;
+  font-weight: $font-weight-regular;
+  cursor: pointer;
+}
+
+.account-settings-confirmation-button--yes {
+  background: #d00000;
+  color: $color-white;
+}
+
+.account-settings-confirmation-button:hover {
+  background: #d00000;
+  color: $color-white;
+}
+
+.account-settings-confirmation-button--yes:hover {
+  background: $color-white;
+  color: #d00000;
+}
+
 @media (max-width: 480px) {
   .account-settings-page {
     padding: 16px;

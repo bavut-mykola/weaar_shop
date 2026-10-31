@@ -116,7 +116,13 @@ function App() {
           />
           <Route
             path="/account-settings"
-            element={<AccountSettings userEmail={userEmail} />}
+            element={
+              <AccountSettings
+                userEmail={userEmail}
+                setIsAuthenticated={setIsAuthenticated}
+                setUserEmail={setUserEmail}
+              />
+            }
           />
         </Routes>
       </main>
