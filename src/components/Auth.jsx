@@ -140,7 +140,7 @@ function Auth({ setIsAuthenticated, setUserEmail }) {
 
     setServerError("");
 
-    window.location.href = "http://localhost:3000/api/auth/google";
+    window.location.href = `${API_URL}/api/auth/google`;
   };
 
   return (
@@ -153,7 +153,9 @@ function Auth({ setIsAuthenticated, setUserEmail }) {
               <p className="google-error-message">
                 {googleError === "account_exists"
                   ? "An account with this email already exists. Please log in using your existing method."
-                  : "Google sign-in failed. Please try again or use email and password."}
+                  : googleError === "google_unavailable"
+                    ? "Google sign-in is not configured yet. Please use email and password."
+                    : "Google sign-in failed. Please try again or use email and password."}
               </p>
 
               <button

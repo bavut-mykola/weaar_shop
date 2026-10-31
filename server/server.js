@@ -74,7 +74,11 @@ app.use(
 
 app.use(passport.initialize());
 
-if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
+const googleAuthConfigured = Boolean(
+  process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET,
+);
+
+if (googleAuthConfigured) {
   passport.use(
     new GoogleStrategy(
       {
@@ -83,6 +87,7 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
         callbackURL:
           process.env.GOOGLE_CALLBACK_URL ||
           "http://localhost:3000/api/auth/google/callback",
+        state: true,
       },
       (accessToken, refreshToken, profile, done) => {
         done(null, profile);
@@ -292,6 +297,25 @@ app.get("/api/products/search-data", async (req, res) => {
   }
 });
 
+app.get("/api/products/price-range", async (req, res) => {
+  try {
+    const result = await db.query(`
+            SELECT
+                MIN(price) AS min_price,
+                MAX(price) AS max_price
+            FROM products
+        `);
+
+    res.json({
+      minPrice: result.rows[0].min_price,
+      maxPrice: result.rows[0].max_price,
+    });
+  } catch (error) {
+    console.error("Error fetching price range:", error);
+    res.status(500).json({ error: "Failed to fetch price range" });
+  }
+});
+
 app.get("/api/products/:id", async (req, res) => {
   const { id } = req.params;
 
@@ -496,25 +520,6 @@ app.delete("/api/cart", async (req, res) => {
     await db.query("ROLLBACK");
     console.error("Failed to clear cart:", error);
     res.status(500).json({ error: "Помилка сервера" });
-  }
-});
-
-app.get("/api/products/price-range", async (req, res) => {
-  try {
-    const result = await db.query(`
-            SELECT
-                MIN(price) AS min_price,
-                MAX(price) AS max_price
-            FROM products
-        `);
-
-    res.json({
-      minPrice: result.rows[0].min_price,
-      maxPrice: result.rows[0].max_price,
-    });
-  } catch (error) {
-    console.error("Error fetching price range:", error);
-    res.status(500).json({ error: "Failed to fetch price range" });
   }
 });
 
@@ -1138,10 +1143,18 @@ app.delete("/api/accounts/me", async (req, res) => {
   }
 });
 
+function requireGoogleAuth(req, res, next) {
+  if (!googleAuthConfigured) {
+    return res.redirect(`${frontendUrl}/auth?error=google_unavailable`);
+  }
+  next();
+}
+
 app.get(
   "/api/auth/google/callback",
+  requireGoogleAuth,
   passport.authenticate("google", {
-    failureRedirect: "http://localhost:5173/auth",
+    failureRedirect: `${frontendUrl}/auth?error=google_auth`,
     session: false,
   }),
   async (req, res) => {
@@ -1151,7 +1164,7 @@ app.get(
       const emailVerified = req.user._json?.email_verified === true;
 
       if (!email || !emailVerified) {
-        return res.redirect("http://localhost:5173/auth?error=google_email");
+        return res.redirect(`${frontendUrl}/auth?error=google_email`);
       }
 
       const googleAccount = await db.query(
@@ -1168,7 +1181,7 @@ app.get(
             return res.status(500).send("Login failed");
           }
 
-          res.redirect("http://localhost:5173/account");
+          res.redirect(`${frontendUrl}/account`);
         });
       }
 
@@ -1178,7 +1191,7 @@ app.get(
       );
 
       if (existingAccount.rows.length > 0) {
-        return res.redirect("http://localhost:5173/auth?error=account_exists");
+        return res.redirect(`${frontendUrl}/auth?error=account_exists`);
       }
 
       const result = await db.query(
@@ -1196,7 +1209,7 @@ app.get(
           return res.status(500).send("Login failed");
         }
 
-        res.redirect("http://localhost:5173/account");
+        res.redirect(`${frontendUrl}/account`);
       });
     } catch (error) {
       console.error("Google callback error:", error);
@@ -1207,6 +1220,7 @@ app.get(
 
 app.get(
   "/api/auth/google",
+  requireGoogleAuth,
   passport.authenticate("google", {
     scope: ["profile", "email"],
     session: false,
