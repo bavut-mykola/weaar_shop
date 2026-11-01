@@ -81,6 +81,7 @@ function Navbar({ cartCount, isAuthenticated }) {
             <input
               type="text"
               className="search-input"
+              placeholder="Search for products..."
               value={searchterm}
               onChange={(e) => setSearchTerm(e.target.value)}
               onKeyDown={handleKeyDown}

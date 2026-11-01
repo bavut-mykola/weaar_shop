@@ -783,6 +783,7 @@ input[type="range"] {
   .catalog__heading {
     display: block;
     margin-bottom: 12px;
+    position: relative;
   }
 
   .catalog__eyebrow {
@@ -791,6 +792,53 @@ input[type="range"] {
 
   .catalog__heading-main {
     display: none;
+  }
+
+  .catalog:not(.search-results) {
+    .catalog__heading-main {
+      display: block;
+    }
+
+    .catalog__title {
+      display: none;
+    }
+
+    .catalog__sort-wrap {
+      position: absolute;
+      top: calc(100% + 12px);
+      right: 0;
+    }
+
+    .catalog__sort {
+      gap: 4px;
+      font-size: 12px;
+    }
+
+    .catalog__sort-label {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+    }
+
+    .catalog__sort-caret {
+      width: 6px;
+      height: 6px;
+    }
+
+    .catalog__sort-menu {
+      min-width: 160px;
+      padding: 5px;
+      border-radius: 14px;
+
+      li + li {
+        margin-top: 1px;
+      }
+
+      button {
+        padding: 6px 8px;
+        border-radius: 8px;
+        font-size: 11px;
+      }
+    }
   }
 
   .catalog__layout {
