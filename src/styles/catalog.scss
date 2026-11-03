@@ -141,7 +141,6 @@
 
 .filter-skeleton-box {
   min-height: 470px;
-  border: 1px solid #d0d0d0;
   border-radius: 10px;
 }
 
@@ -650,7 +649,7 @@ input[type="range"] {
   margin-top: 17px;
   padding-top: 17px;
   border-top: 1px solid #cecece;
-  font-size: 12px;
+  font-size: 14px;
 
   button {
     border: 0;
@@ -669,8 +668,8 @@ input[type="range"] {
 }
 
 .catalog-pagination__direction {
-  padding: 8px 12px;
-  border-radius: 4px;
+  padding: 10px 16px;
+  border-radius: 6px;
   white-space: nowrap;
 }
 
@@ -682,17 +681,25 @@ input[type="range"] {
   padding: 0;
   list-style: none;
 
+  > button:first-child {
+    margin-right: 10px;
+  }
+
+  > button:last-child {
+    margin-left: 10px;
+  }
+
   li {
     list-style: none;
   }
 
   button {
     display: grid;
-    min-width: 28px;
-    height: 28px;
+    min-width: 34px;
+    height: 34px;
     place-items: center;
-    padding: 0 4px;
-    border-radius: 4px;
+    padding: 0 6px;
+    border-radius: 6px;
   }
 
   button.is-current {
@@ -996,20 +1003,29 @@ input[type="range"] {
     gap: 4px;
     margin-top: 12px;
     padding-top: 12px;
-    font-size: 9px;
+    font-size: 10px;
   }
 
   .catalog-pagination__direction {
-    padding: 6px;
+    padding: 8px 9px;
   }
 
   .catalog-pagination__pages {
     gap: 3px;
 
+    > button:first-child {
+      margin-right: 6px;
+    }
+
+    > button:last-child {
+      margin-left: 6px;
+    }
+
     button {
-      min-width: 20px;
-      height: 20px;
-      padding: 0 2px;
+      min-width: 24px;
+      height: 24px;
+      padding: 0 3px;
+      border-radius: 5px;
     }
   }
 }

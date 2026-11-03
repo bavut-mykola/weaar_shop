@@ -60,7 +60,7 @@
   box-sizing: border-box;
   background: transparent;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: transform 30ms linear;
 
   &:hover {
     transform: scale(1.08);

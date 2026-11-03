@@ -125,6 +125,17 @@
   margin-left: 0;
 }
 
+.header-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+
 .cart-button-link {
   position: relative;
   display: inline-flex;

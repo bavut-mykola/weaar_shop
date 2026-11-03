@@ -1,6 +1,7 @@
 import instagramIcon from "../assets/icons/instagram.svg";
 import facebookIcon from "../assets/icons/facebook.svg";
 import { Link } from "react-router-dom";
+import { contactInfo } from "../data/contactInfo";
 
 import "../styles/footer.scss";
 
@@ -63,10 +64,16 @@ const Footer = () => {
           <h3 className="footer__title">Contacts</h3>
 
           <div className="footer__contact">
-            <a href="tel:+380000000000">+380 (xx) xxx xx xx</a>
-            <a href="tel:+380000000000">+380 (xx) xxx xx xx</a>
-            <p>123 Fashion Street, Lviv</p>
-            <p>Mon - Sun: 9:00 - 21:00</p>
+            {contactInfo.phoneNumbers.map((phoneNumber, index) => (
+              <a
+                href={phoneNumber.href}
+                key={`${phoneNumber.href}-${phoneNumber.label}-${index}`}
+              >
+                {phoneNumber.label}
+              </a>
+            ))}
+            <p>{contactInfo.address}</p>
+            <p>{contactInfo.workHours}</p>
           </div>
         </div>
       </div>

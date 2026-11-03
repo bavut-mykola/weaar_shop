@@ -12,9 +12,9 @@ function Home() {
 
         <p className="home-hero__description">
           Simple clothes for every day.
-          <br />
-          <span className="home-hero__description-leading">M</span>ade to fit
-          your style.
+        </p>
+        <p className="home-hero__description home-hero__description--continuation">
+          Made to fit your style.
         </p>
 
         <Link className="home-hero__button" to="/catalog">

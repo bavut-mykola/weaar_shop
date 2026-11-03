@@ -10,6 +10,8 @@ import Cart from "./pages/Cart";
 import Auth from "./components/Auth";
 import Account from "./pages/Account";
 import AccountSettings from "./pages/AccountSettings";
+import ContactMenu from "./components/ContactMenu";
+import { contactInfo } from "./data/contactInfo";
 
 import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
@@ -18,8 +20,17 @@ import { API_URL } from "./api";
 
 function App() {
   const [cartCount, setCartCount] = useState(null);
+  const [isContactMenuOpen, setIsContactMenuOpen] = useState(false);
 
   const location = useLocation();
+
+  function handleContactOpen() {
+    setIsContactMenuOpen(true);
+  }
+
+  function handleContactClose() {
+    setIsContactMenuOpen(false);
+  }
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -84,7 +95,17 @@ function App() {
 
   return (
     <div className="app-shell">
-      <Navbar cartCount={cartCount} isAuthenticated={isAuthenticated} />
+      <Navbar
+        cartCount={cartCount}
+        isAuthenticated={isAuthenticated}
+        isContactMenuOpen={isContactMenuOpen}
+        onContactClick={handleContactOpen}
+      />
+      <ContactMenu
+        isOpen={isContactMenuOpen}
+        onClose={handleContactClose}
+        contactInfo={contactInfo}
+      />
       <main className="app-content" aria-label="Main content">
         <Routes>
           <Route path="/" element={<Home />} />

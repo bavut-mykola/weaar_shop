@@ -44,6 +44,14 @@
   line-height: 1.5;
 }
 
+.home-hero__description--continuation {
+  margin-top: 0;
+
+  &::first-letter {
+    margin-right: -0.08em;
+  }
+}
+
 .home-hero__description-leading {
   display: inline-block;
   margin-right: -0.08em;

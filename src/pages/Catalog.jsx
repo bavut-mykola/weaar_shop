@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useEffectEvent } from "react";
 import { Link } from "react-router-dom";
 import "../styles/catalog.scss";
 
@@ -30,6 +30,25 @@ function Catalog() {
   if (selectedSort === "More Expensive") sortParam = "price_desc";
   if (selectedSort === "Cheaper") sortParam = "price_asc";
 
+  const [isMobile, setIsMobile] = useState(
+    window.matchMedia("(width <= 768px)").matches,
+  );
+
+  const productsPerPage = isMobile ? 10 : 9;
+  const visiblePageCount = isMobile ? 3 : 5;
+
+  const totalPages = pagination.totalPages || 0;
+
+  const startPage = Math.min(
+    page,
+    Math.max(totalPages - (visiblePageCount - 1), 1),
+  );
+
+  const visiblePages = Array.from(
+    { length: Math.min(visiblePageCount, totalPages) },
+    (_, index) => startPage + index,
+  );
+
   async function getProducts() {
     try {
       setIsLoading(true);
@@ -41,7 +60,7 @@ function Catalog() {
       }, 8000);
 
       const response = await fetch(
-        `${API_URL}/api/products?page=${page}&sort=${sortParam}`,
+        `${API_URL}/api/products?page=${page}&sort=${sortParam}&limit=${productsPerPage}`,
       );
 
       clearTimeout(timeRef.current);
@@ -65,7 +84,7 @@ function Catalog() {
     } else {
       getProducts();
     }
-  }, [page, selectedSort]);
+  }, [page, selectedSort, productsPerPage]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -89,14 +108,22 @@ function Catalog() {
     "XX-Large": "XXL",
   };
 
-  const totalPages = pagination.totalPages || 0;
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(width <= 768px)");
 
-  const startPage = Math.min(page, Math.max(totalPages - 4, 1));
+    function handleResize() {
+      setIsMobile(mediaQuery.matches);
+      setPage(1);
+    }
 
-  const visiblePages = Array.from(
-    { length: Math.min(5, totalPages) },
-    (_, index) => startPage + index,
-  );
+    handleResize();
+
+    mediaQuery.addEventListener("change", handleResize);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleResize);
+    };
+  }, []);
 
   const maxLimit = 6000;
 
@@ -138,6 +165,7 @@ function Catalog() {
       maxPrice: Number(maxPrice),
       page: targetPage,
       sort: sortParam,
+      limit: productsPerPage,
     };
 
     console.log("FILTER DATA:", filterData);
@@ -526,7 +554,9 @@ function Catalog() {
                             </div>
                             <p className="rating">{p.rating} / 5</p>
                           </div>
-                          <p className="product-price">${p.price}</p>
+                          <p translate="no" className="product-price">
+                            ${p.price}
+                          </p>
                         </div>
                       </div>
                     ))}
@@ -560,7 +590,7 @@ function Catalog() {
                         </li>
                       ))}
 
-                      {startPage + 4 < totalPages && (
+                      {startPage + (visiblePageCount - 1) < totalPages && (
                         <li>
                           <button type="button" aria-label="More pages">
                             ...

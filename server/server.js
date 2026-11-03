@@ -695,11 +695,20 @@ app.delete("/api/cart/:id", async (req, res) => {
 });
 
 app.post("/api/products/filter", async (req, res) => {
-  const { category, size, styles, minPrice, maxPrice, page, sort } = req.body;
+  const {
+    category,
+    size,
+    styles,
+    minPrice,
+    maxPrice,
+    page,
+    sort,
+    limit = 9,
+  } = req.body;
 
-  const limit = 9;
+  const limitNumber = Number(limit);
   const pageNumber = Number(page) || 1;
-  const offset = (pageNumber - 1) * limit;
+  const offset = (pageNumber - 1) * limitNumber;
 
   const countQuery = `
     SELECT COUNT(DISTINCT p.id) 
@@ -738,7 +747,7 @@ app.post("/api/products/filter", async (req, res) => {
     styles,
   ]);
   const totalProducts = parseInt(countResult.rows[0].count, 10);
-  const totalPages = Math.ceil(totalProducts / limit);
+  const totalPages = Math.ceil(totalProducts / limitNumber);
 
   const dataQuery = `
     SELECT
@@ -812,7 +821,7 @@ app.post("/api/products/filter", async (req, res) => {
       totalProducts,
       totalPages,
       currentPage: pageNumber,
-      limit,
+      limit: limitNumber,
     },
   });
 });

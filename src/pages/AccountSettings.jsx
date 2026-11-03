@@ -304,7 +304,7 @@ function AccountSettings({
                 className="account-settings-confirmation-button"
                 onClick={() => setIsDeleteConfirmationOpen(false)}
               >
-                No
+                Cancel
               </button>
               <button
                 type="button"
@@ -314,7 +314,7 @@ function AccountSettings({
                   deleteAccount();
                 }}
               >
-                Yes
+                Delete
               </button>
             </div>
           </div>

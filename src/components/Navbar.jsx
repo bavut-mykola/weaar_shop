@@ -6,7 +6,12 @@ import userIcon from "../assets/icons/user.svg";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import "../styles/navbar.scss";
 
-function Navbar({ cartCount, isAuthenticated }) {
+function Navbar({
+  cartCount,
+  isAuthenticated,
+  isContactMenuOpen,
+  onContactClick,
+}) {
   const [isBurgerClicked, setISBurgerClicked] = useState(false);
 
   const [searchterm, setSearchTerm] = useState("");
@@ -103,7 +108,19 @@ function Navbar({ cartCount, isAuthenticated }) {
           <img src={userIcon} alt="Account" className="head-btn" />
           {isAuthenticated && <span className="active-user-dot"></span>}
         </Link>
-        <img src={phoneIcon} alt="Contact" className="head-btn" />
+        <button
+          className="header-icon-button"
+          type="button"
+          aria-label="Open contact information"
+          aria-haspopup="dialog"
+          aria-expanded={isContactMenuOpen}
+          onClick={() => {
+            setISBurgerClicked(false);
+            onContactClick();
+          }}
+        >
+          <img src={phoneIcon} alt="" className="head-btn" />
+        </button>
       </div>
     </header>
   );

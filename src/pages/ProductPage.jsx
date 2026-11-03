@@ -206,12 +206,12 @@ function ProductPage({ refreshCart }) {
                 <p className="rating">{product.rating} / 5</p>
               </div>
               {product.oldPrice ? (
-                <div>
+                <div translate="no">
                   <p>${product.price}</p>
                   <p className="product-old-price">${product.oldPrice}</p>{" "}
                 </div>
               ) : (
-                <p>${product.price}</p>
+                <p translate="no">${product.price}</p>
               )}
               <p className="product-description">{product.shortDescription}</p>
             </div>
@@ -258,6 +258,7 @@ function ProductPage({ refreshCart }) {
                       setProductQuantity(1);
                       setisMaxQuantity(false);
                     }}
+                    translate="no"
                   >
                     {s}
                   </button>
