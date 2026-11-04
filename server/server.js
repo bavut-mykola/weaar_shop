@@ -413,8 +413,12 @@ app.get("/api/products/:id", async (req, res) => {
 app.post("/api/cart", async (req, res) => {
   const { product_id, quantity, size, color } = req.body;
 
+  const client = await sessionPool.connect();
+
   try {
-    const inventoryResult = await db.query(
+    await client.query(`BEGIN`);
+
+    const inventoryResult = await client.query(
       `
         UPDATE product_inventory pi
         SET quantity = quantity - $1 
@@ -430,21 +434,50 @@ app.post("/api/cart", async (req, res) => {
     );
 
     if (inventoryResult.rowCount === 0) {
+      await client.query(`ROLLBACK`);
       return res.status(400).json({ error: "Недостатньо товару на складі" });
     }
 
-    await db.query(
+    const existingCartItemResult = await client.query(
       `
+        SELECT * FROM cart
+        WHERE product_id = $1
+          AND size = $2
+          AND color = $3
+      `,
+      [product_id, size, color],
+    );
+
+    if (existingCartItemResult.rows.length > 0) {
+      const increasedQuantityResult = await client.query(
+        `
+          UPDATE cart
+          SET quantity = quantity + $1
+            WHERE product_id = $2
+          AND size = $3
+          AND color = $4
+        `,
+        [quantity, product_id, size, color],
+      );
+    } else {
+      await client.query(
+        `
         INSERT INTO cart (product_id, quantity, size, color)
         VALUES ($1, $2, $3, $4)
       `,
-      [product_id, quantity, size, color],
-    );
+        [product_id, quantity, size, color],
+      );
+    }
+
+    await client.query(`COMMIT`);
 
     res.status(201).json({ message: "Товар успішно додано до кошика" });
   } catch (error) {
+    await client.query(`ROLLBACK`);
     console.error("Failed to add product to cart:", error);
     res.status(500).json({ error: "Помилка сервера" });
+  } finally {
+    client.release();
   }
 });
 
@@ -694,6 +727,7 @@ app.delete("/api/cart/:id", async (req, res) => {
   }
 });
 
+// FILTER
 app.post("/api/products/filter", async (req, res) => {
   const {
     category,
