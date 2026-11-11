@@ -56,7 +56,7 @@
     line-height: 1.4;
     strong { font-size: desktop(28); font-weight: $font-weight-regular; }
   }
-  &__image { position: absolute; right: desktop(160); bottom: 0; width: desktop(432); height: desktop(590); object-fit: contain; object-position: bottom; }
+  &__image { position: absolute; right: desktop(160); bottom: 0; width: desktop(540); height: desktop(740); object-fit: contain; object-position: bottom; }
 }
 
 .home-collection, .home-categories, .home-story { border-top: desktop(4) solid $color-gray-button; }
@@ -96,16 +96,24 @@
     display: flex;
     grid-column: span 2;
     align-items: flex-end;
-    justify-content: center;
+    justify-content: flex-start;
     height: desktop(710);
-    padding-bottom: desktop(78);
+    padding: desktop(24);
     background: $color-white;
-    .home-button { position: relative; z-index: 1; width: 67%; min-height: desktop(82); }
-    &:nth-child(n + 4) {
-      grid-column: span 3;
-      padding-bottom: desktop(94);
-      .home-button { min-height: desktop(100); }
+    text-decoration: none;
+    .home-button {
+      position: relative;
+      z-index: 1;
+      min-width: desktop(140);
+      min-height: desktop(48);
+      padding: desktop(12) desktop(24);
+      font-size: desktop(20);
     }
+    &:hover .home-button, &:focus-visible .home-button {
+      background: $color-white;
+      color: $color-black;
+    }
+    &:nth-child(n + 4) { grid-column: span 3; }
   }
 }
 
@@ -340,14 +348,13 @@
       grid-column: span 1;
       height: auto;
       aspect-ratio: 172 / 236;
-      padding-bottom: 18px;
-      .home-button { width: 70%; min-height: 30px; padding: 6px; font-size: 10px; }
+      padding: 12px;
+      .home-button { width: auto; min-width: 80px; min-height: 30px; padding: 6px 12px; font-size: 12px; }
     }
     &__card:last-child {
       grid-column: 1 / -1;
       aspect-ratio: 365 / 240;
-      padding-bottom: 32px;
-      .home-button { width: 67%; min-height: 38px; font-size: $font-size-18; }
+      padding: 12px;
     }
   }
   .home-story {

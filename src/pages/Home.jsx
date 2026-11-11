@@ -80,10 +80,10 @@ function Home() {
         <h2 id="categories-title">SHOP BY CATEGORY</h2>
         <div className="home-categories__grid">
           {(homeProducts?.categories ?? homeCategories).map(({ key, label, product }) => (
-            <article className="home-categories__card" key={key}>
+            <Link className="home-categories__card" key={key} to={`/catalog?category=${encodeURIComponent(key)}`} aria-label={`Shop ${label}`}>
               {product && <img className="home-categories__image" src={product.images.front} alt={product.name} loading="lazy" />}
-              <Link className="home-button" to={`/catalog?category=${encodeURIComponent(key)}`} aria-label={`Shop ${label}`}>{label}</Link>
-            </article>
+              <span className="home-button">{label}</span>
+            </Link>
           ))}
         </div>
       </section>
@@ -97,7 +97,7 @@ function Home() {
             <p>From the jeans you reach for every morning to the layer you take everywhere, we’re drawn to clothing that fits into your life. Easy to combine, easy to wear, and always open to a different interpretation.</p>
             <p className="home-story__tagline">Wear it your way.</p>
           </div>
-          <img className="home-story__image" src="/about_wear_section_image.png" alt="A winding path through coastal grassland" loading="lazy" />
+          <img className="home-story__image" src="/about_us_2.png" alt="Everyday clothing hanging on a rack" loading="lazy" />
         </div>
       </section>
     </div>
