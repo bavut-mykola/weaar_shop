@@ -11,7 +11,9 @@ import "../styles/account.scss";
 import { API_URL } from "../api";
 import { useState } from "react";
 
-function Account({ setIsAuthenticated, userEmail, setUserEmail }) {
+import { getGuestId } from "../utils/guestCart";
+
+function Account({ setIsAuthenticated, userEmail, setUserEmail, refreshCart }) {
   const [logOutError, setLogOutError] = useState("");
 
   async function makeLogOut() {
@@ -27,6 +29,11 @@ function Account({ setIsAuthenticated, userEmail, setUserEmail }) {
         setLogOutError(result.message);
         return;
       }
+
+      localStorage.removeItem("guestId");
+      getGuestId();
+
+      refreshCart();
 
       setIsAuthenticated(false);
       localStorage.removeItem("userEmail");

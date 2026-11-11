@@ -25,16 +25,29 @@
 }
 
 .form-logo {
-  margin-bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 36px;
+}
+
+.form-logo__image {
+  display: block;
+  width: 90px;
+  height: 28px;
+  object-fit: cover;
+  object-position: center;
 }
 
 .form-logo h2 {
   margin: 0;
   color: #000;
-  font-family: "Coda Caption", "Coda", sans-serif;
+  font-family: $font-main;
   font-size: 18px;
-  font-weight: 800;
+  font-weight: $font-weight-regular;
   line-height: 20px;
+  text-align: center;
 }
 
 .form-inputs-box + .form-inputs-box {

@@ -13,16 +13,23 @@ import AccountSettings from "./pages/AccountSettings";
 import ContactMenu from "./components/ContactMenu";
 import { contactInfo } from "./data/contactInfo";
 
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import "./App.css";
 
 import { API_URL } from "./api";
 
+import { getGuestId } from "./utils/guestCart";
+
 function App() {
   const [cartCount, setCartCount] = useState(null);
   const [isContactMenuOpen, setIsContactMenuOpen] = useState(false);
+  const [accountDeletedNotice, setAccountDeletedNotice] = useState(null);
+  const [isDemoNoticeOpen, setIsDemoNoticeOpen] = useState(
+    () => localStorage.getItem("demoNoticeDismissed") !== "true",
+  );
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   function handleContactOpen() {
     setIsContactMenuOpen(true);
@@ -32,13 +39,56 @@ function App() {
     setIsContactMenuOpen(false);
   }
 
+  function closeDemoNotice() {
+    localStorage.setItem("demoNoticeDismissed", "true");
+    setIsDemoNoticeOpen(false);
+  }
+
+  useEffect(() => {
+    if (!isDemoNoticeOpen || location.pathname !== "/") return;
+
+    const timeoutId = window.setTimeout(() => {
+      localStorage.setItem("demoNoticeDismissed", "true");
+      setIsDemoNoticeOpen(false);
+    }, 5000);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [isDemoNoticeOpen, location.pathname]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
 
+  useEffect(() => {
+    if (!location.state?.accountDeleted) return;
+
+    setAccountDeletedNotice("open");
+    navigate("/", { replace: true, state: null });
+  }, [location.state, navigate]);
+
+  useEffect(() => {
+    if (!accountDeletedNotice) return;
+
+    const timeoutId = window.setTimeout(
+      () => {
+        setAccountDeletedNotice((currentState) =>
+          currentState === "open" ? "closing" : null,
+        );
+      },
+      accountDeletedNotice === "open" ? 3000 : 260,
+    );
+
+    return () => window.clearTimeout(timeoutId);
+  }, [accountDeletedNotice]);
+
   async function refreshCart() {
     try {
-      const res = await fetch(`${API_URL}/api/cart`);
+      const guestId = getGuestId();
+
+      const res = await fetch(`${API_URL}/api/cart`, {
+        headers: { "X-Guest-ID": guestId },
+        credentials: "include",
+      });
       const data = await res.json();
       const total = data.reduce((sum, item) => sum + item.quantity, 0);
       setCartCount(total);
@@ -106,6 +156,38 @@ function App() {
         onClose={handleContactClose}
         contactInfo={contactInfo}
       />
+      {accountDeletedNotice && (
+        <div
+          className={`account-deleted-notice${
+            accountDeletedNotice === "closing" ? " is-closing" : ""
+          }`}
+          role="status"
+          aria-live="polite"
+        >
+          <span>Account was successfully deleted.</span>
+          <button
+            type="button"
+            className="account-deleted-notice__close"
+            aria-label="Close account deletion message"
+            onClick={() => setAccountDeletedNotice("closing")}
+          >
+            ×
+          </button>
+        </div>
+      )}
+      {location.pathname === "/" && isDemoNoticeOpen && (
+        <aside className="demo-site-notice" role="note">
+          <span>Demo site — please don&apos;t use real personal or payment details.</span>
+          <button
+            type="button"
+            className="demo-site-notice__close"
+            aria-label="Close demo site notice"
+            onClick={closeDemoNotice}
+          >
+            ×
+          </button>
+        </aside>
+      )}
       <main className="app-content" aria-label="Main content">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -122,6 +204,7 @@ function App() {
               <Auth
                 setIsAuthenticated={setIsAuthenticated}
                 setUserEmail={setUserEmail}
+                refreshCart={refreshCart}
               />
             }
           />
@@ -132,6 +215,7 @@ function App() {
                 setIsAuthenticated={setIsAuthenticated}
                 userEmail={userEmail}
                 setUserEmail={setUserEmail}
+                refreshCart={refreshCart}
               />
             }
           />
@@ -142,6 +226,7 @@ function App() {
                 userEmail={userEmail}
                 setIsAuthenticated={setIsAuthenticated}
                 setUserEmail={setUserEmail}
+                refreshCart={refreshCart}
               />
             }
           />

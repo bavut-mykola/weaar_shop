@@ -25,12 +25,12 @@
 
 .footer__logo,
 .footer__bottom-logo {
+  display: block;
   margin: 0;
-  font-family: $font-logo;
-  font-weight: $font-weight-extra-bold;
-  font-size: $font-size-32;
-  letter-spacing: -0.04em;
-  line-height: 1;
+  width: 130px;
+  height: 36px;
+  object-fit: cover;
+  object-position: center;
   color: $color-black;
 }
 
@@ -174,7 +174,8 @@
 }
 
 .footer__bottom-logo {
-  font-size: $font-size-32;
+  width: 85px;
+  height: 29px;
 }
 
 .footer__divider {
@@ -259,7 +260,8 @@
 
   .footer__logo,
   .footer__bottom-logo {
-    font-size: $font-size-32;
+    width: 130px;
+    height: 36px;
   }
 
   .footer__description,
@@ -279,7 +281,8 @@
   }
 
   .footer__logo {
-    font-size: $font-size-24;
+    width: 100px;
+    height: 28px;
   }
 
   .footer__description {
@@ -355,7 +358,8 @@
 
   .footer__bottom-logo {
     flex: 0 0 auto;
-    font-size: 14px;
+    width: 50px;
+    height: 16px;
     white-space: nowrap;
   }
 

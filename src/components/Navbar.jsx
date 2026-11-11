@@ -51,7 +51,7 @@ function Navbar({
           <span></span>
         </button>
         <Link className="logo-link" to="/" aria-label="WEA.R home">
-          <h2 className="logo">WEA.R</h2>
+          <img src="/the_main_logo.svg" alt="WEA.R" className="logo" />
         </Link>
       </div>
 

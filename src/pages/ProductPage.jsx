@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../styles/productPage.scss";
 
 import checkIcon from "../assets/icons/check.svg";
 
 import { API_URL } from "../api";
+
+import { getGuestId } from "../utils/guestCart";
 
 function ProductPage({ refreshCart }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -20,8 +22,10 @@ function ProductPage({ refreshCart }) {
   const [addError, setAddError] = useState("");
 
   const [isBeingAdded, setIsBeingAdded] = useState(false);
+  const [cartAddedNotice, setCartAddedNotice] = useState(null);
 
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getProduct() {
@@ -51,6 +55,21 @@ function ProductPage({ refreshCart }) {
     getProduct();
   }, [id]);
 
+  useEffect(() => {
+    if (!cartAddedNotice) return;
+
+    const timeoutId = window.setTimeout(
+      () => {
+        setCartAddedNotice((currentState) =>
+          currentState === "open" ? "closing" : null,
+        );
+      },
+      cartAddedNotice === "open" ? 3000 : 260,
+    );
+
+    return () => window.clearTimeout(timeoutId);
+  }, [cartAddedNotice]);
+
   const activeColor = selectedColor ?? product?.colors?.[0];
   const frontImage = activeColor?.images?.front;
   const backImage = activeColor?.images?.back;
@@ -77,14 +96,19 @@ function ProductPage({ refreshCart }) {
       size: selectedSize,
       quantity: productQuantity,
     };
+    const quantityAdded = productQuantity;
 
     try {
+      const guestId = getGuestId();
+
       const response = await fetch(`${API_URL}/api/cart`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "X-Guest-ID": guestId,
         },
         body: JSON.stringify(productData),
+        credentials: "include",
       });
 
       const result = await response.json();
@@ -94,7 +118,24 @@ function ProductPage({ refreshCart }) {
         );
       }
 
+      setProduct((currentProduct) => {
+        if (!currentProduct) return currentProduct;
+
+        return {
+          ...currentProduct,
+          inventory: currentProduct.inventory?.map((item) =>
+            item.color === productData.color && item.size === productData.size
+              ? {
+                  ...item,
+                  quantity: Math.max(0, item.quantity - quantityAdded),
+                }
+              : item,
+          ),
+        };
+      });
       setProductQuantity(1);
+      setisMaxQuantity(false);
+      setCartAddedNotice("open");
 
       if (refreshCart) {
         refreshCart();
@@ -113,6 +154,41 @@ function ProductPage({ refreshCart }) {
 
   return (
     <>
+      {cartAddedNotice && (
+        <div
+          className={`account-deleted-notice product-added-notice${
+            cartAddedNotice === "closing" ? " is-closing" : ""
+          }`}
+          role="status"
+          aria-live="polite"
+        >
+          <span className="product-added-notice__text">Added to cart.</span>
+          <div className="product-added-notice__actions">
+            <button
+              type="button"
+              className="product-added-notice__button product-added-notice__button--continue"
+              onClick={() => setCartAddedNotice("closing")}
+            >
+              Keep browsing
+            </button>
+            <button
+              type="button"
+              className="product-added-notice__button product-added-notice__button--cart"
+              onClick={() => navigate("/cart")}
+            >
+              Go to cart
+            </button>
+          </div>
+          <button
+            type="button"
+            className="account-deleted-notice__close"
+            aria-label="Close cart message"
+            onClick={() => setCartAddedNotice("closing")}
+          >
+            ×
+          </button>
+        </div>
+      )}
       {isLoading ? (
         <div className="product-skeleton-container">
           <div className="left-product-skeleton-box">
@@ -232,6 +308,8 @@ function ProductPage({ refreshCart }) {
                       onClick={() => {
                         if (selectedColor === c) return;
                         setSelectedColor(c);
+                        setProductQuantity(1);
+                        setisMaxQuantity(false);
                       }}
                     />
                     {activeColor === c && (

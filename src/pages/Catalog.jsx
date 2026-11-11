@@ -38,6 +38,7 @@ function Catalog() {
   const visiblePageCount = isMobile ? 3 : 5;
 
   const totalPages = pagination.totalPages || 0;
+  const hasNoFilterResults = isFiltered && products.length === 0;
 
   const startPage = Math.min(
     page,
@@ -49,7 +50,7 @@ function Catalog() {
     (_, index) => startPage + index,
   );
 
-  async function getProducts() {
+  async function getProducts(targetPage = page) {
     try {
       setIsLoading(true);
       setIsFailedToLoad(false);
@@ -60,7 +61,7 @@ function Catalog() {
       }, 8000);
 
       const response = await fetch(
-        `${API_URL}/api/products?page=${page}&sort=${sortParam}&limit=${productsPerPage}`,
+        `${API_URL}/api/products?page=${targetPage}&sort=${sortParam}&limit=${productsPerPage}`,
       );
 
       clearTimeout(timeRef.current);
@@ -188,6 +189,17 @@ function Catalog() {
     }
   }
 
+  function resetFilters() {
+    setActiveCategory(null);
+    setActiveSize(null);
+    setActiveStyle("Casual");
+    setMinPrice("0");
+    setMaxPrice(maxLimit);
+    setIsFiltered(false);
+    setPage(1);
+    getProducts(1);
+  }
+
   return (
     <>
       {isFailedToLoad ? (
@@ -248,56 +260,59 @@ function Catalog() {
             </div>
           ) : (
             <>
-              <header className="catalog__heading">
-                <p className="catalog__eyebrow">CATALOG</p>
-                <div className="catalog__heading-main">
-                  <h1 className="catalog__title" id="catalog-title">
-                    {activeStyle}
-                  </h1>
-                  <div className="catalog__sort-wrap" ref={sortRef}>
-                    <button
-                      className={`catalog__sort${isSortOpened ? " is-open" : ""}`}
-                      type="button"
-                      aria-expanded={isSortOpened}
-                      onClick={() => setIsSortOpened((open) => !open)}
-                    >
-                      <span className="catalog__sort-label">Sort by:</span>
-                      <span className="catalog__sort-value">
-                        {selectedSort}
-                      </span>
-                      <span
-                        className="catalog__sort-caret"
-                        aria-hidden="true"
-                      />
-                    </button>
-
-                    {isSortOpened && (
-                      <ul
-                        className="catalog__sort-menu"
-                        role="listbox"
-                        aria-label="Sort by"
+              {!hasNoFilterResults && (
+                <header className="catalog__heading">
+                  <p className="catalog__eyebrow">CATALOG</p>
+                  <div className="catalog__heading-main">
+                    <h1 className="catalog__title" id="catalog-title">
+                      {activeStyle}
+                    </h1>
+                    <div className="catalog__sort-wrap" ref={sortRef}>
+                      <button
+                        className={`catalog__sort${isSortOpened ? " is-open" : ""}`}
+                        type="button"
+                        aria-expanded={isSortOpened}
+                        onClick={() => setIsSortOpened((open) => !open)}
                       >
-                        {sortOptions.map((sort) => (
-                          <li key={sort}>
-                            <button
-                              type="button"
-                              className={
-                                sort === selectedSort ? "is-selected" : ""
-                              }
-                              onClick={() => {
-                                setSelectedSort(sort);
-                                setIsSortOpened(false);
-                              }}
-                            >
-                              {sort}
-                            </button>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
+                        <span className="catalog__sort-label">Sort by:</span>
+                        <span className="catalog__sort-value">
+                          {selectedSort}
+                        </span>
+                        <span
+                          className="catalog__sort-caret"
+                          aria-hidden="true"
+                        />
+                      </button>
+
+                      {isSortOpened && (
+                        <ul
+                          className="catalog__sort-menu"
+                          role="listbox"
+                          aria-label="Sort by"
+                        >
+                          {sortOptions.map((sort) => (
+                            <li key={sort}>
+                              <button
+                                type="button"
+                                className={
+                                  sort === selectedSort ? "is-selected" : ""
+                                }
+                                onClick={() => {
+                                  setSelectedSort(sort);
+                                  setIsSortOpened(false);
+                                  setPage(1);
+                                }}
+                              >
+                                {sort}
+                              </button>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
                   </div>
-                </div>
-              </header>
+                </header>
+              )}
 
               <div className="catalog__layout">
                 <button
@@ -501,6 +516,9 @@ function Catalog() {
                     className="catalog-filter__apply"
                     type="button"
                     onClick={() => {
+                      if (isMobile) {
+                        setIsFilterOpen(false);
+                      }
                       setPage(1);
                       applyFilter(1);
                     }}
@@ -511,7 +529,24 @@ function Catalog() {
 
                 <div className="catalog__products">
                   <div className="products-container">
-                    {products.map((p) => (
+                    {products.length === 0 ? (
+                      <div className="catalog-empty-state" role="status">
+                        <p className="catalog-empty-state__title">
+                          No products found
+                        </p>
+                        <p className="catalog-empty-state__text">
+                          Try changing your filters to see more products.
+                        </p>
+                        <button
+                          type="button"
+                          className="catalog-empty-state__reset"
+                          onClick={resetFilters}
+                        >
+                          Reset Filter
+                        </button>
+                      </div>
+                    ) : (
+                      products.map((p) => (
                       <div key={p.id} className="product-card">
                         <div className="image-box">
                           <Link
@@ -559,9 +594,10 @@ function Catalog() {
                           </p>
                         </div>
                       </div>
-                    ))}
+                      ))
+                    )}
                   </div>
-                  <nav
+                  {products.length > 0 && <nav
                     className="catalog-pagination"
                     aria-label="Catalog pages"
                   >
@@ -614,7 +650,7 @@ function Catalog() {
                     >
                       Next &nbsp; ›
                     </button>
-                  </nav>
+                  </nav>}
                 </div>
               </div>
             </>

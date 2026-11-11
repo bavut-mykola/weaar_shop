@@ -11,6 +11,7 @@ function AccountSettings({
   userEmail,
   setIsAuthenticated,
   setUserEmail,
+  refreshCart,
 }) {
   const [isNameClicked, setIsNameClicked] = useState(false);
   const [isPhoneClicked, setIsPhoneClicked] = useState(false);
@@ -140,7 +141,8 @@ function AccountSettings({
         setUserEmail("");
         localStorage.removeItem("isAuthenticated");
         localStorage.removeItem("userEmail");
-        navigate("/");
+        refreshCart();
+        navigate("/", { state: { accountDeleted: true } });
       } else {
         const result = await res.json().catch(() => null);
         throw new Error(result?.message || "Failed to delete account");

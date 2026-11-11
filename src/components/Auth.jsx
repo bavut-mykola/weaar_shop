@@ -5,8 +5,9 @@ import eyeIcon from "../assets/icons/eye.svg";
 import "../styles/auth.scss";
 
 import { API_URL } from "../api";
+import { getGuestId } from "../utils/guestCart";
 
-function Auth({ setIsAuthenticated, setUserEmail }) {
+function Auth({ setIsAuthenticated, setUserEmail, refreshCart }) {
   const [isCreatingAccount, setIsCreatingAccount] = useState(true);
 
   const [isPasswordShowing, setIsPasswordShowing] = useState(false);
@@ -74,6 +75,7 @@ function Auth({ setIsAuthenticated, setUserEmail }) {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            "X-Guest-ID": getGuestId(),
           },
           body: JSON.stringify(registrationData),
           credentials: "include",
@@ -83,6 +85,7 @@ function Auth({ setIsAuthenticated, setUserEmail }) {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            "X-Guest-ID": getGuestId(),
           },
           body: JSON.stringify(registrationData),
           credentials: "include",
@@ -106,6 +109,8 @@ function Auth({ setIsAuthenticated, setUserEmail }) {
       setIsAuthenticated(true);
       setUserEmail(email);
       localStorage.setItem("userEmail", email);
+
+      refreshCart();
 
       navigation("/");
 
@@ -172,6 +177,11 @@ function Auth({ setIsAuthenticated, setUserEmail }) {
         )}
         <form className="form-content-box" onSubmit={(e) => handleSubmit(e)}>
           <div className="form-logo">
+            <img
+              src="/the_main_logo.svg"
+              alt="WEA.R"
+              className="form-logo__image"
+            />
             <h2>{isCreatingAccount ? "Create an account" : "Log in"}</h2>
           </div>
           {[

@@ -10,7 +10,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer__content">
         <div className="footer__brand">
-          <h2 className="footer__logo">WEA.R</h2>
+          <img src="/the_main_logo.svg" alt="WEA.R" className="footer__logo" />
 
           <p className="footer__description">
             Simple everyday clothes
@@ -83,7 +83,11 @@ const Footer = () => {
           <span className="footer__copyright-icon" aria-hidden="true">
             ©
           </span>
-          <span className="footer__bottom-logo">WEA.R</span>
+          <img
+            src="/the_main_logo.svg"
+            alt=""
+            className="footer__bottom-logo"
+          />
           <span className="footer__divider"></span>
           <span>All rights reserved.</span>
         </div>

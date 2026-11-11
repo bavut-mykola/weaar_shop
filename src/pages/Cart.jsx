@@ -5,16 +5,24 @@ import "../styles/cart.scss";
 
 import { API_URL } from "../api";
 
+import { getGuestId } from "../utils/guestCart";
+
 function Cart({ refreshCart }) {
   const [products, setProducts] = useState([]);
 
   const [isLoading, setIsLoading] = useState(false);
 
   async function loadProducts() {
+    const guestId = getGuestId();
     setIsLoading(true);
 
     try {
-      const res = await fetch(`${API_URL}/api/cart`);
+      const res = await fetch(`${API_URL}/api/cart`, {
+        credentials: "include",
+        headers: {
+          "X-Guest-ID": guestId,
+        },
+      });
 
       if (!res.ok) {
         throw new Error(res.status);
@@ -37,6 +45,8 @@ function Cart({ refreshCart }) {
     try {
       const result = await fetch(`${API_URL}/api/cart`, {
         method: "DELETE",
+        headers: { "X-Guest-ID": getGuestId() },
+        credentials: "include",
       });
 
       if (refreshCart) {
@@ -74,7 +84,7 @@ function Cart({ refreshCart }) {
   const [isMaxStockId, setIsMaxStockId] = useState(null);
 
   async function increaseQuantity(p) {
-    if (p.quantity >= p.maxStock) {
+    if (p.maxStock <= 0) {
       setIsMaxStockId(p.id);
       return;
     }
@@ -82,8 +92,12 @@ function Cart({ refreshCart }) {
     try {
       const res = await fetch(`${API_URL}/api/cart/${p.id}`, {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "X-Guest-ID": getGuestId(),
+        },
         body: JSON.stringify({ quantity: p.quantity + 1 }),
+        credentials: "include",
       });
 
       if (res.ok) {
@@ -94,6 +108,8 @@ function Cart({ refreshCart }) {
         if (refreshCart) {
           refreshCart();
         }
+      } else {
+        setIsMaxStockId(p.id);
       }
     } catch (error) {
       console.log(error);
@@ -103,6 +119,10 @@ function Cart({ refreshCart }) {
   const [isMinQuantityId, setIsMinQuantityId] = useState(null);
 
   async function decreaseQuantity(p) {
+    if (isMaxStockId === p.id) {
+      setIsMaxStockId(null);
+    }
+
     if (p.quantity === 1) {
       deleteFromCart(p);
       return;
@@ -111,8 +131,12 @@ function Cart({ refreshCart }) {
     try {
       const res = await fetch(`${API_URL}/api/cart/${p.id}`, {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "X-Guest-ID": getGuestId(),
+        },
         body: JSON.stringify({ quantity: p.quantity - 1 }),
+        credentials: "include",
       });
 
       if (res.ok) {
@@ -134,8 +158,12 @@ function Cart({ refreshCart }) {
     try {
       const res = await fetch(`${API_URL}/api/cart/${p.id}`, {
         method: "DELETE",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "X-Guest-ID": getGuestId(),
+        },
         body: "",
+        credentials: "include",
       });
 
       if (!res.ok) {
@@ -167,7 +195,8 @@ function Cart({ refreshCart }) {
           {products.length >= 1 && <h1 className="cart-title">YOUR CART</h1>}
           {products.length >= 1 ? (
             <div className="cart-main-box">
-              <div className="cart-products-container">
+              <div className="cart-products-column">
+                <div className="cart-products-container">
                 {products.map((p) => (
                   <div className="cart-product-box" key={p.id}>
                     <div className="cart-image-box">
@@ -218,23 +247,30 @@ function Cart({ refreshCart }) {
                           />
                         </svg>
                       </div>
-                      <div className="product-cart-actions-bottom">
-                        <button
-                          className="product-cart-arithmetic-btn"
-                          onClick={() => decreaseQuantity(p)}
-                        >
-                          -
-                        </button>
-                        <span className="product-cart-quantity">
-                          {p.quantity}
-                        </span>
-                        <button
-                          className="product-cart-arithmetic-btn"
-                          disabled={isMaxStockId === p.id}
-                          onClick={() => increaseQuantity(p)}
-                        >
-                          +
-                        </button>
+                      <div className="product-cart-quantity-box">
+                        <div className="product-cart-actions-bottom">
+                          <button
+                            className="product-cart-arithmetic-btn"
+                            onClick={() => decreaseQuantity(p)}
+                          >
+                            -
+                          </button>
+                          <span className="product-cart-quantity">
+                            {p.quantity}
+                          </span>
+                          <button
+                            className="product-cart-arithmetic-btn"
+                            disabled={isMaxStockId === p.id}
+                            onClick={() => increaseQuantity(p)}
+                          >
+                            +
+                          </button>
+                        </div>
+                        {isMaxStockId === p.id && (
+                          <p className="cart-stock-message" role="status">
+                            No more in stock
+                          </p>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -243,6 +279,16 @@ function Cart({ refreshCart }) {
                   <button type="button" onClick={clearCart}>
                     Clear Cart
                   </button>
+                </div>
+                </div>
+
+                <div className="cart-continue-shopping-box">
+                  <Link
+                    to="/catalog"
+                    className="cart-continue-shopping-button"
+                  >
+                    Continue Shopping
+                  </Link>
                 </div>
               </div>
 

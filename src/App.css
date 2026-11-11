@@ -21,3 +21,170 @@ body {
 .app-content {
   flex: 1;
 }
+
+.account-deleted-notice {
+  position: fixed;
+  top: 76px;
+  left: 50%;
+  z-index: 2000;
+  display: flex;
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  min-height: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 38px 10px 14px;
+  box-sizing: border-box;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(10, 10, 10, 0.08);
+  color: #0a0a0a;
+  font-family: "Coda", sans-serif;
+  font-size: 12px;
+  line-height: 1.3;
+  letter-spacing: 0.05px;
+  text-align: center;
+  opacity: 0;
+  transform: translateX(-50%) scaleX(0.35);
+  transform-origin: center;
+  animation: account-deleted-notice-in 320ms cubic-bezier(0.22, 1, 0.36, 1)
+    forwards;
+}
+
+.account-deleted-notice.is-closing {
+  animation: account-deleted-notice-out 260ms ease-in forwards;
+}
+
+.account-deleted-notice__close {
+  position: absolute;
+  top: 50%;
+  right: 7px;
+  display: grid;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #0a0a0a;
+  font: 18px/1 Arial, sans-serif;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.account-deleted-notice__close:hover {
+  opacity: 0.7;
+}
+
+.demo-site-notice {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  left: auto;
+  z-index: 2000;
+  width: min(260px, calc(100vw - 32px));
+  padding: 11px 34px 11px 12px;
+  box-sizing: border-box;
+  border: 1px solid #0a0a0a;
+  background: #fff;
+  color: #0a0a0a;
+  font-family: "Coda", sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.demo-site-notice__close {
+  position: absolute;
+  top: 5px;
+  right: 6px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #0a0a0a;
+  font: 18px/1 Arial, sans-serif;
+  cursor: pointer;
+}
+
+.product-added-notice {
+  width: min(420px, calc(100vw - 32px));
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 38px 14px 18px;
+}
+
+.product-added-notice__text {
+  font-size: 13px;
+}
+
+.product-added-notice__actions {
+  display: flex;
+  width: 100%;
+  gap: 8px;
+}
+
+.product-added-notice__button {
+  flex: 1 1 0;
+  min-height: 32px;
+  padding: 0 10px;
+  border: 1px solid #0a0a0a;
+  font-family: "Coda", sans-serif;
+  font-size: 11px;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease;
+}
+
+.product-added-notice__button--continue {
+  background: #fff;
+  color: #0a0a0a;
+}
+
+.product-added-notice__button--continue:hover {
+  background: #0a0a0a;
+  color: #fff;
+}
+
+.product-added-notice__button--cart {
+  background: #0a0a0a;
+  color: #fff;
+}
+
+.product-added-notice__button--cart:hover {
+  background: #fff;
+  color: #0a0a0a;
+}
+
+@media (max-width: 420px) {
+  .product-added-notice__actions {
+    flex-direction: column;
+  }
+}
+
+@keyframes account-deleted-notice-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) scaleX(0.35);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) scaleX(1);
+  }
+}
+
+@keyframes account-deleted-notice-out {
+  from {
+    opacity: 1;
+    transform: translateX(-50%) scaleX(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(-50%) scaleX(0.35);
+  }
+}

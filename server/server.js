@@ -136,6 +136,147 @@ const upload = multer({
   },
 });
 
+function getCartOwner(req) {
+  const accountId = req.session?.accountId;
+  const guestId = req.get("X-Guest-ID");
+
+  const isLoggedIn = Boolean(accountId);
+
+  const cartOwnerId = isLoggedIn ? accountId : guestId;
+  const cartOwnerColumn = isLoggedIn ? "account_id" : "guest_id";
+
+  if (!cartOwnerId) {
+    return {
+      error: "Cart owner ID is missing",
+    };
+  }
+
+  if (!isLoggedIn) {
+    const uuidRegex =
+      /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+    if (!uuidRegex.test(guestId)) {
+      return {
+        error: "Invalid guest ID",
+      };
+    }
+  }
+
+  return {
+    cartOwnerId,
+    cartOwnerColumn,
+  };
+}
+
+async function mergeGuestCart(guestId, accountId, existingClient = null) {
+  if (!guestId) return;
+
+  if (typeof guestId !== "string") {
+    throw new Error("Invalid guest ID");
+  }
+
+  const uuidRegex =
+    /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+  if (!uuidRegex.test(guestId)) {
+    throw new Error("Invalid guest ID");
+  }
+
+  const ownsConnection = existingClient === null;
+
+  const client = existingClient || (await sessionPool.connect());
+
+  try {
+    if (ownsConnection) {
+      await client.query(`BEGIN`);
+    }
+
+    const guestCart = await client.query(
+      `
+            SELECT * FROM cart
+            WHERE guest_id = $1
+            FOR UPDATE
+      `,
+      [guestId],
+    );
+
+    if (guestCart.rows.length === 0) {
+      await client.query(`COMMIT`);
+      return;
+    }
+
+    for (const products of guestCart.rows) {
+      const result = await client.query(
+        `
+              SELECT * FROM cart
+              WHERE account_id = $1
+              AND product_id = $2
+              AND size = $3
+              AND color = $4
+              FOR UPDATE
+        `,
+        [accountId, products.product_id, products.size, products.color],
+      );
+
+      if (result.rows.length > 0) {
+        const newQuantity = result.rows[0].quantity + products.quantity;
+
+        const updateResult = await client.query(
+          `
+              UPDATE cart
+              SET quantity = $1
+              WHERE id = $2
+          `,
+          [newQuantity, result.rows[0].id],
+        );
+
+        if (updateResult.rowCount !== 1) {
+          throw new Error("Failed to update account cart item");
+        }
+
+        const deleteResult = await client.query(
+          `
+            DELETE FROM cart
+            WHERE id = $1 AND guest_id = $2
+          `,
+          [products.id, guestId],
+        );
+
+        if (deleteResult.rowCount !== 1) {
+          throw new Error("Failed to delete guest cart item");
+        }
+      } else {
+        const transferResult = await client.query(
+          `
+              UPDATE cart
+              SET account_id = $1, guest_id = NULL
+              WHERE id = $2 
+          `,
+          [accountId, products.id],
+        );
+
+        if (transferResult.rowCount !== 1) {
+          throw new Error("Failed to transfer guest cart item");
+        }
+      }
+    }
+
+    if (ownsConnection) {
+      await client.query(`COMMIT`);
+    }
+  } catch (error) {
+    if (ownsConnection) {
+      await client.query("ROLLBACK");
+    }
+    console.error("Cart merge failed:", error);
+    throw error;
+  } finally {
+    if (ownsConnection) {
+      client.release();
+    }
+  }
+}
+
 app.use("/uploads", express.static(uploadDir));
 
 app.get("/api/products", async (req, res) => {
@@ -411,7 +552,17 @@ app.get("/api/products/:id", async (req, res) => {
 });
 
 app.post("/api/cart", async (req, res) => {
+  const { cartOwnerId, cartOwnerColumn, error } = getCartOwner(req);
+
+  if (error) {
+    return res.status(400).json({ error });
+  }
+
   const { product_id, quantity, size, color } = req.body;
+
+  if (!Number.isInteger(quantity) || quantity <= 0) {
+    return res.status(400).json({ error: "Invalid quantity" });
+  }
 
   const client = await sessionPool.connect();
 
@@ -444,8 +595,9 @@ app.post("/api/cart", async (req, res) => {
         WHERE product_id = $1
           AND size = $2
           AND color = $3
+          AND ${cartOwnerColumn} = $4
       `,
-      [product_id, size, color],
+      [product_id, size, color, cartOwnerId],
     );
 
     if (existingCartItemResult.rows.length > 0) {
@@ -456,16 +608,17 @@ app.post("/api/cart", async (req, res) => {
             WHERE product_id = $2
           AND size = $3
           AND color = $4
+          AND ${cartOwnerColumn} = $5
         `,
-        [quantity, product_id, size, color],
+        [quantity, product_id, size, color, cartOwnerId],
       );
     } else {
       await client.query(
         `
-        INSERT INTO cart (product_id, quantity, size, color)
-        VALUES ($1, $2, $3, $4)
+        INSERT INTO cart (product_id, quantity, size, color, ${cartOwnerColumn})
+        VALUES ($1, $2, $3, $4, $5)
       `,
-        [product_id, quantity, size, color],
+        [product_id, quantity, size, color, cartOwnerId],
       );
     }
 
@@ -483,7 +636,14 @@ app.post("/api/cart", async (req, res) => {
 
 app.get("/api/cart", async (req, res) => {
   try {
-    const result = await db.query(`
+    const { cartOwnerId, cartOwnerColumn, error } = getCartOwner(req);
+
+    if (error) {
+      return res.status(400).json({ error });
+    }
+
+    const result = await db.query(
+      `
       SELECT
         cart.*,
         p.name,
@@ -507,7 +667,10 @@ app.get("/api/cart", async (req, res) => {
         ) AS image
       FROM cart
       JOIN products AS p ON p.id = cart.product_id
-    `);
+        WHERE cart.${cartOwnerColumn} = $1
+    `,
+      [cartOwnerId],
+    );
 
     res.json(result.rows);
   } catch (error) {
@@ -517,19 +680,33 @@ app.get("/api/cart", async (req, res) => {
 });
 
 app.delete("/api/cart", async (req, res) => {
-  try {
-    await db.query("BEGIN");
+  const { cartOwnerId, cartOwnerColumn, error } = getCartOwner(req);
 
-    const cartResult = await db.query("SELECT * FROM cart");
+  if (error) {
+    return res.status(400).json({ error });
+  }
+
+  const client = await sessionPool.connect();
+
+  try {
+    await client.query("BEGIN");
+
+    const cartResult = await client.query(
+      `SELECT * FROM cart
+       WHERE ${cartOwnerColumn} = $1
+       FOR UPDATE`,
+      [cartOwnerId],
+    );
+
     const items = cartResult.rows;
 
     if (items.length === 0) {
-      await db.query("COMMIT");
+      await client.query("COMMIT");
       return res.json({ message: "Кошик вже порожній" });
     }
 
     for (const item of items) {
-      await db.query(
+      const inventoryResult = await client.query(
         `
           UPDATE product_inventory pi
           SET quantity = pi.quantity + $1
@@ -542,69 +719,28 @@ app.delete("/api/cart", async (req, res) => {
         `,
         [item.quantity, item.product_id, item.color, item.size],
       );
+
+      if (inventoryResult.rowCount !== 1) {
+        throw new Error(`Inventory variant not found for cart item ${item.id}`);
+      }
     }
 
-    await db.query("DELETE FROM cart");
+    await client.query(`DELETE FROM cart WHERE ${cartOwnerColumn} = $1`, [
+      cartOwnerId,
+    ]);
 
-    await db.query("COMMIT");
+    await client.query("COMMIT");
 
-    res.json({ message: "Кошик успішно очищено, залишки повернуто на склад" });
+    return res.json({
+      message: "Кошик успішно очищено, залишки повернуто на склад",
+    });
   } catch (error) {
-    await db.query("ROLLBACK");
+    await client.query("ROLLBACK");
     console.error("Failed to clear cart:", error);
-    res.status(500).json({ error: "Помилка сервера" });
-  }
-});
 
-// for + button
-app.patch("/api/cart/:id", async (req, res) => {
-  const { id } = req.params;
-  const { quantity } = req.body;
-
-  try {
-    const result = await db.query(
-      `
-    WITH updated_cart AS (
-        UPDATE cart 
-        SET quantity = $1 
-        WHERE id = $2 
-        RETURNING *
-      )
-      SELECT 
-        updated_cart.*,
-        p.name,
-        p.price,
-        p.old_price AS "oldPrice",
-        (
-          SELECT pi.quantity
-          FROM product_colors AS c
-          JOIN product_sizes AS s ON s.size = updated_cart.size
-          JOIN product_inventory AS pi ON pi.color_id = c.id AND pi.size_id = s.id
-          WHERE c.product_id = updated_cart.product_id AND c.name = updated_cart.color
-          LIMIT 1
-        ) AS "maxStock",
-        (
-          SELECT i.image_url
-          FROM product_colors AS c
-          JOIN product_images AS i ON i.color_id = c.id
-          WHERE c.product_id = updated_cart.product_id AND c.name = updated_cart.color
-          ORDER BY CASE WHEN i.side = 'front' THEN 0 ELSE 1 END
-          LIMIT 1
-        ) AS image
-      FROM updated_cart
-      JOIN products AS p ON p.id = updated_cart.product_id;
-    `,
-      [quantity, id],
-    );
-
-    if (result.rows.length === 0) {
-      return res.status(404).json({ error: "Product not found in cart" });
-    }
-
-    res.json(result.rows[0]);
-  } catch (error) {
-    console.error("Error updating quantity:", error);
-    res.status(500).json({ error: "Internal server error" });
+    return res.status(500).json({ error: "Помилка сервера" });
+  } finally {
+    client.release();
   }
 });
 
@@ -613,117 +749,185 @@ app.patch("/api/cart/:id", async (req, res) => {
   const { id } = req.params;
   const { quantity } = req.body;
 
+  const { cartOwnerId, cartOwnerColumn, error } = getCartOwner(req);
+
+  if (error) {
+    return res.status(400).json({ error });
+  }
+
+  if (!Number.isInteger(quantity) || quantity < 1) {
+    return res.status(400).json({ error: "Invalid quantity" });
+  }
+
+  const client = await sessionPool.connect();
+
   try {
-    const cartItemResult = await db.query(`SELECT * FROM cart WHERE id = $1`, [
-      id,
-    ]);
+    await client.query("BEGIN");
+
+    const cartItemResult = await client.query(
+      `SELECT * FROM cart
+       WHERE id = $1 AND ${cartOwnerColumn} = $2
+       FOR UPDATE`,
+      [id, cartOwnerId],
+    );
+
     if (cartItemResult.rows.length === 0) {
-      return res.status(404).json({ error: "Product not found in cart" });
+      await client.query("ROLLBACK");
+      return res.status(404).json({
+        error: "Product not found in your cart",
+      });
     }
+
     const cartItem = cartItemResult.rows[0];
-    const oldQuantity = cartItem.quantity;
-    const diff = quantity - oldQuantity;
+    const diff = quantity - cartItem.quantity;
 
-    if (diff > 0) {
-      const stockCheck = await db.query(
-        `
-        SELECT pi.quantity FROM product_inventory pi
-        JOIN product_colors c ON pi.color_id = c.id
-        JOIN product_sizes s ON pi.size_id = s.id
-        WHERE c.product_id = $1 AND c.name = $2 AND s.size = $3
-        `,
-        [cartItem.product_id, cartItem.color, cartItem.size],
-      );
-      if (stockCheck.rows.length > 0 && stockCheck.rows[0].quantity < diff) {
-        return res.status(400).json({ error: "Not enough stock available" });
-      }
-    }
-
-    await db.query(
-      `
-      UPDATE product_inventory pi
-      SET quantity = pi.quantity - $1
-      FROM product_colors c, product_sizes s
-      WHERE pi.color_id = c.id AND pi.size_id = s.id
-        AND c.product_id = $2 AND c.name = $3 AND s.size = $4
-      `,
+    const inventoryResult = await client.query(
+      `UPDATE product_inventory pi
+       SET quantity = pi.quantity - $1
+       FROM product_colors pc, product_sizes ps
+       WHERE pi.color_id = pc.id
+         AND pi.size_id = ps.id
+         AND pc.product_id = $2
+         AND pc.name = $3
+         AND ps.size = $4
+         AND pi.quantity >= $1
+       RETURNING pi.quantity`,
       [diff, cartItem.product_id, cartItem.color, cartItem.size],
     );
 
-    const result = await db.query(
-      `
-      WITH updated_cart AS (
-        UPDATE cart 
-        SET quantity = $1 
-        WHERE id = $2 
-        RETURNING *
-      )
-      SELECT 
-        updated_cart.*,
-        p.name,
-        p.price,
-        p.old_price AS "oldPrice",
-        (
-          SELECT pi.quantity
-          FROM product_colors AS c
-          JOIN product_sizes AS s ON s.size = updated_cart.size
-          JOIN product_inventory AS pi ON pi.color_id = c.id AND pi.size_id = s.id
-          WHERE c.product_id = updated_cart.product_id AND c.name = updated_cart.color
-          LIMIT 1
-        ) AS "maxStock",
-        (
-          SELECT i.image_url
-          FROM product_colors AS c
-          JOIN product_images AS i ON i.color_id = c.id
-          WHERE c.product_id = updated_cart.product_id AND c.name = updated_cart.color
-          ORDER BY CASE WHEN i.side = 'front' THEN 0 ELSE 1 END
-          LIMIT 1
-        ) AS image
-      FROM updated_cart
-      JOIN products AS p ON p.id = updated_cart.product_id;
-      `,
-      [quantity, id],
+    if (inventoryResult.rowCount === 0) {
+      await client.query("ROLLBACK");
+      return res.status(400).json({
+        error: "Not enough stock available",
+      });
+    }
+
+    const result = await client.query(
+      `WITH updated_cart AS (
+         UPDATE cart
+         SET quantity = $1
+         WHERE id = $2 AND ${cartOwnerColumn} = $3
+         RETURNING *
+       )
+       SELECT
+         updated_cart.*,
+         p.name,
+         p.price,
+         p.old_price AS "oldPrice",
+         (
+           SELECT pi.quantity
+           FROM product_colors AS c
+           JOIN product_sizes AS s ON s.size = updated_cart.size
+           JOIN product_inventory AS pi
+             ON pi.color_id = c.id AND pi.size_id = s.id
+           WHERE c.product_id = updated_cart.product_id
+             AND c.name = updated_cart.color
+           LIMIT 1
+         ) AS "maxStock",
+         (
+           SELECT i.image_url
+           FROM product_colors AS c
+           JOIN product_images AS i ON i.color_id = c.id
+           WHERE c.product_id = updated_cart.product_id
+             AND c.name = updated_cart.color
+           ORDER BY CASE WHEN i.side = 'front' THEN 0 ELSE 1 END
+           LIMIT 1
+         ) AS image
+       FROM updated_cart
+       JOIN products AS p ON p.id = updated_cart.product_id`,
+      [quantity, id, cartOwnerId],
     );
 
-    res.json(result.rows[0]);
+    await client.query("COMMIT");
+
+    return res.json(result.rows[0]);
   } catch (error) {
-    console.error("Error updating quantity:", error);
-    res.status(500).json({ error: "Internal server error" });
+    await client.query("ROLLBACK");
+    console.error("Error updating cart quantity:", error);
+
+    return res.status(500).json({
+      error: "Internal server error",
+    });
+  } finally {
+    client.release();
   }
 });
 
 app.delete("/api/cart/:id", async (req, res) => {
   const { id } = req.params;
 
+  const { cartOwnerId, cartOwnerColumn, error } = getCartOwner(req);
+
+  if (error) {
+    return res.status(400).json({ error });
+  }
+
+  const client = await sessionPool.connect();
+
   try {
-    const cartItemResult = await db.query(`SELECT * FROM cart WHERE id = $1`, [
-      id,
-    ]);
+    await client.query("BEGIN");
+
+    const cartItemResult = await client.query(
+      `SELECT * FROM cart
+       WHERE id = $1 AND ${cartOwnerColumn} = $2
+       FOR UPDATE`,
+      [id, cartOwnerId],
+    );
+
     if (cartItemResult.rows.length === 0) {
-      return res.status(404).json({ error: "Product not found in cart" });
+      await client.query("ROLLBACK");
+
+      return res.status(404).json({
+        error: "Product not found in cart",
+      });
     }
+
     const cartItem = cartItemResult.rows[0];
 
-    await db.query(
+    const inventoryResult = await client.query(
       `
-      UPDATE product_inventory pi
-      SET quantity = pi.quantity + $1
-      FROM product_colors c, product_sizes s
-      WHERE pi.color_id = c.id AND pi.size_id = s.id
-        AND c.product_id = $2 AND c.name = $3 AND s.size = $4
+        UPDATE product_inventory pi
+        SET quantity = pi.quantity + $1
+        FROM product_colors c, product_sizes s
+        WHERE pi.color_id = c.id
+          AND pi.size_id = s.id
+          AND c.product_id = $2
+          AND c.name = $3
+          AND s.size = $4
       `,
       [cartItem.quantity, cartItem.product_id, cartItem.color, cartItem.size],
     );
 
-    await db.query(`DELETE FROM cart WHERE id = $1`, [id]);
+    if (inventoryResult.rowCount !== 1) {
+      throw new Error(`Inventory variant not found for cart item ${id}`);
+    }
 
-    res.json({
+    const deleteResult = await client.query(
+      `DELETE FROM cart
+       WHERE id = $1 AND ${cartOwnerColumn} = $2`,
+      [id, cartOwnerId],
+    );
+
+    if (deleteResult.rowCount !== 1) {
+      throw new Error(`Failed to delete cart item ${id}`);
+    }
+
+    await client.query("COMMIT");
+
+    return res.json({
       message: "Product removed from cart successfully",
       id: Number(id),
     });
   } catch (error) {
+    await client.query("ROLLBACK");
+
     console.error("Error deleting product from cart:", error);
-    res.status(500).json({ error: "Internal server error" });
+
+    return res.status(500).json({
+      error: "Internal server error",
+    });
+  } finally {
+    client.release();
   }
 });
 
@@ -864,6 +1068,10 @@ app.post("/api/products/filter", async (req, res) => {
 
 // REGISTRATION
 app.post("/api/accounts/register", async (req, res) => {
+  const client = await sessionPool.connect();
+
+  let transactionActive = false;
+
   try {
     const { email, password } = req.body;
 
@@ -905,18 +1113,50 @@ app.post("/api/accounts/register", async (req, res) => {
       type: argon2.argon2id,
     });
 
-    const result = await db.query(
+    await client.query(`BEGIN`);
+    transactionActive = true;
+
+    const result = await client.query(
       `INSERT INTO accounts (email, password_hash)
        VALUES ($1, $2)
        RETURNING id, email, created_at`,
       [normalizedEmail, passwordHash],
     );
 
+    const account = result.rows[0];
+    const guestId = req.get("X-Guest-ID");
+
+    await mergeGuestCart(guestId, account.id, client);
+
+    await client.query(`COMMIT`);
+    transactionActive = false;
+
+    req.session.accountId = account.id;
+
+    try {
+      await new Promise((resolve, reject) => {
+        req.session.save((error) => {
+          if (error) return reject(error);
+          resolve();
+        });
+      });
+    } catch (error) {
+      console.error("Session save failed:", error);
+
+      return res.status(500).json({
+        message:
+          "Account created successfully, but automatic login failed. Please log in manually.",
+      });
+    }
+
     return res.status(201).json({
       message: "Акаунт успішно створено",
       account: result.rows[0],
     });
   } catch (error) {
+    if (transactionActive) {
+      await client.query(`ROLLBACK`);
+    }
     if (error.code === "23505") {
       return res.status(409).json({
         message: "Акаунт із таким email уже існує",
@@ -928,11 +1168,12 @@ app.post("/api/accounts/register", async (req, res) => {
     return res.status(500).json({
       message: "Помилка сервера. Спробуйте пізніше",
     });
+  } finally {
+    client.release();
   }
 });
 
 // LOG IN
-
 app.post("/api/accounts/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -974,6 +1215,10 @@ app.post("/api/accounts/login", async (req, res) => {
         message: "Invalid email or password",
       });
     }
+
+    const guestId = req.get("X-Guest-ID");
+
+    await mergeGuestCart(guestId, account.id);
 
     req.session.accountId = account.id;
     console.log("Login session ID:", req.sessionID);
@@ -1151,20 +1396,72 @@ app.delete("/api/accounts/me", async (req, res) => {
       message: "Not authenticated",
     });
   }
+
+  const client = await sessionPool.connect();
+
+  let transactionActive = false;
+
   try {
-    const result = await db.query(
+    await client.query(`BEGIN`);
+    transactionActive = true;
+
+    const cartItems = await client.query(
       `
-      DELETE FROM accounts
-      WHERE id = $1
+          SELECT * FROM cart
+          WHERE account_id = $1
+          FOR UPDATE
+      `,
+      [accountId],
+    );
+
+    for (const cartItem of cartItems.rows) {
+      const inventoryResult = await client.query(
+        `
+      UPDATE product_inventory pi
+      SET quantity = pi.quantity + $1
+      FROM product_colors c, product_sizes s
+      WHERE pi.color_id = c.id
+        AND pi.size_id = s.id
+        AND c.product_id = $2
+        AND c.name = $3
+        AND s.size = $4
+    `,
+        [cartItem.quantity, cartItem.product_id, cartItem.color, cartItem.size],
+      );
+
+      if (inventoryResult.rowCount !== 1) {
+        throw new Error(
+          `Inventory variant not found for cart item ${cartItem.id}`,
+        );
+      }
+    }
+
+    await client.query(
+      `
+          DELETE FROM cart
+          WHERE account_id = $1
+      `,
+      [accountId],
+    );
+
+    const result = await client.query(
+      `
+        DELETE FROM accounts
+        WHERE id = $1
       `,
       [accountId],
     );
 
     if (result.rowCount === 0) {
+      await client.query(`ROLLBACK`);
+      transactionActive = false;
       return res.status(404).json({
         message: "Account not found",
       });
     }
+
+    await client.query(`COMMIT`);
+    transactionActive = false;
 
     req.session.destroy((error) => {
       if (error) {
@@ -1179,10 +1476,15 @@ app.delete("/api/accounts/me", async (req, res) => {
       });
     });
   } catch (error) {
+    if (transactionActive) {
+      await client.query("ROLLBACK");
+    }
     console.error("Failed to delete account:", error);
     return res.status(500).json({
       error: "Failed to delete account",
     });
+  } finally {
+    client.release();
   }
 });
 
@@ -1224,7 +1526,7 @@ app.get(
             return res.status(500).send("Login failed");
           }
 
-          res.redirect(`${frontendUrl}/account`);
+          res.redirect(`${frontendUrl}/`);
         });
       }
 
@@ -1252,7 +1554,7 @@ app.get(
           return res.status(500).send("Login failed");
         }
 
-        res.redirect(`${frontendUrl}/account`);
+        res.redirect(`${frontendUrl}/`);
       });
     } catch (error) {
       console.error("Google callback error:", error);
