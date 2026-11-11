@@ -132,6 +132,7 @@ function App() {
         setIsAuthenticated(true);
         setUserEmail(data.account.email);
         localStorage.setItem("userEmail", data.account.email);
+        await refreshCart();
       } catch (error) {
         console.error("Session check failed:", error);
         setIsAuthenticated(false);

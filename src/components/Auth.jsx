@@ -130,7 +130,7 @@ function Auth({ setIsAuthenticated, setUserEmail, refreshCart }) {
   const googleError = searchParams.get("error");
   console.log("Google error:", googleError);
 
-  const handleGoogleLogin = () => {
+  const handleGoogleLogin = async () => {
     setIsLoadingToGoogle(true);
 
     setIsEmptyField({
@@ -145,7 +145,21 @@ function Auth({ setIsAuthenticated, setUserEmail, refreshCart }) {
 
     setServerError("");
 
-    window.location.href = `${API_URL}/api/auth/google`;
+    try {
+      const response = await fetch(`${API_URL}/api/auth/google/prepare`, {
+        method: "POST",
+        credentials: "include",
+        headers: { "X-Guest-ID": getGuestId() },
+      });
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(result.message || "Unable to start Google sign-in");
+      }
+      window.location.href = `${API_URL}/api/auth/google?token=${encodeURIComponent(result.token)}`;
+    } catch (error) {
+      setServerError(error.message);
+      setIsLoadingToGoogle(false);
+    }
   };
 
   return (

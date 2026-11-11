@@ -10,6 +10,7 @@ const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
 const passport = require("passport");
+const { randomBytes } = require("crypto");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
 dotenv.config({ path: "../.env" });
@@ -88,6 +89,7 @@ if (googleAuthConfigured) {
           process.env.GOOGLE_CALLBACK_URL ||
           "http://localhost:3000/api/auth/google/callback",
         state: true,
+        store: true,
       },
       (accessToken, refreshToken, profile, done) => {
         done(null, profile);
@@ -1495,6 +1497,28 @@ function requireGoogleAuth(req, res, next) {
   next();
 }
 
+async function completeGoogleLogin(req, res, accountId) {
+  // Passport exposes this context only after validating the session-bound state.
+  const context = req.authInfo?.state;
+  if (
+    !context ||
+    Date.now() - context.createdAt > 10 * 60 * 1000 ||
+    context.accountId !== (req.session.accountId || null)
+  ) {
+    return res.redirect(`${frontendUrl}/auth?error=google_auth`);
+  }
+
+  await mergeGuestCart(context.guestId, accountId);
+  await new Promise((resolve, reject) => {
+    req.session.regenerate((error) => (error ? reject(error) : resolve()));
+  });
+  req.session.accountId = accountId;
+  await new Promise((resolve, reject) => {
+    req.session.save((error) => (error ? reject(error) : resolve()));
+  });
+  return res.redirect(`${frontendUrl}/`);
+}
+
 app.get(
   "/api/auth/google/callback",
   requireGoogleAuth,
@@ -1518,16 +1542,7 @@ app.get(
       );
 
       if (googleAccount.rows.length > 0) {
-        req.session.accountId = googleAccount.rows[0].id;
-
-        return req.session.save((error) => {
-          if (error) {
-            console.error("Google login session error:", error);
-            return res.status(500).send("Login failed");
-          }
-
-          res.redirect(`${frontendUrl}/`);
-        });
+        return await completeGoogleLogin(req, res, googleAccount.rows[0].id);
       }
 
       const existingAccount = await db.query(
@@ -1546,16 +1561,7 @@ app.get(
         [email, googleId, req.user.displayName || null],
       );
 
-      req.session.accountId = result.rows[0].id;
-
-      return req.session.save((error) => {
-        if (error) {
-          console.error("Google login session error:", error);
-          return res.status(500).send("Login failed");
-        }
-
-        res.redirect(`${frontendUrl}/`);
-      });
+      return await completeGoogleLogin(req, res, result.rows[0].id);
     } catch (error) {
       console.error("Google callback error:", error);
       return res.status(500).send("Google login failed");
@@ -1563,13 +1569,69 @@ app.get(
   },
 );
 
+// Prepare with a same-origin POST so a URL cannot inject a guest cart ID.
+app.post("/api/auth/google/prepare", (req, res) => {
+  if (req.get("Origin") !== new URL(frontendUrl).origin) {
+    return res.status(403).json({ message: "Invalid request origin" });
+  }
+  if (!googleAuthConfigured) {
+    return res.status(503).json({ message: "Google sign-in is not configured yet." });
+  }
+
+  const guestId = req.get("X-Guest-ID");
+  const validGuestId =
+    typeof guestId === "string" &&
+    /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(guestId);
+  const token = randomBytes(32).toString("hex");
+  req.session.googleCart = {
+    token,
+    // Authenticated requests must never contribute a cart to another account.
+    guestId: !req.session.accountId && validGuestId ? guestId : null,
+    accountId: req.session.accountId || null,
+    createdAt: Date.now(),
+  };
+  res.set("Cache-Control", "no-store");
+  return req.session.save((error) => {
+    if (error) {
+      console.error("Google preparation session error:", error);
+      return res.status(500).json({ message: "Unable to start Google sign-in" });
+    }
+    return res.json({ token });
+  });
+});
+
 app.get(
   "/api/auth/google",
   requireGoogleAuth,
-  passport.authenticate("google", {
-    scope: ["profile", "email"],
-    session: false,
-  }),
+  (req, res, next) => {
+    const pending = req.session.googleCart;
+    delete req.session.googleCart;
+    if (
+      req.query.token && (
+        !pending ||
+        typeof req.query.token !== "string" ||
+        req.query.token !== pending.token ||
+        Date.now() - pending.createdAt > 10 * 60 * 1000 ||
+        pending.accountId !== (req.session.accountId || null)
+      )
+    ) {
+      return res.redirect(`${frontendUrl}/auth?error=google_auth`);
+    }
+    const context = req.query.token ? pending : {
+      guestId: null,
+      accountId: req.session.accountId || null,
+      createdAt: Date.now(),
+    };
+    return passport.authenticate("google", {
+      scope: ["profile", "email"],
+      session: false,
+      state: {
+        guestId: context.guestId,
+        accountId: context.accountId,
+        createdAt: context.createdAt,
+      },
+    })(req, res, next);
+  },
 );
 
 const port = process.env.PORT || 3000;
