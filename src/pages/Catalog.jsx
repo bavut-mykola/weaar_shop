@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef, useEffectEvent } from "react";
 import { Link } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import { homeCategories } from "../utils/homeProducts.mjs";
 import "../styles/catalog.scss";
 
 import { API_URL } from "../api";
@@ -7,8 +9,10 @@ import { API_URL } from "../api";
 const sortOptions = ["More Popular", "More Expensive", "Cheaper"];
 
 function Catalog() {
+  const [searchParams] = useSearchParams();
+  const initialCategory = homeCategories.find((category) => category.key === searchParams.get("category"))?.label ?? null;
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [isFiltered, setIsFiltered] = useState(false);
+  const [isFiltered, setIsFiltered] = useState(Boolean(initialCategory));
 
   const [isLoading, setIsLoading] = useState(false);
   const [isFailedToLoad, setIsFailedToLoad] = useState(false);
@@ -131,8 +135,8 @@ function Catalog() {
   const [minPrice, setMinPrice] = useState("0");
   const [maxPrice, setMaxPrice] = useState(maxLimit);
   const [activeSize, setActiveSize] = useState(null);
-  const [activeCategory, setActiveCategory] = useState(null);
-  const [activeStyle, setActiveStyle] = useState("Casual");
+  const [activeCategory, setActiveCategory] = useState(initialCategory);
+  const [activeStyle, setActiveStyle] = useState(initialCategory ? null : "Casual");
 
   const minPercent = (minPrice / maxLimit) * 100;
   const maxPercent = (maxPrice / maxLimit) * 100;

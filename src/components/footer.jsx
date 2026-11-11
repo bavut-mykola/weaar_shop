@@ -15,11 +15,9 @@ const Footer = () => {
           <p className="footer__description">
             Simple everyday clothes
             <br />
-            designed to fit your unique
+            designed to fit your unique style
             <br />
-            style and bring comfort to
-            <br />
-            your routine.
+            and bring comfort to your routine.
           </p>
 
           <div className="footer__socials">
@@ -52,7 +50,7 @@ const Footer = () => {
           <h3 className="footer__title">Services</h3>
 
           <nav className="footer__links">
-            <a href="#">About Us</a>
+            <a href="/#our-story">About Us</a>
             <a href="#">Support</a>
             <a href="#">Delivery &amp; Payment</a>
             <a href="#">Returns &amp; Exchanges</a>

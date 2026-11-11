@@ -62,16 +62,16 @@ function Navbar({
             className="nav-link"
             onClick={() => setISBurgerClicked(false)}
           >
-            CATALOG
+            Catalog
           </Link>
-          <a href="" className="nav-link">
-            SPOTLIGHT
+          <a href="/#collection" className="nav-link" onClick={() => setISBurgerClicked(false)}>
+            Spotlight
           </a>
         </ul>
 
         <div className="search-box">
           <div className="search-title">
-            <h3>LOOKING FOR SOMETHING</h3>
+            <h3>LOOKING FOR SOMETHING?</h3>
           </div>
           <div className="search">
             <Link
@@ -86,7 +86,8 @@ function Navbar({
             <input
               type="text"
               className="search-input"
-              placeholder="Search for products..."
+              placeholder=""
+              aria-label="Search for products"
               value={searchterm}
               onChange={(e) => setSearchTerm(e.target.value)}
               onKeyDown={handleKeyDown}

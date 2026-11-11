@@ -192,7 +192,7 @@ function App() {
       <main className="app-content" aria-label="Main content">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/catalog" element={<Catalog />} />
+          <Route path="/catalog" element={<Catalog key={location.search} />} />
           <Route path="/search" element={<SearchResult />} />
           <Route
             path="/catalog/product/:id"
