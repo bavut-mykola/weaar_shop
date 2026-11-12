@@ -105,7 +105,10 @@ function Navbar({
           <img src={cartIcon} alt="Cart" className="head-btn" />
           {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
         </Link>
-        <Link to={isAuthenticated ? "/account" : "/auth"}>
+        <Link
+          to={isAuthenticated ? "/account" : "/auth"}
+          className="account-button-link"
+        >
           <img src={userIcon} alt="Account" className="head-btn" />
           {isAuthenticated && <span className="active-user-dot"></span>}
         </Link>

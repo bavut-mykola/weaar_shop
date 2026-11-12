@@ -126,6 +126,7 @@
   flex: 0 0 auto;
   gap: 10px;
   margin-left: 0;
+  align-items: center;
 }
 
 .header-icon-button {
@@ -139,9 +140,12 @@
   cursor: pointer;
 }
 
-.cart-button-link {
+.cart-button-link,
+.account-button-link {
   position: relative;
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
   color: inherit;
 }
 
@@ -168,14 +172,13 @@
 }
 
 .active-user-dot {
-  display: inline-block;
   width: 8px;
   height: 8px;
-  margin-left: -8px;
   border-radius: 50%;
   background-color: #61ed76;
-  position: relative;
-  top: -21px;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .head-btn {
@@ -257,11 +260,6 @@
     height: 17px;
     padding: 0 3px;
     font-size: 7px;
-  }
-
-  .active-user-dot {
-    margin-left: -5px;
-    top: -17px;
   }
 
   .burger-btn {
