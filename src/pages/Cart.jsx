@@ -317,9 +317,9 @@ function Cart({ refreshCart }) {
                 </div>
 
                 <div className="checkout-btn-box">
-                  <button>
+                  <Link to="/checkout">
                     Go To Checkout <span>&gt;</span>
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>

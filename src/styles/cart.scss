@@ -369,6 +369,7 @@
 }
 
 .checkout-btn-box button,
+.checkout-btn-box a,
 .cart-clear-btn-box button,
 .cart-empty-button,
 .cart-continue-shopping-button {
@@ -386,6 +387,8 @@
   font-family: $font-main;
   font-size: $font-size-16;
   cursor: pointer;
+  box-sizing: border-box;
+  text-decoration: none;
   transition:
     color 160ms ease,
     background-color 160ms ease;
@@ -417,7 +420,8 @@
   }
 }
 
-.checkout-btn-box button span {
+.checkout-btn-box button span,
+.checkout-btn-box a span {
   font-family: Arial, sans-serif;
   font-size: $font-size-24;
   line-height: 1;

@@ -7,6 +7,7 @@ import Catalog from "./pages/Catalog";
 import SearchResult from "./components/SearchResult";
 import ProductPage from "./pages/ProductPage";
 import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
 import Auth from "./components/Auth";
 import Account from "./pages/Account";
 import AccountSettings from "./pages/AccountSettings";
@@ -178,7 +179,9 @@ function App() {
       )}
       {location.pathname === "/" && isDemoNoticeOpen && (
         <aside className="demo-site-notice" role="note">
-          <span>Demo site — please don&apos;t use real personal or payment details.</span>
+          <span>
+            Demo site — please don&apos;t use real personal or payment details.
+          </span>
           <button
             type="button"
             className="demo-site-notice__close"
@@ -199,6 +202,15 @@ function App() {
             element={<ProductPage refreshCart={refreshCart} />}
           />
           <Route path="/cart" element={<Cart refreshCart={refreshCart} />} />
+          <Route
+            path="/checkout"
+            element={
+              <Checkout
+                isAuthenticated={isAuthenticated}
+                userEmail={userEmail}
+              />
+            }
+          />
           <Route
             path="/auth"
             element={
