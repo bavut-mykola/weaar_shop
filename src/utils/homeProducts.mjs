@@ -19,9 +19,5 @@ export function selectHomeProducts(products) {
   const shuffled = shuffle(products.filter((product) => product.images?.front));
   return {
     collection: shuffled.slice(0, 12),
-    categories: homeCategories.flatMap((category) => {
-      const product = shuffled.find((item) => item.category === category.key);
-      return product ? [{ ...category, product }] : [];
-    }),
   };
 }
