@@ -1,5 +1,9 @@
 @use "variables" as *;
 
+.checkout-error {
+  color: red;
+}
+
 .checkout-page {
   padding: 90px clamp(24px, 6vw, 96px) 64px;
   background: $color-background;

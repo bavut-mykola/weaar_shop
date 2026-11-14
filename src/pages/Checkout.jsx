@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import "../styles/checkout.scss";
 import { API_URL } from "../api";
 import { getGuestId } from "../utils/guestCart";
+import { validateExpiration } from "../utils/validateExpiration";
 
 function Checkout({ userEmail, isAuthenticated }) {
   const [cartData, setCartData] = useState([]);
@@ -46,20 +47,33 @@ function Checkout({ userEmail, isAuthenticated }) {
 
   const total = subTotal - priceafterDiscount + deliveryFee;
 
-  const [isOffice, setIsOffice] = useState(true);
-  const [isHome, setIsHome] = useState(false);
+  const [deliveryPlace, setDeliveryPlace] = useState("office");
+
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
 
   const [city, setCity] = useState("");
   const [branchNumber, setBranchNumber] = useState("");
   const [address, setAddress] = useState("");
 
-  const [isCash, setIsCash] = useState(true);
-  const [isCard, setIsCard] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState("cash");
 
   const [cardNumber, setCardNumber] = useState("");
   const [cardHolder, setCardHolder] = useState("");
   const [expiration, setExpiration] = useState("");
   const [CVV, setCVV] = useState("");
+
+  const [errors, setErrors] = useState({
+    email: "",
+    phone: "",
+    city: "",
+    address: "",
+    branch: "",
+    cardNumber: "",
+    cardholderName: "",
+    expiration: "",
+    cvv: "",
+  });
 
   return (
     <div className="checkout-page">
@@ -88,20 +102,95 @@ function Checkout({ userEmail, isAuthenticated }) {
                       type="email"
                       autoComplete="email"
                       placeholder="you@example.com"
+                      value={email}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                      }}
+                      onBlur={() => {
+                        if (!email.trim()) {
+                          setErrors((prev) => ({
+                            ...prev,
+                            email: "Email is required",
+                          }));
+                        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                          setErrors((prev) => ({
+                            ...prev,
+                            email: "Please enter a valid email address",
+                          }));
+                        } else {
+                          setErrors((prev) => ({
+                            ...prev,
+                            email: "",
+                          }));
+                        }
+                      }}
                     />
+                    {errors.email ? (
+                      <p className="checkout-error">{errors.email}</p>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 )}
               </div>
               {!isAuthenticated && (
                 <div className="checkout-field checkout-phone-field">
-                  <label htmlFor="checkout-phone">Phone number</label>
+                  <label htmlFor="checkout-phone">
+                    Phone number (optional)
+                  </label>
                   <input
                     id="checkout-phone"
                     name="phone"
                     type="tel"
                     autoComplete="tel"
                     placeholder="+380 67 123 45 67"
+                    value={phone}
+                    onChange={(e) => {
+                      const value = e.target.value;
+
+                      if (/^\+380\d{0,9}$/.test(value)) {
+                        setPhone(value);
+                      }
+                    }}
+                    onBlur={() => {
+                      const clearPhone = phone.replaceAll(" ", "");
+
+                      if (clearPhone === "+380") {
+                        setPhone("");
+                        setErrors((prev) => ({
+                          ...prev,
+                          phone: "",
+                        }));
+                        return;
+                      }
+
+                      if (
+                        clearPhone !== "" &&
+                        !/^\+380\d{9}$/.test(clearPhone) &&
+                        clearPhone !== "+380"
+                      ) {
+                        setErrors((prev) => ({
+                          ...prev,
+                          phone: "Please enter a valid phone number",
+                        }));
+                      } else {
+                        setErrors((prev) => ({
+                          ...prev,
+                          phone: "",
+                        }));
+                      }
+                    }}
+                    onFocus={() => {
+                      if (phone === "") {
+                        setPhone("+380");
+                      }
+                    }}
                   />
+                  {errors.phone ? (
+                    <p className="checkout-error">{errors.phone}</p>
+                  ) : (
+                    ""
+                  )}
                 </div>
               )}
             </section>
@@ -116,8 +205,11 @@ function Checkout({ userEmail, isAuthenticated }) {
                 <label
                   className="checkout-option"
                   onClick={() => {
-                    setIsOffice(true);
-                    setIsHome(false);
+                    setDeliveryPlace("office");
+                    setErrors((prev) => ({
+                      ...prev,
+                      address: "",
+                    }));
                   }}
                 >
                   <input
@@ -131,8 +223,11 @@ function Checkout({ userEmail, isAuthenticated }) {
                 <label
                   className="checkout-option"
                   onClick={() => {
-                    setIsOffice(false);
-                    setIsHome(true);
+                    setDeliveryPlace("home");
+                    setErrors((prev) => ({
+                      ...prev,
+                      branch: "",
+                    }));
                   }}
                 >
                   <input type="radio" name="delivery" value="home" />
@@ -160,7 +255,30 @@ function Checkout({ userEmail, isAuthenticated }) {
                         setCity(finalValue);
                       }
                     }}
+                    onBlur={() => {
+                      if (!city.trim()) {
+                        setErrors((prev) => ({
+                          ...prev,
+                          city: "City is required",
+                        }));
+                      } else if (!/(?=.*\p{L})^[\p{L}\p{M} \-\x27’ʼ]+$/u.test(city.trim())) {
+                        setErrors((prev) => ({
+                          ...prev,
+                          city: "Please enter a valid city name",
+                        }));
+                      } else {
+                        setErrors((prev) => ({
+                          ...prev,
+                          city: "",
+                        }));
+                      }
+                    }}
                   />
+                  {errors.city ? (
+                    <p className="checkout-error">{errors.city}</p>
+                  ) : (
+                    ""
+                  )}
                 </div>
                 <div className="checkout-field checkout-branch-field">
                   <label htmlFor="checkout-branch">Branch number</label>
@@ -177,7 +295,32 @@ function Checkout({ userEmail, isAuthenticated }) {
                         setBranchNumber(value);
                       }
                     }}
+                    onBlur={() => {
+                      if (deliveryPlace !== "office") return;
+
+                      if (!branchNumber.trim()) {
+                        setErrors((prev) => ({
+                          ...prev,
+                          branch: "Post office branch is required",
+                        }));
+                      } else if (!/^\d+$/.test(branchNumber) || Number(branchNumber) <= 0) {
+                        setErrors((prev) => ({
+                          ...prev,
+                          branch: "Please enter a valid branch number",
+                        }));
+                      } else {
+                        setErrors((prev) => ({
+                          ...prev,
+                          branch: "",
+                        }));
+                      }
+                    }}
                   />
+                  {errors.branch ? (
+                    <p className="checkout-error">{errors.branch}</p>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
               <div className="checkout-field checkout-address-field">
@@ -189,26 +332,64 @@ function Checkout({ userEmail, isAuthenticated }) {
                   autoComplete="street-address"
                   placeholder="Street, building, apartment"
                   value={address}
-                  required={isHome}
-                  disabled={!isHome}
+                  required={deliveryPlace === "home"}
+                  disabled={deliveryPlace !== "home"}
                   pattern={String.raw`[^,\s]+,\s*[^,\s]+(?:,\s*[^,\s]+)?`}
                   title="Enter street and building, with an optional apartment (maximum 3 words)."
                   onChange={(e) => {
                     const value = e.target.value;
-                    const parts = value.split(/[,\s]+/).filter(Boolean).slice(0, 3);
-                    const isDeleting = e.nativeEvent.inputType?.startsWith("delete");
-                    const hasTrailingSeparator = !isDeleting && /[,\s]$/.test(value);
+                    const parts = value
+                      .split(/[,\s]+/)
+                      .filter(Boolean)
+                      .slice(0, 3);
+                    const isDeleting =
+                      e.nativeEvent.inputType?.startsWith("delete");
+                    const hasTrailingSeparator =
+                      !isDeleting && /[,\s]$/.test(value);
                     let formatted = parts.join(", ");
 
-                    if (hasTrailingSeparator && parts.length > 0 && parts.length < 3) {
+                    if (
+                      hasTrailingSeparator &&
+                      parts.length > 0 &&
+                      parts.length < 3
+                    ) {
                       formatted += ", ";
                     }
 
                     setAddress(
-                      formatted ? formatted[0].toUpperCase() + formatted.slice(1) : "",
+                      formatted
+                        ? formatted[0].toUpperCase() + formatted.slice(1)
+                        : "",
                     );
                   }}
+                  onBlur={() => {
+                    if (deliveryPlace !== "home") return;
+
+                    if (!address.trim()) {
+                      setErrors((prev) => ({
+                        ...prev,
+                        address: "Delivery address is required",
+                      }));
+                    } else if (
+                      !/(?=.*[\p{L}\p{N}])^[\p{L}\p{M}\p{N}\s.,\x27’ʼ\-/#():№]+$/u.test(address)
+                    ) {
+                      setErrors((prev) => ({
+                        ...prev,
+                        address: "Please enter a valid delivery address",
+                      }));
+                    } else {
+                      setErrors((prev) => ({
+                        ...prev,
+                        address: "",
+                      }));
+                    }
+                  }}
                 />
+                {errors.address ? (
+                  <p className="checkout-error">{errors.address}</p>
+                ) : (
+                  ""
+                )}
               </div>
             </section>
 
@@ -219,7 +400,19 @@ function Checkout({ userEmail, isAuthenticated }) {
               <h2 id="checkout-payment-title">PAYMENT</h2>
               <fieldset className="checkout-options">
                 <legend>Payment method</legend>
-                <label className="checkout-option">
+                <label
+                  className="checkout-option"
+                  onClick={() => {
+                    setPaymentMethod("cash");
+                    setErrors((prev) => ({
+                      ...prev,
+                      cardNumber: "",
+                      cardholderName: "",
+                      expiration: "",
+                      cvv: "",
+                    }));
+                  }}
+                >
                   <input
                     type="radio"
                     name="payment"
@@ -228,7 +421,12 @@ function Checkout({ userEmail, isAuthenticated }) {
                   />
                   <span>Cash on delivery</span>
                 </label>
-                <label className="checkout-option">
+                <label
+                  className="checkout-option"
+                  onClick={() => {
+                    setPaymentMethod("card");
+                  }}
+                >
                   <input type="radio" name="payment" value="card" />
                   <span>Card</span>
                 </label>
@@ -245,9 +443,44 @@ function Checkout({ userEmail, isAuthenticated }) {
                     placeholder="1234 5678 9012 3456"
                     value={cardNumber}
                     onChange={(e) => {
-                      setCardNumber(e.target.value);
+                      const value = e.target.value;
+
+                      if (/^(?:\d\s*){0,16}$/.test(value)) {
+                        const formatedValue = value.replace(
+                          /(\d{4})(?=\d)/g,
+                          "$1 ",
+                        );
+                        setCardNumber(formatedValue);
+                      } else {
+                        return;
+                      }
+                    }}
+                    onBlur={() => {
+                      if (paymentMethod !== "card") return;
+
+                      if (!cardNumber.trim()) {
+                        setErrors((prev) => ({
+                          ...prev,
+                          cardNumber: "Card number is required",
+                        }));
+                      } else if (!/^\d{16}$/.test(cardNumber.replace(/\s/g, ""))) {
+                        setErrors((prev) => ({
+                          ...prev,
+                          cardNumber: "Please enter a valid card number",
+                        }));
+                      } else {
+                        setErrors((prev) => ({
+                          ...prev,
+                          cardNumber: "",
+                        }));
+                      }
                     }}
                   />
+                  {errors.cardNumber ? (
+                    <p className="checkout-error">{errors.cardNumber}</p>
+                  ) : (
+                    ""
+                  )}
                 </div>
                 <div className="checkout-field">
                   <label htmlFor="checkout-card-name">Cardholder name</label>
@@ -259,9 +492,42 @@ function Checkout({ userEmail, isAuthenticated }) {
                     placeholder="Name as shown on card"
                     value={cardHolder}
                     onChange={(e) => {
-                      setCardHolder(e.target.value);
+                      const value = e.target.value;
+                      const upperCasedValue = value.toUpperCase();
+                      const finalValue = upperCasedValue.replace(
+                        /\s{2,}/g,
+                        " ",
+                      );
+                      setCardHolder(finalValue);
+                    }}
+                    onBlur={() => {
+                      if (paymentMethod !== "card") return;
+
+                      if (!cardHolder.trim()) {
+                        setErrors((prev) => ({
+                          ...prev,
+                          cardholderName: "Cardholder name is required",
+                        }));
+                      } else if (
+                        !/(?=.*\p{L})^[\p{L}\p{M} \-\x27’ʼ]+$/u.test(cardHolder.trim())
+                      ) {
+                        setErrors((prev) => ({
+                          ...prev,
+                          cardholderName: "Please enter a valid cardholder name",
+                        }));
+                      } else {
+                        setErrors((prev) => ({
+                          ...prev,
+                          cardholderName: "",
+                        }));
+                      }
                     }}
                   />
+                  {errors.cardholderName ? (
+                    <p className="checkout-error">{errors.cardholderName}</p>
+                  ) : (
+                    ""
+                  )}
                 </div>
                 <div className="checkout-fields-row">
                   <div className="checkout-field">
@@ -277,9 +543,60 @@ function Checkout({ userEmail, isAuthenticated }) {
                       placeholder="MM/YY"
                       value={expiration}
                       onChange={(e) => {
-                        setExpiration(e.target.value);
+                        const value = e.target.value;
+
+                        if (!/^\d{0,2}(\/\d{0,2})?$/.test(value)) return;
+
+                        if (value.length < expiration.length) {
+                          setExpiration(value);
+                          return;
+                        }
+
+                        if (
+                          value.length === 1 &&
+                          Number(value) >= 2 &&
+                          Number(value) <= 9
+                        ) {
+                          setExpiration("0" + value + "/");
+                          return;
+                        }
+
+                        if (value.length <= 5) {
+                          const formattedValue = value.replace(
+                            /^(\d{2})$/,
+                            "$1/",
+                          );
+                          setExpiration(formattedValue);
+                        } else {
+                          return;
+                        }
+                      }}
+                      onBlur={() => {
+                        if (paymentMethod !== "card") return;
+
+                        if (!expiration.trim()) {
+                          setErrors((prev) => ({
+                            ...prev,
+                            expiration: "Expiration date is required",
+                          }));
+                        } else if (!validateExpiration(expiration)) {
+                          setErrors((prev) => ({
+                            ...prev,
+                            expiration: "Invalid expiration date",
+                          }));
+                        } else {
+                          setErrors((prev) => ({
+                            ...prev,
+                            expiration: "",
+                          }));
+                        }
                       }}
                     />
+                    {errors.expiration ? (
+                      <p className="checkout-error">{errors.expiration}</p>
+                    ) : (
+                      ""
+                    )}
                   </div>
                   <div className="checkout-field">
                     <label htmlFor="checkout-card-cvv">CVV</label>
@@ -292,9 +609,37 @@ function Checkout({ userEmail, isAuthenticated }) {
                       placeholder="123"
                       value={CVV}
                       onChange={(e) => {
-                        setCVV(e.target.value);
+                        const value = e.target.value;
+                        if (/^\d{0,3}$/.test(value)) {
+                          setCVV(value);
+                        }
+                      }}
+                      onBlur={() => {
+                        if (paymentMethod !== "card") return;
+
+                        if (!CVV.trim()) {
+                          setErrors((prev) => ({
+                            ...prev,
+                            cvv: "CVV is required",
+                          }));
+                        } else if (!/^\d{3}$/.test(CVV)) {
+                          setErrors((prev) => ({
+                            ...prev,
+                            cvv: "Please enter a valid CVV",
+                          }));
+                        } else {
+                          setErrors((prev) => ({
+                            ...prev,
+                            cvv: "",
+                          }));
+                        }
                       }}
                     />
+                    {errors.cvv ? (
+                      <p className="checkout-error">{errors.cvv}</p>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 </div>
               </div>
