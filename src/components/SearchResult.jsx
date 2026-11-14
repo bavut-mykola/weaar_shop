@@ -361,6 +361,7 @@ function SearchResult() {
                 </div>
                 <div
                   className="catalog-filter__price-labels"
+                  translate="no"
                   style={{
                     position: "relative",
                     height: "24px",
@@ -480,7 +481,7 @@ function SearchResult() {
                         </div>
                         <p className="rating">{product.rating} / 5</p>
                       </div>
-                      <p className="product-price">${product.price}</p>
+                      <p className="product-price" translate="no">${product.price}</p>
                       <Link to={`/catalog/product/${product.id}`} className="product-card-button">
                         See product
                       </Link>

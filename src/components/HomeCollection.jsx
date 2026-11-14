@@ -1,22 +1,31 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { translations } from "../locales/translations";
 
 function scrollToProduct(carousel, index, isMobile, behavior = "smooth") {
   const card = carousel?.children[index];
   if (!card) return;
   carousel.scrollTo({
-    left: card.offsetLeft - (isMobile ? (carousel.clientWidth - card.clientWidth) / 2 : 0),
+    left:
+      card.offsetLeft -
+      (isMobile ? (carousel.clientWidth - card.clientWidth) / 2 : 0),
     behavior,
   });
 }
 
-export default function HomeCollection({ products }) {
+export default function HomeCollection({ products, language }) {
+  const text = translations[language];
+
   const carouselRef = useRef(null);
   const activeRef = useRef(0);
   const [active, setActive] = useState(0);
   const [group, setGroup] = useState(0);
-  const [isMobile, setIsMobile] = useState(() => window.matchMedia("(max-width: 440px)").matches);
-  const [reducedMotion, setReducedMotion] = useState(() => window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  const [isMobile, setIsMobile] = useState(
+    () => window.matchMedia("(max-width: 440px)").matches,
+  );
+  const [reducedMotion, setReducedMotion] = useState(
+    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  );
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [isTouching, setIsTouching] = useState(false);
@@ -53,23 +62,53 @@ export default function HomeCollection({ products }) {
   }, [isMobile]);
 
   useEffect(() => {
-    if (groupCount < 2 || reducedMotion || isPaused || isHovered || isFocused || isTouching || isHidden) return;
+    if (
+      groupCount < 2 ||
+      reducedMotion ||
+      isPaused ||
+      isHovered ||
+      isFocused ||
+      isTouching ||
+      isHidden
+    )
+      return;
     const timer = window.setInterval(() => {
       setGroup((current) => (current + 1) % groupCount);
     }, 5000);
     return () => window.clearInterval(timer);
-  }, [groupCount, reducedMotion, isPaused, isHovered, isFocused, isTouching, isHidden, active]);
+  }, [
+    groupCount,
+    reducedMotion,
+    isPaused,
+    isHovered,
+    isFocused,
+    isTouching,
+    isHidden,
+    active,
+  ]);
 
   function goToSlide(index) {
     const next = (index + visibleProducts.length) % visibleProducts.length;
-    scrollToProduct(carouselRef.current, next, true, reducedMotion ? "instant" : "smooth");
+    scrollToProduct(
+      carouselRef.current,
+      next,
+      true,
+      reducedMotion ? "instant" : "smooth",
+    );
   }
 
   function handleScroll() {
     const carousel = carouselRef.current;
     if (visibleProducts.length < 2) return;
-    const step = carousel.children[1].offsetLeft - carousel.children[0].offsetLeft;
-    const index = Math.max(0, Math.min(visibleProducts.length - 1, Math.round(carousel.scrollLeft / step)));
+    const step =
+      carousel.children[1].offsetLeft - carousel.children[0].offsetLeft;
+    const index = Math.max(
+      0,
+      Math.min(
+        visibleProducts.length - 1,
+        Math.round(carousel.scrollLeft / step),
+      ),
+    );
     activeRef.current = index;
     setActive(index);
   }
@@ -86,7 +125,8 @@ export default function HomeCollection({ products }) {
       }}
       onFocus={() => setIsFocused(true)}
       onBlur={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget)) setIsFocused(false);
+        if (!event.currentTarget.contains(event.relatedTarget))
+          setIsFocused(false);
       }}
       onPointerDown={() => setIsTouching(true)}
       onPointerUp={() => setIsTouching(false)}
@@ -105,7 +145,10 @@ export default function HomeCollection({ products }) {
           event.preventDefault();
           const direction = event.key === "ArrowRight" ? 1 : -1;
           if (isMobile) goToSlide(active + direction);
-          else setGroup((current) => (current + direction + groupCount) % groupCount);
+          else
+            setGroup(
+              (current) => (current + direction + groupCount) % groupCount,
+            );
         }}
       >
         {visibleProducts.map((product, index) => (
@@ -117,14 +160,21 @@ export default function HomeCollection({ products }) {
             aria-label={`${index + 1} of ${visibleProducts.length}`}
           >
             <Link to={`/catalog/product/${product.id}`}>
-              <img src={product.images.front} alt={product.name} loading="eager" />
+              <img
+                src={product.images.front}
+                alt={product.name}
+                loading="eager"
+              />
             </Link>
           </div>
         ))}
       </div>
       {(visibleProducts.length > 1 || groupCount > 1) && (
         <div className="home-collection__controls">
-          <div className="home-collection__dots" aria-label="Choose collection slide">
+          <div
+            className="home-collection__dots"
+            aria-label="Choose collection slide"
+          >
             {visibleProducts.map((_, index) => (
               <button
                 key={index}
@@ -137,7 +187,12 @@ export default function HomeCollection({ products }) {
             ))}
           </div>
           {groupCount > 1 && !reducedMotion && (
-            <button className="home-collection__pause" type="button" aria-pressed={isPaused} onClick={() => setIsPaused(!isPaused)}>
+            <button
+              className="home-collection__pause"
+              type="button"
+              aria-pressed={isPaused}
+              onClick={() => setIsPaused(!isPaused)}
+            >
               {isPaused ? "Resume slideshow" : "Pause slideshow"}
             </button>
           )}

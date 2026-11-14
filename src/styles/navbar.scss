@@ -140,6 +140,50 @@
   cursor: pointer;
 }
 
+.navbar-languages {
+  flex-shrink: 0;
+  color: $color-black;
+  font-family: $font-main;
+  font-size: clamp(12px, 1.2vw, 18px);
+  white-space: nowrap;
+}
+
+.navbar-languages--mobile {
+  display: none;
+}
+
+.navbar-language {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #aaa;
+  font: inherit;
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  &:hover,
+  &.is-active {
+    color: $color-black;
+  }
+
+  &.is-active {
+    font-size: calc(1em + 1px);
+  }
+}
+
+@media (max-width: 440px) {
+  .navbar-languages--desktop {
+    display: none;
+  }
+
+  .navbar-languages--mobile {
+    display: block;
+    order: 2;
+    margin: 24px 8px 0;
+    font-size: 22px;
+  }
+}
+
 .cart-button-link,
 .account-button-link {
   position: relative;

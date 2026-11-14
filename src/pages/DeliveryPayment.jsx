@@ -1,11 +1,17 @@
 import { Link } from "react-router-dom";
 import "../styles/deliveryPayment.scss";
+import { translations } from "../locales/translations";
 
-function DeliveryPayment() {
+function DeliveryPayment({ language }) {
+  const text = translations[language];
   return (
     <article className="delivery-payment">
       <header className="delivery-payment__intro">
-        <h1>Delivery &amp;<br />payment</h1>
+        <h1>
+          Delivery &amp;
+          <br />
+          payment
+        </h1>
         <span className="delivery-payment__accent" aria-hidden="true" />
         <p>
           Find out how we deliver your order and which payment options are
@@ -14,8 +20,13 @@ function DeliveryPayment() {
         </p>
       </header>
 
-      <section className="delivery-payment__section" aria-labelledby="delivery-heading">
-        <h2 id="delivery-heading"><span>Delivery</span></h2>
+      <section
+        className="delivery-payment__section"
+        aria-labelledby="delivery-heading"
+      >
+        <h2 id="delivery-heading">
+          <span>Delivery</span>
+        </h2>
         <div className="delivery-payment__columns">
           <div>
             <h3>Post office</h3>
@@ -30,8 +41,14 @@ function DeliveryPayment() {
               and check its opening hours before collecting your parcel.
             </p>
             <dl>
-              <div><dt>Delivery time</dt><dd>Depends on destination and carrier availability</dd></div>
-              <div><dt>Cost</dt><dd>Shown in your order summary</dd></div>
+              <div>
+                <dt>Delivery time</dt>
+                <dd>Depends on destination and carrier availability</dd>
+              </div>
+              <div>
+                <dt>Cost</dt>
+                <dd>Shown in your order summary</dd>
+              </div>
             </dl>
           </div>
           <div>
@@ -43,20 +60,31 @@ function DeliveryPayment() {
             </p>
             <p>
               Use a phone number where you can be reached about the delivery.
-              Review the address carefully, and contact support if you notice
-              an error after placing your order so the available next steps can
-              be checked.
+              Review the address carefully, and contact support if you notice an
+              error after placing your order so the available next steps can be
+              checked.
             </p>
             <dl>
-              <div><dt>Delivery time</dt><dd>Depends on destination and carrier availability</dd></div>
-              <div><dt>Cost</dt><dd>Shown in your order summary</dd></div>
+              <div>
+                <dt>Delivery time</dt>
+                <dd>Depends on destination and carrier availability</dd>
+              </div>
+              <div>
+                <dt>Cost</dt>
+                <dd>Shown in your order summary</dd>
+              </div>
             </dl>
           </div>
         </div>
       </section>
 
-      <section className="delivery-payment__section" aria-labelledby="payment-heading">
-        <h2 id="payment-heading"><span>Payment</span></h2>
+      <section
+        className="delivery-payment__section"
+        aria-labelledby="payment-heading"
+      >
+        <h2 id="payment-heading">
+          <span>Payment</span>
+        </h2>
         <div className="delivery-payment__columns">
           <div>
             <h3>Cash on delivery</h3>
@@ -88,17 +116,47 @@ function DeliveryPayment() {
         </div>
       </section>
 
-      <section className="delivery-payment__section" aria-labelledby="delivery-information-heading">
-        <h2 id="delivery-information-heading"><span>Important information</span></h2>
+      <section
+        className="delivery-payment__section"
+        aria-labelledby="delivery-information-heading"
+      >
+        <h2 id="delivery-information-heading">
+          <span>Important information</span>
+        </h2>
         <ul>
-          <li>Review your chosen sizes, colours and quantities before placing an order.</li>
-          <li>Check the recipient’s name, phone number and delivery destination carefully.</li>
-          <li>Delivery timing depends on your region, carrier operations and the availability of the selected service.</li>
-          <li>The delivery fee included in your purchase is displayed in the cart and checkout summary.</li>
-          <li>Keep your order confirmation and reference handy when asking about a purchase.</li>
-          <li>If tracking information is provided, use it to check your parcel’s progress with the carrier.</li>
-          <li>For an address change or an unclear order status, contact support before placing a second order.</li>
-          <li>If you have any questions, visit our <Link to="/support">Support page</Link> or use the contact details in the footer.</li>
+          <li>
+            Review your chosen sizes, colours and quantities before placing an
+            order.
+          </li>
+          <li>
+            Check the recipient’s name, phone number and delivery destination
+            carefully.
+          </li>
+          <li>
+            Delivery timing depends on your region, carrier operations and the
+            availability of the selected service.
+          </li>
+          <li>
+            The delivery fee included in your purchase is displayed in the cart
+            and checkout summary.
+          </li>
+          <li>
+            Keep your order confirmation and reference handy when asking about a
+            purchase.
+          </li>
+          <li>
+            If tracking information is provided, use it to check your parcel’s
+            progress with the carrier.
+          </li>
+          <li>
+            For an address change or an unclear order status, contact support
+            before placing a second order.
+          </li>
+          <li>
+            If you have any questions, visit our{" "}
+            <Link to="/support">Support page</Link> or use the contact details
+            in the footer.
+          </li>
         </ul>
       </section>
     </article>

@@ -7,7 +7,11 @@ import { API_URL } from "../api";
 
 import { getGuestId } from "../utils/guestCart";
 
-function Cart({ refreshCart }) {
+import { translations } from "../locales/translations";
+
+function Cart({ refreshCart, language }) {
+  const text = translations[language];
+
   const [products, setProducts] = useState([]);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -252,11 +256,13 @@ function Cart({ refreshCart }) {
                         </div>
                         <div className="product-cart-info-bottom">
                           {p.oldPrice ? (
-                            <h3 className="product-cart-price">
+                            <h3 className="product-cart-price" translate="no">
                               ${p.price} <span>${p.oldPrice}</span>
                             </h3>
                           ) : (
-                            <h3 className="product-cart-price">${p.price}</h3>
+                            <h3 className="product-cart-price" translate="no">
+                              ${p.price}
+                            </h3>
                           )}
                         </div>
                       </div>
@@ -333,7 +339,7 @@ function Cart({ refreshCart }) {
                     <p className="summ-info-text">Delivery Fee</p>
                   </div>
 
-                  <div className="summary-prices">
+                  <div className="summary-prices" translate="no">
                     <p className="price-text">${subTotal}</p>
                     <p className="discount-text">-${priceafterDiscount}</p>
                     <p className="price-text">${deliveryFee}</p>
@@ -342,7 +348,7 @@ function Cart({ refreshCart }) {
 
                 <div className="total-box">
                   <h3>Total</h3>
-                  <h4>${total}</h4>
+                  <h4 translate="no">${total}</h4>
                 </div>
 
                 <div className="checkout-btn-box">
@@ -396,10 +402,16 @@ function Cart({ refreshCart }) {
             </div>
           </section>
           {recomendedProducts.length > 0 && (
-            <section className="cart-recommendations" aria-labelledby="cart-recommendations-title">
+            <section
+              className="cart-recommendations"
+              aria-labelledby="cart-recommendations-title"
+            >
               <div className="cart-recommendations-header">
                 <div>
-                  <h2 id="cart-recommendations-title" className="cart-recommendations-title">
+                  <h2
+                    id="cart-recommendations-title"
+                    className="cart-recommendations-title"
+                  >
                     You May Also Like
                   </h2>
                   <p className="cart-recommendations-subtitle">
@@ -411,47 +423,52 @@ function Cart({ refreshCart }) {
                 </Link>
               </div>
               <div className="cart-recommendations-grid">
-              {recomendedProducts.map((product) => (
-                <article
-                  key={product.id}
-                  className="cart-recommendation"
-                >
-                  <Link
-                    to={`/catalog/product/${product.id}`}
-                    className="cart-recommendation-image-link"
-                  >
-                  <img
-                    src={product.images?.front}
-                    alt={product.name}
-                    loading="lazy"
-                    className="cart-recommendation-image"
-                  />
-                  </Link>
-                  <h3>{product.name}</h3>
-                  <div className="cart-recommendation-rating" aria-label={`${product.rating} out of 5 stars`}>
-                    <span className="cart-recommendation-stars" aria-hidden="true">
-                      {[0, 1, 2, 3, 4].map((index) => (
-                        <span
-                          key={index}
-                          style={{ "--fill": `${Math.min(Math.max(Number(product.rating) - index, 0), 1) * 100}%` }}
-                        >
-                          ★
-                        </span>
-                      ))}
-                    </span>
-                    <span>{product.rating} / 5</span>
-                  </div>
-                  <p className="cart-recommendation-price" translate="no">
-                    ${Number(product.price).toFixed(2)}
-                  </p>
-                  <Link
-                    to={`/catalog/product/${product.id}`}
-                    className="cart-recommendation-button"
-                  >
-                    See product
-                  </Link>
-                </article>
-              ))}
+                {recomendedProducts.map((product) => (
+                  <article key={product.id} className="cart-recommendation">
+                    <Link
+                      to={`/catalog/product/${product.id}`}
+                      className="cart-recommendation-image-link"
+                    >
+                      <img
+                        src={product.images?.front}
+                        alt={product.name}
+                        loading="lazy"
+                        className="cart-recommendation-image"
+                      />
+                    </Link>
+                    <h3>{product.name}</h3>
+                    <div
+                      className="cart-recommendation-rating"
+                      aria-label={`${product.rating} out of 5 stars`}
+                    >
+                      <span
+                        className="cart-recommendation-stars"
+                        aria-hidden="true"
+                      >
+                        {[0, 1, 2, 3, 4].map((index) => (
+                          <span
+                            key={index}
+                            style={{
+                              "--fill": `${Math.min(Math.max(Number(product.rating) - index, 0), 1) * 100}%`,
+                            }}
+                          >
+                            ★
+                          </span>
+                        ))}
+                      </span>
+                      <span>{product.rating} / 5</span>
+                    </div>
+                    <p className="cart-recommendation-price" translate="no">
+                      ${Number(product.price).toFixed(2)}
+                    </p>
+                    <Link
+                      to={`/catalog/product/${product.id}`}
+                      className="cart-recommendation-button"
+                    >
+                      See product
+                    </Link>
+                  </article>
+                ))}
               </div>
             </section>
           )}

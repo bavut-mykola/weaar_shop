@@ -8,7 +8,10 @@ import { API_URL } from "../api";
 
 import { getGuestId } from "../utils/guestCart";
 
-function ProductPage({ refreshCart }) {
+import { translations } from "../locales/translations";
+
+function ProductPage({ refreshCart, language }) {
+  const text = translations[language];
   const [isLoading, setIsLoading] = useState(true);
   const [isFailedToLoad, setIsFailedToLoad] = useState(false);
 
@@ -293,7 +296,6 @@ function ProductPage({ refreshCart }) {
             </div>
           </div>
 
-
           <div className="product-colors-box">
             <h2 className="color-title">Select Color</h2>
 
@@ -417,35 +419,48 @@ function ProductPage({ refreshCart }) {
             </div>
           </div>
 
-          <section className="product-details-panel" aria-label="Product details">
+          <section
+            className="product-details-panel"
+            aria-label="Product details"
+          >
             {(product.details || product.description) && (
-              <details className="product-details-content" key={`details-${product.id}`}>
+              <details
+                className="product-details-content"
+                key={`details-${product.id}`}
+              >
                 <summary>Details & Care</summary>
                 {product.description && <p>{product.description}</p>}
                 {product.details && (
-                <dl className="product-specifications">
-                  {[
-                    ["Material", product.details.material],
-                    ["Fit", product.details.fit],
-                    ["Gender", product.details.gender],
-                    ["Season", product.details.season],
-                    ["Made in", product.details.country],
-                    ["Care", product.details.care],
-                  ].filter(([, value]) => value).map(([label, value]) => (
-                    <div key={label}>
-                      <dt>{label}</dt>
-                      <dd>{value}</dd>
-                    </div>
-                  ))}
-                </dl>
+                  <dl className="product-specifications">
+                    {[
+                      ["Material", product.details.material],
+                      ["Fit", product.details.fit],
+                      ["Gender", product.details.gender],
+                      ["Season", product.details.season],
+                      ["Made in", product.details.country],
+                      ["Care", product.details.care],
+                    ]
+                      .filter(([, value]) => value)
+                      .map(([label, value]) => (
+                        <div key={label}>
+                          <dt>{label}</dt>
+                          <dd>{value}</dd>
+                        </div>
+                      ))}
+                  </dl>
                 )}
               </details>
             )}
             {product.features?.length > 0 && (
-              <details className="product-features-content" key={`features-${product.id}`}>
+              <details
+                className="product-features-content"
+                key={`features-${product.id}`}
+              >
                 <summary>Product Features</summary>
                 <ul className="product-feature-list">
-                  {product.features.map((feature) => <li key={feature}>{feature}</li>)}
+                  {product.features.map((feature) => (
+                    <li key={feature}>{feature}</li>
+                  ))}
                 </ul>
               </details>
             )}

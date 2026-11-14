@@ -5,13 +5,18 @@ import phoneIcon from "../assets/icons/phone.svg";
 import userIcon from "../assets/icons/user.svg";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import "../styles/navbar.scss";
+import { translations } from "../locales/translations";
 
 function Navbar({
   cartCount,
   isAuthenticated,
   isContactMenuOpen,
   onContactClick,
+  language,
+  setLanguage,
 }) {
+  const text = translations[language];
+
   const [isBurgerClicked, setISBurgerClicked] = useState(false);
 
   const [searchterm, setSearchTerm] = useState("");
@@ -62,16 +67,46 @@ function Navbar({
             className="nav-link"
             onClick={() => setISBurgerClicked(false)}
           >
-            Catalog
+            {text.navbar.catalog}
           </Link>
-          <a href="/#collection" className="nav-link" onClick={() => setISBurgerClicked(false)}>
-            Spotlight
+          <a
+            href="/#collection"
+            className="nav-link"
+            onClick={() => setISBurgerClicked(false)}
+          >
+            {text.navbar.spotlight}
           </a>
         </ul>
+        <span
+          className="navbar-languages navbar-languages--mobile"
+          translate="no"
+        >
+          <button
+            type="button"
+            className={`navbar-language ${language === "en" ? "is-active" : ""}`}
+            aria-pressed={language === "en"}
+            onClick={() => {
+              setLanguage("en");
+            }}
+          >
+            EN
+          </button>
+          <span aria-hidden="true"> | </span>
+          <button
+            type="button"
+            className={`navbar-language ${language === "uk" ? "is-active" : ""}`}
+            aria-pressed={language === "uk"}
+            onClick={() => {
+              setLanguage("uk");
+            }}
+          >
+            UK
+          </button>
+        </span>
 
         <div className="search-box">
           <div className="search-title">
-            <h3>LOOKING FOR SOMETHING?</h3>
+            <h3>{text.navbar.searchTitle}</h3>
           </div>
           <div className="search">
             <Link
@@ -86,8 +121,8 @@ function Navbar({
             <input
               type="text"
               className="search-input"
-              placeholder=""
-              aria-label="Search for products"
+              placeholder={text.navbar.searchPlaceholder}
+              aria-label={text.navbar.search}
               value={searchterm}
               onChange={(e) => setSearchTerm(e.target.value)}
               onKeyDown={handleKeyDown}
@@ -125,6 +160,32 @@ function Navbar({
         >
           <img src={phoneIcon} alt="" className="head-btn" />
         </button>
+        <span
+          className="navbar-languages navbar-languages--desktop"
+          translate="no"
+        >
+          <button
+            type="button"
+            className={`navbar-language ${language === "en" ? "is-active" : ""}`}
+            aria-pressed={language === "en"}
+            onClick={() => {
+              setLanguage("en");
+            }}
+          >
+            EN
+          </button>
+          <span aria-hidden="true"> | </span>
+          <button
+            type="button"
+            className={`navbar-language ${language === "uk" ? "is-active" : ""}`}
+            aria-pressed={language === "uk"}
+            onClick={() => {
+              setLanguage("uk");
+            }}
+          >
+            UK
+          </button>
+        </span>
       </div>
     </header>
   );

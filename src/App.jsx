@@ -29,6 +29,8 @@ import { API_URL } from "./api";
 import { getGuestId } from "./utils/guestCart";
 
 function App() {
+  const [language, setLanguage] = useState("en");
+
   const [cartCount, setCartCount] = useState(null);
   const [isContactMenuOpen, setIsContactMenuOpen] = useState(false);
   const [accountDeletedNotice, setAccountDeletedNotice] = useState(null);
@@ -169,11 +171,14 @@ function App() {
         isAuthenticated={isAuthenticated}
         isContactMenuOpen={isContactMenuOpen}
         onContactClick={handleContactOpen}
+        language={language}
+        setLanguage={setLanguage}
       />
       <ContactMenu
         isOpen={isContactMenuOpen}
         onClose={handleContactClose}
         contactInfo={contactInfo}
+        language={language}
       />
       {accountDeletedNotice && (
         <div
@@ -211,23 +216,46 @@ function App() {
       )}
       <main className="app-content" aria-label="Main content">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/support" element={<Support />} />
-          <Route path="/delivery-payment" element={<DeliveryPayment />} />
-          <Route path="/returns-exchanges" element={<ReturnsExchanges />} />
-          <Route path="/size-guide" element={<SizeGuide />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/catalog" element={<Catalog key={location.search} />} />
-          <Route path="/search" element={<SearchResult />} />
+          <Route path="/" element={<Home language={language} />} />
+          <Route path="/about" element={<About language={language} />} />
+          <Route path="/support" element={<Support language={language} />} />
+          <Route
+            path="/delivery-payment"
+            element={<DeliveryPayment language={language} />}
+          />
+          <Route
+            path="/returns-exchanges"
+            element={<ReturnsExchanges language={language} />}
+          />
+          <Route
+            path="/size-guide"
+            element={<SizeGuide language={language} />}
+          />
+          <Route
+            path="/privacy-policy"
+            element={<PrivacyPolicy language={language} />}
+          />
+          <Route
+            path="/catalog"
+            element={<Catalog key={location.search} language={language} />}
+          />
+          <Route
+            path="/search"
+            element={<SearchResult language={language} />}
+          />
           <Route
             path="/catalog/product/:id"
-            element={<ProductPage refreshCart={refreshCart} />}
+            element={
+              <ProductPage refreshCart={refreshCart} language={language} />
+            }
           />
-          <Route path="/cart" element={<Cart refreshCart={refreshCart} />} />
+          <Route
+            path="/cart"
+            element={<Cart refreshCart={refreshCart} language={language} />}
+          />
           <Route
             path="/order-confirmation/:orderId?"
-            element={<OrderConfirmation />}
+            element={<OrderConfirmation language={language} />}
           />
           <Route
             path="/checkout"
@@ -236,6 +264,7 @@ function App() {
                 isAuthenticated={isAuthenticated}
                 userEmail={userEmail}
                 refreshCart={refreshCart}
+                language={language}
               />
             }
           />
@@ -247,6 +276,7 @@ function App() {
                 userEmail={userEmail}
                 setUserEmail={setUserEmail}
                 refreshCart={refreshCart}
+                language={language}
               />
             }
           />
@@ -258,12 +288,13 @@ function App() {
                 setIsAuthenticated={setIsAuthenticated}
                 setUserEmail={setUserEmail}
                 refreshCart={refreshCart}
+                language={language}
               />
             }
           />
         </Routes>
       </main>
-      <Footer />
+      <Footer language={language} />
     </div>
   );
 }

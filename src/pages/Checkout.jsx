@@ -4,8 +4,10 @@ import "../styles/checkout.scss";
 import { API_URL } from "../api";
 import { getGuestId } from "../utils/guestCart";
 import { validateExpiration } from "../utils/validateExpiration";
+import { translations } from "../locales/translations";
 
-function Checkout({ userEmail, isAuthenticated, refreshCart }) {
+function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
+  const text = translations[language];
   const navigate = useNavigate();
   const [cartData, setCartData] = useState([]);
   async function loadCartData() {
@@ -738,7 +740,10 @@ function Checkout({ userEmail, isAuthenticated, refreshCart }) {
                   <p className="checkout-product-variant">{`${p.color} - ${p.size}`}</p>
                 </div>
                 <span className="checkout-product-quantity">x{p.quantity}</span>
-                <span className="checkout-product-price">{`$${p.price * p.quantity}`}</span>
+                <span
+                  className="checkout-product-price"
+                  translate="no"
+                >{`$${p.price * p.quantity}`}</span>
               </div>
             ))}
           </div>
@@ -748,7 +753,7 @@ function Checkout({ userEmail, isAuthenticated, refreshCart }) {
               <p>Discount(-{discount}%)</p>
               <p>Delivery Fee</p>
             </div>
-            <div className="summary-prices">
+            <div className="summary-prices" translate="no">
               <p>${subTotal}</p>
               <p className="discount-text">${priceafterDiscount}</p>
               <p>${deliveryFee}</p>
@@ -756,7 +761,7 @@ function Checkout({ userEmail, isAuthenticated, refreshCart }) {
           </div>
           <div className="total-box">
             <h3>Total</h3>
-            <h4>${total}</h4>
+            <h4 translate="no">${total}</h4>
           </div>
         </aside>
       </div>

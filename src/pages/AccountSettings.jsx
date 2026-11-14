@@ -7,12 +7,17 @@ import editIcon from "../assets/icons/edit.svg";
 
 import { API_URL } from "../api";
 
+import { translations } from "../locales/translations";
+
 function AccountSettings({
   userEmail,
   setIsAuthenticated,
   setUserEmail,
   refreshCart,
+  language,
 }) {
+  const text = translations[language];
+
   const [isNameClicked, setIsNameClicked] = useState(false);
   const [isPhoneClicked, setIsPhoneClicked] = useState(false);
   const [isDeleteConfirmationOpen, setIsDeleteConfirmationOpen] =

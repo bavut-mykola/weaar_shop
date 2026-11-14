@@ -8,12 +8,22 @@ import { Link } from "react-router-dom";
 
 import "../styles/account.scss";
 
+import { translations } from "../locales/translations";
+
 import { API_URL } from "../api";
 import { useState } from "react";
 
 import { getGuestId } from "../utils/guestCart";
 
-function Account({ setIsAuthenticated, userEmail, setUserEmail, refreshCart }) {
+function Account({
+  setIsAuthenticated,
+  userEmail,
+  setUserEmail,
+  refreshCart,
+  language,
+}) {
+  const text = translations[language];
+
   const [logOutError, setLogOutError] = useState("");
 
   async function makeLogOut() {

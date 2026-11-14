@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "../styles/returnsExchanges.scss";
+import { translations } from "../locales/translations";
 
 const steps = [
   {
@@ -32,7 +33,8 @@ const excluded = [
   "Custom or personalized items",
 ];
 
-function ReturnsExchanges() {
+function ReturnsExchanges({ language }) {
+  const text = translations[language];
   return (
     <article className="returns">
       <header className="returns__intro">

@@ -4,15 +4,19 @@ import eyeOffIcon from "../assets/icons/eyeOff.svg";
 import eyeIcon from "../assets/icons/eye.svg";
 import arrowLeftIcon from "../assets/icons/arrowLeft.svg";
 import "../styles/auth.scss";
+import { translations } from "../locales/translations";
 
 import { API_URL } from "../api";
 import { getGuestId } from "../utils/guestCart";
 
-function Auth({ setIsAuthenticated, setUserEmail, refreshCart }) {
+function Auth({ setIsAuthenticated, setUserEmail, refreshCart, language }) {
+  const text = translations[language];
   useEffect(() => {
     const elements = [document.documentElement, document.body];
     const previousOverflow = elements.map((element) => element.style.overflow);
-    elements.forEach((element) => { element.style.overflow = "hidden"; });
+    elements.forEach((element) => {
+      element.style.overflow = "hidden";
+    });
     window.scrollTo(0, 0);
     return () => {
       elements.forEach((element, index) => {
@@ -226,10 +230,24 @@ function Auth({ setIsAuthenticated, setUserEmail, refreshCart }) {
                   <input
                     id={`form-${a.type}`}
                     type={
-                      a.type === "password" && isPasswordShowing ? "text" : a.type
+                      a.type === "password" && isPasswordShowing
+                        ? "text"
+                        : a.type
                     }
-                    placeholder={a.type === "email" ? "Enter your email address" : isCreatingAccount ? "Create a password (8–128 characters)" : "Enter your password"}
-                    autoComplete={a.type === "email" ? "email" : isCreatingAccount ? "new-password" : "current-password"}
+                    placeholder={
+                      a.type === "email"
+                        ? "Enter your email address"
+                        : isCreatingAccount
+                          ? "Create a password (8–128 characters)"
+                          : "Enter your password"
+                    }
+                    autoComplete={
+                      a.type === "email"
+                        ? "email"
+                        : isCreatingAccount
+                          ? "new-password"
+                          : "current-password"
+                    }
                     className="form-input"
                     value={a.type === "email" ? email : password}
                     ref={a.type === "email" ? emailRef : passwordRef}
@@ -380,7 +398,9 @@ function Auth({ setIsAuthenticated, setUserEmail, refreshCart }) {
 
             <div className="form-bottom-box">
               <p className="form-bottom-text">
-                {isCreatingAccount ? "Already have an account ?" : "Don’t have an account ?"}
+                {isCreatingAccount
+                  ? "Already have an account ?"
+                  : "Don’t have an account ?"}
                 <button
                   type="button"
                   className="auth-mode-toggle"

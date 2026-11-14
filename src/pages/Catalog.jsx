@@ -6,11 +6,17 @@ import "../styles/catalog.scss";
 
 import { API_URL } from "../api";
 
+import { translations } from "../locales/translations";
+
 const sortOptions = ["More Popular", "More Expensive", "Cheaper"];
 
-function Catalog() {
+function Catalog({ language }) {
+  const text = translations[language];
   const [searchParams] = useSearchParams();
-  const initialCategory = homeCategories.find((category) => category.key === searchParams.get("category"))?.label ?? null;
+  const initialCategory =
+    homeCategories.find(
+      (category) => category.key === searchParams.get("category"),
+    )?.label ?? null;
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isFiltered, setIsFiltered] = useState(Boolean(initialCategory));
 
@@ -136,7 +142,9 @@ function Catalog() {
   const [maxPrice, setMaxPrice] = useState(maxLimit);
   const [activeSize, setActiveSize] = useState(null);
   const [activeCategory, setActiveCategory] = useState(initialCategory);
-  const [activeStyle, setActiveStyle] = useState(initialCategory ? null : "Casual");
+  const [activeStyle, setActiveStyle] = useState(
+    initialCategory ? null : "Casual",
+  );
 
   const minPercent = (minPrice / maxLimit) * 100;
   const maxPercent = (maxPrice / maxLimit) * 100;
@@ -444,6 +452,7 @@ function Catalog() {
 
                     <div
                       className="catalog-filter__price-labels"
+                      translate="no"
                       style={{
                         position: "relative",
                         height: "24px",
@@ -551,113 +560,124 @@ function Catalog() {
                       </div>
                     ) : (
                       products.map((p) => (
-                      <div key={p.id} className="product-card">
-                        <div className="image-box">
-                          <Link
-                            to={`/catalog/product/${p.id}`}
-                            className="product-images"
-                          >
-                            <img
-                              src={p.images.front}
-                              alt={p.name}
-                              className="front-img"
-                            />
-                            <img
-                              src={p.images.back}
-                              alt={p.name}
-                              className="back-img"
-                            />
-                          </Link>
-                        </div>
-
-                        <div className="product-inf">
-                          <h3 className="product-name">{p.name}</h3>
-                          <div className="rating-box">
-                            <div className="rating-stars">
-                              {[0, 1, 2, 3, 4].map((index) => {
-                                const fill = Math.min(
-                                  Math.max(p.rating - index, 0),
-                                  1,
-                                );
-
-                                return (
-                                  <span
-                                    key={index}
-                                    className="rating-star"
-                                    style={{ "--fill": `${fill * 100}%` }}
-                                  >
-                                    ★
-                                  </span>
-                                );
-                              })}
-                            </div>
-                            <p className="rating">{p.rating} / 5</p>
+                        <div key={p.id} className="product-card">
+                          <div className="image-box">
+                            <Link
+                              to={`/catalog/product/${p.id}`}
+                              className="product-images"
+                            >
+                              <img
+                                src={p.images.front}
+                                alt={p.name}
+                                className="front-img"
+                              />
+                              <img
+                                src={p.images.back}
+                                alt={p.name}
+                                className="back-img"
+                              />
+                            </Link>
                           </div>
-                          <p translate="no" className="product-price">
-                            ${p.price}
-                          </p>
-                          <Link to={`/catalog/product/${p.id}`} className="product-card-button">
-                            See product
-                          </Link>
+
+                          <div className="product-inf">
+                            <h3 className="product-name">{p.name}</h3>
+                            <div className="rating-box">
+                              <div className="rating-stars">
+                                {[0, 1, 2, 3, 4].map((index) => {
+                                  const fill = Math.min(
+                                    Math.max(p.rating - index, 0),
+                                    1,
+                                  );
+
+                                  return (
+                                    <span
+                                      key={index}
+                                      className="rating-star"
+                                      style={{ "--fill": `${fill * 100}%` }}
+                                    >
+                                      ★
+                                    </span>
+                                  );
+                                })}
+                              </div>
+                              <p className="rating">{p.rating} / 5</p>
+                            </div>
+                            <p translate="no" className="product-price">
+                              ${p.price}
+                            </p>
+                            <Link
+                              to={`/catalog/product/${p.id}`}
+                              className="product-card-button"
+                            >
+                              See product
+                            </Link>
+                          </div>
                         </div>
-                      </div>
                       ))
                     )}
                   </div>
-                  {products.length > 0 && <nav
-                    className="catalog-pagination"
-                    aria-label="Catalog pages"
-                  >
-                    <button
-                      className="catalog-pagination__direction"
-                      type="button"
-                      disabled={page === 1}
-                      onClick={() => {
-                        setPage(page - 1);
-                      }}
+                  {products.length > 0 && (
+                    <nav
+                      className="catalog-pagination"
+                      aria-label="Catalog pages"
                     >
-                      ‹ &nbsp; Previous
-                    </button>
-                    <ol className="catalog-pagination__pages">
-                      <button type="button" onClick={() => setPage(1)}>
-                        « First
-                      </button>
-                      {visiblePages.map((pageNumber) => (
-                        <li key={pageNumber}>
-                          <button
-                            className={pageNumber === page ? "is-current" : ""}
-                            onClick={() => setPage(pageNumber)}
-                          >
-                            {pageNumber}
-                          </button>
-                        </li>
-                      ))}
-
-                      {startPage + (visiblePageCount - 1) < totalPages && (
-                        <li>
-                          <button className="catalog-pagination__ellipsis" type="button" aria-label="More pages">
-                            ...
-                          </button>
-                        </li>
-                      )}
                       <button
+                        className="catalog-pagination__direction"
                         type="button"
-                        onClick={() => setPage(pagination.totalPages)}
+                        disabled={page === 1}
+                        onClick={() => {
+                          setPage(page - 1);
+                        }}
                       >
-                        Last »
+                        ‹ &nbsp; Previous
                       </button>
-                    </ol>
-                    <button
-                      className="catalog-pagination__direction"
-                      type="button"
-                      disabled={page === pagination.totalPages}
-                      onClick={() => {
-                        setPage(page + 1);
-                      }}
-                    >
-                      Next &nbsp; ›
-                    </button>
-                  </nav>}
+                      <ol className="catalog-pagination__pages">
+                        <button type="button" onClick={() => setPage(1)}>
+                          « First
+                        </button>
+                        {visiblePages.map((pageNumber) => (
+                          <li key={pageNumber}>
+                            <button
+                              className={
+                                pageNumber === page ? "is-current" : ""
+                              }
+                              onClick={() => setPage(pageNumber)}
+                            >
+                              {pageNumber}
+                            </button>
+                          </li>
+                        ))}
+
+                        {startPage + (visiblePageCount - 1) < totalPages && (
+                          <li>
+                            <button
+                              className="catalog-pagination__ellipsis"
+                              type="button"
+                              aria-label="More pages"
+                            >
+                              ...
+                            </button>
+                          </li>
+                        )}
+                        <button
+                          type="button"
+                          onClick={() => setPage(pagination.totalPages)}
+                        >
+                          Last »
+                        </button>
+                      </ol>
+                      <button
+                        className="catalog-pagination__direction"
+                        type="button"
+                        disabled={page === pagination.totalPages}
+                        onClick={() => {
+                          setPage(page + 1);
+                        }}
+                      >
+                        Next &nbsp; ›
+                      </button>
+                    </nav>
+                  )}
                 </div>
               </div>
             </>

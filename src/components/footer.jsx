@@ -5,7 +5,10 @@ import { contactInfo } from "../data/contactInfo";
 
 import "../styles/footer.scss";
 
-const Footer = () => {
+import { translations } from "../locales/translations";
+
+const Footer = ({ language }) => {
+  const text = translations[language];
   return (
     <footer className="footer">
       <div className="footer__content">
