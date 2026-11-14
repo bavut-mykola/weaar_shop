@@ -481,6 +481,9 @@ function SearchResult() {
                         <p className="rating">{product.rating} / 5</p>
                       </div>
                       <p className="product-price">${product.price}</p>
+                      <Link to={`/catalog/product/${product.id}`} className="product-card-button">
+                        See product
+                      </Link>
                     </div>
                   </div>
                 ))}

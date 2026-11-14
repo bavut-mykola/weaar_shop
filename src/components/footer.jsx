@@ -38,11 +38,11 @@ const Footer = () => {
           </h3>
 
           <nav className="footer__links">
-            <a href="#">Pants</a>
-            <a href="#">Hoodies</a>
-            <a href="#">Jeans</a>
-            <a href="#">T-Shirts</a>
-            <a href="#">Outerwear</a>
+            <Link to="/catalog?category=pants">Pants</Link>
+            <Link to="/catalog?category=hoodies">Hoodies</Link>
+            <Link to="/catalog?category=jeans">Jeans</Link>
+            <Link to="/catalog?category=t-shirts">T-Shirts</Link>
+            <Link to="/catalog?category=outerwear">Outerwear</Link>
           </nav>
         </div>
 
@@ -50,11 +50,11 @@ const Footer = () => {
           <h3 className="footer__title">Services</h3>
 
           <nav className="footer__links">
-            <a href="/#our-story">About Us</a>
-            <a href="#">Support</a>
-            <a href="#">Delivery &amp; Payment</a>
-            <a href="#">Returns &amp; Exchanges</a>
-            <a href="#">Size Guide</a>
+            <Link to="/about">About Us</Link>
+            <Link to="/support">Support</Link>
+            <Link to="/delivery-payment">Delivery &amp; Payment</Link>
+            <Link to="/returns-exchanges">Returns &amp; Exchanges</Link>
+            <Link to="/size-guide">Size Guide</Link>
           </nav>
         </div>
 
@@ -90,9 +90,9 @@ const Footer = () => {
           <span>All rights reserved.</span>
         </div>
 
-        <a href="#" className="footer__privacy">
+        <Link to="/privacy-policy" className="footer__privacy">
           Privacy Policy
-        </a>
+        </Link>
       </div>
     </footer>
   );

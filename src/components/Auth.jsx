@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import eyeOffIcon from "../assets/icons/eyeOff.svg";
 import eyeIcon from "../assets/icons/eye.svg";
@@ -9,6 +9,18 @@ import { API_URL } from "../api";
 import { getGuestId } from "../utils/guestCart";
 
 function Auth({ setIsAuthenticated, setUserEmail, refreshCart }) {
+  useEffect(() => {
+    const elements = [document.documentElement, document.body];
+    const previousOverflow = elements.map((element) => element.style.overflow);
+    elements.forEach((element) => { element.style.overflow = "hidden"; });
+    window.scrollTo(0, 0);
+    return () => {
+      elements.forEach((element, index) => {
+        element.style.overflow = previousOverflow[index];
+      });
+    };
+  }, []);
+
   const [isCreatingAccount, setIsCreatingAccount] = useState(true);
 
   const [isPasswordShowing, setIsPasswordShowing] = useState(false);

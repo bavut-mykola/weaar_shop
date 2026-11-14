@@ -6,7 +6,8 @@
   z-index: 1000;
   display: grid;
   grid-template-columns: 43% 57%;
-  overflow-y: auto;
+  height: 100dvh;
+  overflow: hidden;
   background: #fff;
   color: #000;
   font-family: $font-main;
@@ -32,30 +33,30 @@
   align-items: center;
   justify-content: center;
   min-width: 0;
-  min-height: 100%;
+  min-height: 0;
   box-sizing: border-box;
-  padding: 40px 32px;
+  padding: 24px 32px;
 }
 
 .form-content-box {
-  width: 382px;
+  width: 350px;
   max-width: 100%;
 }
 
 .form-logo {
-  margin-bottom: 28px;
+  margin-bottom: 22px;
 }
 
 .form-logo h2 {
   margin: 0;
-  font-size: 30px;
+  font-size: 24px;
   font-weight: 400;
-  line-height: 42px;
+  line-height: 32px;
   text-align: center;
 }
 
 .form-inputs-box + .form-inputs-box {
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .input-box {
@@ -66,13 +67,13 @@
 
 .input-box label {
   margin-bottom: 6px;
-  font-size: 20px;
-  line-height: 28px;
+  font-size: 16px;
+  line-height: 22px;
 }
 
 .form-input {
   width: 100%;
-  height: 57px;
+  height: 48px;
   padding: 0 16px;
   box-sizing: border-box;
   border: 1px solid #a4a4a4;
@@ -81,7 +82,7 @@
   background: #fff;
   color: #000;
   font: inherit;
-  font-size: 16px;
+  font-size: 14px;
   transition: border-color 0.18s ease;
 
   &::placeholder { color: #b0b0b0; opacity: 1; }
@@ -100,7 +101,7 @@
 .eye-btn-box {
   position: absolute;
   right: 15px;
-  bottom: 9px;
+  bottom: 5px;
   display: grid;
   width: 38px;
   height: 38px;
@@ -113,21 +114,21 @@
 
 .eye-btn-img {
   display: block;
-  width: 28px;
-  height: 28px;
+  width: 22px;
+  height: 22px;
   filter: brightness(0);
 }
 
 .form-buttons-box {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  margin-top: 36px;
+  gap: 14px;
+  margin-top: 24px;
 }
 
 .account-btn, .google-btn {
   width: 100%;
-  min-height: 56px;
+  min-height: 46px;
   box-sizing: border-box;
   padding: 8px 12px;
   border: 1px solid #151515;
@@ -141,7 +142,7 @@
 .account-btn {
   background: #151515;
   color: #fff;
-  font-size: 24px;
+  font-size: 18px;
   &:hover:not(:disabled) { background: #fff; color: #151515; }
 }
 
@@ -156,21 +157,21 @@
   }
   background: #fff;
   color: #000;
-  font-size: 20px;
+  font-size: 16px;
   &:hover:not(:disabled) { background: #151515; color: #fff; }
 }
 
-.form-bottom-box { margin-top: 26px; }
+.form-bottom-box { margin-top: 20px; }
 
 .form-bottom-text {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 36px;
+  gap: 16px;
   margin: 0;
   color: #000;
-  font-size: 18px;
-  line-height: 32px;
+  font-size: 13px;
+  line-height: 24px;
 }
 
 .auth-mode-toggle {
@@ -179,7 +180,7 @@
   background: transparent;
   color: #000;
   font: inherit;
-  font-size: 24px;
+  font-size: 16px;
   white-space: nowrap;
   cursor: pointer;
 }
@@ -191,7 +192,7 @@
   gap: 16px;
   margin-top: 24px;
   color: #a4a4a4;
-  font-size: 22px;
+  font-size: 16px;
   line-height: 32px;
   text-decoration: none;
   img { width: 26px; height: 26px; filter: brightness(0); opacity: 0.36; }
@@ -212,14 +213,14 @@
 @media (max-width: 767px) {
   .main-form-box { grid-template-columns: 1fr; }
   .auth-brand-panel { display: none; }
-  .auth-form-panel { padding: 40px 24px; }
+  .auth-form-panel { padding: 24px; }
 }
 
 @media (max-width: 420px) {
-  .auth-form-panel { padding: 40px 24px 28px; }
-  .form-logo h2 { font-size: 26px; }
+  .auth-form-panel { padding: 24px; }
+  .form-logo h2 { font-size: 24px; }
   .form-bottom-text { gap: 18px; font-size: 14px; }
-  .auth-mode-toggle { font-size: 20px; }
+  .auth-mode-toggle { font-size: 16px; }
   .form-input { font-size: 14px; }
 }
 
@@ -292,4 +293,12 @@
   .google-error-menu {
     padding: 24px 20px;
   }
+}
+
+@media (max-height: 600px) {
+  .auth-form-panel { padding: 12px 24px; }
+  .form-logo { margin-bottom: 12px; }
+  .form-inputs-box + .form-inputs-box { margin-top: 12px; }
+  .form-buttons-box { margin-top: 16px; gap: 10px; }
+  .form-bottom-box, .back-to-home-box { margin-top: 12px; }
 }

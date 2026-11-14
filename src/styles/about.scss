@@ -1,0 +1,133 @@
+@use "variables" as *;
+
+.about {
+  max-width: 1800px;
+  margin: 0 auto;
+  background: $color-white;
+  color: $color-black;
+  font-family: $font-main;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+}
+
+.about-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: clamp(20px, 2.2vw, 40px);
+  background: #f7f6f5;
+
+  &__intro {
+    padding: clamp(32px, 5vw, 90px) clamp(20px, 3vw, 54px);
+  }
+
+  &__eyebrow {
+    margin: 0;
+    font-size: clamp(13px, 1.25vw, 22px);
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+  }
+
+  &__description {
+    max-width: 620px;
+    margin: clamp(40px, 4.7vw, 84px) 0 0;
+    font-size: clamp(18px, 1.7vw, 30px);
+    line-height: 1.65;
+  }
+
+  &__line {
+    display: block;
+    width: 24%;
+    height: 2px;
+    margin-top: clamp(32px, 4.8vw, 86px);
+    background: $color-black;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1122 / 1402;
+    object-fit: cover;
+  }
+
+  &__title {
+    position: absolute;
+    left: 6.2%;
+    bottom: 7.5%;
+    z-index: 1;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: clamp(64px, 11vw, 198px);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+    text-transform: uppercase;
+
+    span {
+      display: table;
+      padding: 0 0.16em 0.08em 0;
+      background: #f7f6f5;
+    }
+
+    span + span {
+      margin-left: 0.72em;
+    }
+  }
+}
+
+.about-section {
+  p {
+    margin: 0;
+  }
+
+  &__link {
+    display: inline-flex;
+    gap: 24px;
+    margin-top: 30px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid currentColor;
+    color: #333;
+    text-decoration: none;
+
+    &:hover {
+      color: $color-black;
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .about-hero {
+    grid-template-columns: 1fr;
+    padding: 20px;
+
+    &__intro {
+      padding: 24px 8px 38px;
+    }
+
+    &__description {
+      max-width: 480px;
+      margin-top: 32px;
+    }
+
+    &__line {
+      width: 70px;
+      margin-top: 28px;
+    }
+
+    &__image {
+      width: 85%;
+      margin-left: auto;
+    }
+
+    &__title {
+      left: 6%;
+      bottom: 8%;
+      font-size: clamp(58px, 14vw, 98px);
+    }
+  }
+}

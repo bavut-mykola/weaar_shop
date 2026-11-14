@@ -182,7 +182,7 @@
   width: 100%;
   aspect-ratio: 0.88;
   margin-bottom: 1px;
-  border-radius: 6px;
+  border-radius: 0;
 }
 
 .skeleton-name {
@@ -357,18 +357,18 @@
   min-height: 470px;
   flex-direction: column;
   padding: 14px 12px 12px;
-  border-radius: 10px;
+  border-radius: 0;
   box-sizing: border-box;
   background: $color-white;
 }
 
 .catalog-filter__section {
-  padding: 0 0 12px;
+  padding: 0 0 14px;
   border-bottom: 1px solid #cecece;
 }
 
 .catalog-filter__section + .catalog-filter__section {
-  padding-top: 12px;
+  padding-top: 14px;
 }
 
 .catalog-filter__title,
@@ -464,11 +464,11 @@ input[type="range"] {
   button {
     min-height: 22px;
     padding: 7px 12px;
-    border: 0;
-    border-radius: 11px;
+    border: 1px solid $color-black;
+    border-radius: 0;
     box-sizing: border-box;
     color: $color-black;
-    background: $color-gray-button;
+    background: $color-white;
     font-family: $font-main;
     font-size: 12px;
     line-height: 1;
@@ -479,7 +479,13 @@ input[type="range"] {
       color 150ms ease;
 
     &:hover {
-      background: #c6c6c6;
+      color: $color-white;
+      background: $color-black;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-black;
+      outline-offset: 3px;
     }
   }
 
@@ -498,7 +504,7 @@ input[type="range"] {
   min-height: 40px;
   margin: auto 2px 0;
   border: 0;
-  border-radius: 20px;
+  border-radius: 0;
   color: $color-white;
   background: $color-black;
   border: 1px solid $color-black;
@@ -581,12 +587,36 @@ input[type="range"] {
   min-width: 0;
 }
 
+.product-card-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  margin-top: 16px;
+  padding: 10px 16px;
+  border: 1px solid $color-black;
+  color: $color-white;
+  background: $color-black;
+  font-family: $font-main;
+  font-size: 14px;
+  text-decoration: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: color 160ms ease, background-color 160ms ease;
+
+  &:hover,
+  &:focus-visible {
+    color: $color-black;
+    background: $color-white;
+  }
+}
+
 .image-box {
   position: relative;
   width: 100%;
   aspect-ratio: 0.88;
   overflow: hidden;
-  border-radius: 6px;
+  border-radius: 0;
   background: $color-gray;
 }
 
@@ -664,7 +694,7 @@ input[type="range"] {
 
 .rating-stars {
   color: $color-rating;
-  font-size: 22px;
+  font-size: 14px;
   letter-spacing: 1px;
   line-height: 1;
   display: flex;
@@ -705,24 +735,37 @@ input[type="range"] {
   font-size: 14px;
 
   button {
-    border: 0;
+    border: 1px solid $color-black;
+    box-sizing: border-box;
     color: $color-black;
     background: $color-white;
     font-family: $font-main;
     font-size: inherit;
     line-height: 1;
     cursor: pointer;
-    transition: background-color 150ms ease;
+    transition: background-color 150ms ease, color 150ms ease;
 
     &:hover {
-      background: $color-gray-button;
+      background: $color-black;
+      color: $color-white;
+    }
+
+    &.catalog-pagination__ellipsis:hover {
+      background: $color-white;
+      color: $color-black;
+      cursor: default;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-black;
+      outline-offset: 3px;
     }
   }
 }
 
 .catalog-pagination__direction {
   padding: 10px 16px;
-  border-radius: 6px;
+  border-radius: 0;
   white-space: nowrap;
 }
 
@@ -752,11 +795,12 @@ input[type="range"] {
     height: 34px;
     place-items: center;
     padding: 0 6px;
-    border-radius: 6px;
+    border-radius: 0;
   }
 
   button.is-current {
-    background: $color-gray-button;
+    background: $color-black;
+    color: $color-white;
   }
 }
 
@@ -987,7 +1031,7 @@ input[type="range"] {
     place-items: center;
     padding: 0 0 3px;
     border: 0;
-    border-radius: 50%;
+    border-radius: 0;
     color: $color-black;
     background: transparent;
     font-family: $font-main;
@@ -1005,11 +1049,11 @@ input[type="range"] {
   }
 
   .catalog-filter__section {
-    padding-bottom: 10px;
+    padding-bottom: 12px;
   }
 
   .catalog-filter__section + .catalog-filter__section {
-    padding-top: 10px;
+    padding-top: 12px;
   }
 
   .catalog-filter__apply {
@@ -1044,7 +1088,7 @@ input[type="range"] {
   }
 
   .rating-stars {
-    font-size: 15px;
+    font-size: 10px;
     letter-spacing: 0;
   }
 
@@ -1078,7 +1122,7 @@ input[type="range"] {
       min-width: 24px;
       height: 24px;
       padding: 0 3px;
-      border-radius: 5px;
+      border-radius: 0;
     }
   }
 }

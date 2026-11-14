@@ -596,6 +596,9 @@ function Catalog() {
                           <p translate="no" className="product-price">
                             ${p.price}
                           </p>
+                          <Link to={`/catalog/product/${p.id}`} className="product-card-button">
+                            See product
+                          </Link>
                         </div>
                       </div>
                       ))
@@ -632,7 +635,7 @@ function Catalog() {
 
                       {startPage + (visiblePageCount - 1) < totalPages && (
                         <li>
-                          <button type="button" aria-label="More pages">
+                          <button className="catalog-pagination__ellipsis" type="button" aria-label="More pages">
                             ...
                           </button>
                         </li>

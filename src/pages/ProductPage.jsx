@@ -293,8 +293,9 @@ function ProductPage({ refreshCart }) {
             </div>
           </div>
 
+
           <div className="product-colors-box">
-            <h2 className="color-title">Select Colors</h2>
+            <h2 className="color-title">Select Color</h2>
 
             <div className="product-colors">
               {product.colors.map((c) => (
@@ -318,13 +319,14 @@ function ProductPage({ refreshCart }) {
                   </div>
                 </div>
               ))}
+              <span className="selected-color-name">{activeColor?.name}</span>
             </div>
           </div>
 
           <div
             className={`product-sizes-box ${maxQuantity === 0 ? "out-of-stock" : ""}`}
           >
-            <h2 className="size-title">Choose Size</h2>
+            <h2 className="size-title">Select Size</h2>
             <div className="size-options">
               {(product.sizes ?? []).map((s) => (
                 <div key={s} className="sizes-box">
@@ -357,6 +359,8 @@ function ProductPage({ refreshCart }) {
               <div className="quantity-action-box">
                 <button
                   className="arithmetic-btn"
+                  aria-label="Decrease quantity"
+                  type="button"
                   disabled={productQuantity <= 1}
                   onClick={() => {
                     setProductQuantity((quantity) => Math.max(1, quantity - 1));
@@ -372,6 +376,8 @@ function ProductPage({ refreshCart }) {
                 </span>
                 <button
                   className="arithmetic-btn"
+                  aria-label="Increase quantity"
+                  type="button"
                   disabled={maxQuantity === 0}
                   onClick={() => {
                     if (productQuantity === maxQuantity) {
@@ -410,6 +416,40 @@ function ProductPage({ refreshCart }) {
               )}
             </div>
           </div>
+
+          <section className="product-details-panel" aria-label="Product details">
+            {(product.details || product.description) && (
+              <details className="product-details-content" key={`details-${product.id}`}>
+                <summary>Details & Care</summary>
+                {product.description && <p>{product.description}</p>}
+                {product.details && (
+                <dl className="product-specifications">
+                  {[
+                    ["Material", product.details.material],
+                    ["Fit", product.details.fit],
+                    ["Gender", product.details.gender],
+                    ["Season", product.details.season],
+                    ["Made in", product.details.country],
+                    ["Care", product.details.care],
+                  ].filter(([, value]) => value).map(([label, value]) => (
+                    <div key={label}>
+                      <dt>{label}</dt>
+                      <dd>{value}</dd>
+                    </div>
+                  ))}
+                </dl>
+                )}
+              </details>
+            )}
+            {product.features?.length > 0 && (
+              <details className="product-features-content" key={`features-${product.id}`}>
+                <summary>Product Features</summary>
+                <ul className="product-feature-list">
+                  {product.features.map((feature) => <li key={feature}>{feature}</li>)}
+                </ul>
+              </details>
+            )}
+          </section>
         </div>
       )}
     </>

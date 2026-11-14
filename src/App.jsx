@@ -3,11 +3,18 @@ import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/footer";
 import Home from "./pages/Home";
+import About from "./pages/About";
+import Support from "./pages/Support";
+import DeliveryPayment from "./pages/DeliveryPayment";
+import ReturnsExchanges from "./pages/ReturnsExchanges";
+import SizeGuide from "./pages/SizeGuide";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Catalog from "./pages/Catalog";
 import SearchResult from "./components/SearchResult";
 import ProductPage from "./pages/ProductPage";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
+import OrderConfirmation from "./pages/OrderConfirmation";
 import Auth from "./components/Auth";
 import Account from "./pages/Account";
 import AccountSettings from "./pages/AccountSettings";
@@ -145,6 +152,16 @@ function App() {
     checkSession();
   }, [setIsAuthenticated, setUserEmail]);
 
+  if (location.pathname === "/auth") {
+    return (
+      <Auth
+        setIsAuthenticated={setIsAuthenticated}
+        setUserEmail={setUserEmail}
+        refreshCart={refreshCart}
+      />
+    );
+  }
+
   return (
     <div className="app-shell">
       <Navbar
@@ -195,6 +212,12 @@ function App() {
       <main className="app-content" aria-label="Main content">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/support" element={<Support />} />
+          <Route path="/delivery-payment" element={<DeliveryPayment />} />
+          <Route path="/returns-exchanges" element={<ReturnsExchanges />} />
+          <Route path="/size-guide" element={<SizeGuide />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/catalog" element={<Catalog key={location.search} />} />
           <Route path="/search" element={<SearchResult />} />
           <Route
@@ -203,20 +226,15 @@ function App() {
           />
           <Route path="/cart" element={<Cart refreshCart={refreshCart} />} />
           <Route
+            path="/order-confirmation/:orderId?"
+            element={<OrderConfirmation />}
+          />
+          <Route
             path="/checkout"
             element={
               <Checkout
                 isAuthenticated={isAuthenticated}
                 userEmail={userEmail}
-              />
-            }
-          />
-          <Route
-            path="/auth"
-            element={
-              <Auth
-                setIsAuthenticated={setIsAuthenticated}
-                setUserEmail={setUserEmail}
                 refreshCart={refreshCart}
               />
             }

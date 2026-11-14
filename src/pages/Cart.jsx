@@ -180,6 +180,38 @@ function Cart({ refreshCart }) {
     }
   }
 
+  const [recomendedProducts, setRecomendedProducts] = useState([]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    async function getSimilarProducts() {
+      try {
+        const res = await fetch(`${API_URL}/api/cart/recommendations`, {
+          credentials: "include",
+          headers: { "X-Guest-ID": getGuestId() },
+          signal: controller.signal,
+        });
+
+        const result = await res.json();
+
+        if (!res.ok) {
+          throw new Error(result.error);
+        }
+
+        setRecomendedProducts(result);
+      } catch (error) {
+        if (error.name !== "AbortError") {
+          console.log(error);
+          setRecomendedProducts([]);
+        }
+      }
+    }
+
+    getSimilarProducts();
+    return () => controller.abort();
+  }, [products]);
+
   return (
     <>
       {isLoading ? (
@@ -197,96 +229,93 @@ function Cart({ refreshCart }) {
             <div className="cart-main-box">
               <div className="cart-products-column">
                 <div className="cart-products-container">
-                {products.map((p) => (
-                  <div className="cart-product-box" key={p.id}>
-                    <div className="cart-image-box">
-                      {p.image && (
-                        <img
-                          src={p.image}
-                          alt={p.name}
-                          className="product-cart-image"
-                        />
-                      )}
-                    </div>
-                    <div className="product-cart-info-box">
-                      <div className="product-cart-info-top">
-                        <h2 className="product-cart-name">{p.name}</h2>
-                        <p className="product-cart-size">
-                          <span>Size:</span> {sizesVariables[p.size]}
-                        </p>
-                        <p className="product-cart-color">
-                          <span>Color:</span> {p.color}
-                        </p>
-                      </div>
-                      <div className="product-cart-info-bottom">
-                        {p.oldPrice ? (
-                          <h3 className="product-cart-price">
-                            ${p.price} <span>${p.oldPrice}</span>
-                          </h3>
-                        ) : (
-                          <h3 className="product-cart-price">${p.price}</h3>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="product-cart-actions-box">
-                      <div className="product-cart-actions-top">
-                        <svg
-                          className="product-cart-delete-btn"
-                          aria-hidden="true"
-                          viewBox="0 0 40 40"
-                          fill="none"
-                          onClick={() => deleteFromCart(p)}
-                        >
-                          <path
-                            d="M5 10H8.33333M8.33333 10H35M8.33333 10L8.33333 33.3334C8.33333 34.2174 8.68452 35.0653 9.30964 35.6904C9.93477 36.3155 10.7826 36.6667 11.6667 36.6667H28.3333C29.2174 36.6667 30.0652 36.3155 30.6904 35.6904C31.3155 35.0653 31.6667 34.2174 31.6667 33.3334V10M13.3333 10V6.66671C13.3333 5.78265 13.6845 4.93481 14.3096 4.30968C14.9348 3.68456 15.7826 3.33337 16.6667 3.33337H23.3333C24.2174 3.33337 25.0652 3.68456 25.6904 4.30968C26.3155 4.93481 26.6667 5.78265 26.6667 6.66671V10M16.6667 18.3334V28.3334M23.3333 18.3334V28.3334"
-                            stroke="currentColor"
-                            strokeWidth="3.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
+                  {products.map((p) => (
+                    <div className="cart-product-box" key={p.id}>
+                      <div className="cart-image-box">
+                        {p.image && (
+                          <img
+                            src={p.image}
+                            alt={p.name}
+                            className="product-cart-image"
                           />
-                        </svg>
-                      </div>
-                      <div className="product-cart-quantity-box">
-                        <div className="product-cart-actions-bottom">
-                          <button
-                            className="product-cart-arithmetic-btn"
-                            onClick={() => decreaseQuantity(p)}
-                          >
-                            -
-                          </button>
-                          <span className="product-cart-quantity">
-                            {p.quantity}
-                          </span>
-                          <button
-                            className="product-cart-arithmetic-btn"
-                            disabled={isMaxStockId === p.id}
-                            onClick={() => increaseQuantity(p)}
-                          >
-                            +
-                          </button>
-                        </div>
-                        {isMaxStockId === p.id && (
-                          <p className="cart-stock-message" role="status">
-                            No more in stock
-                          </p>
                         )}
                       </div>
+                      <div className="product-cart-info-box">
+                        <div className="product-cart-info-top">
+                          <h2 className="product-cart-name">{p.name}</h2>
+                          <p className="product-cart-size">
+                            <span>Size:</span> {sizesVariables[p.size]}
+                          </p>
+                          <p className="product-cart-color">
+                            <span>Color:</span> {p.color}
+                          </p>
+                        </div>
+                        <div className="product-cart-info-bottom">
+                          {p.oldPrice ? (
+                            <h3 className="product-cart-price">
+                              ${p.price} <span>${p.oldPrice}</span>
+                            </h3>
+                          ) : (
+                            <h3 className="product-cart-price">${p.price}</h3>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="product-cart-actions-box">
+                        <div className="product-cart-actions-top">
+                          <svg
+                            className="product-cart-delete-btn"
+                            aria-hidden="true"
+                            viewBox="0 0 40 40"
+                            fill="none"
+                            onClick={() => deleteFromCart(p)}
+                          >
+                            <path
+                              d="M5 10H8.33333M8.33333 10H35M8.33333 10L8.33333 33.3334C8.33333 34.2174 8.68452 35.0653 9.30964 35.6904C9.93477 36.3155 10.7826 36.6667 11.6667 36.6667H28.3333C29.2174 36.6667 30.0652 36.3155 30.6904 35.6904C31.3155 35.0653 31.6667 34.2174 31.6667 33.3334V10M13.3333 10V6.66671C13.3333 5.78265 13.6845 4.93481 14.3096 4.30968C14.9348 3.68456 15.7826 3.33337 16.6667 3.33337H23.3333C24.2174 3.33337 25.0652 3.68456 25.6904 4.30968C26.3155 4.93481 26.6667 5.78265 26.6667 6.66671V10M16.6667 18.3334V28.3334M23.3333 18.3334V28.3334"
+                              stroke="currentColor"
+                              strokeWidth="3.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </div>
+                        <div className="product-cart-quantity-box">
+                          <div className="product-cart-actions-bottom">
+                            <button
+                              className="product-cart-arithmetic-btn"
+                              onClick={() => decreaseQuantity(p)}
+                            >
+                              -
+                            </button>
+                            <span className="product-cart-quantity">
+                              {p.quantity}
+                            </span>
+                            <button
+                              className="product-cart-arithmetic-btn"
+                              disabled={isMaxStockId === p.id}
+                              onClick={() => increaseQuantity(p)}
+                            >
+                              +
+                            </button>
+                          </div>
+                          {isMaxStockId === p.id && (
+                            <p className="cart-stock-message" role="status">
+                              No more in stock
+                            </p>
+                          )}
+                        </div>
+                      </div>
                     </div>
+                  ))}
+                  <div className="cart-clear-btn-box">
+                    <button type="button" onClick={clearCart}>
+                      Clear Cart
+                    </button>
                   </div>
-                ))}
-                <div className="cart-clear-btn-box">
-                  <button type="button" onClick={clearCart}>
-                    Clear Cart
-                  </button>
-                </div>
                 </div>
 
                 <div className="cart-continue-shopping-box">
-                  <Link
-                    to="/catalog"
-                    className="cart-continue-shopping-button"
-                  >
+                  <Link to="/catalog" className="cart-continue-shopping-button">
                     Continue Shopping
                   </Link>
                 </div>
@@ -333,6 +362,98 @@ function Cart({ refreshCart }) {
                 Continue Shopping
               </Link>
             </div>
+          )}
+          <section
+            className="cart-information"
+            aria-label="Shopping information"
+          >
+            <div>
+              <h2>Delivery</h2>
+              <p>
+                Choose your preferred delivery method and enter your shipping
+                details at checkout. Check your address and contact number
+                carefully so your order can reach you. Review the delivery fee
+                in your order summary before placing your order.
+              </p>
+            </div>
+            <div>
+              <h2>Before You Order</h2>
+              <p>
+                Double-check your selected sizes, colors, and quantities before
+                proceeding to checkout. You can adjust quantities or remove
+                items directly in your cart. If you’re unsure about a piece,
+                revisit its product page to review the photos and details.
+              </p>
+            </div>
+            <div>
+              <h2>Need Help?</h2>
+              <p>
+                Have a question about a product or your order? Use the contact
+                information in the footer to get in touch. Include the product
+                name or, if you’ve already placed an order, your order reference
+                to help us understand your question.
+              </p>
+            </div>
+          </section>
+          {recomendedProducts.length > 0 && (
+            <section className="cart-recommendations" aria-labelledby="cart-recommendations-title">
+              <div className="cart-recommendations-header">
+                <div>
+                  <h2 id="cart-recommendations-title" className="cart-recommendations-title">
+                    You May Also Like
+                  </h2>
+                  <p className="cart-recommendations-subtitle">
+                    A few more pieces to explore.
+                  </p>
+                </div>
+                <Link to="/catalog" className="cart-recommendations-view-all">
+                  View all products <span aria-hidden="true">→</span>
+                </Link>
+              </div>
+              <div className="cart-recommendations-grid">
+              {recomendedProducts.map((product) => (
+                <article
+                  key={product.id}
+                  className="cart-recommendation"
+                >
+                  <Link
+                    to={`/catalog/product/${product.id}`}
+                    className="cart-recommendation-image-link"
+                  >
+                  <img
+                    src={product.images?.front}
+                    alt={product.name}
+                    loading="lazy"
+                    className="cart-recommendation-image"
+                  />
+                  </Link>
+                  <h3>{product.name}</h3>
+                  <div className="cart-recommendation-rating" aria-label={`${product.rating} out of 5 stars`}>
+                    <span className="cart-recommendation-stars" aria-hidden="true">
+                      {[0, 1, 2, 3, 4].map((index) => (
+                        <span
+                          key={index}
+                          style={{ "--fill": `${Math.min(Math.max(Number(product.rating) - index, 0), 1) * 100}%` }}
+                        >
+                          ★
+                        </span>
+                      ))}
+                    </span>
+                    <span>{product.rating} / 5</span>
+                  </div>
+                  <p className="cart-recommendation-price" translate="no">
+                    ${Number(product.price).toFixed(2)}
+                  </p>
+                  <Link
+                    to={`/catalog/product/${product.id}`}
+                    className="cart-recommendation-button"
+                  >
+                    See product
+                  </Link>
+                </article>
+              ))}
+              </div>
+            </section>
           )}
         </>
       )}

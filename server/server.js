@@ -475,6 +475,7 @@ app.get("/api/products/:id", async (req, res) => {
     p.price,
     p.old_price AS "oldPrice",
     p.short_description AS "shortDescription",
+    p.description,
     (
       SELECT json_agg(s.size)
       FROM product_sizes AS s
@@ -1569,19 +1570,22 @@ app.get(
   },
 );
 
-// Prepare with a same-origin POST so a URL cannot inject a guest cart ID.
 app.post("/api/auth/google/prepare", (req, res) => {
   if (req.get("Origin") !== new URL(frontendUrl).origin) {
     return res.status(403).json({ message: "Invalid request origin" });
   }
   if (!googleAuthConfigured) {
-    return res.status(503).json({ message: "Google sign-in is not configured yet." });
+    return res
+      .status(503)
+      .json({ message: "Google sign-in is not configured yet." });
   }
 
   const guestId = req.get("X-Guest-ID");
   const validGuestId =
     typeof guestId === "string" &&
-    /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(guestId);
+    /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+      guestId,
+    );
   const token = randomBytes(32).toString("hex");
   req.session.googleCart = {
     token,
@@ -1594,45 +1598,358 @@ app.post("/api/auth/google/prepare", (req, res) => {
   return req.session.save((error) => {
     if (error) {
       console.error("Google preparation session error:", error);
-      return res.status(500).json({ message: "Unable to start Google sign-in" });
+      return res
+        .status(500)
+        .json({ message: "Unable to start Google sign-in" });
     }
     return res.json({ token });
   });
 });
 
-app.get(
-  "/api/auth/google",
-  requireGoogleAuth,
-  (req, res, next) => {
-    const pending = req.session.googleCart;
-    delete req.session.googleCart;
-    if (
-      req.query.token && (
-        !pending ||
-        typeof req.query.token !== "string" ||
-        req.query.token !== pending.token ||
-        Date.now() - pending.createdAt > 10 * 60 * 1000 ||
-        pending.accountId !== (req.session.accountId || null)
-      )
-    ) {
-      return res.redirect(`${frontendUrl}/auth?error=google_auth`);
+app.get("/api/auth/google", requireGoogleAuth, (req, res, next) => {
+  const pending = req.session.googleCart;
+  delete req.session.googleCart;
+  if (
+    req.query.token &&
+    (!pending ||
+      typeof req.query.token !== "string" ||
+      req.query.token !== pending.token ||
+      Date.now() - pending.createdAt > 10 * 60 * 1000 ||
+      pending.accountId !== (req.session.accountId || null))
+  ) {
+    return res.redirect(`${frontendUrl}/auth?error=google_auth`);
+  }
+  const context = req.query.token
+    ? pending
+    : {
+        guestId: null,
+        accountId: req.session.accountId || null,
+        createdAt: Date.now(),
+      };
+  return passport.authenticate("google", {
+    scope: ["profile", "email"],
+    session: false,
+    state: {
+      guestId: context.guestId,
+      accountId: context.accountId,
+      createdAt: context.createdAt,
+    },
+  })(req, res, next);
+});
+
+app.post("/api/orders", async (req, res) => {
+  const {
+    email,
+    phone,
+    deliveryMethod,
+    city,
+    branchNumber,
+    address,
+    paymentMethod,
+  } = req.body;
+
+  const { cartOwnerId, cartOwnerColumn, error } = getCartOwner(req);
+
+  if (error) {
+    return res.status(400).json({ error });
+  }
+
+  if (typeof email !== "string" || !email.trim()) {
+    return res.status(400).json({ message: "Email is required" });
+  }
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return res
+      .status(400)
+      .json({ message: "Please enter a valid email address" });
+  }
+
+  if (phone !== undefined && phone !== null && phone !== "") {
+    if (typeof phone !== "string" || !/^\+380\d{9}$/.test(phone)) {
+      return res
+        .status(400)
+        .json({ message: "Please enter a valid phone number" });
     }
-    const context = req.query.token ? pending : {
-      guestId: null,
-      accountId: req.session.accountId || null,
-      createdAt: Date.now(),
-    };
-    return passport.authenticate("google", {
-      scope: ["profile", "email"],
-      session: false,
-      state: {
-        guestId: context.guestId,
-        accountId: context.accountId,
-        createdAt: context.createdAt,
-      },
-    })(req, res, next);
-  },
-);
+  }
+
+  if (deliveryMethod !== "post_office" && deliveryMethod !== "home_delivery") {
+    return res.status(400).json({ message: "Invalid delivery method" });
+  }
+
+  if (typeof city !== "string" || !city.trim()) {
+    return res.status(400).json({ message: "City is required" });
+  }
+
+  if (deliveryMethod === "post_office") {
+    if (typeof branchNumber !== "string" || !branchNumber.trim()) {
+      return res.status(400).json({ message: "Branch number is required" });
+    }
+  }
+
+  if (deliveryMethod === "home_delivery") {
+    if (typeof address !== "string" || !address.trim()) {
+      return res.status(400).json({ message: "address is required" });
+    }
+  }
+
+  if (paymentMethod !== "card" && paymentMethod !== "cash") {
+    return res.status(400).json({
+      message: "Invalid payment method",
+    });
+  }
+
+  let client = null;
+
+  try {
+    client = await sessionPool.connect();
+
+    await client.query(`BEGIN`);
+
+    const cartResult = await client.query(
+      `
+          SELECT cart.*, products.name, products.price FROM cart
+          JOIN products ON cart.product_id = products.id
+          WHERE cart.${cartOwnerColumn} = $1
+          FOR UPDATE OF cart
+      `,
+      [cartOwnerId],
+    );
+
+    if (cartResult.rows.length === 0) {
+      await client.query(`ROLLBACK`);
+      return res.status(400).json({ message: "Your cart is empty" });
+    }
+
+    let totalPrice = 0;
+
+    for (const item of cartResult.rows) {
+      const price = Number(item.price);
+      const totalProductPrice = price * item.quantity;
+      totalPrice += totalProductPrice;
+    }
+
+    const userId = cartOwnerColumn === "account_id" ? cartOwnerId : null;
+    const guestId = cartOwnerColumn === "guest_id" ? cartOwnerId : null;
+
+    const orderResult = await client.query(
+      `
+          INSERT INTO orders
+           (user_id,
+            email, 
+            phone, 
+            delivery_method, 
+            city, 
+            branch_number, 
+            address, 
+            payment_method, 
+            total_price,
+            guest_id)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+            RETURNING id
+      `,
+      [
+        userId,
+        email,
+        phone,
+        deliveryMethod,
+        city,
+        deliveryMethod === "post_office" ? branchNumber : null,
+        deliveryMethod === "home_delivery" ? address : null,
+        paymentMethod,
+        totalPrice,
+        guestId,
+      ],
+    );
+
+    const orderId = orderResult.rows[0].id;
+
+    for (const item of cartResult.rows) {
+      await client.query(
+        `
+            INSERT INTO order_items
+             (order_id,
+              product_id, 
+              product_name, 
+              color, 
+              size,
+              quantity, 
+              unit_price)
+            VALUES ($1, $2, $3, $4, $5, $6, $7)
+        `,
+        [
+          orderId,
+          item.product_id,
+          item.name,
+          item.color,
+          item.size,
+          item.quantity,
+          item.price,
+        ],
+      );
+    }
+
+    const cartIds = cartResult.rows.map((item) => item.id);
+
+    await client.query(
+      `
+          DELETE FROM cart
+          WHERE cart.${cartOwnerColumn} = $1
+          AND id = ANY($2)
+      `,
+      [cartOwnerId, cartIds],
+    );
+
+    await client.query(`COMMIT`);
+
+    return res
+      .status(201)
+      .json({ message: "Order placed successfully", orderId });
+  } catch (error) {
+    if (client !== null) {
+      await client.query(`ROLLBACK`);
+    }
+    console.error(error);
+    return res.status(500).json({ message: "Failed to place order" });
+  } finally {
+    if (client !== null) {
+      client.release();
+    }
+  }
+});
+
+app.get("/api/orders/:id", async (req, res) => {
+  const orderId = Number(req.params.id);
+
+  if (!Number.isInteger(orderId) || orderId <= 0) {
+    return res.status(400).json({ message: "Invalid order ID" });
+  }
+
+  const { cartOwnerId, cartOwnerColumn, error } = getCartOwner(req);
+
+  if (error) {
+    return res.status(400).json({ error });
+  }
+
+  const orderOwnerColumn =
+    cartOwnerColumn === "account_id" ? "user_id" : "guest_id";
+
+  try {
+    const orderResult = await sessionPool.query(
+      `
+          SELECT * FROM orders
+          WHERE id = $1
+          AND ${orderOwnerColumn} = $2
+        `,
+      [orderId, cartOwnerId],
+    );
+
+    if (orderResult.rows.length === 0) {
+      return res.status(404).json({ message: "Order not found" });
+    }
+
+    const orderItemsResult = await sessionPool.query(
+      `
+          SELECT * FROM order_items
+          WHERE order_id = $1
+      `,
+      [orderId],
+    );
+
+    return res
+      .status(200)
+      .json({ order: orderResult.rows[0], items: orderItemsResult.rows });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Failed to retrieve order" });
+  }
+});
+
+app.get("/api/cart/recommendations", async (req, res) => {
+  const { cartOwnerId, cartOwnerColumn, error } = getCartOwner(req);
+
+  if (error) {
+    return res.status(400).json({ error });
+  }
+  try {
+    const tagsResult = await sessionPool.query(
+      `
+          SELECT DISTINCT product_tags.tag_id
+          FROM product_tags
+          JOIN cart ON product_tags.product_id = cart.product_id
+          WHERE cart.${cartOwnerColumn} = $1
+      `,
+      [cartOwnerId],
+    );
+
+    const tagIds = tagsResult.rows.map((tag) => tag.tag_id);
+
+    const recommendationsResult = await sessionPool.query(
+      `
+          SELECT product_id, COUNT(tag_id) AS matching_tags
+          FROM product_tags
+          WHERE tag_id = ANY($1)
+          AND product_id NOT IN (
+            SELECT product_id
+            FROM cart
+            WHERE cart.${cartOwnerColumn} = $2
+          )
+            AND EXISTS (
+              SELECT 1
+              FROM product_colors
+              JOIN product_inventory
+                ON product_inventory.color_id = product_colors.id
+              WHERE product_colors.product_id = product_tags.product_id
+              AND product_inventory.quantity > 0
+          )
+          GROUP BY product_id
+          ORDER BY matching_tags DESC, product_id ASC
+          LIMIT 4
+      `,
+      [tagIds, cartOwnerId],
+    );
+
+    const recommendedIds = recommendationsResult.rows.map(
+      (product) => product.product_id,
+    );
+
+    const productsResult = await sessionPool.query(
+      `
+          SELECT
+            id,
+            name,
+            price,
+            old_price,
+            rating,
+            is_featured,
+            category,
+            subcategory,
+            (
+              SELECT json_object_agg(i.side, i.image_url)
+              FROM product_images AS i
+              WHERE i.color_id = (
+                SELECT c.id
+                FROM product_colors AS c
+                WHERE c.product_id = p.id
+                ORDER BY c.id
+                LIMIT 1
+              )
+            ) AS images
+          FROM products AS p
+          WHERE p.id = ANY($1)
+          ORDER BY array_position($1, p.id)
+      `,
+      [recommendedIds],
+    );
+
+    return res.status(200).json(productsResult.rows);
+  } catch (error) {
+    console.error("Error fetching recommendations:", error);
+
+    return res.status(500).json({
+      error: "Failed to fetch recommendations",
+    });
+  }
+});
 
 const port = process.env.PORT || 3000;
 

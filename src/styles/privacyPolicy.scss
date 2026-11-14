@@ -1,0 +1,33 @@
+@use "variables" as *;
+
+.privacy-policy {
+  max-width: 1800px;
+  margin: 0 auto;
+  box-sizing: border-box;
+
+  h1 {
+    margin: 0 0 30px;
+    color: #333;
+    font-size: clamp(26px, 2.2vw, 40px);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.035em;
+  }
+
+  h2 {
+    margin-top: 40px;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    color: inherit;
+    text-underline-offset: 3px;
+
+    &:hover {
+      color: $color-black;
+    }
+  }
+}

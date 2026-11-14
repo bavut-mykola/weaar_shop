@@ -166,6 +166,72 @@ function Home() {
           />
         </div>
       </section>
+
+      <section className="home-guide" aria-labelledby="home-guide-title">
+        <h2 id="home-guide-title">Welcome to the W.EAR online store</h2>
+        <p>
+          Discover everyday clothing that fits your life and your style. Explore
+          our collection of jeans, T-shirts, hoodies, and outerwear, and put
+          together a wardrobe you’ll love to wear.
+        </p>
+
+        <h3>Why shop at W.EAR?</h3>
+        <p>
+          Great outfits start with pieces that feel right. When choosing your
+          next wardrobe essential, look for:
+        </p>
+        <ol>
+          <li>Quality. Well-finished details and fabrics suited to everyday wear.</li>
+          <li>Versatility. Simple pieces that work with the clothes you already own.</li>
+          <li>Style. Familiar silhouettes with room for your own interpretation.</li>
+          <li>Practicality. Layers and essentials for different seasons and occasions.</li>
+          <li>Comfort. A fit that lets you move freely throughout your day.</li>
+        </ol>
+        <p>
+          Browse the collection to find a new favourite or build a look around
+          the essentials. A few thoughtfully chosen pieces can open up plenty
+          of possibilities.
+        </p>
+        <p>Explore the everyday staples in our online store:</p>
+        <ul>
+          <li>T-shirts — an easy starting point for casual outfits and layering.</li>
+          <li>Jeans — a wardrobe staple to dress up or keep relaxed.</li>
+          <li>Hoodies — comfortable layers for laid-back days.</li>
+          <li>Outerwear — the finishing touch when the temperature drops.</li>
+        </ul>
+
+        <h3>The details that make a difference</h3>
+        <p>
+          The right clothing balances how it looks with how it feels. Check each
+          product’s description and photos to get to know its fabric, shape, and
+          finishing details before you choose.
+        </p>
+        <p>Here are a few things to consider:</p>
+        <ul>
+          <li>Fabric — choose a material that suits the weather and your routine.</li>
+          <li>Fit — compare relaxed, regular, and fitted shapes to find your preference.</li>
+          <li>Layers — leave enough room to wear your favourite pieces together.</li>
+          <li>Details — look at pockets, fastenings, cuffs, and seams.</li>
+          <li>Care — follow the garment’s care label to help keep it looking its best.</li>
+        </ul>
+
+        <h3>How to choose your next everyday favourite</h3>
+        <p>
+          Start with how you’ll wear it. Whether you’re getting dressed for a
+          busy day, a relaxed weekend, or a change in season, choose pieces that
+          suit your plans and feel natural to you.
+        </p>
+        <p>
+          Use the catalog’s categories and filters to narrow down your options.
+          Take a closer look at the product photos and available sizes, and
+          consider how each piece will work with the rest of your wardrobe.
+        </p>
+        <p>
+          Think about your preferred fit, too. Allow room for movement and any
+          layers you plan to wear underneath. Finish with colours and shapes
+          you enjoy, and make the look your own.
+        </p>
+      </section>
     </div>
   );
 }

@@ -1,0 +1,226 @@
+@use "variables" as *;
+
+.returns {
+  max-width: 1800px;
+  margin: 0 auto;
+  border-bottom: 1px solid #eeeeee;
+  background: $color-white;
+  color: $color-black;
+  font-family: Arial, sans-serif;
+  font-size: clamp(16px, 1.5vw, 23px);
+  line-height: 1.5;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    margin: 0;
+  }
+
+  &__intro {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    align-items: center;
+    gap: 60px;
+    padding: clamp(40px, 5vw, 80px) clamp(20px, 5vw, 90px) clamp(50px, 7vw, 110px);
+
+    h1 {
+      font-size: clamp(38px, 6.2vw, 94px);
+      line-height: 1.06;
+      font-weight: 400;
+      letter-spacing: -0.035em;
+      text-transform: uppercase;
+    }
+  }
+
+  &__summary {
+    max-width: 500px;
+    color: #484848;
+  }
+
+  &__accent {
+    display: block;
+    width: 66px;
+    height: 2px;
+    margin-bottom: 20px;
+    background: $color-black;
+  }
+
+  &__terms {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    align-items: center;
+    padding: clamp(32px, 4vw, 64px) clamp(24px, 9vw, 160px);
+    background: #f0f0f0;
+
+    > div + div {
+      padding-left: clamp(30px, 9vw, 140px);
+      border-left: 1px solid #aaa;
+    }
+
+    h2 {
+      margin-bottom: 12px;
+      font-size: clamp(13px, 1.2vw, 18px);
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+  }
+
+  &__days {
+    font-size: clamp(42px, 5vw, 76px);
+    line-height: 1.15;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+  }
+
+  &__heading {
+    font-size: clamp(19px, 2vw, 30px);
+    line-height: 1.4;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  &__process {
+    padding: clamp(40px, 5vw, 80px) clamp(20px, 4vw, 72px);
+
+    > h2 {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      &::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: #bcbcbc;
+      }
+    }
+  }
+
+  &__steps {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(24px, 3vw, 48px);
+    margin: clamp(32px, 4vw, 64px) 0 0;
+    padding: 0;
+    list-style: none;
+
+    h3 {
+      margin: 24px 0 12px;
+      font-size: clamp(19px, 1.7vw, 26px);
+      line-height: 1.3;
+    }
+
+    p {
+      color: #555;
+      font-size: 0.9em;
+    }
+
+    a {
+      color: inherit;
+      text-underline-offset: 3px;
+      &:hover {
+        color: $color-black;
+      }
+    }
+
+    li:not(:last-child) .returns__number::after {
+      content: "";
+      width: 22%;
+      height: 1px;
+      background: #858585;
+    }
+  }
+
+  &__number {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.1em;
+  }
+
+  &__conditions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: clamp(20px, 3vw, 48px);
+    padding: 0 clamp(20px, 4vw, 72px) clamp(50px, 6vw, 96px);
+
+    > div:first-child {
+      padding-right: 36px;
+    }
+
+    > div + div {
+      padding-left: clamp(24px, 5vw, 80px);
+      border-left: 1px solid #ccc;
+    }
+
+    ul {
+      display: grid;
+      gap: 12px;
+      margin: 28px 0 0;
+      padding: 0;
+      list-style: none;
+      color: #484848;
+      font-size: 0.95em;
+    }
+
+    li {
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+    }
+
+    li span {
+      flex: 0 0 24px;
+      color: $color-black;
+      font-size: 1.5em;
+      line-height: 1;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .returns__steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 36px;
+  }
+}
+
+@media (max-width: 600px) {
+  .returns {
+    &__intro,
+    &__terms,
+    &__conditions {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    &__intro {
+      gap: 32px;
+    }
+
+    &__terms > div + div,
+    &__conditions > div + div {
+      padding: 28px 0 0;
+      border-left: 0;
+      border-top: 1px solid #ccc;
+    }
+
+    &__conditions > div:first-child {
+      padding-right: 0;
+    }
+  }
+}
+
+@media (max-width: 380px) {
+  .returns__steps {
+    grid-template-columns: 1fr;
+  }
+}

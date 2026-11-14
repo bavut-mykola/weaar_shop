@@ -1,11 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "../styles/checkout.scss";
 import { API_URL } from "../api";
 import { getGuestId } from "../utils/guestCart";
 import { validateExpiration } from "../utils/validateExpiration";
 
-function Checkout({ userEmail, isAuthenticated }) {
+function Checkout({ userEmail, isAuthenticated, refreshCart }) {
+  const navigate = useNavigate();
   const [cartData, setCartData] = useState([]);
   async function loadCartData() {
     try {
@@ -47,7 +48,7 @@ function Checkout({ userEmail, isAuthenticated }) {
 
   const total = subTotal - priceafterDiscount + deliveryFee;
 
-  const [deliveryPlace, setDeliveryPlace] = useState("office");
+  const [deliveryPlace, setDeliveryPlace] = useState("post_office");
 
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -74,6 +75,186 @@ function Checkout({ userEmail, isAuthenticated }) {
     expiration: "",
     cvv: "",
   });
+
+  const [submitError, setSubmitError] = useState("");
+  const [submitLoading, setSubmitLoading] = useState(false);
+
+  function validateEmail(email) {
+    if (!email.trim()) {
+      return "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return "Please enter a valid email address";
+    } else {
+      return "";
+    }
+  }
+
+  function validatePhone(phone) {
+    const clearPhone = phone.replaceAll(" ", "");
+
+    if (
+      clearPhone !== "" &&
+      !/^\+380\d{9}$/.test(clearPhone) &&
+      clearPhone !== "+380"
+    ) {
+      return "Please enter a valid phone number";
+    }
+
+    return "";
+  }
+
+  function validateCity(city) {
+    if (!city.trim()) {
+      return "City is required";
+    } else if (!/(?=.*\p{L})^[\p{L}\p{M} \-\x27’ʼ]+$/u.test(city.trim())) {
+      return "Please enter a valid city name";
+    } else {
+      return "";
+    }
+  }
+
+  function validateBranchNumber(branchNumber) {
+    if (deliveryPlace !== "post_office") return "";
+
+    if (!branchNumber.trim()) {
+      return "Post office branch is required";
+    } else if (!/^\d+$/.test(branchNumber) || Number(branchNumber) <= 0) {
+      return "Please enter a valid branch number";
+    } else {
+      return "";
+    }
+  }
+
+  function validateAddress(address) {
+    if (deliveryPlace !== "home_delivery") return "";
+
+    if (!address.trim()) {
+      return "Delivery address is required";
+    } else if (
+      !/(?=.*[\p{L}\p{N}])^[\p{L}\p{M}\p{N}\s.,\x27’ʼ\-/#():№]+$/u.test(address)
+    ) {
+      return "Please enter a valid delivery address";
+    } else {
+      return "";
+    }
+  }
+
+  function validateCardNumber(cardNumber) {
+    if (paymentMethod !== "card") return "";
+
+    if (!cardNumber.trim()) {
+      return "Card number is required";
+    } else if (!/^\d{16}$/.test(cardNumber.replace(/\s/g, ""))) {
+      return "Please enter a valid card number";
+    } else {
+      return "";
+    }
+  }
+
+  function validateCardHolder(cardHolder) {
+    if (paymentMethod !== "card") return "";
+
+    if (!cardHolder.trim()) {
+      return "Cardholder name is required";
+    } else if (
+      !/(?=.*\p{L})^[\p{L}\p{M} \-\x27’ʼ]+$/u.test(cardHolder.trim())
+    ) {
+      return "Please enter a valid cardholder name";
+    } else {
+      return "";
+    }
+  }
+
+  function validateExpirationField(expiration) {
+    if (paymentMethod !== "card") return "";
+
+    if (!expiration.trim()) {
+      return "Expiration date is required";
+    } else if (!validateExpiration(expiration)) {
+      return "Invalid expiration date";
+    } else {
+      return "";
+    }
+  }
+
+  function validateCVV(CVV) {
+    if (paymentMethod !== "card") return "";
+
+    if (!CVV.trim()) {
+      return "CVV is required";
+    } else if (!/^\d{3}$/.test(CVV)) {
+      return "Please enter a valid CVV";
+    } else {
+      return "";
+    }
+  }
+
+  async function handlePlaceOrder() {
+    setSubmitError("");
+
+    const validationErrors = {
+      email: validateEmail(isAuthenticated ? userEmail : email),
+      phone: validatePhone(phone),
+      city: validateCity(city),
+      branch: validateBranchNumber(branchNumber),
+      address: validateAddress(address),
+      cardNumber: validateCardNumber(cardNumber),
+      cardholderName: validateCardHolder(cardHolder),
+      expiration: validateExpirationField(expiration),
+      cvv: validateCVV(CVV),
+    };
+
+    setErrors((prev) => ({
+      ...prev,
+      ...validationErrors,
+    }));
+
+    if (Object.values(validationErrors).some((error) => error !== "")) {
+      setSubmitError(
+        "Please fill in all required fields before placing your order.",
+      );
+      return;
+    }
+
+    const orderData = {
+      email: email,
+      phone: phone ? phone : null,
+      deliveryMethod: deliveryPlace,
+      city: city,
+      branchNumber: deliveryPlace === "post_office" ? branchNumber : null,
+      address: deliveryPlace === "home_delivery" ? address : null,
+      paymentMethod: paymentMethod,
+    };
+
+    try {
+      setSubmitLoading(true);
+
+      const res = await fetch(`${API_URL}/api/orders`, {
+        method: "POST",
+        body: JSON.stringify(orderData),
+        headers: {
+          "X-Guest-ID": getGuestId(),
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        setSubmitError(result.message);
+        return;
+      }
+
+      refreshCart();
+      navigate(`/order-confirmation/${result.orderId}`);
+    } catch (error) {
+      console.log(error);
+      setSubmitError("Something went wrong. Please try again.");
+    } finally {
+      setSubmitLoading(false);
+    }
+  }
 
   return (
     <div className="checkout-page">
@@ -107,22 +288,10 @@ function Checkout({ userEmail, isAuthenticated }) {
                         setEmail(e.target.value);
                       }}
                       onBlur={() => {
-                        if (!email.trim()) {
-                          setErrors((prev) => ({
-                            ...prev,
-                            email: "Email is required",
-                          }));
-                        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                          setErrors((prev) => ({
-                            ...prev,
-                            email: "Please enter a valid email address",
-                          }));
-                        } else {
-                          setErrors((prev) => ({
-                            ...prev,
-                            email: "",
-                          }));
-                        }
+                        setErrors((prev) => ({
+                          ...prev,
+                          email: validateEmail(email),
+                        }));
                       }}
                     />
                     {errors.email ? (
@@ -153,32 +322,14 @@ function Checkout({ userEmail, isAuthenticated }) {
                       }
                     }}
                     onBlur={() => {
-                      const clearPhone = phone.replaceAll(" ", "");
-
-                      if (clearPhone === "+380") {
+                      if (phone.replaceAll(" ", "") === "+380") {
                         setPhone("");
-                        setErrors((prev) => ({
-                          ...prev,
-                          phone: "",
-                        }));
-                        return;
                       }
 
-                      if (
-                        clearPhone !== "" &&
-                        !/^\+380\d{9}$/.test(clearPhone) &&
-                        clearPhone !== "+380"
-                      ) {
-                        setErrors((prev) => ({
-                          ...prev,
-                          phone: "Please enter a valid phone number",
-                        }));
-                      } else {
-                        setErrors((prev) => ({
-                          ...prev,
-                          phone: "",
-                        }));
-                      }
+                      setErrors((prev) => ({
+                        ...prev,
+                        phone: validatePhone(phone),
+                      }));
                     }}
                     onFocus={() => {
                       if (phone === "") {
@@ -205,7 +356,7 @@ function Checkout({ userEmail, isAuthenticated }) {
                 <label
                   className="checkout-option"
                   onClick={() => {
-                    setDeliveryPlace("office");
+                    setDeliveryPlace("post_office");
                     setErrors((prev) => ({
                       ...prev,
                       address: "",
@@ -223,7 +374,7 @@ function Checkout({ userEmail, isAuthenticated }) {
                 <label
                   className="checkout-option"
                   onClick={() => {
-                    setDeliveryPlace("home");
+                    setDeliveryPlace("home_delivery");
                     setErrors((prev) => ({
                       ...prev,
                       branch: "",
@@ -256,22 +407,10 @@ function Checkout({ userEmail, isAuthenticated }) {
                       }
                     }}
                     onBlur={() => {
-                      if (!city.trim()) {
-                        setErrors((prev) => ({
-                          ...prev,
-                          city: "City is required",
-                        }));
-                      } else if (!/(?=.*\p{L})^[\p{L}\p{M} \-\x27’ʼ]+$/u.test(city.trim())) {
-                        setErrors((prev) => ({
-                          ...prev,
-                          city: "Please enter a valid city name",
-                        }));
-                      } else {
-                        setErrors((prev) => ({
-                          ...prev,
-                          city: "",
-                        }));
-                      }
+                      setErrors((prev) => ({
+                        ...prev,
+                        city: validateCity(city),
+                      }));
                     }}
                   />
                   {errors.city ? (
@@ -296,24 +435,10 @@ function Checkout({ userEmail, isAuthenticated }) {
                       }
                     }}
                     onBlur={() => {
-                      if (deliveryPlace !== "office") return;
-
-                      if (!branchNumber.trim()) {
-                        setErrors((prev) => ({
-                          ...prev,
-                          branch: "Post office branch is required",
-                        }));
-                      } else if (!/^\d+$/.test(branchNumber) || Number(branchNumber) <= 0) {
-                        setErrors((prev) => ({
-                          ...prev,
-                          branch: "Please enter a valid branch number",
-                        }));
-                      } else {
-                        setErrors((prev) => ({
-                          ...prev,
-                          branch: "",
-                        }));
-                      }
+                      setErrors((prev) => ({
+                        ...prev,
+                        branch: validateBranchNumber(branchNumber),
+                      }));
                     }}
                   />
                   {errors.branch ? (
@@ -332,8 +457,8 @@ function Checkout({ userEmail, isAuthenticated }) {
                   autoComplete="street-address"
                   placeholder="Street, building, apartment"
                   value={address}
-                  required={deliveryPlace === "home"}
-                  disabled={deliveryPlace !== "home"}
+                  required={deliveryPlace === "home_delivery"}
+                  disabled={deliveryPlace !== "home_delivery"}
                   pattern={String.raw`[^,\s]+,\s*[^,\s]+(?:,\s*[^,\s]+)?`}
                   title="Enter street and building, with an optional apartment (maximum 3 words)."
                   onChange={(e) => {
@@ -363,26 +488,10 @@ function Checkout({ userEmail, isAuthenticated }) {
                     );
                   }}
                   onBlur={() => {
-                    if (deliveryPlace !== "home") return;
-
-                    if (!address.trim()) {
-                      setErrors((prev) => ({
-                        ...prev,
-                        address: "Delivery address is required",
-                      }));
-                    } else if (
-                      !/(?=.*[\p{L}\p{N}])^[\p{L}\p{M}\p{N}\s.,\x27’ʼ\-/#():№]+$/u.test(address)
-                    ) {
-                      setErrors((prev) => ({
-                        ...prev,
-                        address: "Please enter a valid delivery address",
-                      }));
-                    } else {
-                      setErrors((prev) => ({
-                        ...prev,
-                        address: "",
-                      }));
-                    }
+                    setErrors((prev) => ({
+                      ...prev,
+                      address: validateAddress(address),
+                    }));
                   }}
                 />
                 {errors.address ? (
@@ -456,24 +565,10 @@ function Checkout({ userEmail, isAuthenticated }) {
                       }
                     }}
                     onBlur={() => {
-                      if (paymentMethod !== "card") return;
-
-                      if (!cardNumber.trim()) {
-                        setErrors((prev) => ({
-                          ...prev,
-                          cardNumber: "Card number is required",
-                        }));
-                      } else if (!/^\d{16}$/.test(cardNumber.replace(/\s/g, ""))) {
-                        setErrors((prev) => ({
-                          ...prev,
-                          cardNumber: "Please enter a valid card number",
-                        }));
-                      } else {
-                        setErrors((prev) => ({
-                          ...prev,
-                          cardNumber: "",
-                        }));
-                      }
+                      setErrors((prev) => ({
+                        ...prev,
+                        cardNumber: validateCardNumber(cardNumber),
+                      }));
                     }}
                   />
                   {errors.cardNumber ? (
@@ -501,26 +596,10 @@ function Checkout({ userEmail, isAuthenticated }) {
                       setCardHolder(finalValue);
                     }}
                     onBlur={() => {
-                      if (paymentMethod !== "card") return;
-
-                      if (!cardHolder.trim()) {
-                        setErrors((prev) => ({
-                          ...prev,
-                          cardholderName: "Cardholder name is required",
-                        }));
-                      } else if (
-                        !/(?=.*\p{L})^[\p{L}\p{M} \-\x27’ʼ]+$/u.test(cardHolder.trim())
-                      ) {
-                        setErrors((prev) => ({
-                          ...prev,
-                          cardholderName: "Please enter a valid cardholder name",
-                        }));
-                      } else {
-                        setErrors((prev) => ({
-                          ...prev,
-                          cardholderName: "",
-                        }));
-                      }
+                      setErrors((prev) => ({
+                        ...prev,
+                        cardholderName: validateCardHolder(cardHolder),
+                      }));
                     }}
                   />
                   {errors.cardholderName ? (
@@ -572,24 +651,10 @@ function Checkout({ userEmail, isAuthenticated }) {
                         }
                       }}
                       onBlur={() => {
-                        if (paymentMethod !== "card") return;
-
-                        if (!expiration.trim()) {
-                          setErrors((prev) => ({
-                            ...prev,
-                            expiration: "Expiration date is required",
-                          }));
-                        } else if (!validateExpiration(expiration)) {
-                          setErrors((prev) => ({
-                            ...prev,
-                            expiration: "Invalid expiration date",
-                          }));
-                        } else {
-                          setErrors((prev) => ({
-                            ...prev,
-                            expiration: "",
-                          }));
-                        }
+                        setErrors((prev) => ({
+                          ...prev,
+                          expiration: validateExpirationField(expiration),
+                        }));
                       }}
                     />
                     {errors.expiration ? (
@@ -615,24 +680,10 @@ function Checkout({ userEmail, isAuthenticated }) {
                         }
                       }}
                       onBlur={() => {
-                        if (paymentMethod !== "card") return;
-
-                        if (!CVV.trim()) {
-                          setErrors((prev) => ({
-                            ...prev,
-                            cvv: "CVV is required",
-                          }));
-                        } else if (!/^\d{3}$/.test(CVV)) {
-                          setErrors((prev) => ({
-                            ...prev,
-                            cvv: "Please enter a valid CVV",
-                          }));
-                        } else {
-                          setErrors((prev) => ({
-                            ...prev,
-                            cvv: "",
-                          }));
-                        }
+                        setErrors((prev) => ({
+                          ...prev,
+                          cvv: validateCVV(CVV),
+                        }));
                       }}
                     />
                     {errors.cvv ? (
@@ -645,9 +696,14 @@ function Checkout({ userEmail, isAuthenticated }) {
               </div>
             </section>
 
-            <button className="checkout-place-order" type="button">
+            <button
+              className="checkout-place-order"
+              type="button"
+              onClick={handlePlaceOrder}
+            >
               Place order
             </button>
+            <p className="checkout-error">{submitError}</p>
           </form>
 
           <nav className="checkout-navigation" aria-label="Continue shopping">

@@ -10,7 +10,7 @@
   max-width: 1800px;
   margin: 0 auto;
   color: $color-black;
-  background: $color-background;
+  background: $color-white;
   font-family: $font-main;
   font-weight: $font-weight-regular;
 
@@ -113,7 +113,7 @@
 .home-collection,
 .home-categories,
 .home-story {
-  border-top: desktop(4) solid $color-gray-button;
+  border-top: 1px solid #eeeeee;
 }
 .home-collection {
   padding: desktop(62) desktop(46) desktop(70);
@@ -132,6 +132,7 @@
   }
   &__card {
     flex: 0 0 calc((100% - 2 * var(--collection-gap)) / 3);
+    border: 1px solid #ededed;
     min-width: 0;
     aspect-ratio: 540 / 710;
     background: $color-white;
@@ -201,6 +202,7 @@
   }
   &__card {
     position: relative;
+    border: 1px solid #ededed;
     overflow: hidden;
     display: flex;
     grid-column: span 2;
@@ -231,6 +233,10 @@
 
 .home-story {
   padding: desktop(54) desktop(46) 0;
+  h2,
+  &__copy {
+    padding-left: calc(clamp(20px, 6vw, 108px) - #{desktop(46)});
+  }
   h2 {
     text-align: left;
     font-size: desktop(48);
@@ -274,10 +280,59 @@
   }
 }
 
+.home-guide {
+  padding: clamp(36px, 4vw, 72px) clamp(20px, 6vw, 108px);
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+  background: $color-white;
+  color: #858789;
+  font-family: Arial, sans-serif;
+  font-size: clamp(16px, 1.1vw, 20px);
+  line-height: 1.65;
+
+  h2,
+  h3 {
+    margin: 0 0 30px;
+    color: #333;
+    font-size: clamp(26px, 2.2vw, 40px);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.035em;
+    text-align: left;
+  }
+
+  h3 {
+    margin-top: 40px;
+  }
+
+  p + p {
+    margin-top: 18px;
+  }
+
+  ul,
+  ol {
+    margin: 18px 0;
+    padding-left: 1.4em;
+  }
+
+  li + li {
+    margin-top: 8px;
+  }
+}
+
 // Shared navbar and footer styles for every page.
 .app-shell {
+  padding-top: desktop(80);
+  box-sizing: border-box;
+
   .head {
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.85);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #eeeeee;
     height: desktop(80);
     padding: 0 max(calc((100% - 1500px) / 2), 8.333333%);
     flex-shrink: 0;
@@ -364,9 +419,9 @@
   }
   .footer__content,
   .footer__bottom {
-    width: calc(100% - #{desktop(132)});
-    max-width: 1668px;
-    margin-left: max(#{desktop(46)}, calc((100% - 1800px) / 2 + 46px));
+    width: calc(min(100%, 1800px) - 2 * clamp(20px, 6vw, 108px));
+    max-width: 1584px;
+    margin-left: auto;
     margin-right: auto;
     padding: 0;
   }
@@ -442,7 +497,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-top: desktop(170);
+    margin-top: desktop(40);
     padding-top: desktop(32);
   }
   .footer__copyright {
@@ -537,6 +592,8 @@
 
 @media (max-width: 440px) {
   .app-shell {
+    padding-top: 80px;
+
     .head {
       height: 80px;
       padding: 0 18px;
@@ -638,7 +695,7 @@
     }
     .footer__content,
     .footer__bottom {
-      width: calc(100% - 64px);
+      width: calc(100% - 2 * clamp(20px, 6vw, 108px));
       margin-left: auto;
       margin-right: auto;
     }
@@ -809,7 +866,7 @@
   .home-collection,
   .home-categories,
   .home-story {
-    border-top-width: 3px;
+    border-top-width: 1px;
   }
   .home-collection {
     padding: 44px 0 52px;
@@ -905,6 +962,10 @@
   }
   .home-story {
     padding: 26px 20px 0;
+    h2,
+    .home-story__copy {
+      padding-left: calc(clamp(20px, 6vw, 108px) - 20px);
+    }
     h2 {
       font-size: $font-size-24;
     }

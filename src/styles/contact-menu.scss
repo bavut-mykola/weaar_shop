@@ -14,11 +14,11 @@
 }
 
 .contact-menu__dialog {
-  width: min(100%, 640px);
+  width: min(100%, 720px);
   max-height: calc(100vh - 48px);
   overflow-y: auto;
-  border: $border-width solid $color-gray;
-  border-radius: $radius-card;
+  border: 0;
+  border-radius: 0;
   background: $color-white;
   box-shadow: 0 24px 60px rgba($color-black, 0.2);
   color: $color-black;
@@ -29,8 +29,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 16px 20px;
-  border-bottom: $border-width solid $color-gray;
+  padding: 20px 24px;
+  border-bottom: 0;
   background: $color-background;
 }
 
@@ -47,8 +47,8 @@
   height: 34px;
   flex: 0 0 auto;
   place-items: center;
-  border-radius: 50%;
-  background: $color-gray-button;
+  border-radius: 0;
+  background: transparent;
 }
 
 .contact-menu__title-icon img {
@@ -58,9 +58,9 @@
 
 .contact-menu__title {
   margin: 0;
-  font-family: $font-logo;
+  font-family: $font-main;
   font-size: $font-size-22;
-  font-weight: $font-weight-extra-bold;
+  font-weight: $font-weight-regular;
   line-height: 1.1;
 }
 
@@ -72,7 +72,7 @@
   place-items: center;
   padding: 0 0 3px;
   border: 0;
-  border-radius: 50%;
+  border-radius: 0;
   color: $color-black;
   background: transparent;
   font-family: Arial, sans-serif;
@@ -116,16 +116,16 @@
 .contact-menu__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  padding: 16px;
+  gap: 16px;
+  padding: 24px;
 }
 
 .contact-menu__card {
   min-width: 0;
   overflow: hidden;
-  padding: 0 14px 14px;
-  border: $border-width solid $color-gray;
-  border-radius: $radius-small-button;
+  padding: 0 14px 20px;
+  border: 0;
+  border-radius: 0;
   background: $color-white;
 }
 
@@ -141,9 +141,9 @@
 .contact-menu__card-title {
   min-width: 0;
   margin: 0;
-  font-family: $font-caption;
+  font-family: $font-main;
   font-size: $font-size-16;
-  font-weight: $font-weight-extra-bold;
+  font-weight: $font-weight-regular;
   line-height: 1.2;
 }
 
@@ -220,7 +220,7 @@
   .contact-menu__dialog {
     width: 100%;
     max-height: calc(100vh - 16px);
-    border-radius: $radius-small-button;
+    border-radius: 0;
   }
 
   .contact-menu__header {

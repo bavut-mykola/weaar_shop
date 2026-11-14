@@ -3702,7 +3702,7 @@
           "value": "#1A1A1A",
           "images": {
             "front": "/images/product_46_black_front.jpeg",
-            "back": ""
+            "back": "/images/product_46_black_back.jpeg"
           }
         },
         {
@@ -3710,7 +3710,7 @@
           "value": "#4B5320",
           "images": {
             "front": "/images/product_46_green_front.jpeg",
-            "back": ""
+            "back": "/images/product_46_green_back.jpeg"
           }
         }
       ],
