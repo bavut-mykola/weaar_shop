@@ -30,7 +30,9 @@ import { API_URL } from "./api";
 import { getGuestId } from "./utils/guestCart";
 
 function App() {
-  const [language, setLanguage] = useState(() => localStorage.getItem("language") === "uk" ? "uk" : "en");
+  const [language, setLanguage] = useState(() =>
+    localStorage.getItem("language") === "uk" ? "uk" : "en",
+  );
   const text = translations[language];
   useEffect(() => {
     localStorage.setItem("language", language);
@@ -208,9 +210,7 @@ function App() {
       )}
       {location.pathname === "/" && isDemoNoticeOpen && (
         <aside className="demo-site-notice" role="note">
-          <span>
-            {text.app.demoNotice}
-          </span>
+          <span>{text.app.demoNotice}</span>
           <button
             type="button"
             className="demo-site-notice__close"

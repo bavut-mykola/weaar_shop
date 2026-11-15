@@ -139,7 +139,9 @@ function Home({ language }) {
                 src={src}
                 alt={text.categories[key]}
               />
-              <span className="home-button">{translateDisplay(label, language)}</span>
+              <span className="home-button">
+                {translateDisplay(label, language)}
+              </span>
             </Link>
           ))}
         </div>

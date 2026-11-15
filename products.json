@@ -9,7 +9,7 @@
       "category": "pants",
       "subcategory": "sweatpants",
       "rating": 2.6,
-      "reviewsCount": 34,
+      "reviewsCount": 2,
       "isFeatured": false,
       "colors": [
         {
@@ -83,7 +83,7 @@
       "category": "pants",
       "subcategory": "cargo",
       "rating": 4.1,
-      "reviewsCount": 28,
+      "reviewsCount": 7,
       "isFeatured": false,
       "colors": [
         {
@@ -152,7 +152,7 @@
       "category": "pants",
       "subcategory": "sweatpants",
       "rating": 3.5,
-      "reviewsCount": 42,
+      "reviewsCount": 2,
       "isFeatured": false,
       "colors": [
         {
@@ -219,7 +219,7 @@
       "category": "pants",
       "subcategory": "sweatpants",
       "rating": 4.0,
-      "reviewsCount": 19,
+      "reviewsCount": 6,
       "isFeatured": false,
       "colors": [
         {
@@ -281,7 +281,7 @@
       "category": "pants",
       "subcategory": "trousers",
       "rating": 4.5,
-      "reviewsCount": 15,
+      "reviewsCount": 7,
       "isFeatured": true,
       "colors": [
         {
@@ -371,7 +371,7 @@
       "category": "pants",
       "subcategory": "trousers",
       "rating": 3.7,
-      "reviewsCount": 21,
+      "reviewsCount": 3,
       "isFeatured": false,
       "colors": [
         {
@@ -433,7 +433,7 @@
       "category": "Pants",
       "subcategory": "sweatpants",
       "rating": 2.6,
-      "reviewsCount": 12,
+      "reviewsCount": 2,
       "isFeatured": false,
       "colors": [
         {
@@ -495,7 +495,7 @@
       "category": "pants",
       "subcategory": "trousers",
       "rating": 1.4,
-      "reviewsCount": 16,
+      "reviewsCount": 3,
       "isFeatured": false,
       "colors": [
         {
@@ -557,7 +557,7 @@
       "category": "pants",
       "subcategory": "trousers",
       "rating": 3.4,
-      "reviewsCount": 18,
+      "reviewsCount": 2,
       "isFeatured": true,
       "colors": [
         {
@@ -619,7 +619,7 @@
       "category": "pants",
       "subcategory": "cargo",
       "rating": 2.1,
-      "reviewsCount": 24,
+      "reviewsCount": 3,
       "isFeatured": false,
       "colors": [
         {
@@ -681,7 +681,7 @@
       "category": "t-shirts",
       "subcategory": "crop-top",
       "rating": 4.1,
-      "reviewsCount": 29,
+      "reviewsCount": 7,
       "isFeatured": true,
       "colors": [
         {
@@ -778,7 +778,7 @@
       "category": "t-shirts",
       "subcategory": "basic",
       "rating": 3.6,
-      "reviewsCount": 21,
+      "reviewsCount": 3,
       "isFeatured": false,
       "colors": [
         {
@@ -840,7 +840,7 @@
       "category": "t-shirts",
       "subcategory": "crop-top",
       "rating": 3.9,
-      "reviewsCount": 22,
+      "reviewsCount": 2,
       "isFeatured": false,
       "colors": [
         {
@@ -937,7 +937,7 @@
       "category": "t-shirts",
       "subcategory": "crop-top",
       "rating": 4.1,
-      "reviewsCount": 19,
+      "reviewsCount": 7,
       "isFeatured": false,
       "colors": [
         {
@@ -1034,7 +1034,7 @@
       "category": "t-shirts",
       "subcategory": "graphic",
       "rating": 3.4,
-      "reviewsCount": 14,
+      "reviewsCount": 2,
       "isFeatured": false,
       "colors": [
         {
@@ -1124,7 +1124,7 @@
       "category": "t-shirts",
       "subcategory": "graphic",
       "rating": 4.6,
-      "reviewsCount": 17,
+      "reviewsCount": 6,
       "isFeatured": false,
       "colors": [
         {
@@ -1214,7 +1214,7 @@
       "category": "t-shirts",
       "subcategory": "crop-top",
       "rating": 4.3,
-      "reviewsCount": 15,
+      "reviewsCount": 7,
       "isFeatured": false,
       "colors": [
         {
@@ -1276,7 +1276,7 @@
       "category": "t-shirts",
       "subcategory": "crop-top",
       "rating": 3.8,
-      "reviewsCount": 16,
+      "reviewsCount": 3,
       "isFeatured": false,
       "colors": [
         {
@@ -1366,7 +1366,7 @@
       "category": "t-shirts",
       "subcategory": "basic",
       "rating": 4.5,
-      "reviewsCount": 16,
+      "reviewsCount": 6,
       "isFeatured": false,
       "colors": [
         {
@@ -1456,7 +1456,7 @@
       "category": "t-shirts",
       "subcategory": "crop-top",
       "rating": 3.2,
-      "reviewsCount": 15,
+      "reviewsCount": 3,
       "isFeatured": false,
       "colors": [
         {
@@ -1518,7 +1518,7 @@
       "category": "polos",
       "subcategory": "classic",
       "rating": 4.1,
-      "reviewsCount": 22,
+      "reviewsCount": 8,
       "isFeatured": true,
       "colors": [
         {
@@ -1608,7 +1608,7 @@
       "category": "polos",
       "subcategory": "casual",
       "rating": 3.7,
-      "reviewsCount": 18,
+      "reviewsCount": 3,
       "isFeatured": false,
       "colors": [
         {
@@ -1698,7 +1698,7 @@
       "category": "t-shirts",
       "subcategory": "shirts",
       "rating": 4.6,
-      "reviewsCount": 15,
+      "reviewsCount": 7,
       "isFeatured": false,
       "colors": [
         {
@@ -1788,7 +1788,7 @@
       "category": "t-shirts",
       "subcategory": "shirts",
       "rating": 2.7,
-      "reviewsCount": 14,
+      "reviewsCount": 3,
       "isFeatured": false,
       "colors": [
         {
@@ -1878,7 +1878,7 @@
       "category": "t-shirts",
       "subcategory": "shirts",
       "rating": 4.0,
-      "reviewsCount": 16,
+      "reviewsCount": 6,
       "isFeatured": false,
       "colors": [
         {
@@ -1968,7 +1968,7 @@
       "category": "t-shirts",
       "subcategory": "shirts",
       "rating": 3.9,
-      "reviewsCount": 16,
+      "reviewsCount": 3,
       "isFeatured": false,
       "colors": [
         {
@@ -2058,7 +2058,7 @@
       "category": "t-shirts",
       "subcategory": "shirts",
       "rating": 4.4,
-      "reviewsCount": 21,
+      "reviewsCount": 8,
       "isFeatured": true,
       "colors": [
         {
@@ -2156,7 +2156,7 @@
       "category": "jeans",
       "subcategory": "baggy",
       "rating": 3.5,
-      "reviewsCount": 24,
+      "reviewsCount": 3,
       "isFeatured": true,
       "colors": [
         {
@@ -2218,7 +2218,7 @@
       "category": "jeans",
       "subcategory": "baggy",
       "rating": 4.8,
-      "reviewsCount": 19,
+      "reviewsCount": 7,
       "isFeatured": true,
       "colors": [
         {
@@ -2280,7 +2280,7 @@
       "category": "jeans",
       "subcategory": "baggy",
       "rating": 3.3,
-      "reviewsCount": 17,
+      "reviewsCount": 3,
       "isFeatured": false,
       "colors": [
         {
@@ -2342,7 +2342,7 @@
       "category": "jeans",
       "subcategory": "flare",
       "rating": 4.2,
-      "reviewsCount": 16,
+      "reviewsCount": 6,
       "isFeatured": false,
       "colors": [
         {
@@ -2404,7 +2404,7 @@
       "category": "jeans",
       "subcategory": "baggy",
       "rating": 4.7,
-      "reviewsCount": 21,
+      "reviewsCount": 7,
       "isFeatured": true,
       "colors": [
         {
@@ -2466,7 +2466,7 @@
       "category": "jeans",
       "subcategory": "baggy",
       "rating": 3.6,
-      "reviewsCount": 22,
+      "reviewsCount": 2,
       "isFeatured": true,
       "colors": [
         {
@@ -2564,7 +2564,7 @@
       "category": "jeans",
       "subcategory": "bootcut",
       "rating": 4.1,
-      "reviewsCount": 18,
+      "reviewsCount": 6,
       "isFeatured": true,
       "colors": [
         {
@@ -2626,7 +2626,7 @@
       "category": "jeans",
       "subcategory": "bootcut",
       "rating": 4.9,
-      "reviewsCount": 20,
+      "reviewsCount": 7,
       "isFeatured": true,
       "colors": [
         {
@@ -2744,7 +2744,7 @@
       "category": "jeans",
       "subcategory": "flare",
       "rating": 3.8,
-      "reviewsCount": 23,
+      "reviewsCount": 3,
       "isFeatured": true,
       "colors": [
         {
@@ -2834,7 +2834,7 @@
       "category": "jeans",
       "subcategory": "flare",
       "rating": 4.3,
-      "reviewsCount": 19,
+      "reviewsCount": 6,
       "isFeatured": true,
       "colors": [
         {
@@ -2896,7 +2896,7 @@
       "category": "jeans",
       "subcategory": "baggy",
       "rating": 4.0,
-      "reviewsCount": 25,
+      "reviewsCount": 7,
       "isFeatured": true,
       "colors": [
         {
@@ -2958,7 +2958,7 @@
       "category": "jeans",
       "subcategory": "baggy",
       "rating": 3.4,
-      "reviewsCount": 25,
+      "reviewsCount": 2,
       "isFeatured": true,
       "colors": [
         {
@@ -3020,7 +3020,7 @@
       "category": "jeans",
       "subcategory": "baggy",
       "rating": 4.6,
-      "reviewsCount": 26,
+      "reviewsCount": 6,
       "isFeatured": true,
       "colors": [
         {
@@ -3146,7 +3146,7 @@
       "category": "jeans",
       "subcategory": "baggy",
       "rating": 3.7,
-      "reviewsCount": 22,
+      "reviewsCount": 2,
       "isFeatured": true,
       "colors": [
         {
@@ -3216,7 +3216,7 @@
       "category": "jeans",
       "subcategory": "baggy",
       "rating": 4.5,
-      "reviewsCount": 24,
+      "reviewsCount": 8,
       "isFeatured": true,
       "colors": [
         {
@@ -3286,7 +3286,7 @@
       "category": "jeans",
       "subcategory": "baggy",
       "rating": 3.1,
-      "reviewsCount": 21,
+      "reviewsCount": 2,
       "isFeatured": true,
       "colors": [
         {
@@ -3357,7 +3357,7 @@
       "category": "jeans",
       "subcategory": "baggy",
       "rating": 4.2,
-      "reviewsCount": 21,
+      "reviewsCount": 7,
       "isFeatured": true,
       "colors": [
         {
@@ -3456,7 +3456,7 @@
       "category": "jeans",
       "subcategory": "baggy",
       "rating": 3.9,
-      "reviewsCount": 19,
+      "reviewsCount": 2,
       "isFeatured": true,
       "colors": [
         {
@@ -3526,7 +3526,7 @@
       "category": "jeans",
       "subcategory": "baggy",
       "rating": 4.4,
-      "reviewsCount": 20,
+      "reviewsCount": 6,
       "isFeatured": true,
       "colors": [
         {
@@ -3596,7 +3596,7 @@
       "category": "jeans",
       "subcategory": "baggy",
       "rating": 3.6,
-      "reviewsCount": 23,
+      "reviewsCount": 2,
       "isFeatured": true,
       "colors": [
         {
@@ -3694,7 +3694,7 @@
       "category": "jeans",
       "subcategory": "baggy",
       "rating": 4.8,
-      "reviewsCount": 18,
+      "reviewsCount": 8,
       "isFeatured": true,
       "colors": [
         {
@@ -3792,7 +3792,7 @@
       "category": "jeans",
       "subcategory": "baggy",
       "rating": 2.9,
-      "reviewsCount": 22,
+      "reviewsCount": 2,
       "isFeatured": true,
       "colors": [
         {
@@ -3862,7 +3862,7 @@
       "category": "hoodies",
       "subcategory": "zip-up",
       "rating": 4.1,
-      "reviewsCount": 24,
+      "reviewsCount": 7,
       "isFeatured": true,
       "colors": [
         {
@@ -3959,7 +3959,7 @@
       "category": "hoodies",
       "subcategory": "zip-up",
       "rating": 3.5,
-      "reviewsCount": 21,
+      "reviewsCount": 2,
       "isFeatured": true,
       "colors": [
         {
@@ -4084,7 +4084,7 @@
       "category": "hoodies",
       "subcategory": "zip-up",
       "rating": 4.7,
-      "reviewsCount": 20,
+      "reviewsCount": 6,
       "isFeatured": true,
       "colors": [
         {
@@ -4209,7 +4209,7 @@
       "category": "hoodies",
       "subcategory": "zip-up",
       "rating": 4.0,
-      "reviewsCount": 17,
+      "reviewsCount": 7,
       "isFeatured": true,
       "colors": [
         {
@@ -4271,7 +4271,7 @@
       "category": "hoodies",
       "subcategory": "zip-up",
       "rating": 3.8,
-      "reviewsCount": 19,
+      "reviewsCount": 3,
       "isFeatured": true,
       "colors": [
         {
@@ -4361,7 +4361,7 @@
       "category": "hoodies",
       "subcategory": "zip-up",
       "rating": 4.3,
-      "reviewsCount": 18,
+      "reviewsCount": 6,
       "isFeatured": true,
       "colors": [
         {
@@ -4479,7 +4479,7 @@
       "category": "hoodies",
       "subcategory": "pullover",
       "rating": 3.2,
-      "reviewsCount": 22,
+      "reviewsCount": 3,
       "isFeatured": true,
       "colors": [
         {
@@ -4604,7 +4604,7 @@
       "category": "hoodies",
       "subcategory": "pullover",
       "rating": 4.6,
-      "reviewsCount": 16,
+      "reviewsCount": 8,
       "isFeatured": true,
       "colors": [
         {
@@ -4673,7 +4673,7 @@
       "category": "hoodies",
       "subcategory": "pullover",
       "rating": 3.9,
-      "reviewsCount": 15,
+      "reviewsCount": 3,
       "isFeatured": true,
       "colors": [
         {
@@ -4742,7 +4742,7 @@
       "category": "hoodies",
       "subcategory": "pullover",
       "rating": 4.5,
-      "reviewsCount": 15,
+      "reviewsCount": 7,
       "isFeatured": true,
       "colors": [
         {
@@ -4811,7 +4811,7 @@
       "category": "hoodies",
       "subcategory": "pullover",
       "rating": 3.7,
-      "reviewsCount": 13,
+      "reviewsCount": 3,
       "isFeatured": true,
       "colors": [
         {
@@ -4880,7 +4880,7 @@
       "category": "outerwear",
       "subcategory": "bombers",
       "rating": 4.2,
-      "reviewsCount": 21,
+      "reviewsCount": 6,
       "isFeatured": true,
       "colors": [
         {
@@ -4942,7 +4942,7 @@
       "category": "outerwear",
       "subcategory": "bombers",
       "rating": 3.4,
-      "reviewsCount": 19,
+      "reviewsCount": 3,
       "isFeatured": true,
       "colors": [
         {
@@ -5004,7 +5004,7 @@
       "category": "outerwear",
       "subcategory": "bombers",
       "rating": 4.8,
-      "reviewsCount": 19,
+      "reviewsCount": 8,
       "isFeatured": true,
       "colors": [
         {
@@ -5066,7 +5066,7 @@
       "category": "outerwear",
       "subcategory": "bombers",
       "rating": 4.1,
-      "reviewsCount": 17,
+      "reviewsCount": 6,
       "isFeatured": true,
       "colors": [
         {
@@ -5128,7 +5128,7 @@
       "category": "outerwear",
       "subcategory": "bombers",
       "rating": 3.6,
-      "reviewsCount": 18,
+      "reviewsCount": 2,
       "isFeatured": true,
       "colors": [
         {
@@ -5226,7 +5226,7 @@
       "category": "outerwear",
       "subcategory": "bombers",
       "rating": 4.4,
-      "reviewsCount": 16,
+      "reviewsCount": 8,
       "isFeatured": true,
       "colors": [
         {
@@ -5288,7 +5288,7 @@
       "category": "outerwear",
       "subcategory": "bombers",
       "rating": 2.7,
-      "reviewsCount": 20,
+      "reviewsCount": 2,
       "isFeatured": true,
       "colors": [
         {
@@ -5350,7 +5350,7 @@
       "category": "outerwear",
       "subcategory": "bombers",
       "rating": 3.9,
-      "reviewsCount": 15,
+      "reviewsCount": 3,
       "isFeatured": true,
       "colors": [
         {
@@ -5412,7 +5412,7 @@
       "category": "outerwear",
       "subcategory": "bombers",
       "rating": 4.6,
-      "reviewsCount": 14,
+      "reviewsCount": 8,
       "isFeatured": true,
       "colors": [
         {
@@ -5481,7 +5481,7 @@
       "category": "outerwear",
       "subcategory": "bombers",
       "rating": 3.3,
-      "reviewsCount": 19,
+      "reviewsCount": 3,
       "isFeatured": true,
       "colors": [
         {
@@ -5550,7 +5550,7 @@
       "category": "outerwear",
       "subcategory": "windbreakers",
       "rating": 4.0,
-      "reviewsCount": 21,
+      "reviewsCount": 7,
       "isFeatured": true,
       "colors": [
         {
@@ -5648,7 +5648,7 @@
       "category": "outerwear",
       "subcategory": "windbreakers",
       "rating": 4.5,
-      "reviewsCount": 18,
+      "reviewsCount": 8,
       "isFeatured": true,
       "colors": [
         {
@@ -5718,7 +5718,7 @@
       "category": "outerwear",
       "subcategory": "windbreakers",
       "rating": 3.7,
-      "reviewsCount": 16,
+      "reviewsCount": 2,
       "isFeatured": true,
       "colors": [
         {
@@ -5788,7 +5788,7 @@
       "category": "outerwear",
       "subcategory": "windbreakers",
       "rating": 4.2,
-      "reviewsCount": 17,
+      "reviewsCount": 7,
       "isFeatured": true,
       "colors": [
         {
@@ -5857,7 +5857,7 @@
       "category": "outerwear",
       "subcategory": "windbreakers",
       "rating": 3.8,
-      "reviewsCount": 24,
+      "reviewsCount": 2,
       "isFeatured": true,
       "colors": [
         {
@@ -5927,7 +5927,7 @@
       "category": "outerwear",
       "subcategory": "windbreakers",
       "rating": 4.7,
-      "reviewsCount": 22,
+      "reviewsCount": 6,
       "isFeatured": true,
       "colors": [
         {
@@ -5998,7 +5998,7 @@
       "category": "outerwear",
       "subcategory": "puffer-jackets",
       "rating": 3.5,
-      "reviewsCount": 26,
+      "reviewsCount": 2,
       "isFeatured": true,
       "colors": [
         {
@@ -6068,7 +6068,7 @@
       "category": "outerwear",
       "subcategory": "puffer-jackets",
       "rating": 4.3,
-      "reviewsCount": 29,
+      "reviewsCount": 8,
       "isFeatured": true,
       "colors": [
         {
@@ -6138,7 +6138,7 @@
       "category": "outerwear",
       "subcategory": "puffer-jackets",
       "rating": 4.1,
-      "reviewsCount": 31,
+      "reviewsCount": 6,
       "isFeatured": true,
       "colors": [
         {
