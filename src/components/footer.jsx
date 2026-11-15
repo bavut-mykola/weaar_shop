@@ -36,33 +36,33 @@ const Footer = ({ language }) => {
         <div className="footer__column">
           <h3 className="footer__title">
             <Link className="footer__catalog-link" to="/catalog">
-              Catalog
+              {text.footer.catalog}
             </Link>
           </h3>
 
           <nav className="footer__links">
-            <Link to="/catalog?category=pants">Pants</Link>
-            <Link to="/catalog?category=hoodies">Hoodies</Link>
-            <Link to="/catalog?category=jeans">Jeans</Link>
-            <Link to="/catalog?category=t-shirts">T-Shirts</Link>
-            <Link to="/catalog?category=outerwear">Outerwear</Link>
+            <Link to="/catalog?category=pants">{text.categories.pants}</Link>
+            <Link to="/catalog?category=hoodies">{text.categories.hoodies}</Link>
+            <Link to="/catalog?category=jeans">{text.categories.jeans}</Link>
+            <Link to="/catalog?category=t-shirts">{text.categories["t-shirts"]}</Link>
+            <Link to="/catalog?category=outerwear">{text.categories.outerwear}</Link>
           </nav>
         </div>
 
         <div className="footer__column">
-          <h3 className="footer__title">Services</h3>
+          <h3 className="footer__title">{text.footer.services}</h3>
 
           <nav className="footer__links">
-            <Link to="/about">About Us</Link>
-            <Link to="/support">Support</Link>
-            <Link to="/delivery-payment">Delivery &amp; Payment</Link>
-            <Link to="/returns-exchanges">Returns &amp; Exchanges</Link>
-            <Link to="/size-guide">Size Guide</Link>
+            <Link to="/about">{text.footer.about}</Link>
+            <Link to="/support">{text.footer.support}</Link>
+            <Link to="/delivery-payment">{text.footer.deliveryPayment}</Link>
+            <Link to="/returns-exchanges">{text.footer.returnsExchanges}</Link>
+            <Link to="/size-guide">{text.footer.sizeGuide}</Link>
           </nav>
         </div>
 
         <div className="footer__column footer__contacts">
-          <h3 className="footer__title">Contacts</h3>
+          <h3 className="footer__title">{text.footer.contacts}</h3>
 
           <div className="footer__contact">
             {contactInfo.phoneNumbers.map((phoneNumber, index) => (
@@ -73,14 +73,14 @@ const Footer = ({ language }) => {
                 {phoneNumber.label}
               </a>
             ))}
-            <p>{contactInfo.address}</p>
-            <p>{contactInfo.workHours}</p>
+            <p>{text.contactMenu.address}</p>
+            <p>{text.contactMenu.workHours}</p>
           </div>
         </div>
       </div>
 
       <div className="footer__statement">
-        <p className="footer__tagline">Everyday wear. Your way.</p>
+        <p className="footer__tagline">{text.home.tagline}</p>
         <p className="footer__statement-copy">
           Modern, minimal and comfortable clothing for everyday life.
           <br />
@@ -99,11 +99,11 @@ const Footer = ({ language }) => {
             className="footer__bottom-logo"
           />
           <span className="footer__divider"></span>
-          <span>All rights reserved.</span>
+          <span>{text.footer.rights}</span>
         </div>
 
         <Link to="/privacy-policy" className="footer__privacy">
-          Privacy Policy
+          {text.footer.privacyPolicy}
         </Link>
       </div>
     </footer>

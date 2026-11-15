@@ -1,14 +1,15 @@
+import { translateProductText } from "../locales/productTranslations";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { API_URL } from "../api";
 import { getGuestId } from "../utils/guestCart";
 import "../styles/orderConfirmation.scss";
-import { translations } from "../locales/translations";
+import { translations, translateDisplay } from "../locales/translations";
 
 const money = (value) =>
   value !== null && value !== undefined && Number.isFinite(Number(value))
     ? `$${Number(value).toFixed(2)}`
-    : "Unavailable";
+    : text.common.unavailable;
 
 function OrderConfirmation({ language }) {
   const text = translations[language];
@@ -93,7 +94,7 @@ function OrderConfirmation({ language }) {
       ? "Post office"
       : order?.delivery_method === "home_delivery"
         ? "Home delivery"
-        : "Unavailable";
+        : text.common.unavailable;
   const address =
     order?.delivery_method === "post_office"
       ? [order.city, order.branch_number && `Branch No. ${order.branch_number}`]
@@ -120,19 +121,19 @@ function OrderConfirmation({ language }) {
       <header className="order-confirmation-header">
         <h1 id="order-confirmation-title">
           {data
-            ? "ORDER CONFIRMED"
+            ? text.orderConfirmation.confirmed
             : error
               ? "ORDER UNAVAILABLE"
               : "ORDER DETAILS"}
         </h1>
         <p>
           {data
-            ? "Thank you for shopping with W.EAR."
+            ? text.orderConfirmation.thankYou
             : error || "Loading your order…"}
         </p>
         {order && (
           <p className="order-confirmation-number">
-            Order #{String(order.id).padStart(6, "0")}
+            {text.orderConfirmation.orderNumber(order.id)}
           </p>
         )}
       </header>
@@ -140,8 +141,8 @@ function OrderConfirmation({ language }) {
       {!data && (
         <p className="order-confirmation-state" role="status">
           {error
-            ? "Please check your link or return to the catalog."
-            : "Please wait while we retrieve your order."}
+            ? text.orderConfirmation.checkLink
+            : text.orderConfirmation.pleaseWait}
         </p>
       )}
 
@@ -151,33 +152,33 @@ function OrderConfirmation({ language }) {
             className="order-confirmation-card"
             aria-labelledby="order-details-title"
           >
-            <h2 id="order-details-title">ORDER DETAILS</h2>
+            <h2 id="order-details-title">{text.orderConfirmation.details}</h2>
             <dl className="order-confirmation-details">
               <div>
-                <dt>Order status</dt>
-                <dd>{order.status || "Confirmed"}</dd>
+                <dt>{text.orderConfirmation.status}</dt>
+                <dd>{translateDisplay(order.status || "Confirmed", language)}</dd>
               </div>
               <div>
-                <dt>Delivery method</dt>
-                <dd>{delivery}</dd>
+                <dt>{text.orderConfirmation.deliveryMethod}</dt>
+                <dd>{translateDisplay(delivery, language)}</dd>
               </div>
               <div>
-                <dt>Delivery address</dt>
-                <dd>{address || "Unavailable"}</dd>
+                <dt>{text.orderConfirmation.deliveryAddress}</dt>
+                <dd>{address || text.common.unavailable}</dd>
               </div>
               <div>
-                <dt>Payment method</dt>
+                <dt>{text.orderConfirmation.paymentMethod}</dt>
                 <dd>
                   {order.payment_method === "cash"
-                    ? "Cash on delivery"
+                    ? text.checkout.cash
                     : order.payment_method === "card"
-                      ? "Card"
-                      : "Unavailable"}
+                      ? text.checkout.card
+                      : text.common.unavailable}
                 </dd>
               </div>
               <div>
-                <dt>Contact email</dt>
-                <dd>{order.email || "Unavailable"}</dd>
+                <dt>{text.orderConfirmation.contactEmail}</dt>
+                <dd>{order.email || text.common.unavailable}</dd>
               </div>
             </dl>
           </section>
@@ -185,7 +186,7 @@ function OrderConfirmation({ language }) {
             className="order-confirmation-card"
             aria-labelledby="order-summary-title"
           >
-            <h2 id="order-summary-title">ORDER SUMMARY</h2>
+            <h2 id="order-summary-title">{text.common.orderSummary}</h2>
             <div className="order-confirmation-products">
               {data.items.map((item) => (
                 <article className="order-confirmation-product" key={item.id}>
@@ -194,7 +195,7 @@ function OrderConfirmation({ language }) {
                   ) : (
                     <div
                       className="order-confirmation-image-placeholder"
-                      aria-label="Product image unavailable"
+                      aria-label={text.orderConfirmation.imageUnavailable}
                     >
                       W.EAR
                     </div>
@@ -202,7 +203,7 @@ function OrderConfirmation({ language }) {
                   <div>
                     <h3>{item.product_name}</h3>
                     <p>
-                      {[item.color, item.size].filter(Boolean).join(" – ")} ·
+                      {[translateProductText(item.color, language), item.size].filter(Boolean).join(" – ")} ·
                       Qty: {item.quantity}
                     </p>
                     <strong translate="no">
@@ -211,11 +212,11 @@ function OrderConfirmation({ language }) {
                   </div>
                 </article>
               ))}
-              {data.items.length === 0 && <p>No order items available.</p>}
+              {data.items.length === 0 && <p>{text.orderConfirmation.noItems}</p>}
             </div>
             <dl className="order-confirmation-totals">
               <div>
-                <dt>Subtotal</dt>
+                <dt>{text.common.subtotal}</dt>
                 <dd translate="no">{money(subtotal)}</dd>
               </div>
               <div>
@@ -225,12 +226,12 @@ function OrderConfirmation({ language }) {
                 </dd>
               </div>
               <div>
-                <dt>Delivery</dt>
+                <dt>{text.cart.deliveryTitle}</dt>
                 <dd translate="no">{money(deliveryFee)}</dd>
               </div>
             </dl>
             <div className="order-confirmation-total">
-              <span>Total</span>
+              <span>{text.common.total}</span>
               <strong translate="no">{money(total)}</strong>
             </div>
           </section>
@@ -239,16 +240,16 @@ function OrderConfirmation({ language }) {
 
       <nav
         className="order-confirmation-actions"
-        aria-label="Continue browsing"
+        aria-label={text.orderConfirmation.continueBrowsing}
       >
         <Link
           className="order-confirmation-button order-confirmation-button--secondary"
           to="/"
         >
-          Home
+          {text.common.home}
         </Link>
         <Link className="order-confirmation-button" to="/catalog">
-          Continue Shopping
+          {text.common.continueShopping}
         </Link>
       </nav>
     </section>

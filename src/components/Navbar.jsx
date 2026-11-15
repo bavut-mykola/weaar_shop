@@ -46,7 +46,7 @@ function Navbar({
           className={`burger-btn ${isBurgerClicked ? "active" : ""}`}
           type="button"
           aria-label={
-            isBurgerClicked ? "Close navigation menu" : "Open navigation menu"
+            isBurgerClicked ? text.navbar.closeMenu : text.navbar.openMenu
           }
           aria-expanded={isBurgerClicked}
           onClick={() => setISBurgerClicked(!isBurgerClicked)}
@@ -55,7 +55,7 @@ function Navbar({
           <span></span>
           <span></span>
         </button>
-        <Link className="logo-link" to="/" aria-label="WEA.R home">
+        <Link className="logo-link" to="/" aria-label={text.navbar.home}>
           <img src="/the_main_logo.svg" alt="WEA.R" className="logo" />
         </Link>
       </div>
@@ -116,7 +116,7 @@ function Navbar({
                   : "#"
               }
             >
-              <img src={searchIcon} alt="search" className="search-icon" />
+              <img src={searchIcon} alt={text.navbar.searchIcon} className="search-icon" />
             </Link>
             <input
               type="text"
@@ -135,22 +135,22 @@ function Navbar({
         <Link
           to={"/cart"}
           className="cart-button-link"
-          aria-label={`Cart${cartCount > 0 ? `, ${cartCount} items` : ""}`}
+          aria-label={cartCount > 0 ? text.navbar.cartWithCount(cartCount) : text.navbar.cart}
         >
-          <img src={cartIcon} alt="Cart" className="head-btn" />
+          <img src={cartIcon} alt={text.navbar.cart} className="head-btn" />
           {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
         </Link>
         <Link
           to={isAuthenticated ? "/account" : "/auth"}
           className="account-button-link"
         >
-          <img src={userIcon} alt="Account" className="head-btn" />
+          <img src={userIcon} alt={text.navbar.account} className="head-btn" />
           {isAuthenticated && <span className="active-user-dot"></span>}
         </Link>
         <button
           className="header-icon-button"
           type="button"
-          aria-label="Open contact information"
+          aria-label={text.navbar.openContacts}
           aria-haspopup="dialog"
           aria-expanded={isContactMenuOpen}
           onClick={() => {

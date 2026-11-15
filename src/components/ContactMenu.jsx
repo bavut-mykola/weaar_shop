@@ -1,3 +1,4 @@
+import { translations } from "../locales/translations";
 import { useEffect } from "react";
 
 import facebookIcon from "../assets/icons/facebook.svg";
@@ -7,7 +8,8 @@ import ContactCard from "./ContactCard";
 
 import "../styles/contact-menu.scss";
 
-function ContactMenu({ isOpen, onClose, contactInfo }) {
+function ContactMenu({ isOpen, onClose, contactInfo, language }) {
+  const text = translations[language];
   useEffect(() => {
     if (!isOpen) return undefined;
 
@@ -59,14 +61,14 @@ function ContactMenu({ isOpen, onClose, contactInfo }) {
               <img src={phoneIcon} alt="" />
             </span>
             <h2 className="contact-menu__title" id="contact-menu-title">
-              Contact us
+              {text.contactMenu.title}
             </h2>
           </div>
 
           <button
             className="contact-menu__close"
             type="button"
-            aria-label="Close contact information"
+            aria-label={text.contactMenu.close}
             onClick={onClose}
           >
             <span className="contact-menu__close-icon" aria-hidden="true" />
@@ -75,7 +77,7 @@ function ContactMenu({ isOpen, onClose, contactInfo }) {
 
         <div className="contact-menu__grid">
           <ContactCard
-            title="Phone numbers"
+            title={text.contactMenu.phoneNumbers}
           >
             <ul className="contact-menu__phone-list">
               {contactInfo.phoneNumbers.map((phoneNumber, index) => (
@@ -93,24 +95,24 @@ function ContactMenu({ isOpen, onClose, contactInfo }) {
           </ContactCard>
 
           <ContactCard
-            title="Working hours"
+            title={text.contactMenu.workingHours}
           >
-            <p className="contact-menu__line">{contactInfo.workHours}</p>
+            <p className="contact-menu__line">{text.contactMenu.workHours}</p>
           </ContactCard>
 
           <ContactCard
-            title="Contact information"
+            title={text.contactMenu.contactInformation}
           >
-            <p className="contact-menu__line">{contactInfo.address}</p>
+            <p className="contact-menu__line">{text.contactMenu.address}</p>
           </ContactCard>
 
           <ContactCard
-            title="Social networks"
+            title={text.contactMenu.socialNetworks}
           >
             <div
               className="contact-menu__socials"
               role="group"
-              aria-label="Social networks"
+              aria-label={text.contactMenu.socialNetworks}
             >
               <img src={instagramIcon} alt="Instagram" />
               <img src={facebookIcon} alt="Facebook" />

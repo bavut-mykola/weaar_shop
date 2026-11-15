@@ -60,7 +60,7 @@ function Account({
         <div className="account-profile">
           <img src={userIcon} alt="" className="account-profile-icon" />
           <div>
-            <p className="account-eyebrow">SIGNED IN AS</p>
+            <p className="account-eyebrow">{text.account.signedInAs}</p>
             <p className="account-email">{userEmail}</p>
           </div>
         </div>
@@ -69,8 +69,8 @@ function Account({
           <div className="account-menu-item">
             <img src={ordersIcon} alt="" className="account-menu-icon" />
             <div className="account-menu-copy">
-              <p>My orders</p>
-              <span>View orders history and status</span>
+              <p>{text.account.orders}</p>
+              <span>{text.account.ordersDescription}</span>
             </div>
             <span className="account-menu-arrow">›</span>
           </div>
@@ -78,8 +78,8 @@ function Account({
           <Link to={"/cart"} className="account-menu-item">
             <img src={cartIcon} alt="" className="account-menu-icon" />
             <div className="account-menu-copy">
-              <p>My cart</p>
-              <span>Return to your shopping cart</span>
+              <p>{text.account.cart}</p>
+              <span>{text.account.cartDescription}</span>
             </div>
             <span className="account-menu-arrow">›</span>
           </Link>
@@ -87,8 +87,8 @@ function Account({
           <Link to={"/account-settings"} className="account-menu-item">
             <img src={settingsIcon} alt="" className="account-menu-icon" />
             <div className="account-menu-copy">
-              <p>Account settings</p>
-              <span>Change account details</span>
+              <p>{text.account.settings}</p>
+              <span>{text.account.settingsDescription}</span>
             </div>
             <span className="account-menu-arrow">›</span>
           </Link>
@@ -96,12 +96,12 @@ function Account({
 
         <Link to={"/"} className="account-logout" onClick={makeLogOut}>
           <img src={logoutIcon} alt="" className="account-logout-icon" />
-          <span>Log out</span>
+          <span>{text.account.logOut}</span>
         </Link>
       </div>
 
       <Link to="/" className="account-back-home">
-        Back to home
+        {text.common.backHome}
       </Link>
     </section>
   );

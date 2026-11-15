@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../styles/sizeGuide.scss";
-import { translations } from "../locales/translations";
+import { translations, translateDisplay } from "../locales/translations";
 
 const sizes = ["S", "M", "L", "XL", "XXL"];
 const charts = {
@@ -70,22 +70,21 @@ function SizeGuide({ language }) {
   return (
     <article className="size-guide">
       <header className="size-guide__intro">
-        <h1>Size guide</h1>
+        <h1>{text.sizeGuide.title}</h1>
         <p>
-          Find the right size for a comfortable fit. Use the measurements below
-          to choose your size.
+          {text.sizeGuide.intro}
         </p>
       </header>
 
-      <nav className="size-guide__categories" aria-label="Size chart category">
+      <nav className="size-guide__categories" aria-label={text.sizeGuide.categoryLabel}>
         {Object.keys(charts).map((name) => (
           <button
-            key={name}
+            key={translateDisplay(name, language)}
             type="button"
             aria-pressed={category === name}
             onClick={() => setCategory(name)}
           >
-            {name}
+            {translateDisplay(name, language)}
           </button>
         ))}
       </nav>
@@ -95,20 +94,20 @@ function SizeGuide({ language }) {
         aria-labelledby="size-chart-heading"
       >
         <div className="size-guide__chart-header">
-          <h2 id="size-chart-heading">{category} size chart</h2>
+          <h2 id="size-chart-heading">{text.sizeGuide.chartTitle(translateDisplay(category, language))}</h2>
           <div
             className="size-guide__units"
             role="group"
-            aria-label="Measurement unit"
+            aria-label={text.sizeGuide.unitLabel}
           >
             {["cm", "in"].map((value) => (
               <button
-                key={value}
+                key={translateDisplay(value, language)}
                 type="button"
                 aria-pressed={unit === value}
                 onClick={() => setUnit(value)}
               >
-                {value}
+                {translateDisplay(value, language)}
               </button>
             ))}
           </div>
@@ -117,15 +116,15 @@ function SizeGuide({ language }) {
           className="size-guide__table-scroll"
           tabIndex={0}
           role="region"
-          aria-label={`${category} measurements in ${unit === "cm" ? "centimetres" : "inches"}`}
+          aria-label={`${translateDisplay(category, language)} measurements in ${unit === "cm" ? "centimetres" : "inches"}`}
         >
           <table>
             <thead>
               <tr>
-                <th scope="col">Size</th>
+                <th scope="col">{text.sizeGuide.size}</th>
                 {chart.columns.map((name) => (
-                  <th scope="col" key={name}>
-                    {name}
+                  <th scope="col" key={translateDisplay(name, language)}>
+                    {translateDisplay(name, language)}
                   </th>
                 ))}
               </tr>
@@ -136,7 +135,7 @@ function SizeGuide({ language }) {
                   <th scope="row">{sizes[index]}</th>
                   {row.map((value, column) => (
                     <td key={chart.columns[column]}>
-                      {unit === "cm" ? value : (value / 2.54).toFixed(1)} {unit}
+                      {unit === "cm" ? value : (value / 2.54).toFixed(1)} {text.sizeGuide[unit]}
                     </td>
                   ))}
                 </tr>
@@ -145,29 +144,27 @@ function SizeGuide({ language }) {
           </table>
         </div>
         <p className="size-guide__note">
-          General sizing reference. Measurements are taken with garments laid
-          flat; chest, waist and hip values are widths, not circumferences.
-          Individual fits may vary — check the product details before choosing.
+          {text.sizeGuide.note}
         </p>
       </section>
 
       <section
         className="size-guide__advice"
-        aria-label="Measuring and fit advice"
+        aria-label={text.sizeGuide.adviceLabel}
       >
         <div>
-          <h2>How to measure</h2>
+          <h2>{text.sizeGuide.howToMeasure}</h2>
           <dl>
             {chart.columns.map((name) => (
-              <div key={name}>
-                <dt>{name}</dt>
+              <div key={translateDisplay(name, language)}>
+                <dt>{translateDisplay(name, language)}</dt>
                 <dd>
                   {
-                    instructions[
+                    translateDisplay(instructions[
                       category === "Pants" && name === "Length"
                         ? "Pants length"
                         : name
-                    ]
+                    ], language)
                   }
                 </dd>
               </div>
@@ -175,15 +172,12 @@ function SizeGuide({ language }) {
           </dl>
         </div>
         <div>
-          <h2>In between sizes?</h2>
+          <h2>{text.sizeGuide.betweenSizes}</h2>
           <p>
-            If you’re between two sizes, consider the larger one for a more
-            relaxed and comfortable fit.
+            {text.sizeGuide.betweenSizesText}
           </p>
           <p>
-            Compare the chart with a similar garment you already enjoy wearing.
-            Think about the fit you prefer and leave room for any layers you
-            plan to wear underneath.
+            {text.sizeGuide.compareText}
           </p>
         </div>
       </section>

@@ -5,7 +5,7 @@ import { API_URL } from "../api";
 import { selectHomeProducts } from "../utils/homeProducts.mjs";
 import { categories } from "../../categories";
 import "../styles/home.scss";
-import { translations } from "../locales/translations";
+import { translations, translateDisplay } from "../locales/translations";
 
 const collectionCards = Array.from({ length: 3 }, (_, index) => index + 1);
 
@@ -61,7 +61,7 @@ function Home({ language }) {
           <Link className="home-button home-hero__button" to="/catalog">
             {text.home.viewCollection}
           </Link>
-          <div className="home-hero__stats" aria-label="Store statistics">
+          <div className="home-hero__stats" aria-label={text.home.statistics}>
             {statistics.map(({ value, lines }) => (
               <div className="home-hero__stat" key={value}>
                 <strong>{value}</strong>
@@ -77,7 +77,7 @@ function Home({ language }) {
         <img
           className="home-hero__image"
           src="/images/home_background.png"
-          alt="Model wearing a black zip-up hoodie"
+          alt={text.home.heroImageAlt}
         />
       </section>
 
@@ -89,7 +89,7 @@ function Home({ language }) {
         <h2 id="collection-title">{text.home.collection}</h2>
         {error ? (
           <div className="home-products-status" role="status">
-            <p>{error}</p>
+            <p>{translateDisplay(error, language)}</p>
             <button
               className="home-button"
               type="button"
@@ -104,7 +104,7 @@ function Home({ language }) {
         ) : !homeProducts ? (
           <div
             className="home-collection__grid"
-            aria-label="Loading collection"
+            aria-label={text.home.loadingCollection}
             aria-busy="true"
           >
             {collectionCards.map((card) => (
@@ -127,19 +127,19 @@ function Home({ language }) {
       <section className="home-categories" aria-labelledby="categories-title">
         <h2 id="categories-title">{text.home.shopByCategory}</h2>
         <div className="home-categories__grid">
-          {categories.map(({ key, label, src, alt }) => (
+          {categories.map(({ key, label, src }) => (
             <Link
               className="home-categories__card"
               key={key}
               to={`/catalog?category=${encodeURIComponent(key)}`}
-              aria-label={`Shop ${label}`}
+              aria-label={`Shop ${translateDisplay(label, language)}`}
             >
               <img
                 className={`home-categories__image${key === "hoodies" || key === "outerwear" ? " home-categories__image--contain" : ""}`}
                 src={src}
-                alt={alt}
+                alt={text.categories[key]}
               />
-              <span className="home-button">{label}</span>
+              <span className="home-button">{translateDisplay(label, language)}</span>
             </Link>
           ))}
         </div>
@@ -154,7 +154,7 @@ function Home({ language }) {
         <div className="home-story__content">
           <div className="home-story__copy">
             <h3>
-              {text.home.storyTitle}
+              {text.home.storyHeadingLine1}
               <br />
               {text.home.storyHeadingLine2}
             </h3>

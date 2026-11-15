@@ -1,3 +1,4 @@
+import { translations, translateDisplay } from "../locales/translations";
 import { useState, useEffect, useMemo, useRef } from "react";
 import Fuse from "fuse.js";
 import { useSearchParams, Link } from "react-router-dom";
@@ -19,7 +20,8 @@ const styles = ["Casual", "Formal", "Gym", "Party"];
 const maxLimit = 6000;
 const itemsPerPage = 9;
 
-function SearchResult() {
+function SearchResult({ language }) {
+  const text = translations[language];
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedSort, setSelectedSort] = useState("More Popular");
@@ -204,7 +206,7 @@ function SearchResult() {
           <header className="catalog__heading">
             <div className="catalog__heading-main">
               <h1 className="search-catalog__title" id="catalog-title">
-                Results for "{query}"
+                {text.search.resultsFor(query)}
               </h1>
               <div className="catalog__sort-wrap" ref={sortRef}>
                 <button
@@ -213,8 +215,8 @@ function SearchResult() {
                   aria-expanded={isSortOpened}
                   onClick={() => setIsSortOpened((open) => !open)}
                 >
-                  <span className="catalog__sort-label">Sort by:</span>
-                  <span className="catalog__sort-value">{selectedSort}</span>
+                  <span className="catalog__sort-label">{text.catalog.sortBy}</span>
+                  <span className="catalog__sort-value">{translateDisplay(selectedSort, language)}</span>
                   <span className="catalog__sort-caret" aria-hidden="true" />
                 </button>
 
@@ -222,10 +224,10 @@ function SearchResult() {
                   <ul
                     className="catalog__sort-menu"
                     role="listbox"
-                    aria-label="Sort by"
+                    aria-label={text.catalog.sortLabel}
                   >
                     {sortOptions.map((sort) => (
-                      <li key={sort}>
+                      <li key={translateDisplay(sort, language)}>
                         <button
                           type="button"
                           className={sort === selectedSort ? "is-selected" : ""}
@@ -235,7 +237,7 @@ function SearchResult() {
                             setIsSortOpened(false);
                           }}
                         >
-                          {sort}
+                          {translateDisplay(sort, language)}
                         </button>
                       </li>
                     ))}
@@ -253,46 +255,46 @@ function SearchResult() {
               aria-controls="search-filter"
               onClick={() => setIsFilterOpen(true)}
             >
-              Filters <span aria-hidden="true">›</span>
+              {text.catalog.filters} <span aria-hidden="true">›</span>
             </button>
             {isFilterOpen && (
               <button
                 className="catalog-filter-backdrop"
                 type="button"
-                aria-label="Close filters"
+                aria-label={text.catalog.closeFilters}
                 onClick={() => setIsFilterOpen(false)}
               />
             )}
             <aside
               className={`catalog-filter${isFilterOpen ? " is-open" : ""}`}
               id="search-filter"
-              aria-label="Search filters"
+              aria-label={text.search.filterRegion}
             >
               <div className="catalog-filter__mobile-header">
-                <h2 className="catalog-filter__title">Filters</h2>
+                <h2 className="catalog-filter__title">{text.catalog.filters}</h2>
                 <button
                   className="catalog-filter__close"
                   type="button"
-                  aria-label="Close filters"
+                  aria-label={text.catalog.closeFilters}
                   onClick={() => setIsFilterOpen(false)}
                 >
                   ‹
                 </button>
               </div>
               <section className="catalog-filter__section">
-                <h2 className="catalog-filter__title">Filters</h2>
+                <h2 className="catalog-filter__title">{text.catalog.filters}</h2>
                 <div className="catalog-filter__links">
                   {categories.map((category) => (
                     <p
                       className={`category-text${activeCategory === category ? " is-active" : ""}`}
-                      key={category}
+                      key={translateDisplay(category, language)}
                       onClick={() =>
                         setActiveCategory((current) =>
                           current === category ? null : category,
                         )
                       }
                     >
-                      {category}
+                      {translateDisplay(category, language)}
                       <span>›</span>
                     </p>
                   ))}
@@ -300,7 +302,7 @@ function SearchResult() {
               </section>
 
               <section className="catalog-filter__section">
-                <h2 className="catalog-filter__title">Price</h2>
+                <h2 className="catalog-filter__title">{text.catalog.price}</h2>
                 <div
                   className="catalog-filter__slider-container"
                   style={{
@@ -390,11 +392,11 @@ function SearchResult() {
               </section>
 
               <section className="catalog-filter__section">
-                <h2 className="catalog-filter__title">Size</h2>
+                <h2 className="catalog-filter__title">{text.common.size}</h2>
                 <div className="catalog-filter__sizes">
                   {Object.entries(sizeMap).map(([label, size]) => (
                     <button
-                      key={label}
+                      key={translateDisplay(label, language)}
                       className={`catalog-filter__size-btn${activeSize === size ? " active" : ""}`}
                       type="button"
                       aria-pressed={activeSize === size}
@@ -404,18 +406,18 @@ function SearchResult() {
                         )
                       }
                     >
-                      {label}
+                      {translateDisplay(label, language)}
                     </button>
                   ))}
                 </div>
               </section>
 
               <section className="catalog-filter__section catalog-filter__dress-style">
-                <h2 className="catalog-filter__title">Dress Style</h2>
+                <h2 className="catalog-filter__title">{text.catalog.dressStyle}</h2>
                 <div className="catalog-filter__links">
                   {styles.map((style) => (
                     <p
-                      key={style}
+                      key={translateDisplay(style, language)}
                       className={`style-text${activeStyle === style ? " is-muted" : ""}`}
                       onClick={() =>
                         setActiveStyle((current) =>
@@ -423,7 +425,7 @@ function SearchResult() {
                         )
                       }
                     >
-                      {style}
+                      {translateDisplay(style, language)}
                       <span>›</span>
                     </p>
                   ))}
@@ -434,7 +436,7 @@ function SearchResult() {
                 type="button"
                 onClick={applyFilters}
               >
-                Apply filter
+                {text.catalog.applyFilter}
               </button>
             </aside>
 
@@ -483,32 +485,32 @@ function SearchResult() {
                       </div>
                       <p className="product-price" translate="no">${product.price}</p>
                       <Link to={`/catalog/product/${product.id}`} className="product-card-button">
-                        See product
+                        {text.common.seeProduct}
                       </Link>
                     </div>
                   </div>
                 ))}
               </div>
               {displayedProductResults.length === 0 && (
-                <p className="search-results__empty">No products found.</p>
+                <p className="search-results__empty">{text.search.empty}</p>
               )}
-              <nav className="catalog-pagination" aria-label="Catalog pages">
+              <nav className="catalog-pagination" aria-label={text.pagination.label}>
                 <button
                   className="catalog-pagination__direction"
                   type="button"
                   disabled={page === 1}
                   onClick={() => setPage((current) => current - 1)}
                 >
-                  ‹ &nbsp; Previous
+                  ‹ &nbsp; {text.pagination.previous}
                 </button>
                 <ol className="catalog-pagination__pages">
                   <li>
                     <button
                       type="button"
                       onClick={() => setPage(1)}
-                      aria-label="First page"
+                      aria-label={text.pagination.first}
                     >
-                      « First
+                      « {text.pagination.first}
                     </button>
                   </li>
                   {visiblePages.map((pageNumber) => (
@@ -525,7 +527,7 @@ function SearchResult() {
                   ))}
                   {startPage + 4 < totalPages && (
                     <li>
-                      <button type="button" aria-label="More pages" disabled>
+                      <button type="button" aria-label={text.pagination.more} disabled>
                         ...
                       </button>
                     </li>
@@ -534,9 +536,9 @@ function SearchResult() {
                     <button
                       type="button"
                       onClick={() => setPage(totalPages)}
-                      aria-label="Last page"
+                      aria-label={text.pagination.last}
                     >
-                      Last »
+                      {text.pagination.last} »
                     </button>
                   </li>
                 </ol>
@@ -546,7 +548,7 @@ function SearchResult() {
                   disabled={page === totalPages}
                   onClick={() => setPage((current) => current + 1)}
                 >
-                  Next &nbsp; ›
+                  {text.pagination.next} &nbsp; ›
                 </button>
               </nav>
             </div>

@@ -158,14 +158,14 @@ function AccountSettings({
   }
 
   return (
-    <section className="account-settings-page" aria-label="Account settings">
+    <section className="account-settings-page" aria-label={text.accountSettings.title}>
       <div className="account-settings-card">
         <div className="account-settings-header">
           <div className="account-settings-avatar">
             {image && (
               <img
                 src={image}
-                alt="Profile"
+                alt={text.accountSettings.profile}
                 className="account-settings-avatar-image"
               />
             )}
@@ -186,7 +186,7 @@ function AccountSettings({
           </div>
 
           <div className="account-settings-identity">
-            <p>{name.length >= 1 ? name : <span>Your name</span>}</p>
+            <p>{name.length >= 1 ? name : <span>{text.accountSettings.yourName}</span>}</p>
             <p>{userEmail}</p>
           </div>
 
@@ -194,7 +194,7 @@ function AccountSettings({
             <button
               type="button"
               className="account-settings-close"
-              aria-label="Close account settings"
+              aria-label={text.accountSettings.close}
             >
               ×
             </button>
@@ -203,7 +203,7 @@ function AccountSettings({
 
         <div className="account-settings-fields">
           <div className="account-settings-field">
-            <span>Name</span>
+            <span>{text.accountSettings.name}</span>
 
             {isNameClicked ? (
               <div className="account-settings-input-wrap">
@@ -220,7 +220,7 @@ function AccountSettings({
                 <button
                   type="button"
                   className="account-settings-input-clear"
-                  aria-label="Cancel name editing"
+                  aria-label={text.accountSettings.cancelName}
                   onClick={() => setIsNameClicked(false)}
                 >
                   ×
@@ -235,13 +235,13 @@ function AccountSettings({
                   setIsPhoneClicked(false);
                 }}
               >
-                {name.length >= 1 ? name : <span>your name</span>}
+                {name.length >= 1 ? name : <span>{text.accountSettings.namePlaceholder}</span>}
               </span>
             )}
           </div>
 
           <div className="account-settings-field">
-            <span>Mobile number</span>
+            <span>{text.accountSettings.mobileNumber}</span>
 
             {isPhoneClicked ? (
               <div className="account-settings-input-wrap">
@@ -263,7 +263,7 @@ function AccountSettings({
                 <button
                   type="button"
                   className="account-settings-input-clear"
-                  aria-label="Cancel mobile number editing"
+                  aria-label={text.accountSettings.cancelMobileNumber}
                   onClick={() => setIsPhoneClicked(false)}
                 >
                   ×
@@ -279,14 +279,14 @@ function AccountSettings({
                     setIsNameClicked(false);
                   }}
                 >
-                  {phone.length >= 1 ? phone : <span>Add number</span>}
+                  {phone.length >= 1 ? phone : <span>{text.accountSettings.addNumber}</span>}
                 </span>
               </div>
             )}
           </div>
 
           <div className="account-settings-field account-settings-danger">
-            <span>Delete account</span>
+            <span>{text.accountSettings.deleteAccount}</span>
             <button
               type="button"
               className="account-settings-delete"
@@ -304,14 +304,14 @@ function AccountSettings({
             aria-modal="true"
             aria-labelledby="account-delete-title"
           >
-            <p id="account-delete-title">Do you want to remove your account?</p>
+            <p id="account-delete-title">{text.accountSettings.confirmDelete}</p>
             <div className="account-settings-confirmation-actions">
               <button
                 type="button"
                 className="account-settings-confirmation-button"
                 onClick={() => setIsDeleteConfirmationOpen(false)}
               >
-                Cancel
+                {text.common.cancel}
               </button>
               <button
                 type="button"
@@ -321,7 +321,7 @@ function AccountSettings({
                   deleteAccount();
                 }}
               >
-                Delete
+                {text.common.delete}
               </button>
             </div>
           </div>
@@ -333,7 +333,7 @@ function AccountSettings({
           onClick={changeProfileData}
           disabled={isLoading}
         >
-          SAVE CHANGES
+          {text.accountSettings.saveChanges}
         </button>
       </div>
     </section>

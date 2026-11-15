@@ -1,3 +1,4 @@
+import { translateProductText } from "../locales/productTranslations";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../styles/productPage.scss";
@@ -8,7 +9,7 @@ import { API_URL } from "../api";
 
 import { getGuestId } from "../utils/guestCart";
 
-import { translations } from "../locales/translations";
+import { translations, translateDisplay } from "../locales/translations";
 
 function ProductPage({ refreshCart, language }) {
   const text = translations[language];
@@ -83,6 +84,7 @@ function ProductPage({ refreshCart, language }) {
   );
 
   const maxQuantity = selectedInventory?.quantity ?? 0;
+  const features = product?.features ?? product?.details?.features ?? [];
 
   const [isMaxQuantity, setisMaxQuantity] = useState(false);
 
@@ -165,27 +167,27 @@ function ProductPage({ refreshCart, language }) {
           role="status"
           aria-live="polite"
         >
-          <span className="product-added-notice__text">Added to cart.</span>
+          <span className="product-added-notice__text">{text.product.added}</span>
           <div className="product-added-notice__actions">
             <button
               type="button"
               className="product-added-notice__button product-added-notice__button--continue"
               onClick={() => setCartAddedNotice("closing")}
             >
-              Keep browsing
+              {text.product.keepBrowsing}
             </button>
             <button
               type="button"
               className="product-added-notice__button product-added-notice__button--cart"
               onClick={() => navigate("/cart")}
             >
-              Go to cart
+              {text.product.goToCart}
             </button>
           </div>
           <button
             type="button"
             className="account-deleted-notice__close"
-            aria-label="Close cart message"
+            aria-label={text.product.closeAdded}
             onClick={() => setCartAddedNotice("closing")}
           >
             ×
@@ -227,7 +229,7 @@ function ProductPage({ refreshCart, language }) {
           </div>
         </div>
       ) : isFailedToLoad || !product ? (
-        <h2>Unable to load product.</h2>
+        <h2>{text.product.loadError}</h2>
       ) : (
         <div className="main-product-container">
           <div className="product-images-box">
@@ -235,7 +237,7 @@ function ProductPage({ refreshCart, language }) {
               {frontImage && (
                 <img
                   src={frontImage}
-                  alt={`${product.name} front view`}
+                  alt={text.product.frontImageAlt(product.name)}
                   className={`image ${selectedImage === "front" ? "active-image" : ""}`}
                   onClick={() => setSelectedImage("front")}
                 />
@@ -243,7 +245,7 @@ function ProductPage({ refreshCart, language }) {
               {backImage && (
                 <img
                   src={backImage}
-                  alt={`${product.name} back view`}
+                  alt={text.product.backImageAlt(product.name)}
                   className={`image ${selectedImage === "back" ? "active-image" : ""}`}
                   onClick={() => setSelectedImage("back")}
                 />
@@ -253,7 +255,7 @@ function ProductPage({ refreshCart, language }) {
               {mainImage && (
                 <img
                   src={mainImage}
-                  alt={`${product.name} ${selectedImage} view`}
+                  alt={selectedImage === "front" ? text.product.frontImageAlt(product.name) : text.product.backImageAlt(product.name)}
                   className="selected-img"
                 />
               )}
@@ -292,12 +294,12 @@ function ProductPage({ refreshCart, language }) {
               ) : (
                 <p translate="no">${product.price}</p>
               )}
-              <p className="product-description">{product.shortDescription}</p>
+              <p className="product-description">{translateProductText(product.shortDescription, language)}</p>
             </div>
           </div>
 
           <div className="product-colors-box">
-            <h2 className="color-title">Select Color</h2>
+            <h2 className="color-title">{text.product.selectColor}</h2>
 
             <div className="product-colors">
               {product.colors.map((c) => (
@@ -306,8 +308,8 @@ function ProductPage({ refreshCart, language }) {
                     <button
                       className={`color ${activeColor === c ? "active-color" : ""}`}
                       style={{ backgroundColor: c.value }}
-                      aria-label={c.name}
-                      title={c.name}
+                      aria-label={translateProductText(c.name, language)}
+                      title={translateProductText(c.name, language)}
                       onClick={() => {
                         if (selectedColor === c) return;
                         setSelectedColor(c);
@@ -321,14 +323,14 @@ function ProductPage({ refreshCart, language }) {
                   </div>
                 </div>
               ))}
-              <span className="selected-color-name">{activeColor?.name}</span>
+              <span className="selected-color-name">{translateProductText(activeColor?.name, language)}</span>
             </div>
           </div>
 
           <div
             className={`product-sizes-box ${maxQuantity === 0 ? "out-of-stock" : ""}`}
           >
-            <h2 className="size-title">Select Size</h2>
+            <h2 className="size-title">{text.product.selectSize}</h2>
             <div className="size-options">
               {(product.sizes ?? []).map((s) => (
                 <div key={s} className="sizes-box">
@@ -350,7 +352,7 @@ function ProductPage({ refreshCart, language }) {
             <div className="out-stock-message-slot" aria-live="polite">
               {maxQuantity === 0 && (
                 <p className="out-stock-text">
-                  Product with selected size and color is currently out of stock
+                  {text.product.outOfStock}
                 </p>
               )}
             </div>
@@ -361,7 +363,7 @@ function ProductPage({ refreshCart, language }) {
               <div className="quantity-action-box">
                 <button
                   className="arithmetic-btn"
-                  aria-label="Decrease quantity"
+                  aria-label={text.product.decreaseQuantity}
                   type="button"
                   disabled={productQuantity <= 1}
                   onClick={() => {
@@ -378,7 +380,7 @@ function ProductPage({ refreshCart, language }) {
                 </span>
                 <button
                   className="arithmetic-btn"
-                  aria-label="Increase quantity"
+                  aria-label={text.product.increaseQuantity}
                   type="button"
                   disabled={maxQuantity === 0}
                   onClick={() => {
@@ -395,7 +397,7 @@ function ProductPage({ refreshCart, language }) {
               </div>
               {isMaxQuantity && (
                 <p className="quantity-message" role="status">
-                  You&apos;ve reached the available quantity for this size.
+                  {text.product.maxQuantity}
                 </p>
               )}
             </div>
@@ -409,11 +411,11 @@ function ProductPage({ refreshCart, language }) {
                   addProduct();
                 }}
               >
-                {isBeingAdded ? "ADDING" : "ADD TO CART"}
+                {isBeingAdded ? text.product.adding : text.product.addToCart}
               </button>
               {addError && (
                 <p className="quantity-message" role="alert">
-                  {addError}
+                  {translateDisplay(addError, language)}
                 </p>
               )}
             </div>
@@ -421,15 +423,15 @@ function ProductPage({ refreshCart, language }) {
 
           <section
             className="product-details-panel"
-            aria-label="Product details"
+            aria-label={text.product.details}
           >
             {(product.details || product.description) && (
               <details
                 className="product-details-content"
                 key={`details-${product.id}`}
               >
-                <summary>Details & Care</summary>
-                {product.description && <p>{product.description}</p>}
+                <summary>{text.product.detailsCare}</summary>
+                {product.description && <p>{translateProductText(product.description, language)}</p>}
                 {product.details && (
                   <dl className="product-specifications">
                     {[
@@ -442,24 +444,24 @@ function ProductPage({ refreshCart, language }) {
                     ]
                       .filter(([, value]) => value)
                       .map(([label, value]) => (
-                        <div key={label}>
-                          <dt>{label}</dt>
-                          <dd>{value}</dd>
+                        <div key={translateDisplay(label, language)}>
+                          <dt>{translateDisplay(label, language)}</dt>
+                          <dd>{translateProductText(value, language)}</dd>
                         </div>
                       ))}
                   </dl>
                 )}
               </details>
             )}
-            {product.features?.length > 0 && (
+            {features.length > 0 && (
               <details
                 className="product-features-content"
                 key={`features-${product.id}`}
               >
-                <summary>Product Features</summary>
+                <summary>{text.product.features}</summary>
                 <ul className="product-feature-list">
-                  {product.features.map((feature) => (
-                    <li key={feature}>{feature}</li>
+                  {features.map((feature) => (
+                    <li key={feature}>{translateProductText(feature, language)}</li>
                   ))}
                 </ul>
               </details>

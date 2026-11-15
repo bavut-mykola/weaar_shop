@@ -4,7 +4,7 @@ import eyeOffIcon from "../assets/icons/eyeOff.svg";
 import eyeIcon from "../assets/icons/eye.svg";
 import arrowLeftIcon from "../assets/icons/arrowLeft.svg";
 import "../styles/auth.scss";
-import { translations } from "../locales/translations";
+import { translations, translateDisplay } from "../locales/translations";
 
 import { API_URL } from "../api";
 import { getGuestId } from "../utils/guestCart";
@@ -185,10 +185,10 @@ function Auth({ setIsAuthenticated, setUserEmail, refreshCart, language }) {
         {googleError && (
           <div className="google-error" role="dialog" aria-modal="true">
             <div className="google-error-menu">
-              <h3>Sign-in failed</h3>
+              <h3>{text.auth.signInFailed}</h3>
               <p className="google-error-message">
                 {googleError === "account_exists"
-                  ? "An account with this email already exists. Please log in using your existing method."
+                  ? text.auth.accountExists
                   : googleError === "google_unavailable"
                     ? "Google sign-in is not configured yet. Please use email and password."
                     : "Google sign-in failed. Please try again or use email and password."}
@@ -201,7 +201,7 @@ function Auth({ setIsAuthenticated, setUserEmail, refreshCart, language }) {
                   setSearchParams({});
                 }}
               >
-                Back to login / registration
+                {text.auth.backToAuth}
               </button>
             </div>
           </div>
@@ -210,7 +210,7 @@ function Auth({ setIsAuthenticated, setUserEmail, refreshCart, language }) {
         <div className="auth-form-panel">
           <form className="form-content-box" onSubmit={(e) => handleSubmit(e)}>
             <div className="form-logo">
-              <h2>{isCreatingAccount ? "Create an account" : "Log in"}</h2>
+              <h2>{isCreatingAccount ? text.auth.createAccount : text.auth.logIn}</h2>
             </div>
             {[
               {
@@ -226,7 +226,7 @@ function Auth({ setIsAuthenticated, setUserEmail, refreshCart, language }) {
             ].map((a) => (
               <div className="form-inputs-box" key={a.id}>
                 <div className="input-box">
-                  <label htmlFor={`form-${a.type}`}>{a.text}</label>
+                  <label htmlFor={`form-${a.type}`}>{translateDisplay(a.text, language)}</label>
                   <input
                     id={`form-${a.type}`}
                     type={
@@ -236,10 +236,10 @@ function Auth({ setIsAuthenticated, setUserEmail, refreshCart, language }) {
                     }
                     placeholder={
                       a.type === "email"
-                        ? "Enter your email address"
+                        ? text.auth.emailPlaceholder
                         : isCreatingAccount
-                          ? "Create a password (8–128 characters)"
-                          : "Enter your password"
+                          ? text.auth.createPasswordPlaceholder
+                          : text.auth.passwordPlaceholder
                     }
                     autoComplete={
                       a.type === "email"
@@ -305,7 +305,7 @@ function Auth({ setIsAuthenticated, setUserEmail, refreshCart, language }) {
                       type="button"
                       className="eye-btn-box"
                       aria-label={
-                        isPasswordShowing ? "Hide password" : "Show password"
+                        isPasswordShowing ? text.auth.hidePassword : text.auth.showPassword
                       }
                       onClick={() => setIsPasswordShowing(!isPasswordShowing)}
                     >
@@ -321,7 +321,7 @@ function Auth({ setIsAuthenticated, setUserEmail, refreshCart, language }) {
                   <div className="errors-form-box">
                     <p className="form-error">
                       {isEmptyField.emptyEmail
-                        ? "Please do not leave email empty."
+                        ? text.auth.emailEmpty
                         : isWrongField.wrongEmail
                           ? "Please enter a valid email address."
                           : ""}
@@ -331,7 +331,7 @@ function Auth({ setIsAuthenticated, setUserEmail, refreshCart, language }) {
                   <div className="errors-form-box">
                     <p className="form-error">
                       {isEmptyField.emptyPassword
-                        ? "Please do not leave password empty."
+                        ? text.auth.passwordEmpty
                         : isWrongField.wrongPassword
                           ? "Password must contains from 8 to 128 symbols"
                           : ""}
@@ -341,7 +341,7 @@ function Auth({ setIsAuthenticated, setUserEmail, refreshCart, language }) {
               </div>
             ))}
 
-            {serverError && <p className="form-error">{serverError}</p>}
+            {serverError && <p className="form-error">{translateDisplay(serverError, language)}</p>}
 
             <div className="form-buttons-box">
               <button
@@ -350,7 +350,7 @@ function Auth({ setIsAuthenticated, setUserEmail, refreshCart, language }) {
                 type="submit"
               >
                 {isSubmiting
-                  ? "Sending"
+                  ? text.auth.sending
                   : isCreatingAccount
                     ? "Create an account"
                     : "Log in"}
@@ -388,9 +388,9 @@ function Auth({ setIsAuthenticated, setUserEmail, refreshCart, language }) {
                 </svg>
                 <span>
                   {isLoadingToGoogle ? (
-                    <span>Redirecting to Google...</span>
+                    <span>{text.auth.googleRedirect}</span>
                   ) : (
-                    <span>Continue with Google</span>
+                    <span>{text.auth.googleContinue}</span>
                   )}
                 </span>
               </button>
@@ -408,14 +408,14 @@ function Auth({ setIsAuthenticated, setUserEmail, refreshCart, language }) {
                     setIsCreatingAccount(!isCreatingAccount);
                   }}
                 >
-                  {isCreatingAccount ? "Log in" : "Register"}
+                  {isCreatingAccount ? text.auth.logIn : text.auth.register}
                 </button>
               </p>
             </div>
           </form>
           <Link to="/" className="back-to-home-box">
             <img src={arrowLeftIcon} alt="" />
-            <span>Home</span>
+            <span>{text.common.home}</span>
           </Link>
         </div>
       </div>

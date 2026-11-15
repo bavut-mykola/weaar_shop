@@ -6,7 +6,7 @@
 // Keep category/style/size IDs and API values unchanged; translate only display labels.
 // Product names/descriptions/features from the database need their own translations.
 // Link labels are plain text: keep <Link> elements in JSX when connecting the copy.
-// No language switching, persistence, or JSX changes are implemented in this file.
+// Language switching and persistence are managed by App.
 
 export const translations = {
   en: {
@@ -1406,3 +1406,19 @@ export const translations = {
     },
   },
 };
+
+// Resolve existing English display values without changing IDs sent to the API.
+const displayTranslations = new Map();
+function indexDisplayText(english, ukrainian) {
+  for (const key of Object.keys(english)) {
+    if (typeof english[key] === "string" && typeof ukrainian?.[key] === "string") {
+      displayTranslations.set(english[key], ukrainian[key]);
+    } else if (english[key] && typeof english[key] === "object") {
+      indexDisplayText(english[key], ukrainian?.[key]);
+    }
+  }
+}
+indexDisplayText(translations.en, translations.uk);
+export function translateDisplay(value, language) {
+  return language === "uk" ? (displayTranslations.get(value) ?? value) : value;
+}

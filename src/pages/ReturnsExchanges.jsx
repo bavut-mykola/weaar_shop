@@ -1,70 +1,36 @@
 import { Link } from "react-router-dom";
 import "../styles/returnsExchanges.scss";
-import { translations } from "../locales/translations";
-
-const steps = [
-  {
-    title: "Contact us",
-    text: "Let us know you want to return or exchange an item. Have your order reference ready so we can help with the next steps.",
-  },
-  {
-    title: "Send the item",
-    text: "Pack the item securely and send it via Nova Poshta. Contact us to confirm the return destination before shipping your parcel.",
-  },
-  {
-    title: "We check it",
-    text: "After receiving the item, we’ll inspect its condition and check that the tags and original packaging are included.",
-  },
-  {
-    title: "Get a refund or exchange",
-    text: "Request a refund to your original payment method or an exchange for another size or item, subject to availability.",
-  },
-];
-const accepted = [
-  "Items in original condition",
-  "With all tags attached",
-  "In original packaging",
-  "Within 14 days of receiving the order",
-];
-const excluded = [
-  "Items with signs of use or washing",
-  "Items without tags",
-  "Underwear and socks",
-  "Custom or personalized items",
-];
+import { translations, translateDisplay } from "../locales/translations";
 
 function ReturnsExchanges({ language }) {
   const text = translations[language];
+  const { steps, accepted, excluded } = text.returnsExchanges;
   return (
     <article className="returns">
       <header className="returns__intro">
         <h1>
-          Returns &amp;
-          <br />
-          exchanges
+          {text.returnsExchanges.title}
         </h1>
         <div className="returns__summary">
           <span className="returns__accent" aria-hidden="true" />
           <p>
-            Not the right fit? No worries - you can return or exchange your item
-            within 14 days.
+            {text.returnsExchanges.intro}
           </p>
         </div>
       </header>
 
       <section
         className="returns__terms"
-        aria-label="Return timeframe and condition"
+        aria-label={text.returnsExchanges.termsLabel}
       >
         <div>
-          <h2>Timeframe</h2>
-          <p className="returns__days">14 days</p>
+          <h2>{text.returnsExchanges.timeframe}</h2>
+          <p className="returns__days">{text.returnsExchanges.days}</p>
         </div>
         <div>
-          <h2>Condition</h2>
+          <h2>{text.returnsExchanges.condition}</h2>
           <p>
-            The item must be unworn, unwashed, with all tags and original
-            packaging.
+            {text.returnsExchanges.conditionText}
           </p>
         </div>
       </section>
@@ -74,24 +40,22 @@ function ReturnsExchanges({ language }) {
         aria-labelledby="returns-process-title"
       >
         <h2 id="returns-process-title" className="returns__heading">
-          How it works
+          {text.returnsExchanges.howItWorks}
         </h2>
         <ol className="returns__steps">
-          {steps.map(({ title, text }, index) => (
-            <li key={title}>
+          {steps.map(({ title, text: stepText }, index) => (
+            <li key={translateDisplay(title, language)}>
               <span className="returns__number" aria-hidden="true">
                 0{index + 1}
               </span>
-              <h3>{title}</h3>
+              <h3>{translateDisplay(title, language)}</h3>
               <p>
                 {index === 0 ? (
                   <>
-                    <Link to="/support">Contact our support</Link> to let us
-                    know you want to return or exchange an item. Have your order
-                    reference ready so we can help with the next steps.
+                    <Link to="/support">{text.returnsExchanges.contactSupport}</Link>{text.returnsExchanges.contactSupportAfter}
                   </>
                 ) : (
-                  text
+                  stepText
                 )}
               </p>
             </li>
@@ -101,26 +65,26 @@ function ReturnsExchanges({ language }) {
 
       <section
         className="returns__conditions"
-        aria-label="Items eligible for return"
+        aria-label={text.returnsExchanges.eligibleLabel}
       >
         <div>
-          <h2 className="returns__heading">What can be returned</h2>
+          <h2 className="returns__heading">{text.returnsExchanges.acceptedTitle}</h2>
           <ul>
             {accepted.map((item) => (
-              <li key={item}>
+              <li key={translateDisplay(item, language)}>
                 <span aria-hidden="true">✓</span>
-                {item}
+                {translateDisplay(item, language)}
               </li>
             ))}
           </ul>
         </div>
         <div>
-          <h2 className="returns__heading">What can’t be returned</h2>
+          <h2 className="returns__heading">{text.returnsExchanges.excludedTitle}</h2>
           <ul>
             {excluded.map((item) => (
-              <li key={item}>
+              <li key={translateDisplay(item, language)}>
                 <span aria-hidden="true">×</span>
-                {item}
+                {translateDisplay(item, language)}
               </li>
             ))}
           </ul>

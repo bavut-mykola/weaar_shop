@@ -1,3 +1,4 @@
+import { translations } from "./locales/translations";
 import { useState, useEffect } from "react";
 
 import Navbar from "./components/Navbar";
@@ -29,7 +30,12 @@ import { API_URL } from "./api";
 import { getGuestId } from "./utils/guestCart";
 
 function App() {
-  const [language, setLanguage] = useState("en");
+  const [language, setLanguage] = useState(() => localStorage.getItem("language") === "uk" ? "uk" : "en");
+  const text = translations[language];
+  useEffect(() => {
+    localStorage.setItem("language", language);
+    document.documentElement.lang = language;
+  }, [language]);
 
   const [cartCount, setCartCount] = useState(null);
   const [isContactMenuOpen, setIsContactMenuOpen] = useState(false);
@@ -157,6 +163,7 @@ function App() {
   if (location.pathname === "/auth") {
     return (
       <Auth
+        language={language}
         setIsAuthenticated={setIsAuthenticated}
         setUserEmail={setUserEmail}
         refreshCart={refreshCart}
@@ -188,11 +195,11 @@ function App() {
           role="status"
           aria-live="polite"
         >
-          <span>Account was successfully deleted.</span>
+          <span>{text.app.accountDeleted}</span>
           <button
             type="button"
             className="account-deleted-notice__close"
-            aria-label="Close account deletion message"
+            aria-label={text.app.closeAccountDeleted}
             onClick={() => setAccountDeletedNotice("closing")}
           >
             ×
@@ -202,19 +209,19 @@ function App() {
       {location.pathname === "/" && isDemoNoticeOpen && (
         <aside className="demo-site-notice" role="note">
           <span>
-            Demo site — please don&apos;t use real personal or payment details.
+            {text.app.demoNotice}
           </span>
           <button
             type="button"
             className="demo-site-notice__close"
-            aria-label="Close demo site notice"
+            aria-label={text.app.closeDemoNotice}
             onClick={closeDemoNotice}
           >
             ×
           </button>
         </aside>
       )}
-      <main className="app-content" aria-label="Main content">
+      <main className="app-content" aria-label={text.app.mainContent}>
         <Routes>
           <Route path="/" element={<Home language={language} />} />
           <Route path="/about" element={<About language={language} />} />

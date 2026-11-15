@@ -6,7 +6,7 @@ import "../styles/catalog.scss";
 
 import { API_URL } from "../api";
 
-import { translations } from "../locales/translations";
+import { translations, translateDisplay } from "../locales/translations";
 
 const sortOptions = ["More Popular", "More Expensive", "Cheaper"];
 
@@ -116,14 +116,6 @@ function Catalog({ language }) {
     };
   }, []);
 
-  const sizeMap = {
-    Small: "S",
-    Medium: "M",
-    Large: "L",
-    "X-Large": "XL",
-    "XX-Large": "XXL",
-  };
-
   useEffect(() => {
     const mediaQuery = window.matchMedia("(width <= 768px)");
 
@@ -223,8 +215,8 @@ function Catalog({ language }) {
         <>
           <div className="failed-main-box">
             <div className="failed-text-box">
-              <h2>Failed to load products</h2>
-              <p>We couldn’t load the products. Please try again later</p>
+              <h2>{text.catalog.loadErrorTitle}</h2>
+              <p>{text.catalog.loadError}</p>
             </div>
 
             <div className="failed-buttons-box">
@@ -236,10 +228,10 @@ function Catalog({ language }) {
                   setIsTryingAgain(true);
                 }}
               >
-                {isTryingAgain ? "Loading" : "Try Again"}
+                {isTryingAgain ? text.common.loading : text.common.tryAgain}
               </button>
               <Link to={"/"}>
-                <button className="failed-back-btn">Back to Home</button>
+                <button className="failed-back-btn">{text.common.backHome}</button>
               </Link>
             </div>
           </div>
@@ -279,10 +271,10 @@ function Catalog({ language }) {
             <>
               {!hasNoFilterResults && (
                 <header className="catalog__heading">
-                  <p className="catalog__eyebrow">CATALOG</p>
+                  <p className="catalog__eyebrow">{text.catalog.title}</p>
                   <div className="catalog__heading-main">
                     <h1 className="catalog__title" id="catalog-title">
-                      {activeStyle}
+                      {translateDisplay(activeStyle, language)}
                     </h1>
                     <div className="catalog__sort-wrap" ref={sortRef}>
                       <button
@@ -291,9 +283,9 @@ function Catalog({ language }) {
                         aria-expanded={isSortOpened}
                         onClick={() => setIsSortOpened((open) => !open)}
                       >
-                        <span className="catalog__sort-label">Sort by:</span>
+                        <span className="catalog__sort-label">{text.catalog.sortBy}</span>
                         <span className="catalog__sort-value">
-                          {selectedSort}
+                          {translateDisplay(selectedSort, language)}
                         </span>
                         <span
                           className="catalog__sort-caret"
@@ -305,10 +297,10 @@ function Catalog({ language }) {
                         <ul
                           className="catalog__sort-menu"
                           role="listbox"
-                          aria-label="Sort by"
+                          aria-label={text.catalog.sortLabel}
                         >
                           {sortOptions.map((sort) => (
-                            <li key={sort}>
+                            <li key={translateDisplay(sort, language)}>
                               <button
                                 type="button"
                                 className={
@@ -320,7 +312,7 @@ function Catalog({ language }) {
                                   setPage(1);
                                 }}
                               >
-                                {sort}
+                                {translateDisplay(sort, language)}
                               </button>
                             </li>
                           ))}
@@ -339,34 +331,34 @@ function Catalog({ language }) {
                   aria-controls="catalog-filter"
                   onClick={() => setIsFilterOpen(true)}
                 >
-                  Filters <span aria-hidden="true">›</span>
+                  {text.catalog.filters} <span aria-hidden="true">›</span>
                 </button>
                 {isFilterOpen && (
                   <button
                     className="catalog-filter-backdrop"
                     type="button"
-                    aria-label="Close filters"
+                    aria-label={text.catalog.closeFilters}
                     onClick={() => setIsFilterOpen(false)}
                   />
                 )}
                 <aside
                   className={`catalog-filter${isFilterOpen ? " is-open" : ""}`}
                   id="catalog-filter"
-                  aria-label="Catalog filters"
+                  aria-label={text.catalog.filterRegion}
                 >
                   <div className="catalog-filter__mobile-header">
-                    <h2 className="catalog-filter__title-mobile">Filters</h2>
+                    <h2 className="catalog-filter__title-mobile">{text.catalog.filters}</h2>
                     <button
                       className="catalog-filter__close"
                       type="button"
-                      aria-label="Close filters"
+                      aria-label={text.catalog.closeFilters}
                       onClick={() => setIsFilterOpen(false)}
                     >
                       ‹
                     </button>
                   </div>
                   <section className="catalog-filter__section">
-                    <h2 className="catalog-filter__title">Filters</h2>
+                    <h2 className="catalog-filter__title">{text.catalog.filters}</h2>
                     <div className="catalog-filter__links">
                       {[
                         "Pants",
@@ -377,14 +369,14 @@ function Catalog({ language }) {
                       ].map((c) => (
                         <p
                           className={`category-text${activeCategory === c ? " is-active" : ""}`}
-                          key={c}
+                          key={translateDisplay(c, language)}
                           onClick={() =>
                             setActiveCategory((current) =>
                               current === c ? null : c,
                             )
                           }
                         >
-                          {c}
+                          {translateDisplay(c, language)}
                           <span>›</span>
                         </p>
                       ))}
@@ -392,7 +384,7 @@ function Catalog({ language }) {
                   </section>
 
                   <section className="catalog-filter__section">
-                    <h2 className="catalog-filter__title">Price</h2>
+                    <h2 className="catalog-filter__title">{text.catalog.price}</h2>
 
                     <div
                       className="catalog-filter__slider-container"
@@ -486,22 +478,23 @@ function Catalog({ language }) {
                   </section>
 
                   <section className="catalog-filter__section">
-                    <h2 className="catalog-filter__title">Size</h2>
+                    <h2 className="catalog-filter__title">{text.catalog.size}</h2>
                     <div className="catalog-filter__sizes">
-                      {["Small", "Medium", "Large", "X-Large", "XX-Large"].map(
+                      {["S", "M", "L", "XL", "XXL"].map(
                         (size) => (
                           <button
                             key={size}
                             className={`catalog-filter__size-btn ${
-                              activeSize === sizeMap[size] ? "active" : ""
+                              activeSize === size ? "active" : ""
                             }`}
                             type="button"
-                            aria-pressed={activeSize === sizeMap[size]}
+                            translate="no"
+                            aria-pressed={activeSize === size}
                             onClick={() =>
                               setActiveSize(
-                                activeSize === sizeMap[size]
+                                activeSize === size
                                   ? null
-                                  : sizeMap[size],
+                                  : size,
                               )
                             }
                           >
@@ -512,7 +505,7 @@ function Catalog({ language }) {
                     </div>
                   </section>
                   <section className="catalog-filter__section catalog-filter__dress-style">
-                    <h2 className="catalog-filter__title">Dress Style</h2>
+                    <h2 className="catalog-filter__title">{text.catalog.dressStyle}</h2>
                     <div className="catalog-filter__links">
                       {["Casual", "Formal", "Gym", "Party"].map((s) => (
                         <p
@@ -522,9 +515,9 @@ function Catalog({ language }) {
                             );
                           }}
                           className={`style-text ${activeStyle === s ? "is-muted" : ""}`}
-                          key={s}
+                          key={translateDisplay(s, language)}
                         >
-                          {s}
+                          {translateDisplay(s, language)}
                           <span>›</span>
                         </p>
                       ))}
@@ -541,7 +534,7 @@ function Catalog({ language }) {
                       applyFilter(1);
                     }}
                   >
-                    Apply filter
+                    {text.catalog.applyFilter}
                   </button>
                 </aside>
 
@@ -550,17 +543,17 @@ function Catalog({ language }) {
                     {products.length === 0 ? (
                       <div className="catalog-empty-state" role="status">
                         <p className="catalog-empty-state__title">
-                          No products found
+                          {text.catalog.emptyTitle}
                         </p>
                         <p className="catalog-empty-state__text">
-                          Try changing your filters to see more products.
+                          {text.catalog.emptyText}
                         </p>
                         <button
                           type="button"
                           className="catalog-empty-state__reset"
                           onClick={resetFilters}
                         >
-                          Reset Filter
+                          {text.catalog.resetFilter}
                         </button>
                       </div>
                     ) : (
@@ -614,7 +607,7 @@ function Catalog({ language }) {
                               to={`/catalog/product/${p.id}`}
                               className="product-card-button"
                             >
-                              See product
+                              {text.common.seeProduct}
                             </Link>
                           </div>
                         </div>
@@ -624,7 +617,7 @@ function Catalog({ language }) {
                   {products.length > 0 && (
                     <nav
                       className="catalog-pagination"
-                      aria-label="Catalog pages"
+                      aria-label={text.pagination.label}
                     >
                       <button
                         className="catalog-pagination__direction"
@@ -634,11 +627,11 @@ function Catalog({ language }) {
                           setPage(page - 1);
                         }}
                       >
-                        ‹ &nbsp; Previous
+                        ‹ &nbsp; {text.pagination.previous}
                       </button>
                       <ol className="catalog-pagination__pages">
                         <button type="button" onClick={() => setPage(1)}>
-                          « First
+                          « {text.pagination.first}
                         </button>
                         {visiblePages.map((pageNumber) => (
                           <li key={pageNumber}>
@@ -658,7 +651,7 @@ function Catalog({ language }) {
                             <button
                               className="catalog-pagination__ellipsis"
                               type="button"
-                              aria-label="More pages"
+                              aria-label={text.pagination.more}
                             >
                               ...
                             </button>
@@ -668,7 +661,7 @@ function Catalog({ language }) {
                           type="button"
                           onClick={() => setPage(pagination.totalPages)}
                         >
-                          Last »
+                          {text.pagination.last} »
                         </button>
                       </ol>
                       <button
@@ -679,7 +672,7 @@ function Catalog({ language }) {
                           setPage(page + 1);
                         }}
                       >
-                        Next &nbsp; ›
+                        {text.pagination.next} &nbsp; ›
                       </button>
                     </nav>
                   )}

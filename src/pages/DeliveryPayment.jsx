@@ -14,9 +14,7 @@ function DeliveryPayment({ language }) {
         </h1>
         <span className="delivery-payment__accent" aria-hidden="true" />
         <p>
-          Find out how we deliver your order and which payment options are
-          available. Choose the option that fits your day and review all order
-          details before completing checkout.
+          {text.deliveryPayment.intro}
         </p>
       </header>
 
@@ -25,53 +23,44 @@ function DeliveryPayment({ language }) {
         aria-labelledby="delivery-heading"
       >
         <h2 id="delivery-heading">
-          <span>Delivery</span>
+          <span>{text.deliveryPayment.delivery}</span>
         </h2>
         <div className="delivery-payment__columns">
           <div>
-            <h3>Post office</h3>
+            <h3>{text.deliveryPayment.postOffice}</h3>
             <p>
-              Delivery to a Nova Poshta branch in Ukraine. Select post office
-              delivery at checkout and enter your city and branch number so the
-              destination is clear.
+              {text.deliveryPayment.postOfficeDescription}
             </p>
             <p>
-              Check the branch details and recipient information before placing
-              your order. Choose a location that is convenient for you to visit
-              and check its opening hours before collecting your parcel.
+              {text.deliveryPayment.postOfficeAdvice}
             </p>
             <dl>
               <div>
-                <dt>Delivery time</dt>
-                <dd>Depends on destination and carrier availability</dd>
+                <dt>{text.deliveryPayment.deliveryTime}</dt>
+                <dd>{text.deliveryPayment.deliveryTimeValue}</dd>
               </div>
               <div>
-                <dt>Cost</dt>
-                <dd>Shown in your order summary</dd>
+                <dt>{text.deliveryPayment.cost}</dt>
+                <dd>{text.deliveryPayment.costValue}</dd>
               </div>
             </dl>
           </div>
           <div>
-            <h3>Home delivery</h3>
+            <h3>{text.deliveryPayment.homeDelivery}</h3>
             <p>
-              Choose home delivery to have your order sent to your address.
-              Enter your city and full street address, including the building
-              and apartment number where applicable.
+              {text.deliveryPayment.homeDescription}
             </p>
             <p>
-              Use a phone number where you can be reached about the delivery.
-              Review the address carefully, and contact support if you notice an
-              error after placing your order so the available next steps can be
-              checked.
+              {text.deliveryPayment.homeAdvice}
             </p>
             <dl>
               <div>
-                <dt>Delivery time</dt>
-                <dd>Depends on destination and carrier availability</dd>
+                <dt>{text.deliveryPayment.deliveryTime}</dt>
+                <dd>{text.deliveryPayment.deliveryTimeValue}</dd>
               </div>
               <div>
-                <dt>Cost</dt>
-                <dd>Shown in your order summary</dd>
+                <dt>{text.deliveryPayment.cost}</dt>
+                <dd>{text.deliveryPayment.costValue}</dd>
               </div>
             </dl>
           </div>
@@ -83,34 +72,25 @@ function DeliveryPayment({ language }) {
         aria-labelledby="payment-heading"
       >
         <h2 id="payment-heading">
-          <span>Payment</span>
+          <span>{text.deliveryPayment.payment}</span>
         </h2>
         <div className="delivery-payment__columns">
           <div>
-            <h3>Cash on delivery</h3>
+            <h3>{text.deliveryPayment.cash}</h3>
             <p>
-              Select cash on delivery at checkout to choose payment upon
-              receiving your order. Review the items, quantities and total
-              before confirming your purchase.
+              {text.deliveryPayment.cashDescription}
             </p>
             <p>
-              Check the payment arrangements available at your selected branch
-              or with the courier before collection. If you have questions about
-              the amount or any applicable carrier fees, clarify them before
-              accepting the parcel.
+              {text.deliveryPayment.cashAdvice}
             </p>
           </div>
           <div>
-            <h3>Online payment</h3>
+            <h3>{text.deliveryPayment.onlinePayment}</h3>
             <p>
-              The checkout also includes a card payment option. Select your
-              preferred payment method and review the order summary, including
-              discounts and the delivery fee, before submitting your order.
+              {text.deliveryPayment.onlineDescription}
             </p>
             <p>
-              W.EAR is currently a demo store. Please do not enter real payment
-              details or personal information. The card fields demonstrate the
-              checkout experience; they do not represent a live payment service.
+              {text.deliveryPayment.demoWarning}
             </p>
           </div>
         </div>
@@ -121,40 +101,33 @@ function DeliveryPayment({ language }) {
         aria-labelledby="delivery-information-heading"
       >
         <h2 id="delivery-information-heading">
-          <span>Important information</span>
+          <span>{text.deliveryPayment.importantTitle}</span>
         </h2>
         <ul>
           <li>
-            Review your chosen sizes, colours and quantities before placing an
-            order.
+            {text.deliveryPayment.importantItems[0]}
           </li>
           <li>
-            Check the recipient’s name, phone number and delivery destination
-            carefully.
+            {text.deliveryPayment.importantItems[1]}
           </li>
           <li>
-            Delivery timing depends on your region, carrier operations and the
-            availability of the selected service.
+            {text.deliveryPayment.importantItems[2]}
           </li>
           <li>
-            The delivery fee included in your purchase is displayed in the cart
-            and checkout summary.
+            {text.deliveryPayment.importantItems[3]}
           </li>
           <li>
-            Keep your order confirmation and reference handy when asking about a
-            purchase.
+            {text.deliveryPayment.importantItems[4]}
           </li>
           <li>
-            If tracking information is provided, use it to check your parcel’s
-            progress with the carrier.
+            {text.deliveryPayment.importantItems[5]}
           </li>
           <li>
-            For an address change or an unclear order status, contact support
-            before placing a second order.
+            {text.deliveryPayment.importantItems[6]}
           </li>
           <li>
             If you have any questions, visit our{" "}
-            <Link to="/support">Support page</Link> or use the contact details
+            <Link to="/support">{text.deliveryPayment.supportLink}</Link> or use the contact details
             in the footer.
           </li>
         </ul>

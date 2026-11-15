@@ -1,10 +1,11 @@
+import { translateProductText } from "../locales/productTranslations";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "../styles/checkout.scss";
 import { API_URL } from "../api";
 import { getGuestId } from "../utils/guestCart";
 import { validateExpiration } from "../utils/validateExpiration";
-import { translations } from "../locales/translations";
+import { translations, translateDisplay } from "../locales/translations";
 
 function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
   const text = translations[language];
@@ -261,8 +262,8 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
   return (
     <div className="checkout-page">
       <header className="checkout-header">
-        <h1 className="checkout-title">CHECKOUT</h1>
-        <p>Complete your details to place your order.</p>
+        <h1 className="checkout-title">{text.checkout.title}</h1>
+        <p>{text.checkout.intro}</p>
       </header>
 
       <div className="checkout-layout">
@@ -272,19 +273,19 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
               className="checkout-section"
               aria-labelledby="checkout-contact-title"
             >
-              <h2 id="checkout-contact-title">CONTACT DETAILS</h2>
+              <h2 id="checkout-contact-title">{text.checkout.contactDetails}</h2>
               <div className="checkout-field">
                 {isAuthenticated ? (
                   <p className="checkout-contact-email">{userEmail}</p>
                 ) : (
                   <div className="checkout-field">
-                    <label htmlFor="checkout-email">Email</label>
+                    <label htmlFor="checkout-email">{text.common.email}</label>
                     <input
                       id="checkout-email"
                       name="email"
                       type="email"
                       autoComplete="email"
-                      placeholder="you@example.com"
+                      placeholder={text.checkout.emailPlaceholder}
                       value={email}
                       onChange={(e) => {
                         setEmail(e.target.value);
@@ -297,7 +298,7 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
                       }}
                     />
                     {errors.email ? (
-                      <p className="checkout-error">{errors.email}</p>
+                      <p className="checkout-error">{translateDisplay(errors.email, language)}</p>
                     ) : (
                       ""
                     )}
@@ -307,14 +308,14 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
               {!isAuthenticated && (
                 <div className="checkout-field checkout-phone-field">
                   <label htmlFor="checkout-phone">
-                    Phone number (optional)
+                    {text.checkout.phoneOptional}
                   </label>
                   <input
                     id="checkout-phone"
                     name="phone"
                     type="tel"
                     autoComplete="tel"
-                    placeholder="+380 67 123 45 67"
+                    placeholder={text.checkout.phonePlaceholder}
                     value={phone}
                     onChange={(e) => {
                       const value = e.target.value;
@@ -340,7 +341,7 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
                     }}
                   />
                   {errors.phone ? (
-                    <p className="checkout-error">{errors.phone}</p>
+                    <p className="checkout-error">{translateDisplay(errors.phone, language)}</p>
                   ) : (
                     ""
                   )}
@@ -352,9 +353,9 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
               className="checkout-section"
               aria-labelledby="checkout-delivery-title"
             >
-              <h2 id="checkout-delivery-title">DELIVERY</h2>
+              <h2 id="checkout-delivery-title">{text.checkout.delivery}</h2>
               <fieldset className="checkout-options">
-                <legend>Delivery method</legend>
+                <legend>{text.checkout.deliveryMethod}</legend>
                 <label
                   className="checkout-option"
                   onClick={() => {
@@ -371,7 +372,7 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
                     value="post-office"
                     defaultChecked
                   />
-                  <span>Post office</span>
+                  <span>{text.checkout.postOffice}</span>
                 </label>
                 <label
                   className="checkout-option"
@@ -384,18 +385,18 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
                   }}
                 >
                   <input type="radio" name="delivery" value="home" />
-                  <span>Home delivery</span>
+                  <span>{text.checkout.homeDelivery}</span>
                 </label>
               </fieldset>
               <div className="checkout-fields-row">
                 <div className="checkout-field">
-                  <label htmlFor="checkout-city">City</label>
+                  <label htmlFor="checkout-city">{text.checkout.city}</label>
                   <input
                     id="checkout-city"
                     name="city"
                     type="text"
                     autoComplete="address-level2"
-                    placeholder="Enter your city"
+                    placeholder={text.checkout.cityPlaceholder}
                     value={city}
                     onChange={(e) => {
                       const value = e.target.value;
@@ -416,18 +417,18 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
                     }}
                   />
                   {errors.city ? (
-                    <p className="checkout-error">{errors.city}</p>
+                    <p className="checkout-error">{translateDisplay(errors.city, language)}</p>
                   ) : (
                     ""
                   )}
                 </div>
                 <div className="checkout-field checkout-branch-field">
-                  <label htmlFor="checkout-branch">Branch number</label>
+                  <label htmlFor="checkout-branch">{text.checkout.branchNumber}</label>
                   <input
                     id="checkout-branch"
                     name="branch"
                     type="text"
-                    placeholder="e.g. 12"
+                    placeholder={text.checkout.branchPlaceholder}
                     value={branchNumber}
                     onChange={(e) => {
                       const value = e.target.value;
@@ -444,25 +445,25 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
                     }}
                   />
                   {errors.branch ? (
-                    <p className="checkout-error">{errors.branch}</p>
+                    <p className="checkout-error">{translateDisplay(errors.branch, language)}</p>
                   ) : (
                     ""
                   )}
                 </div>
               </div>
               <div className="checkout-field checkout-address-field">
-                <label htmlFor="checkout-address">Home address</label>
+                <label htmlFor="checkout-address">{text.checkout.homeAddress}</label>
                 <input
                   id="checkout-address"
                   name="address"
                   type="text"
                   autoComplete="street-address"
-                  placeholder="Street, building, apartment"
+                  placeholder={text.checkout.addressPlaceholder}
                   value={address}
                   required={deliveryPlace === "home_delivery"}
                   disabled={deliveryPlace !== "home_delivery"}
                   pattern={String.raw`[^,\s]+,\s*[^,\s]+(?:,\s*[^,\s]+)?`}
-                  title="Enter street and building, with an optional apartment (maximum 3 words)."
+                  title={text.checkout.addressHint}
                   onChange={(e) => {
                     const value = e.target.value;
                     const parts = value
@@ -497,7 +498,7 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
                   }}
                 />
                 {errors.address ? (
-                  <p className="checkout-error">{errors.address}</p>
+                  <p className="checkout-error">{translateDisplay(errors.address, language)}</p>
                 ) : (
                   ""
                 )}
@@ -508,9 +509,9 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
               className="checkout-section"
               aria-labelledby="checkout-payment-title"
             >
-              <h2 id="checkout-payment-title">PAYMENT</h2>
+              <h2 id="checkout-payment-title">{text.checkout.payment}</h2>
               <fieldset className="checkout-options">
-                <legend>Payment method</legend>
+                <legend>{text.checkout.paymentMethod}</legend>
                 <label
                   className="checkout-option"
                   onClick={() => {
@@ -530,7 +531,7 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
                     value="cash"
                     defaultChecked
                   />
-                  <span>Cash on delivery</span>
+                  <span>{text.checkout.cash}</span>
                 </label>
                 <label
                   className="checkout-option"
@@ -539,19 +540,19 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
                   }}
                 >
                   <input type="radio" name="payment" value="card" />
-                  <span>Card</span>
+                  <span>{text.checkout.card}</span>
                 </label>
               </fieldset>
               <div className="checkout-card-fields">
                 <div className="checkout-field">
-                  <label htmlFor="checkout-card-number">Card number</label>
+                  <label htmlFor="checkout-card-number">{text.checkout.cardNumber}</label>
                   <input
                     id="checkout-card-number"
                     name="cardNumber"
                     type="text"
                     inputMode="numeric"
                     autoComplete="cc-number"
-                    placeholder="1234 5678 9012 3456"
+                    placeholder={text.checkout.cardNumberPlaceholder}
                     value={cardNumber}
                     onChange={(e) => {
                       const value = e.target.value;
@@ -574,19 +575,19 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
                     }}
                   />
                   {errors.cardNumber ? (
-                    <p className="checkout-error">{errors.cardNumber}</p>
+                    <p className="checkout-error">{translateDisplay(errors.cardNumber, language)}</p>
                   ) : (
                     ""
                   )}
                 </div>
                 <div className="checkout-field">
-                  <label htmlFor="checkout-card-name">Cardholder name</label>
+                  <label htmlFor="checkout-card-name">{text.checkout.cardholderName}</label>
                   <input
                     id="checkout-card-name"
                     name="cardName"
                     type="text"
                     autoComplete="cc-name"
-                    placeholder="Name as shown on card"
+                    placeholder={text.checkout.cardholderPlaceholder}
                     value={cardHolder}
                     onChange={(e) => {
                       const value = e.target.value;
@@ -605,7 +606,7 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
                     }}
                   />
                   {errors.cardholderName ? (
-                    <p className="checkout-error">{errors.cardholderName}</p>
+                    <p className="checkout-error">{translateDisplay(errors.cardholderName, language)}</p>
                   ) : (
                     ""
                   )}
@@ -613,7 +614,7 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
                 <div className="checkout-fields-row">
                   <div className="checkout-field">
                     <label htmlFor="checkout-card-expiry">
-                      Expiration date
+                      {text.checkout.expiration}
                     </label>
                     <input
                       id="checkout-card-expiry"
@@ -621,7 +622,7 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
                       type="text"
                       inputMode="numeric"
                       autoComplete="cc-exp"
-                      placeholder="MM/YY"
+                      placeholder={text.checkout.expirationPlaceholder}
                       value={expiration}
                       onChange={(e) => {
                         const value = e.target.value;
@@ -660,20 +661,20 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
                       }}
                     />
                     {errors.expiration ? (
-                      <p className="checkout-error">{errors.expiration}</p>
+                      <p className="checkout-error">{translateDisplay(errors.expiration, language)}</p>
                     ) : (
                       ""
                     )}
                   </div>
                   <div className="checkout-field">
-                    <label htmlFor="checkout-card-cvv">CVV</label>
+                    <label htmlFor="checkout-card-cvv">{text.checkout.cvv}</label>
                     <input
                       id="checkout-card-cvv"
                       name="cardCvv"
                       type="password"
                       inputMode="numeric"
                       autoComplete="cc-csc"
-                      placeholder="123"
+                      placeholder={text.checkout.cvvPlaceholder}
                       value={CVV}
                       onChange={(e) => {
                         const value = e.target.value;
@@ -689,7 +690,7 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
                       }}
                     />
                     {errors.cvv ? (
-                      <p className="checkout-error">{errors.cvv}</p>
+                      <p className="checkout-error">{translateDisplay(errors.cvv, language)}</p>
                     ) : (
                       ""
                     )}
@@ -703,17 +704,17 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
               type="button"
               onClick={handlePlaceOrder}
             >
-              Place order
+              {text.checkout.placeOrder}
             </button>
-            <p className="checkout-error">{submitError}</p>
+            <p className="checkout-error">{translateDisplay(submitError, language)}</p>
           </form>
 
-          <nav className="checkout-navigation" aria-label="Continue shopping">
+          <nav className="checkout-navigation" aria-label={text.checkout.continueShopping}>
             <Link className="checkout-navigation-link" to="/">
-              Home
+              {text.common.home}
             </Link>
             <Link className="checkout-navigation-link" to="/catalog">
-              Catalog
+              {text.common.catalog}
             </Link>
           </nav>
         </div>
@@ -723,7 +724,7 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
           aria-labelledby="checkout-summary-title"
         >
           <div className="summary-title">
-            <h2 id="checkout-summary-title">Order Summary</h2>
+            <h2 id="checkout-summary-title">{text.common.orderSummary}</h2>
           </div>
           <div className="checkout-summary-products">
             {cartData.map((p) => (
@@ -737,7 +738,7 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
                 </div>
                 <div className="checkout-product-details">
                   <h3 className="checkout-product-name">{p.name}</h3>
-                  <p className="checkout-product-variant">{`${p.color} - ${p.size}`}</p>
+                  <p className="checkout-product-variant">{`${translateProductText(p.color, language)} - ${p.size}`}</p>
                 </div>
                 <span className="checkout-product-quantity">x{p.quantity}</span>
                 <span
@@ -749,9 +750,9 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
           </div>
           <div className="summary-price-info-boxe">
             <div className="summary-info">
-              <p>Subtotal</p>
+              <p>{text.common.subtotal}</p>
               <p>Discount(-{discount}%)</p>
-              <p>Delivery Fee</p>
+              <p>{text.common.deliveryFee}</p>
             </div>
             <div className="summary-prices" translate="no">
               <p>${subTotal}</p>
@@ -760,7 +761,7 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
             </div>
           </div>
           <div className="total-box">
-            <h3>Total</h3>
+            <h3>{text.common.total}</h3>
             <h4 translate="no">${total}</h4>
           </div>
         </aside>

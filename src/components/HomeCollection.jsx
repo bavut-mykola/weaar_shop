@@ -138,7 +138,7 @@ export default function HomeCollection({ products, language }) {
         onScroll={handleScroll}
         role="region"
         aria-roledescription="carousel"
-        aria-label="Collection products"
+        aria-label={text.homeCollection.products}
         tabIndex={0}
         onKeyDown={(event) => {
           if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
@@ -157,7 +157,7 @@ export default function HomeCollection({ products, language }) {
             key={index}
             role="group"
             aria-roledescription="slide"
-            aria-label={`${index + 1} of ${visibleProducts.length}`}
+            aria-label={text.homeCollection.slidePosition(index + 1, visibleProducts.length)}
           >
             <Link to={`/catalog/product/${product.id}`}>
               <img
@@ -173,14 +173,14 @@ export default function HomeCollection({ products, language }) {
         <div className="home-collection__controls">
           <div
             className="home-collection__dots"
-            aria-label="Choose collection slide"
+            aria-label={text.homeCollection.chooseSlide}
           >
             {visibleProducts.map((_, index) => (
               <button
                 key={index}
                 type="button"
                 className={index === active ? "is-active" : ""}
-                aria-label={`Go to product ${index + 1}`}
+                aria-label={text.homeCollection.goToProduct(index + 1)}
                 aria-current={index === active ? "true" : undefined}
                 onClick={() => goToSlide(index)}
               />
@@ -193,7 +193,7 @@ export default function HomeCollection({ products, language }) {
               aria-pressed={isPaused}
               onClick={() => setIsPaused(!isPaused)}
             >
-              {isPaused ? "Resume slideshow" : "Pause slideshow"}
+              {isPaused ? text.homeCollection.resume : text.homeCollection.pause}
             </button>
           )}
         </div>

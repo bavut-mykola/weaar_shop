@@ -1,3 +1,4 @@
+import { translateProductText } from "../locales/productTranslations";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -228,7 +229,7 @@ function Cart({ refreshCart, language }) {
         </div>
       ) : (
         <>
-          {products.length >= 1 && <h1 className="cart-title">YOUR CART</h1>}
+          {products.length >= 1 && <h1 className="cart-title">{text.cart.title}</h1>}
           {products.length >= 1 ? (
             <div className="cart-main-box">
               <div className="cart-products-column">
@@ -248,10 +249,10 @@ function Cart({ refreshCart, language }) {
                         <div className="product-cart-info-top">
                           <h2 className="product-cart-name">{p.name}</h2>
                           <p className="product-cart-size">
-                            <span>Size:</span> {sizesVariables[p.size]}
+                            <span>{text.cart.size}</span> {sizesVariables[p.size]}
                           </p>
                           <p className="product-cart-color">
-                            <span>Color:</span> {p.color}
+                            <span>{text.cart.color}</span> {translateProductText(p.color, language)}
                           </p>
                         </div>
                         <div className="product-cart-info-bottom">
@@ -306,7 +307,7 @@ function Cart({ refreshCart, language }) {
                           </div>
                           {isMaxStockId === p.id && (
                             <p className="cart-stock-message" role="status">
-                              No more in stock
+                              {text.cart.noMoreStock}
                             </p>
                           )}
                         </div>
@@ -315,28 +316,28 @@ function Cart({ refreshCart, language }) {
                   ))}
                   <div className="cart-clear-btn-box">
                     <button type="button" onClick={clearCart}>
-                      Clear Cart
+                      {text.cart.clear}
                     </button>
                   </div>
                 </div>
 
                 <div className="cart-continue-shopping-box">
                   <Link to="/catalog" className="cart-continue-shopping-button">
-                    Continue Shopping
+                    {text.common.continueShopping}
                   </Link>
                 </div>
               </div>
 
               <div className="summary-main-container">
                 <div className="summary-title">
-                  <h2>Order Summary</h2>
+                  <h2>{text.common.orderSummary}</h2>
                 </div>
 
                 <div className="summary-price-info-boxe">
                   <div className="summary-info">
-                    <p className="summ-info-text">Subtotal</p>
-                    <p className="summ-info-text">{`Discount(-${discount}%)`}</p>
-                    <p className="summ-info-text">Delivery Fee</p>
+                    <p className="summ-info-text">{text.common.subtotal}</p>
+                    <p className="summ-info-text">{text.common.discountWithPercent(discount)}</p>
+                    <p className="summ-info-text">{text.common.deliveryFee}</p>
                   </div>
 
                   <div className="summary-prices" translate="no">
@@ -347,57 +348,48 @@ function Cart({ refreshCart, language }) {
                 </div>
 
                 <div className="total-box">
-                  <h3>Total</h3>
+                  <h3>{text.common.total}</h3>
                   <h4 translate="no">${total}</h4>
                 </div>
 
                 <div className="checkout-btn-box">
                   <Link to="/checkout">
-                    Go To Checkout <span>&gt;</span>
+                    {text.cart.checkout} <span>&gt;</span>
                   </Link>
                 </div>
               </div>
             </div>
           ) : (
             <div className="cart-empty-state">
-              <h2 className="cart-empty-title">Your cart is empty</h2>
+              <h2 className="cart-empty-title">{text.cart.empty}</h2>
               <p className="cart-empty-text">
-                Looks like you haven&apos;t added anything to your cart yet.
+                {text.cart.emptyText}
               </p>
               <Link className="cart-empty-button" to="/catalog">
-                Continue Shopping
+                {text.common.continueShopping}
               </Link>
             </div>
           )}
           <section
             className="cart-information"
-            aria-label="Shopping information"
+            aria-label={text.cart.information}
           >
             <div>
-              <h2>Delivery</h2>
+              <h2>{text.cart.deliveryTitle}</h2>
               <p>
-                Choose your preferred delivery method and enter your shipping
-                details at checkout. Check your address and contact number
-                carefully so your order can reach you. Review the delivery fee
-                in your order summary before placing your order.
+                {text.cart.deliveryText}
               </p>
             </div>
             <div>
-              <h2>Before You Order</h2>
+              <h2>{text.cart.beforeOrderTitle}</h2>
               <p>
-                Double-check your selected sizes, colors, and quantities before
-                proceeding to checkout. You can adjust quantities or remove
-                items directly in your cart. If you’re unsure about a piece,
-                revisit its product page to review the photos and details.
+                {text.cart.beforeOrderText}
               </p>
             </div>
             <div>
-              <h2>Need Help?</h2>
+              <h2>{text.cart.helpTitle}</h2>
               <p>
-                Have a question about a product or your order? Use the contact
-                information in the footer to get in touch. Include the product
-                name or, if you’ve already placed an order, your order reference
-                to help us understand your question.
+                {text.cart.helpText}
               </p>
             </div>
           </section>
@@ -412,14 +404,14 @@ function Cart({ refreshCart, language }) {
                     id="cart-recommendations-title"
                     className="cart-recommendations-title"
                   >
-                    You May Also Like
+                    {text.cart.recommendations}
                   </h2>
                   <p className="cart-recommendations-subtitle">
-                    A few more pieces to explore.
+                    {text.cart.recommendationsText}
                   </p>
                 </div>
                 <Link to="/catalog" className="cart-recommendations-view-all">
-                  View all products <span aria-hidden="true">→</span>
+                  {text.cart.viewAllProducts} <span aria-hidden="true">→</span>
                 </Link>
               </div>
               <div className="cart-recommendations-grid">
@@ -439,7 +431,7 @@ function Cart({ refreshCart, language }) {
                     <h3>{product.name}</h3>
                     <div
                       className="cart-recommendation-rating"
-                      aria-label={`${product.rating} out of 5 stars`}
+                      aria-label={text.common.rating(product.rating)}
                     >
                       <span
                         className="cart-recommendation-stars"
@@ -465,7 +457,7 @@ function Cart({ refreshCart, language }) {
                       to={`/catalog/product/${product.id}`}
                       className="cart-recommendation-button"
                     >
-                      See product
+                      {text.common.seeProduct}
                     </Link>
                   </article>
                 ))}
