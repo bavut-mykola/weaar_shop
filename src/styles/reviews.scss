@@ -1,0 +1,212 @@
+@use "variables" as *;
+
+.product-reviews {
+  width: min(100% - 64px, 1280px);
+  margin: 0 auto 80px;
+  padding-top: 120px;
+  font-family: $font-main;
+  font-weight: 400;
+  color: $color-black;
+
+  &__title {
+    font-family: $font-main;
+    font-weight: 400;
+    margin: 0 0 28px;
+    text-align: left;
+    font-size: clamp(28px, 3vw, 40px);
+  }
+
+  &__list { display: grid; gap: 24px; }
+
+  &__card {
+    min-width: 0;
+    padding: clamp(24px, 3vw, 40px);
+    background: #f8f8f8;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  &__name {
+    font-family: $font-main;
+    margin: 0;
+    font-size: clamp(20px, 2.2vw, 26px);
+    font-weight: 400;
+    overflow-wrap: anywhere;
+  }
+
+  &__rating { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  &__stars { display: flex; color: #4b4b4b; font-size: 24px; line-height: 1; }
+  &__star {
+    background: linear-gradient(to right, #4b4b4b var(--fill), #dedede var(--fill));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  &__text {
+    margin: 40px 0 48px;
+    color: #808080;
+    font-size: clamp(16px, 1.6vw, 18px);
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+  }
+
+  &__date { color: #808080; font-size: 16px; }
+  &__message { color: $color-gray-text; line-height: 1.6; }
+  &__pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+
+  &__page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: 1px solid $color-black;
+    border-radius: 0;
+    background: $color-white;
+    color: $color-black;
+    font: inherit;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+
+    &:hover,
+    &.active {
+      background: $color-black;
+      color: $color-white;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-black;
+      outline-offset: 3px;
+    }
+  }
+
+  &__arrow {
+    min-width: 30px;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+
+    img { width: 22px; height: 22px; }
+    &--left { margin-right: 5px; }
+    &--left img { transform: rotate(-90deg); }
+    &--right { margin-left: 5px; }
+    &--right img { transform: rotate(90deg); }
+    &:hover img { filter: brightness(0) invert(1); }
+  }
+
+  &__button {
+    padding: 12px 24px;
+    border: 1px solid $color-black;
+    background: $color-black;
+    color: $color-white;
+    font: inherit;
+    cursor: pointer;
+    &:disabled { opacity: 0.4; cursor: default; }
+    &:focus-visible { outline: 2px solid $color-black; outline-offset: 4px; }
+  }
+}
+
+@media (max-width: 768px) {
+  .product-reviews {
+    width: min(100% - 40px, 560px);
+    margin-top: 48px;
+    &__header { align-items: flex-start; flex-wrap: wrap; gap: 12px; }
+    &__text { margin: 28px 0 32px; }
+  }
+}
+
+.review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-top: 72px;
+  font-family: $font-main;
+  font-weight: 400;
+
+  &__title {
+    margin: 0;
+    font-family: $font-main;
+    font-size: clamp(26px, 3vw, 36px);
+    font-weight: 400;
+  }
+
+  &__stars { display: flex; gap: 12px; }
+
+  &__star {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #4b4b4b;
+    font: inherit;
+    font-size: 30px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  &__field {
+    width: min(100%, 480px);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    label { font-size: 20px; font-weight: 400; }
+
+    input,
+    textarea {
+      box-sizing: border-box;
+      width: 100%;
+      border: 1px solid #6e6e6e;
+      border-radius: 0;
+      padding: 12px 16px;
+      background: $color-white;
+      color: $color-black;
+      font: inherit;
+      font-weight: 400;
+
+      &:focus {
+        outline: none;
+        border-color: $color-black;
+        box-shadow: none;
+      }
+    }
+
+    input { height: 46px; }
+    textarea { min-height: 180px; resize: vertical; }
+  }
+
+  &__submit {
+    align-self: flex-start;
+    width: min(100%, 480px);
+    padding: 18px 24px;
+    border: 1px solid $color-black;
+    background: $color-black;
+    color: $color-white;
+    font: inherit;
+    font-weight: 400;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+
+    &:hover {
+      background: $color-white;
+      color: $color-black;
+    }
+  }
+}

@@ -1951,6 +1951,82 @@ app.get("/api/cart/recommendations", async (req, res) => {
   }
 });
 
+app.get("/api/products/:id/reviews", async (req, res) => {
+  const { id } = req.params;
+  let { page, sort } = req.query;
+  const limit = 4;
+
+  if (!page) {
+    page = 1;
+  }
+  if (!sort) {
+    sort = "newest";
+  }
+
+  const productId = Number(id);
+  const pageNumber = Number(page);
+
+  if (productId <= 0 || !Number.isInteger(productId)) {
+    return res.status(400).json({ message: "Invalid id" });
+  }
+  if (pageNumber < 1 || !Number.isInteger(pageNumber)) {
+    return res.status(400).json({ message: "Invalid page" });
+  }
+
+  if (sort !== "newest" && sort !== "highest" && sort !== "lowest") {
+    return res.status(400).json({ message: "Invalid sort method" });
+  }
+
+  const offset = (pageNumber - 1) * limit;
+
+  const orderBy =
+    sort === "newest"
+      ? "created_at DESC, id DESC"
+      : sort === "highest"
+        ? "rating DESC, created_at DESC, id DESC"
+        : sort === "lowest"
+          ? "rating ASC, created_at DESC, id DESC"
+          : "";
+
+  try {
+    const reviewsResult = await sessionPool.query(
+      `
+        SELECT * FROM product_reviews
+        WHERE product_id = $1
+        ORDER BY ${orderBy}
+        LIMIT $2 OFFSET $3
+    `,
+      [productId, limit, offset],
+    );
+
+    const countResult = await sessionPool.query(
+      `
+          SELECT COUNT(*)
+          FROM product_reviews
+          WHERE product_id = $1
+      `,
+      [productId],
+    );
+
+    const totalReviews = Number(countResult.rows[0].count);
+
+    const totalPages = Math.ceil(totalReviews / limit);
+
+    const reviews = reviewsResult.rows;
+
+    return res.status(200).json({
+      reviews,
+      totalReviews,
+      totalPages,
+      currentPage: pageNumber,
+      limit,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Failed to fetch reviews" });
+  }
+});
+
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {

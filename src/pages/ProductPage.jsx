@@ -1,3 +1,4 @@
+import Reviews from "../components/reviews";
 import { translateProductText } from "../locales/productTranslations";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -468,6 +469,9 @@ function ProductPage({ refreshCart, language }) {
             )}
           </section>
         </div>
+      )}
+      {!isLoading && !isFailedToLoad && product && (
+        <Reviews key={product.id} productId={product.id} language={language} />
       )}
     </>
   );
