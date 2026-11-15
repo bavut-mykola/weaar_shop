@@ -79,6 +79,15 @@ const Footer = ({ language }) => {
         </div>
       </div>
 
+      <div className="footer__statement">
+        <p className="footer__tagline">Everyday wear. Your way.</p>
+        <p className="footer__statement-copy">
+          Modern, minimal and comfortable clothing for everyday life.
+          <br />
+          Discover new collections, timeless essentials and your next favorite pieces at W.EAR.
+        </p>
+      </div>
+
       <div className="footer__bottom">
         <div className="footer__copyright">
           <span className="footer__copyright-icon" aria-hidden="true">

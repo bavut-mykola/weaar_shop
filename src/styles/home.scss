@@ -365,6 +365,8 @@
     order: 0;
   }
   .nav-link {
+    flex: 0 0 auto;
+    width: fit-content;
     font-family: $font-main;
     font-size: $font-size-20;
     font-weight: $font-weight-regular;
@@ -408,13 +410,7 @@
   @media (min-width: 441px) {
     .nav-links {
       flex: 0 0 auto;
-      gap: 0;
-    }
-    .nav-link:first-child {
-      width: 100px;
-    }
-    .nav-link:last-child {
-      width: 170px;
+      gap: clamp(18px, 3vw, 54px);
     }
     .search-box {
       margin-left: desktop(32);
@@ -492,9 +488,10 @@
   }
   .footer__title {
     margin-bottom: desktop(32);
-    color: $color-gray-text;
-    font-family: $font-logo;
-    font-size: desktop(30);
+    color: $color-black;
+    font-family: $font-main;
+    font-size: calc(#{desktop(24)} + 4px);
+    font-weight: $font-weight-regular;
     letter-spacing: 0;
   }
   .footer__links,

@@ -17,6 +17,7 @@ function Catalog({ language }) {
     homeCategories.find(
       (category) => category.key === searchParams.get("category"),
     )?.label ?? null;
+
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isFiltered, setIsFiltered] = useState(Boolean(initialCategory));
 
@@ -35,6 +36,10 @@ function Catalog({ language }) {
   const [pagination, setPagination] = useState({});
 
   const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [page]);
 
   let sortParam = "popularity";
   if (selectedSort === "More Expensive") sortParam = "price_desc";

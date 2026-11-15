@@ -2288,7 +2288,7 @@
           "value": "#9E9E9E",
           "images": {
             "front": "/images/product_29_grey_front.jpeg",
-            "back": ""
+            "back": "/images/product_29_grey_back.jpeg"
           }
         }
       ],
@@ -2350,7 +2350,7 @@
           "value": "#9E9E9E",
           "images": {
             "front": "/images/product_30_grey_front.jpeg",
-            "back": ""
+            "back": "/images/product_30_grey_back.jpeg"
           }
         }
       ],
@@ -2752,7 +2752,7 @@
           "value": "#1A1A1A",
           "images": {
             "front": "/images/product_35_black_front.jpeg",
-            "back": ""
+            "back": "/images/product_35_black_back.jpeg"
           }
         },
         {
@@ -2760,7 +2760,7 @@
           "value": "#9E9E9E",
           "images": {
             "front": "/images/product_35_grey_front.jpeg",
-            "back": ""
+            "back": "/images/product_35_grey_back.jpeg"
           }
         }
       ],
@@ -3154,7 +3154,7 @@
           "value": "#3B4E63",
           "images": {
             "front": "/images/product_40_blue_front.jpeg",
-            "back": ""
+            "back": "/images/product_40_blue_back.jpeg"
           }
         }
       ],
@@ -4279,7 +4279,7 @@
           "value": "#1A1A1A",
           "images": {
             "front": "/images/product_52_black_front.jpeg",
-            "back": ""
+            "back": "/images/product_52_black_back.jpeg"
           }
         },
         {
@@ -4287,7 +4287,7 @@
           "value": "#7A7A7A",
           "images": {
             "front": "/images/product_52_grey_front.jpeg",
-            "back": ""
+            "back": "/images/product_52_grey_back.jpeg"
           }
         }
       ],
@@ -4475,7 +4475,7 @@
       "name": "Essential Pullover Hoodie",
       "price": "1499",
       "oldPrice": null,
-      "shortDescription": "Класичне худі-пуловер вільного крою з м'якою флісовою підкладкою та просторою кишенею-кенгуру.",
+      "shortDescription": "A classic relaxed-fit pullover hoodie with a soft fleece lining and a roomy kangaroo pocket.",
       "category": "hoodies",
       "subcategory": "pullover",
       "rating": 3.2,
@@ -4570,19 +4570,19 @@
           "quantity": 6
         }
       ],
-      "description": "Створіть затишний повсякденний образ із цим класичним худі-пуловером. Виготовлене з високоякісного сумішевого флісу на основі бавовни, воно забезпечує максимальний комфорт, тепла та стиль у будь-яку пору року.",
+      "description": "Create a cozy everyday look with this classic pullover hoodie. Made from a premium cotton-blend fleece, it delivers comfort, warmth, and style all year round.",
       "details": {
-        "material": "80% Бавовна, 20% Поліестер",
-        "fit": "Вільний / Чоловічий",
-        "gender": "Чоловіки",
-        "season": "Усесезонний",
-        "care": "Прання в машинці на делікатному режимі з вивороту. Не відбілювати. Сушити при низькій температурі.",
-        "country": "Україна",
+        "material": "80% Cotton, 20% Polyester",
+        "fit": "Relaxed / Men's",
+        "gender": "Men",
+        "season": "All-season",
+        "care": "Machine wash inside out on a gentle cycle. Do not bleach. Tumble dry on low heat.",
+        "country": "Ukraine",
         "features": [
-          "Вільний силует у вуличному стилі",
-          "Містка передня кишеня-кенгуру",
-          "Подвійний капюшон без шнурків для лаконічного вигляду",
-          "Доступно в чорному, коричневому та білому кольорах"
+          "Relaxed streetwear silhouette",
+          "Spacious front kangaroo pocket",
+          "Double-layer hood without drawstrings for a clean look",
+          "Available in black, brown, and white"
         ]
       },
       "tags": [
