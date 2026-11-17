@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { API_URL } from "../api";
+import { getGuestId } from "../utils/guestCart";
 import "../styles/reviews.scss";
 import arrowIcon from "../assets/icons/arrow.svg";
 
@@ -123,11 +124,14 @@ function Reviews({ productId, language = "en" }: ReviewsProps) {
   const [rating, setRating] = useState<number>(0);
 
   const [reviewError, setReviewError] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function sendReview(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (isSubmitting) return;
 
     if (!rating || !reviewText.trim() || !userName.trim()) {
+      setReviewError("Enter your name, review, and a star rating.");
       return;
     }
 
@@ -136,11 +140,16 @@ function Reviews({ productId, language = "en" }: ReviewsProps) {
       reviewText: reviewText,
       rating: rating,
     };
+
+    const guestId = getGuestId();
+    setIsSubmitting(true);
+    setReviewError("");
     try {
       const res = await fetch(`${API_URL}/api/products/${productId}/reviews`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "X-Guest-ID": guestId,
         },
         body: JSON.stringify(reviewData),
         credentials: "include",
@@ -158,10 +167,14 @@ function Reviews({ productId, language = "en" }: ReviewsProps) {
         setCurretPage(1);
 
         setRetry(retry + 1);
+      } else {
+        setReviewError(result.message || "Failed to send your review");
       }
     } catch (error) {
       console.log(error);
-      setReviewError("Failed to send tour review");
+      setReviewError("Failed to send your review");
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -376,7 +389,19 @@ function Reviews({ productId, language = "en" }: ReviewsProps) {
           />
         </div>
 
-        <button className="review-form__submit" type="submit">
+        {reviewError && (
+          <p className="review-form__error" role="alert">
+            {reviewError}
+          </p>
+        )}
+        <button
+          className="review-form__submit"
+          type="submit"
+          disabled={isSubmitting}
+          aria-busy={isSubmitting}
+          aria-label={isSubmitting ? "Sending your review" : undefined}
+        >
+          {isSubmitting && <span className="review-form__spinner" aria-hidden="true" />}
           Leave a review
         </button>
       </form>

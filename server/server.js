@@ -2028,6 +2028,31 @@ app.get("/api/products/:id/reviews", async (req, res) => {
 });
 
 app.post("/api/products/:id/reviews", async (req, res) => {
+  let accountId = req.session?.accountId;
+  let guestId = req.get("X-Guest-ID");
+
+  if (accountId) {
+    guestId = null;
+  }
+  if (guestId) {
+    accountId = null;
+  }
+
+  if (!accountId && !guestId) {
+    return res
+      .status(400)
+      .json({ message: "User or guest identification is missing" });
+  }
+
+  const uuidRegex =
+    /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+  if (guestId && !uuidRegex.test(guestId)) {
+    return {
+      error: "Invalid guest ID",
+    };
+  }
+
   const { id } = req.params;
 
   const { userName, reviewText, rating } = req.body;
@@ -2075,11 +2100,11 @@ app.post("/api/products/:id/reviews", async (req, res) => {
     }
     const reviewResult = await client.query(
       `
-          INSERT INTO product_reviews (product_id, author_name, review_text, rating)
-          VALUES ($1, $2, $3, $4)
+          INSERT INTO product_reviews (product_id, author_name, review_text, rating, account_id, guest_id)
+          VALUES ($1, $2, $3, $4, $5, $6)
           RETURNING *
       `,
-      [productId, userName, reviewText, rating],
+      [productId, userName, reviewText, rating, accountId, guestId],
     );
 
     const averageReviewResult = await client.query(
@@ -2113,6 +2138,15 @@ app.post("/api/products/:id/reviews", async (req, res) => {
       await client.query(`ROLLBACK`);
     }
     console.error(error);
+    if (
+      error.code === "23505" &&
+      (error.constraint === "unique_account_review" ||
+        error.constraint === "unique_guest_review")
+    ) {
+      return res
+        .status(409)
+        .json({ message: "You have already reviewed this product" });
+    }
     return res.status(500).json({ message: "Failed to leave a review" });
   } finally {
     if (client) {
