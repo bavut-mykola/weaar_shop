@@ -837,7 +837,7 @@
       line-height: 1.4;
     }
     &__button {
-      width: 236px;
+      width: min(236px, 100%);
       min-height: 44px;
       margin-top: 32px;
       padding: 10px 16px;
@@ -871,8 +871,8 @@
     &__image {
       position: static;
       align-self: flex-start;
-      width: 220px;
-      height: 320px;
+      width: min(236px, 100%);
+      height: auto;
       margin-top: 12px;
       object-fit: contain;
       object-position: bottom;
