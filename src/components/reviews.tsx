@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { API_URL } from "../api";
 import "../styles/reviews.scss";
 import arrowIcon from "../assets/icons/arrow.svg";
@@ -44,6 +44,24 @@ const copy = {
 };
 
 function Reviews({ productId, language = "en" }: ReviewsProps) {
+  const sortDropdownRef = useRef<HTMLDetailsElement>(null);
+
+  useEffect(() => {
+    function closeSortOnOutsideClick(event: MouseEvent) {
+      const dropdown = sortDropdownRef.current;
+      if (
+        dropdown &&
+        event.target instanceof Node &&
+        !dropdown.contains(event.target)
+      ) {
+        dropdown.open = false;
+      }
+    }
+
+    document.addEventListener("click", closeSortOnOutsideClick);
+    return () => document.removeEventListener("click", closeSortOnOutsideClick);
+  }, []);
+
   const text = language === "uk" ? copy.uk : copy.en;
   const [reviews, setReviews] = useState<Review[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -53,33 +71,41 @@ function Reviews({ productId, language = "en" }: ReviewsProps) {
   const [currentPage, setCurretPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(0);
 
-  useEffect(() => {
-    async function getReviews() {
-      try {
-        setIsLoading(true);
-        setIsFailedToLoad(false);
+  const [sort, setSort] = useState<string>("newest");
+  const sortOptions = [
+    { value: "newest", en: "Newest", uk: "Найновіші" },
+    { value: "highest", en: "Highest rating", uk: "Найвища оцінка" },
+    { value: "lowest", en: "Lowest rating", uk: "Найнижча оцінка" },
+  ];
+  const selectedSort = sortOptions.find((option) => option.value === sort)!;
 
-        const response = await fetch(
-          `${API_URL}/api/products/${productId}/reviews?page=${currentPage}`,
-        );
+  async function getReviews() {
+    try {
+      setIsLoading(true);
+      setIsFailedToLoad(false);
 
-        if (!response.ok) {
-          throw new Error(`Reviews request failed: ${response.status}`);
-        }
+      const response = await fetch(
+        `${API_URL}/api/products/${productId}/reviews?page=${currentPage}&sort=${sort}`,
+      );
 
-        const data = await response.json();
-        setReviews(data.reviews);
-        setTotalPages(data.totalPages);
-      } catch (error) {
-        console.error("Error fetching reviews:", error);
-        setIsFailedToLoad(true);
-      } finally {
-        setIsLoading(false);
+      if (!response.ok) {
+        throw new Error(`Reviews request failed: ${response.status}`);
       }
-    }
 
+      const data = await response.json();
+      setReviews(data.reviews);
+      setTotalPages(data.totalPages);
+    } catch (error) {
+      console.error("Error fetching reviews:", error);
+      setIsFailedToLoad(true);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  useEffect(() => {
     getReviews();
-  }, [productId, retry, currentPage]);
+  }, [productId, retry, currentPage, sort]);
 
   const paginationPages: number[] = [];
 
@@ -92,9 +118,84 @@ function Reviews({ productId, language = "en" }: ReviewsProps) {
     paginationPages.push(page);
   }
 
+  const [userName, setUserName] = useState<string>("");
+  const [reviewText, setReviewText] = useState<string>("");
+  const [rating, setRating] = useState<number>(0);
+
+  const [reviewError, setReviewError] = useState<string>("");
+
+  async function sendReview(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    if (!rating || !reviewText.trim() || !userName.trim()) {
+      return;
+    }
+
+    const reviewData = {
+      userName: userName,
+      reviewText: reviewText,
+      rating: rating,
+    };
+    try {
+      const res = await fetch(`${API_URL}/api/products/${productId}/reviews`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(reviewData),
+        credentials: "include",
+      });
+
+      const result = await res.json();
+
+      if (res.ok) {
+        setReviewError("");
+
+        setUserName("");
+        setReviewText("");
+        setRating(0);
+
+        setCurretPage(1);
+
+        setRetry(retry + 1);
+      }
+    } catch (error) {
+      console.log(error);
+      setReviewError("Failed to send tour review");
+    }
+  }
+
   return (
     <section className="product-reviews">
-      <h2 className="product-reviews__title">{text.title}</h2>
+      <div className="product-reviews__toolbar">
+        <h2 className="product-reviews__title">{text.title}</h2>
+        <div className="product-reviews__sort">
+          <span>{language === "uk" ? "Сортувати за:" : "Sort by:"}</span>
+          <details className="product-reviews__dropdown" ref={sortDropdownRef}>
+            <summary>
+              {language === "uk" ? selectedSort.uk : selectedSort.en}
+              <span className="product-reviews__chevron" aria-hidden="true" />
+            </summary>
+            <div className="product-reviews__sort-menu">
+              {sortOptions.map((option) => (
+                <div
+                  onClick={() => {
+                    setSort(option.value);
+                    setCurretPage(1);
+                    if (sortDropdownRef.current) {
+                      sortDropdownRef.current.open = false;
+                    }
+                  }}
+                  key={option.value}
+                  className={`product-reviews__sort-option${option.value === sort ? " product-reviews__sort-option--selected" : ""}`}
+                >
+                  {language === "uk" ? option.uk : option.en}
+                </div>
+              ))}
+            </div>
+          </details>
+        </div>
+      </div>
 
       {isLoading ? (
         <p className="product-reviews__message">{text.loading}</p>
@@ -166,7 +267,9 @@ function Reviews({ productId, language = "en" }: ReviewsProps) {
               <button
                 type="button"
                 className="product-reviews__page product-reviews__arrow product-reviews__arrow--left"
-                aria-label={language === "uk" ? "Попередня сторінка" : "Previous page"}
+                aria-label={
+                  language === "uk" ? "Попередня сторінка" : "Previous page"
+                }
                 onClick={() => setCurretPage(currentPage - 1)}
               >
                 <img src={arrowIcon} alt="" />
@@ -196,7 +299,9 @@ function Reviews({ productId, language = "en" }: ReviewsProps) {
               <button
                 type="button"
                 className="product-reviews__page product-reviews__arrow product-reviews__arrow--right"
-                aria-label={language === "uk" ? "Наступна сторінка" : "Next page"}
+                aria-label={
+                  language === "uk" ? "Наступна сторінка" : "Next page"
+                }
                 onClick={() => setCurretPage(currentPage + 1)}
               >
                 <img src={arrowIcon} alt="" />
@@ -206,33 +311,72 @@ function Reviews({ productId, language = "en" }: ReviewsProps) {
         </>
       )}
 
-      <form className="review-form">
+      <form
+        className="review-form"
+        onSubmit={(e) => {
+          sendReview(e);
+        }}
+      >
         <h2 className="review-form__title">Leave a review</h2>
 
-        <div className="review-form__stars" role="group" aria-label="Your rating">
+        <div
+          className="review-form__stars"
+          role="group"
+          aria-label="Your rating"
+        >
           {[1, 2, 3, 4, 5].map((star) => (
             <button
               className="review-form__star"
               type="button"
               key={star}
               aria-label={`${star} ${star === 1 ? "star" : "stars"}`}
+              onClick={() => {
+                if (rating === star) {
+                  setRating(0);
+                } else {
+                  setRating(star);
+                }
+              }}
             >
-              ☆
+              {star <= rating ? "★" : "☆"}
             </button>
           ))}
         </div>
 
         <div className="review-form__field review-form__field--name">
           <label htmlFor="review-name">Your name *</label>
-          <input id="review-name" name="name" type="text" />
+          <input
+            id="review-name"
+            name="name"
+            type="text"
+            value={userName}
+            onChange={(e) => {
+              const value = e.target.value;
+              if (value.length === 0) {
+                setUserName("");
+                return;
+              } else {
+                const formatedValue = value[0].toUpperCase() + value.slice(1);
+                setUserName(formatedValue);
+              }
+            }}
+          />
         </div>
 
         <div className="review-form__field">
           <label htmlFor="review-text">Your review *</label>
-          <textarea id="review-text" name="review" rows={6} />
+          <textarea
+            id="review-text"
+            name="review"
+            rows={6}
+            value={reviewText}
+            onChange={(e) => {
+              setReviewText(e.target.value);
+            }}
+          />
         </div>
 
-        <button className="review-form__submit" type="button">
+        <button className="review-form__submit" type="submit">
           Leave a review
         </button>
       </form>

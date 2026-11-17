@@ -2027,6 +2027,100 @@ app.get("/api/products/:id/reviews", async (req, res) => {
   }
 });
 
+app.post("/api/products/:id/reviews", async (req, res) => {
+  const { id } = req.params;
+
+  const { userName, reviewText, rating } = req.body;
+
+  const productId = Number(id);
+
+  if (productId <= 0 || !Number.isInteger(productId)) {
+    return res.status(400).json({ message: "Invalid id" });
+  }
+
+  if (
+    typeof userName !== "string" ||
+    !userName.trim() ||
+    userName.length > 50
+  ) {
+    return res.status(400).json({ message: "invalid user name" });
+  }
+
+  if (typeof reviewText !== "string" || !reviewText.trim()) {
+    return res.status(400).json({ message: "invalid review text" });
+  }
+
+  if (!Number.isInteger(rating) || rating < 1 || rating > 5) {
+    return res.status(400).json({ message: "invalid rating" });
+  }
+
+  let client;
+  try {
+    client = await sessionPool.connect();
+
+    await client.query(`BEGIN`);
+
+    const productResult = await client.query(
+      `
+          SELECT * FROM products
+          WHERE id = $1
+          FOR UPDATE
+      `,
+      [productId],
+    );
+
+    if (productResult.rows.length === 0) {
+      await client.query("ROLLBACK");
+      return res.status(404).json({ message: "no product found" });
+    }
+    const reviewResult = await client.query(
+      `
+          INSERT INTO product_reviews (product_id, author_name, review_text, rating)
+          VALUES ($1, $2, $3, $4)
+          RETURNING *
+      `,
+      [productId, userName, reviewText, rating],
+    );
+
+    const averageReviewResult = await client.query(
+      `
+          SELECT COUNT(*) AS total_reviews, AVG(rating) AS average_rating
+          FROM product_reviews
+          WHERE product_id = $1
+      `,
+      [productId],
+    );
+
+    const averageRating = Number(
+      Number(averageReviewResult.rows[0].average_rating).toFixed(1),
+    );
+    const totalReviews = Number(averageReviewResult.rows[0].total_reviews);
+
+    const finallRatingResult = await client.query(
+      `
+          UPDATE products
+          SET rating = $1, reviews_count = $2
+          WHERE id = $3
+      `,
+      [averageRating, totalReviews, productId],
+    );
+
+    await client.query(`COMMIT`);
+
+    return res.status(201).json({ review: reviewResult.rows[0] });
+  } catch (error) {
+    if (client) {
+      await client.query(`ROLLBACK`);
+    }
+    console.error(error);
+    return res.status(500).json({ message: "Failed to leave a review" });
+  } finally {
+    if (client) {
+      client.release();
+    }
+  }
+});
+
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
