@@ -496,23 +496,15 @@ function SearchResult({ language }) {
               )}
               <nav className="catalog-pagination" aria-label={text.pagination.label}>
                 <button
-                  className="catalog-pagination__direction"
-                  type="button"
-                  disabled={page === 1}
-                  onClick={() => setPage((current) => current - 1)}
-                >
-                  ‹ &nbsp; {text.pagination.previous}
-                </button>
-                <ol className="catalog-pagination__pages">
-                  <li>
-                    <button
+                      className="catalog-pagination__boundary"
                       type="button"
                       onClick={() => setPage(1)}
                       aria-label={text.pagination.first}
                     >
-                      « {text.pagination.first}
+                      «
                     </button>
-                  </li>
+                      <ol className="catalog-pagination__pages">
+
                   {visiblePages.map((pageNumber) => (
                     <li key={pageNumber}>
                       <button
@@ -532,24 +524,16 @@ function SearchResult({ language }) {
                       </button>
                     </li>
                   )}
-                  <li>
-                    <button
+
+                </ol>
+                      <button
+                      className="catalog-pagination__boundary"
                       type="button"
                       onClick={() => setPage(totalPages)}
                       aria-label={text.pagination.last}
                     >
-                      {text.pagination.last} »
+                      »
                     </button>
-                  </li>
-                </ol>
-                <button
-                  className="catalog-pagination__direction"
-                  type="button"
-                  disabled={page === totalPages}
-                  onClick={() => setPage((current) => current + 1)}
-                >
-                  {text.pagination.next} &nbsp; ›
-                </button>
               </nav>
             </div>
           </div>

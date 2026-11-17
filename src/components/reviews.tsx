@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { API_URL } from "../api";
 import { getGuestId } from "../utils/guestCart";
 import "../styles/reviews.scss";
-import arrowIcon from "../assets/icons/arrow.svg";
 
 type ReviewsProps = {
   productId: string | number;
@@ -276,18 +275,6 @@ function Reviews({ productId, language = "en" }: ReviewsProps) {
             ))}
           </div>
           <div className="product-reviews__pagination">
-            {currentPage !== 1 && (
-              <button
-                type="button"
-                className="product-reviews__page product-reviews__arrow product-reviews__arrow--left"
-                aria-label={
-                  language === "uk" ? "Попередня сторінка" : "Previous page"
-                }
-                onClick={() => setCurretPage(currentPage - 1)}
-              >
-                <img src={arrowIcon} alt="" />
-              </button>
-            )}
             {paginationPages.slice(actualStartIndex, endIndex).map((page) => (
               <button
                 type="button"
@@ -306,18 +293,6 @@ function Reviews({ productId, language = "en" }: ReviewsProps) {
                 onClick={() => setCurretPage(totalPages)}
               >
                 {totalPages}
-              </button>
-            )}
-            {currentPage < totalPages && (
-              <button
-                type="button"
-                className="product-reviews__page product-reviews__arrow product-reviews__arrow--right"
-                aria-label={
-                  language === "uk" ? "Наступна сторінка" : "Next page"
-                }
-                onClick={() => setCurretPage(currentPage + 1)}
-              >
-                <img src={arrowIcon} alt="" />
               </button>
             )}
           </div>

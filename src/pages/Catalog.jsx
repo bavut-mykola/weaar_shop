@@ -619,20 +619,11 @@ function Catalog({ language }) {
                       className="catalog-pagination"
                       aria-label={text.pagination.label}
                     >
-                      <button
-                        className="catalog-pagination__direction"
-                        type="button"
-                        disabled={page === 1}
-                        onClick={() => {
-                          setPage(page - 1);
-                        }}
-                      >
-                        ‹ &nbsp; {text.pagination.previous}
-                      </button>
-                      <ol className="catalog-pagination__pages">
-                        <button type="button" onClick={() => setPage(1)}>
-                          « {text.pagination.first}
+                      <button className="catalog-pagination__boundary" type="button" aria-label={text.pagination.first} onClick={() => setPage(1)}>
+                          «
                         </button>
+                      <ol className="catalog-pagination__pages">
+
                         {visiblePages.map((pageNumber) => (
                           <li key={pageNumber}>
                             <button
@@ -657,23 +648,16 @@ function Catalog({ language }) {
                             </button>
                           </li>
                         )}
-                        <button
-                          type="button"
-                          onClick={() => setPage(pagination.totalPages)}
-                        >
-                          {text.pagination.last} »
-                        </button>
+
                       </ol>
                       <button
-                        className="catalog-pagination__direction"
-                        type="button"
-                        disabled={page === pagination.totalPages}
-                        onClick={() => {
-                          setPage(page + 1);
-                        }}
-                      >
-                        {text.pagination.next} &nbsp; ›
-                      </button>
+                          className="catalog-pagination__boundary"
+                          type="button"
+                          aria-label={text.pagination.last}
+                          onClick={() => setPage(pagination.totalPages)}
+                        >
+                          »
+                        </button>
                     </nav>
                   )}
                 </div>

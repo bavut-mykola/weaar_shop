@@ -76,7 +76,7 @@ function Home({ language }) {
         </div>
         <img
           className="home-hero__image"
-          src="/images/home_background.png"
+          src="/main_homePage.jpeg"
           alt={text.home.heroImageAlt}
         />
       </section>
