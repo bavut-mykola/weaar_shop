@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useEffectEvent, act } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 import { homeCategories } from "../utils/homeProducts.mjs";
 import "../styles/catalog.scss";
@@ -35,7 +35,17 @@ function Catalog({ language }) {
   const [products, setProducts] = useState([]);
   const [pagination, setPagination] = useState({});
 
-  const [page, setPage] = useState(1);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const page = location.state?.catalogPage ?? 1;
+
+  function setPage(number) {
+    navigate(location, {
+      replace: true,
+      state: { catalogPage: number },
+    });
+  }
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -56,7 +66,7 @@ function Catalog({ language }) {
   const hasNoFilterResults = isFiltered && products.length === 0;
 
   const startPage = Math.min(
-    page,
+    Math.max(page - Math.floor(visiblePageCount / 2), 1),
     Math.max(totalPages - (visiblePageCount - 1), 1),
   );
 
@@ -121,7 +131,6 @@ function Catalog({ language }) {
 
     function handleResize() {
       setIsMobile(mediaQuery.matches);
-      setPage(1);
     }
 
     handleResize();
@@ -577,6 +586,12 @@ function Catalog({ language }) {
                             <Link
                               to={`/catalog/product/${p.id}`}
                               className="product-images"
+                              onClick={() => {
+                                localStorage.setItem(
+                                  "currentPage",
+                                  String(page),
+                                );
+                              }}
                             >
                               <img
                                 src={p.images.front}
@@ -620,6 +635,12 @@ function Catalog({ language }) {
                             <Link
                               to={`/catalog/product/${p.id}`}
                               className="product-card-button"
+                              onClick={() => {
+                                localStorage.setItem(
+                                  "currentPage",
+                                  String(page),
+                                );
+                              }}
                             >
                               {text.common.seeProduct}
                             </Link>
