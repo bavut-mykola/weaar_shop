@@ -53,6 +53,23 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
 
   const [deliveryPlace, setDeliveryPlace] = useState("post_office");
 
+  const [isWarningClosed, setIsWarningClosed] = useState(
+    localStorage.getItem("closedWarning") === "true",
+  );
+
+  function closeWarning() {
+    if (!isWarningClosed) {
+      setTimeout(() => {
+        setIsWarningClosed(true);
+        localStorage.setItem("closedWarning", "true");
+      }, 4000);
+    }
+  }
+
+  useEffect(() => {
+    closeWarning();
+  }, []);
+
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
 
@@ -273,7 +290,9 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
               className="checkout-section"
               aria-labelledby="checkout-contact-title"
             >
-              <h2 id="checkout-contact-title">{text.checkout.contactDetails}</h2>
+              <h2 id="checkout-contact-title">
+                {text.checkout.contactDetails}
+              </h2>
               <div className="checkout-field">
                 {isAuthenticated ? (
                   <p className="checkout-contact-email">{userEmail}</p>
@@ -298,7 +317,9 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
                       }}
                     />
                     {errors.email ? (
-                      <p className="checkout-error">{translateDisplay(errors.email, language)}</p>
+                      <p className="checkout-error">
+                        {translateDisplay(errors.email, language)}
+                      </p>
                     ) : (
                       ""
                     )}
@@ -341,7 +362,9 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
                     }}
                   />
                   {errors.phone ? (
-                    <p className="checkout-error">{translateDisplay(errors.phone, language)}</p>
+                    <p className="checkout-error">
+                      {translateDisplay(errors.phone, language)}
+                    </p>
                   ) : (
                     ""
                   )}
@@ -417,13 +440,17 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
                     }}
                   />
                   {errors.city ? (
-                    <p className="checkout-error">{translateDisplay(errors.city, language)}</p>
+                    <p className="checkout-error">
+                      {translateDisplay(errors.city, language)}
+                    </p>
                   ) : (
                     ""
                   )}
                 </div>
                 <div className="checkout-field checkout-branch-field">
-                  <label htmlFor="checkout-branch">{text.checkout.branchNumber}</label>
+                  <label htmlFor="checkout-branch">
+                    {text.checkout.branchNumber}
+                  </label>
                   <input
                     id="checkout-branch"
                     name="branch"
@@ -445,14 +472,18 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
                     }}
                   />
                   {errors.branch ? (
-                    <p className="checkout-error">{translateDisplay(errors.branch, language)}</p>
+                    <p className="checkout-error">
+                      {translateDisplay(errors.branch, language)}
+                    </p>
                   ) : (
                     ""
                   )}
                 </div>
               </div>
               <div className="checkout-field checkout-address-field">
-                <label htmlFor="checkout-address">{text.checkout.homeAddress}</label>
+                <label htmlFor="checkout-address">
+                  {text.checkout.homeAddress}
+                </label>
                 <input
                   id="checkout-address"
                   name="address"
@@ -498,7 +529,9 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
                   }}
                 />
                 {errors.address ? (
-                  <p className="checkout-error">{translateDisplay(errors.address, language)}</p>
+                  <p className="checkout-error">
+                    {translateDisplay(errors.address, language)}
+                  </p>
                 ) : (
                   ""
                 )}
@@ -545,7 +578,9 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
               </fieldset>
               <div className="checkout-card-fields">
                 <div className="checkout-field">
-                  <label htmlFor="checkout-card-number">{text.checkout.cardNumber}</label>
+                  <label htmlFor="checkout-card-number">
+                    {text.checkout.cardNumber}
+                  </label>
                   <input
                     id="checkout-card-number"
                     name="cardNumber"
@@ -575,13 +610,17 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
                     }}
                   />
                   {errors.cardNumber ? (
-                    <p className="checkout-error">{translateDisplay(errors.cardNumber, language)}</p>
+                    <p className="checkout-error">
+                      {translateDisplay(errors.cardNumber, language)}
+                    </p>
                   ) : (
                     ""
                   )}
                 </div>
                 <div className="checkout-field">
-                  <label htmlFor="checkout-card-name">{text.checkout.cardholderName}</label>
+                  <label htmlFor="checkout-card-name">
+                    {text.checkout.cardholderName}
+                  </label>
                   <input
                     id="checkout-card-name"
                     name="cardName"
@@ -606,7 +645,9 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
                     }}
                   />
                   {errors.cardholderName ? (
-                    <p className="checkout-error">{translateDisplay(errors.cardholderName, language)}</p>
+                    <p className="checkout-error">
+                      {translateDisplay(errors.cardholderName, language)}
+                    </p>
                   ) : (
                     ""
                   )}
@@ -661,13 +702,17 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
                       }}
                     />
                     {errors.expiration ? (
-                      <p className="checkout-error">{translateDisplay(errors.expiration, language)}</p>
+                      <p className="checkout-error">
+                        {translateDisplay(errors.expiration, language)}
+                      </p>
                     ) : (
                       ""
                     )}
                   </div>
                   <div className="checkout-field">
-                    <label htmlFor="checkout-card-cvv">{text.checkout.cvv}</label>
+                    <label htmlFor="checkout-card-cvv">
+                      {text.checkout.cvv}
+                    </label>
                     <input
                       id="checkout-card-cvv"
                       name="cardCvv"
@@ -690,7 +735,9 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
                       }}
                     />
                     {errors.cvv ? (
-                      <p className="checkout-error">{translateDisplay(errors.cvv, language)}</p>
+                      <p className="checkout-error">
+                        {translateDisplay(errors.cvv, language)}
+                      </p>
                     ) : (
                       ""
                     )}
@@ -706,10 +753,15 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
             >
               {text.checkout.placeOrder}
             </button>
-            <p className="checkout-error">{translateDisplay(submitError, language)}</p>
+            <p className="checkout-error">
+              {translateDisplay(submitError, language)}
+            </p>
           </form>
 
-          <nav className="checkout-navigation" aria-label={text.checkout.continueShopping}>
+          <nav
+            className="checkout-navigation"
+            aria-label={text.checkout.continueShopping}
+          >
             <Link className="checkout-navigation-link" to="/">
               {text.common.home}
             </Link>
@@ -765,6 +817,25 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
             <h4 translate="no">${total}</h4>
           </div>
         </aside>
+      </div>
+
+      <div className={`warning-box ${isWarningClosed ? "closed" : ""}`}>
+        <span
+          className="warning-box-cross"
+          aria-hidden="true"
+          onClick={() => {
+            setIsWarningClosed(true);
+            localStorage.setItem("closedWarning", "true");
+          }}
+        >
+          ×
+        </span>
+        <h2>Demo Checkout</h2>
+        <p>
+          W.EAR is a demonstration website created for educational purposes. No
+          real payments are processed. Please use fictional payment details and
+          do not enter your actual card information.
+        </p>
       </div>
     </div>
   );

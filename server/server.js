@@ -956,13 +956,14 @@ app.post("/api/products/filter", async (req, res) => {
     FROM products AS p
     WHERE
       (
-        $1::text IS NULL
+        $1::text[] IS NULL
+        OR cardinality($1) = 0
         OR EXISTS (
           SELECT 1
           FROM product_inventory AS i
           JOIN product_sizes AS s ON i.size_id = s.id
           WHERE s.product_id = p.id
-            AND s.size = $1
+            AND s.size = ANY($1)
             AND i.quantity > 0
         )
       )
@@ -1014,13 +1015,14 @@ app.post("/api/products/filter", async (req, res) => {
     FROM products AS p
     WHERE
       (
-        $1::text IS NULL
+        $1::text[] IS NULL
+        OR cardinality($1) = 0
         OR EXISTS (
           SELECT 1
           FROM product_inventory AS i
           JOIN product_sizes AS s ON i.size_id = s.id
           WHERE s.product_id = p.id
-            AND s.size = $1
+            AND s.size = ANY($1)
             AND i.quantity > 0
         )
       )

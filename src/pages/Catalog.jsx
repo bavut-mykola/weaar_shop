@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useEffectEvent } from "react";
+import { useState, useEffect, useRef, useEffectEvent, act } from "react";
 import { Link } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 import { homeCategories } from "../utils/homeProducts.mjs";
@@ -137,7 +137,7 @@ function Catalog({ language }) {
 
   const [minPrice, setMinPrice] = useState("0");
   const [maxPrice, setMaxPrice] = useState(maxLimit);
-  const [activeSize, setActiveSize] = useState(null);
+  const [activeSize, setActiveSize] = useState([]);
   const [activeCategory, setActiveCategory] = useState(initialCategory);
   const [activeStyle, setActiveStyle] = useState(
     initialCategory ? null : "Casual",
@@ -231,7 +231,9 @@ function Catalog({ language }) {
                 {isTryingAgain ? text.common.loading : text.common.tryAgain}
               </button>
               <Link to={"/"}>
-                <button className="failed-back-btn">{text.common.backHome}</button>
+                <button className="failed-back-btn">
+                  {text.common.backHome}
+                </button>
               </Link>
             </div>
           </div>
@@ -283,7 +285,9 @@ function Catalog({ language }) {
                         aria-expanded={isSortOpened}
                         onClick={() => setIsSortOpened((open) => !open)}
                       >
-                        <span className="catalog__sort-label">{text.catalog.sortBy}</span>
+                        <span className="catalog__sort-label">
+                          {text.catalog.sortBy}
+                        </span>
                         <span className="catalog__sort-value">
                           {translateDisplay(selectedSort, language)}
                         </span>
@@ -347,7 +351,9 @@ function Catalog({ language }) {
                   aria-label={text.catalog.filterRegion}
                 >
                   <div className="catalog-filter__mobile-header">
-                    <h2 className="catalog-filter__title-mobile">{text.catalog.filters}</h2>
+                    <h2 className="catalog-filter__title-mobile">
+                      {text.catalog.filters}
+                    </h2>
                     <button
                       className="catalog-filter__close"
                       type="button"
@@ -358,7 +364,9 @@ function Catalog({ language }) {
                     </button>
                   </div>
                   <section className="catalog-filter__section">
-                    <h2 className="catalog-filter__title">{text.catalog.filters}</h2>
+                    <h2 className="catalog-filter__title">
+                      {text.catalog.filters}
+                    </h2>
                     <div className="catalog-filter__links">
                       {[
                         "Pants",
@@ -384,7 +392,9 @@ function Catalog({ language }) {
                   </section>
 
                   <section className="catalog-filter__section">
-                    <h2 className="catalog-filter__title">{text.catalog.price}</h2>
+                    <h2 className="catalog-filter__title">
+                      {text.catalog.price}
+                    </h2>
 
                     <div
                       className="catalog-filter__slider-container"
@@ -478,34 +488,38 @@ function Catalog({ language }) {
                   </section>
 
                   <section className="catalog-filter__section">
-                    <h2 className="catalog-filter__title">{text.catalog.size}</h2>
+                    <h2 className="catalog-filter__title">
+                      {text.catalog.size}
+                    </h2>
                     <div className="catalog-filter__sizes">
-                      {["S", "M", "L", "XL", "XXL"].map(
-                        (size) => (
-                          <button
-                            key={size}
-                            className={`catalog-filter__size-btn ${
-                              activeSize === size ? "active" : ""
-                            }`}
-                            type="button"
-                            translate="no"
-                            aria-pressed={activeSize === size}
-                            onClick={() =>
+                      {["S", "M", "L", "XL", "XXL"].map((size) => (
+                        <button
+                          key={size}
+                          className={`catalog-filter__size-btn ${
+                            activeSize.includes(size) ? "active" : ""
+                          }`}
+                          type="button"
+                          translate="no"
+                          aria-pressed={activeSize.includes(size)}
+                          onClick={() => {
+                            if (activeSize.includes(size)) {
                               setActiveSize(
-                                activeSize === size
-                                  ? null
-                                  : size,
-                              )
+                                activeSize.filter((s) => s !== size),
+                              );
+                            } else {
+                              setActiveSize([...activeSize, size]);
                             }
-                          >
-                            {size}
-                          </button>
-                        ),
-                      )}
+                          }}
+                        >
+                          {size}
+                        </button>
+                      ))}
                     </div>
                   </section>
                   <section className="catalog-filter__section catalog-filter__dress-style">
-                    <h2 className="catalog-filter__title">{text.catalog.dressStyle}</h2>
+                    <h2 className="catalog-filter__title">
+                      {text.catalog.dressStyle}
+                    </h2>
                     <div className="catalog-filter__links">
                       {["Casual", "Formal", "Gym", "Party"].map((s) => (
                         <p
@@ -619,11 +633,15 @@ function Catalog({ language }) {
                       className="catalog-pagination"
                       aria-label={text.pagination.label}
                     >
-                      <button className="catalog-pagination__boundary" type="button" aria-label={text.pagination.first} onClick={() => setPage(1)}>
-                          «
-                        </button>
+                      <button
+                        className="catalog-pagination__boundary"
+                        type="button"
+                        aria-label={text.pagination.first}
+                        onClick={() => setPage(1)}
+                      >
+                        «
+                      </button>
                       <ol className="catalog-pagination__pages">
-
                         {visiblePages.map((pageNumber) => (
                           <li key={pageNumber}>
                             <button
@@ -648,16 +666,15 @@ function Catalog({ language }) {
                             </button>
                           </li>
                         )}
-
                       </ol>
                       <button
-                          className="catalog-pagination__boundary"
-                          type="button"
-                          aria-label={text.pagination.last}
-                          onClick={() => setPage(pagination.totalPages)}
-                        >
-                          »
-                        </button>
+                        className="catalog-pagination__boundary"
+                        type="button"
+                        aria-label={text.pagination.last}
+                        onClick={() => setPage(pagination.totalPages)}
+                      >
+                        »
+                      </button>
                     </nav>
                   )}
                 </div>
