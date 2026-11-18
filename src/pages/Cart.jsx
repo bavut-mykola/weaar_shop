@@ -1,5 +1,5 @@
 import { translateProductText } from "../locales/productTranslations";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 import "../styles/cart.scss";
@@ -9,6 +9,8 @@ import { API_URL } from "../api";
 import { getGuestId } from "../utils/guestCart";
 
 import { translations } from "../locales/translations";
+
+import arrowIcon from "../assets/icons/arrow.svg";
 
 function Cart({ refreshCart, language }) {
   const text = translations[language];
@@ -217,6 +219,30 @@ function Cart({ refreshCart, language }) {
     return () => controller.abort();
   }, [products]);
 
+  const [rightCarouselDisabled, setRightCarouselDisabled] = useState(false);
+  const [leftCarouselDisabled, setLeftCarouselDisabled] = useState(true);
+  const carouselRef = useRef(null);
+
+  function updateCarouselButtons(event) {
+    const { scrollLeft, scrollWidth, clientWidth } = event.currentTarget;
+    setLeftCarouselDisabled(scrollLeft <= 1);
+    setRightCarouselDisabled(scrollWidth - clientWidth - scrollLeft <= 1);
+  }
+
+  function scrollCarousel(direction) {
+    const carousel = carouselRef.current;
+    if (!carousel || carousel.children.length < 2) return;
+
+    const [firstCard, secondCard] = carousel.children;
+    const cardStep = secondCard.getBoundingClientRect().left
+      - firstCard.getBoundingClientRect().left;
+
+    carousel.scrollBy({
+      left: direction * cardStep,
+      behavior: "smooth",
+    });
+  }
+
   return (
     <>
       {isLoading ? (
@@ -229,7 +255,9 @@ function Cart({ refreshCart, language }) {
         </div>
       ) : (
         <>
-          {products.length >= 1 && <h1 className="cart-title">{text.cart.title}</h1>}
+          {products.length >= 1 && (
+            <h1 className="cart-title">{text.cart.title}</h1>
+          )}
           {products.length >= 1 ? (
             <div className="cart-main-box">
               <div className="cart-products-column">
@@ -249,10 +277,12 @@ function Cart({ refreshCart, language }) {
                         <div className="product-cart-info-top">
                           <h2 className="product-cart-name">{p.name}</h2>
                           <p className="product-cart-size">
-                            <span>{text.cart.size}</span> {sizesVariables[p.size]}
+                            <span>{text.cart.size}</span>{" "}
+                            {sizesVariables[p.size]}
                           </p>
                           <p className="product-cart-color">
-                            <span>{text.cart.color}</span> {translateProductText(p.color, language)}
+                            <span>{text.cart.color}</span>{" "}
+                            {translateProductText(p.color, language)}
                           </p>
                         </div>
                         <div className="product-cart-info-bottom">
@@ -336,7 +366,9 @@ function Cart({ refreshCart, language }) {
                 <div className="summary-price-info-boxe">
                   <div className="summary-info">
                     <p className="summ-info-text">{text.common.subtotal}</p>
-                    <p className="summ-info-text">{text.common.discountWithPercent(discount)}</p>
+                    <p className="summ-info-text">
+                      {text.common.discountWithPercent(discount)}
+                    </p>
                     <p className="summ-info-text">{text.common.deliveryFee}</p>
                   </div>
 
@@ -362,9 +394,7 @@ function Cart({ refreshCart, language }) {
           ) : (
             <div className="cart-empty-state">
               <h2 className="cart-empty-title">{text.cart.empty}</h2>
-              <p className="cart-empty-text">
-                {text.cart.emptyText}
-              </p>
+              <p className="cart-empty-text">{text.cart.emptyText}</p>
               <Link className="cart-empty-button" to="/catalog">
                 {text.common.continueShopping}
               </Link>
@@ -376,21 +406,15 @@ function Cart({ refreshCart, language }) {
           >
             <div>
               <h2>{text.cart.deliveryTitle}</h2>
-              <p>
-                {text.cart.deliveryText}
-              </p>
+              <p>{text.cart.deliveryText}</p>
             </div>
             <div>
               <h2>{text.cart.beforeOrderTitle}</h2>
-              <p>
-                {text.cart.beforeOrderText}
-              </p>
+              <p>{text.cart.beforeOrderText}</p>
             </div>
             <div>
               <h2>{text.cart.helpTitle}</h2>
-              <p>
-                {text.cart.helpText}
-              </p>
+              <p>{text.cart.helpText}</p>
             </div>
           </section>
           {recomendedProducts.length > 0 && (
@@ -410,11 +434,30 @@ function Cart({ refreshCart, language }) {
                     {text.cart.recommendationsText}
                   </p>
                 </div>
-                <Link to="/catalog" className="cart-recommendations-view-all">
-                  {text.cart.viewAllProducts} <span aria-hidden="true">→</span>
-                </Link>
+                <div className="carousel-buttons">
+                  <button
+                    className="left-carousel-btn"
+                    aria-label="Previous product"
+                    disabled={leftCarouselDisabled || recomendedProducts.length <= 4}
+                    onClick={() => scrollCarousel(-1)}
+                  >
+                    <img src={arrowIcon} alt="" />
+                  </button>
+                  <button
+                    className="right-carousel-btn"
+                    aria-label="Next product"
+                    disabled={rightCarouselDisabled || recomendedProducts.length <= 4}
+                    onClick={() => scrollCarousel(1)}
+                  >
+                    <img src={arrowIcon} alt="" />
+                  </button>
+                </div>
               </div>
-              <div className="cart-recommendations-grid">
+              <div
+                className="cart-recommendations-grid"
+                ref={carouselRef}
+                onScroll={updateCarouselButtons}
+              >
                 {recomendedProducts.map((product) => (
                   <article key={product.id} className="cart-recommendation">
                     <Link

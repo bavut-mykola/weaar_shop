@@ -1905,7 +1905,7 @@ app.get("/api/cart/recommendations", async (req, res) => {
           )
           GROUP BY product_id
           ORDER BY matching_tags DESC, product_id ASC
-          LIMIT 4
+          LIMIT 8
       `,
       [tagIds, cartOwnerId],
     );
