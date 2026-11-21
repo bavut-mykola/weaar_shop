@@ -166,11 +166,14 @@ function ProductPage({ refreshCart, language }) {
 
     async function getSimilarProducts() {
       try {
-        const res = await fetch(`${API_URL}/api/cart/recommendations`, {
-          credentials: "include",
-          headers: { "X-Guest-ID": getGuestId() },
-          signal: controller.signal,
-        });
+        const res = await fetch(
+          `${API_URL}/api/products/${product.id}/recommendations`,
+          {
+            credentials: "include",
+            headers: { "X-Guest-ID": getGuestId() },
+            signal: controller.signal,
+          },
+        );
 
         const result = await res.json();
 

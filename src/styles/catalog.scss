@@ -7,6 +7,7 @@
   box-sizing: border-box;
   color: $color-black;
   font-family: $font-main;
+  background: $color-white;
 }
 
 .failed-main-box {
@@ -602,7 +603,9 @@ input[type="range"] {
   text-decoration: none;
   box-sizing: border-box;
   cursor: pointer;
-  transition: color 160ms ease, background-color 160ms ease;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease;
 
   &:hover,
   &:focus-visible {
@@ -743,7 +746,9 @@ input[type="range"] {
     font-size: inherit;
     line-height: 1;
     cursor: pointer;
-    transition: background-color 150ms ease, color 150ms ease;
+    transition:
+      background-color 150ms ease,
+      color 150ms ease;
 
     &:hover {
       background: $color-black;

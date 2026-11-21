@@ -1953,6 +1953,77 @@ app.get("/api/cart/recommendations", async (req, res) => {
   }
 });
 
+app.get("/api/products/:id/recommendations", async (req, res) => {
+  const productId = req.params.id;
+
+  try {
+    const tagsResult = await sessionPool.query(
+      `
+          SELECT product_tags.tag_id
+          FROM product_tags
+          WHERE product_tags.product_id = $1
+      `,
+      [productId],
+    );
+
+    const tagsId = tagsResult.rows.map((t) => t.tag_id);
+
+    const recommendationsResult = await sessionPool.query(
+      `
+          SELECT product_id, COUNT(tag_id)
+          FROM product_tags
+          WHERE tag_id = ANY($1)
+          AND product_id != $2
+          GROUP BY product_id
+          ORDER BY COUNT(tag_id) DESC
+          LIMIT 8
+      `,
+      [tagsId, productId],
+    );
+
+    const recommendedIds = recommendationsResult.rows.map(
+      (product) => product.product_id,
+    );
+
+    const productsResult = await sessionPool.query(
+      `
+          SELECT
+            id,
+            name,
+            price,
+            old_price,
+            rating,
+            is_featured,
+            category,
+            subcategory,
+            (
+              SELECT json_object_agg(i.side, i.image_url)
+              FROM product_images AS i
+              WHERE i.color_id = (
+                SELECT c.id
+                FROM product_colors AS c
+                WHERE c.product_id = p.id
+                ORDER BY c.id
+                LIMIT 1
+              )
+            ) AS images
+          FROM products AS p
+          WHERE p.id = ANY($1)
+          ORDER BY array_position($1, p.id)
+      `,
+      [recommendedIds],
+    );
+
+    return res.status(200).json(productsResult.rows);
+  } catch (error) {
+    console.error("Error fetching recommendations:", error);
+
+    return res.status(500).json({
+      error: "Failed to fetch recommendations",
+    });
+  }
+});
+
 app.get("/api/products/:id/reviews", async (req, res) => {
   const { id } = req.params;
   let { page, sort } = req.query;

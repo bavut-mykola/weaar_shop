@@ -33,7 +33,7 @@
 }
 
 .app-content {
-  background: $color-background;
+  background: $color-white;
 }
 
 .home-button {
@@ -170,8 +170,11 @@
     padding-block: 12px 20px;
   }
   .home-collection__card {
-    transition: transform 250ms ease, box-shadow 250ms ease;
-    &:hover, &:focus-within {
+    transition:
+      transform 250ms ease,
+      box-shadow 250ms ease;
+    &:hover,
+    &:focus-within {
       transform: translateY(-4px);
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
     }
