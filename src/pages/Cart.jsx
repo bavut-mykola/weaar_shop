@@ -88,11 +88,19 @@ function Cart({ refreshCart, language }) {
 
   const total = subTotal - priceafterDiscount + deliveryFee;
 
-  const [isMaxStockId, setIsMaxStockId] = useState(null);
+  const [error, setError] = useState("");
+
+  const [isMaxStockId, setIsMaxStockId] = useState([]);
 
   async function increaseQuantity(p) {
     if (p.maxStock <= 0) {
-      setIsMaxStockId(p.id);
+      const idAlreadyIn = isMaxStockId.find((product) => product === p.id);
+
+      if (idAlreadyIn) {
+        return;
+      } else {
+        setIsMaxStockId([...isMaxStockId, p.id]);
+      }
       return;
     }
 
@@ -114,9 +122,11 @@ function Cart({ refreshCart, language }) {
         );
         if (refreshCart) {
           refreshCart();
+        } else if (res.status === 500) {
+          setError("Unable to update cart quantity. Please try again later.");
         }
       } else {
-        setIsMaxStockId(p.id);
+        setIsMaxStockId([...isMaxStockId, p.id]);
       }
     } catch (error) {
       console.log(error);
@@ -127,7 +137,7 @@ function Cart({ refreshCart, language }) {
 
   async function decreaseQuantity(p) {
     if (isMaxStockId === p.id) {
-      setIsMaxStockId(null);
+      setIsMaxStockId(isMaxStockId.filter((product) => product !== p.id));
     }
 
     if (p.quantity === 1) {
@@ -234,8 +244,9 @@ function Cart({ refreshCart, language }) {
     if (!carousel || carousel.children.length < 2) return;
 
     const [firstCard, secondCard] = carousel.children;
-    const cardStep = secondCard.getBoundingClientRect().left
-      - firstCard.getBoundingClientRect().left;
+    const cardStep =
+      secondCard.getBoundingClientRect().left -
+      firstCard.getBoundingClientRect().left;
 
     carousel.scrollBy({
       left: direction * cardStep,
@@ -335,7 +346,7 @@ function Cart({ refreshCart, language }) {
                               +
                             </button>
                           </div>
-                          {isMaxStockId === p.id && (
+                          {isMaxStockId.includes(p.id) && (
                             <p className="cart-stock-message" role="status">
                               {text.cart.noMoreStock}
                             </p>
@@ -438,7 +449,9 @@ function Cart({ refreshCart, language }) {
                   <button
                     className="left-carousel-btn"
                     aria-label="Previous product"
-                    disabled={leftCarouselDisabled || recomendedProducts.length <= 4}
+                    disabled={
+                      leftCarouselDisabled || recomendedProducts.length <= 4
+                    }
                     onClick={() => scrollCarousel(-1)}
                   >
                     <img src={arrowIcon} alt="" />
@@ -446,7 +459,9 @@ function Cart({ refreshCart, language }) {
                   <button
                     className="right-carousel-btn"
                     aria-label="Next product"
-                    disabled={rightCarouselDisabled || recomendedProducts.length <= 4}
+                    disabled={
+                      rightCarouselDisabled || recomendedProducts.length <= 4
+                    }
                     onClick={() => scrollCarousel(1)}
                   >
                     <img src={arrowIcon} alt="" />
