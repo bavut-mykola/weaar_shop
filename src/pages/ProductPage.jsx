@@ -1,10 +1,11 @@
 import Reviews from "../components/reviews";
 import { translateProductText } from "../locales/productTranslations";
-import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import "../styles/productPage.scss";
 
 import checkIcon from "../assets/icons/check.svg";
+import arrowIcon from "../assets/icons/arrow.svg";
 
 import { API_URL } from "../api";
 
@@ -158,6 +159,63 @@ function ProductPage({ refreshCart, language }) {
     }
   }
 
+  const [recomendedProducts, setRecomendedProducts] = useState([]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    async function getSimilarProducts() {
+      try {
+        const res = await fetch(`${API_URL}/api/cart/recommendations`, {
+          credentials: "include",
+          headers: { "X-Guest-ID": getGuestId() },
+          signal: controller.signal,
+        });
+
+        const result = await res.json();
+
+        if (!res.ok) {
+          throw new Error(result.error);
+        }
+
+        setRecomendedProducts(result);
+      } catch (error) {
+        if (error.name !== "AbortError") {
+          console.log(error);
+          setRecomendedProducts([]);
+        }
+      }
+    }
+
+    getSimilarProducts();
+    return () => controller.abort();
+  }, [product]);
+
+  const [rightCarouselDisabled, setRightCarouselDisabled] = useState(false);
+  const [leftCarouselDisabled, setLeftCarouselDisabled] = useState(true);
+  const carouselRef = useRef(null);
+
+  function updateCarouselButtons(event) {
+    const { scrollLeft, scrollWidth, clientWidth } = event.currentTarget;
+    setLeftCarouselDisabled(scrollLeft <= 1);
+    setRightCarouselDisabled(scrollWidth - clientWidth - scrollLeft <= 1);
+  }
+
+  function scrollCarousel(direction) {
+    const carousel = carouselRef.current;
+    if (!carousel || carousel.children.length < 2) return;
+
+    const [firstCard, secondCard] = carousel.children;
+    const cardStep =
+      secondCard.getBoundingClientRect().left -
+      firstCard.getBoundingClientRect().right;
+
+    carousel.scrollBy({
+      left: direction * cardStep,
+      behavior: "smooth",
+    });
+  }
+
   return (
     <>
       {cartAddedNotice && (
@@ -168,7 +226,9 @@ function ProductPage({ refreshCart, language }) {
           role="status"
           aria-live="polite"
         >
-          <span className="product-added-notice__text">{text.product.added}</span>
+          <span className="product-added-notice__text">
+            {text.product.added}
+          </span>
           <div className="product-added-notice__actions">
             <button
               type="button"
@@ -256,7 +316,11 @@ function ProductPage({ refreshCart, language }) {
               {mainImage && (
                 <img
                   src={mainImage}
-                  alt={selectedImage === "front" ? text.product.frontImageAlt(product.name) : text.product.backImageAlt(product.name)}
+                  alt={
+                    selectedImage === "front"
+                      ? text.product.frontImageAlt(product.name)
+                      : text.product.backImageAlt(product.name)
+                  }
                   className="selected-img"
                 />
               )}
@@ -295,7 +359,9 @@ function ProductPage({ refreshCart, language }) {
               ) : (
                 <p translate="no">${product.price}</p>
               )}
-              <p className="product-description">{translateProductText(product.shortDescription, language)}</p>
+              <p className="product-description">
+                {translateProductText(product.shortDescription, language)}
+              </p>
             </div>
           </div>
 
@@ -324,7 +390,9 @@ function ProductPage({ refreshCart, language }) {
                   </div>
                 </div>
               ))}
-              <span className="selected-color-name">{translateProductText(activeColor?.name, language)}</span>
+              <span className="selected-color-name">
+                {translateProductText(activeColor?.name, language)}
+              </span>
             </div>
           </div>
 
@@ -352,9 +420,7 @@ function ProductPage({ refreshCart, language }) {
             </div>
             <div className="out-stock-message-slot" aria-live="polite">
               {maxQuantity === 0 && (
-                <p className="out-stock-text">
-                  {text.product.outOfStock}
-                </p>
+                <p className="out-stock-text">{text.product.outOfStock}</p>
               )}
             </div>
           </div>
@@ -432,7 +498,9 @@ function ProductPage({ refreshCart, language }) {
                 key={`details-${product.id}`}
               >
                 <summary>{text.product.detailsCare}</summary>
-                {product.description && <p>{translateProductText(product.description, language)}</p>}
+                {product.description && (
+                  <p>{translateProductText(product.description, language)}</p>
+                )}
                 {product.details && (
                   <dl className="product-specifications">
                     {[
@@ -462,7 +530,9 @@ function ProductPage({ refreshCart, language }) {
                 <summary>{text.product.features}</summary>
                 <ul className="product-feature-list">
                   {features.map((feature) => (
-                    <li key={feature}>{translateProductText(feature, language)}</li>
+                    <li key={feature}>
+                      {translateProductText(feature, language)}
+                    </li>
                   ))}
                 </ul>
               </details>
@@ -470,6 +540,102 @@ function ProductPage({ refreshCart, language }) {
           </section>
         </div>
       )}
+
+      {recomendedProducts.length > 0 && (
+        <section
+          className="product-recommendations"
+          aria-labelledby="product-recommendations-title"
+        >
+          <div className="product-recommendations-header">
+            <div>
+              <h2
+                id="product-recommendations-title"
+                className="product-recommendations-title"
+              >
+                {text.product.recommendations}
+              </h2>
+              <p className="product-recommendations-subtitle">
+                {text.product.recommendationsText}
+              </p>
+            </div>
+            <div className="carousel-buttons">
+              <button
+                className="left-carousel-btn"
+                aria-label="Previous product"
+                disabled={
+                  leftCarouselDisabled || recomendedProducts.length <= 4
+                }
+                onClick={() => scrollCarousel(-1)}
+              >
+                <img src={arrowIcon} alt="" />
+              </button>
+              <button
+                className="right-carousel-btn"
+                aria-label="Next product"
+                disabled={
+                  rightCarouselDisabled || recomendedProducts.length <= 4
+                }
+                onClick={() => scrollCarousel(1)}
+              >
+                <img src={arrowIcon} alt="" />
+              </button>
+            </div>
+          </div>
+          <div
+            className="product-recommendations-grid"
+            ref={carouselRef}
+            onScroll={updateCarouselButtons}
+          >
+            {recomendedProducts.map((product) => (
+              <article key={product.id} className="product-recommendation">
+                <Link
+                  to={`/catalog/product/${product.id}`}
+                  className="product-recommendation-image-link"
+                >
+                  <img
+                    src={product.images?.front}
+                    alt={product.name}
+                    loading="lazy"
+                    className="product-recommendation-image"
+                  />
+                </Link>
+                <h3>{product.name}</h3>
+                <div
+                  className="product-recommendation-rating"
+                  aria-label={text.common.rating(product.rating)}
+                >
+                  <span
+                    className="product-recommendation-stars"
+                    aria-hidden="true"
+                  >
+                    {[0, 1, 2, 3, 4].map((index) => (
+                      <span
+                        key={index}
+                        style={{
+                          "--fill": `${Math.min(Math.max(Number(product.rating) - index, 0), 1) * 100}%`,
+                        }}
+                      >
+                        ★
+                      </span>
+                    ))}
+                  </span>
+                  <span>{product.rating} / 5</span>
+                </div>
+                <p className="product-recommendation-price" translate="no">
+                  ${Number(product.price).toFixed(2)}
+                </p>
+                <Link
+                  to={`/catalog/product/${product.id}`}
+                  className="product-recommendation-button"
+                >
+                  {text.common.seeProduct}
+                </Link>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
       {!isLoading && !isFailedToLoad && product && (
         <Reviews key={product.id} productId={product.id} language={language} />
       )}

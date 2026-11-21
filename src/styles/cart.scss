@@ -1,13 +1,15 @@
 @use "variables" as *;
 
-.cart-recommendations {
+.cart-recommendations,
+.product-recommendations {
   margin: 0 clamp(20px, 6vw, 108px) 48px;
   padding-top: 28px;
   border-top: 1px solid #cecece;
   font-family: $font-main;
 }
 
-.cart-recommendations-header {
+.cart-recommendations-header,
+.product-recommendations-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -16,7 +18,8 @@
   margin-bottom: 24px;
 }
 
-.cart-recommendations-subtitle {
+.cart-recommendations-subtitle,
+.product-recommendations-subtitle {
   margin: 6px 0 0;
   color: $color-gray-text;
   font-size: 14px;
@@ -39,7 +42,8 @@
   }
 }
 
-.cart-recommendations-title {
+.cart-recommendations-title,
+.product-recommendations-title {
   margin: 0;
   color: $color-black;
   font-family: $font-main;
@@ -48,7 +52,8 @@
   line-height: 1.3;
 }
 
-.cart-recommendations-grid {
+.cart-recommendations-grid,
+.product-recommendations-grid {
   --recommendation-gap: max(clamp(20px, 3vw, 48px), (100% - 1120px) / 3);
 
   display: grid;
@@ -72,7 +77,8 @@
   }
 }
 
-.cart-recommendation {
+.cart-recommendation,
+.product-recommendation {
   display: flex;
   flex-direction: column;
   min-width: 0;
@@ -88,7 +94,8 @@
   }
 }
 
-.cart-recommendation-button {
+.cart-recommendation-button,
+.product-recommendation-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -114,13 +121,14 @@
   }
 }
 
-.cart-recommendation-image-link {
+.cart-recommendation-image-link,
+.product-recommendation-image-link {
   display: block;
   overflow: hidden;
   cursor: pointer;
 
   @media (hover: hover) {
-    &:hover .cart-recommendation-image {
+    &:hover :is(.cart-recommendation-image, .product-recommendation-image) {
       transform: scale(1.04);
     }
   }
@@ -129,13 +137,15 @@
     outline: 2px solid $color-black;
     outline-offset: 4px;
 
-    .cart-recommendation-image {
+    .cart-recommendation-image,
+    .product-recommendation-image {
       transform: scale(1.04);
     }
   }
 }
 
-.cart-recommendation-image {
+.cart-recommendation-image,
+.product-recommendation-image {
   display: block;
   width: 100%;
   aspect-ratio: 603 / 686;
@@ -148,7 +158,8 @@
   }
 }
 
-.cart-recommendation-rating {
+.cart-recommendation-rating,
+.product-recommendation-rating {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -157,7 +168,8 @@
   line-height: 1.2;
 }
 
-.cart-recommendation-stars {
+.cart-recommendation-stars,
+.product-recommendation-stars {
   display: inline-flex;
   font-family: Arial, sans-serif;
   font-size: 14px;
@@ -174,7 +186,8 @@
   }
 }
 
-.cart-recommendation-price {
+.cart-recommendation-price,
+.product-recommendation-price {
   margin: 0 0 16px;
   font-size: 16px;
   line-height: 1.3;

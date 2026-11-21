@@ -247,6 +247,8 @@ export const translations = {
       goToCart: "Go to cart",
       frontImageAlt: (name) => `${name} front view`,
       backImageAlt: (name) => `${name} back view`,
+      recommendations: "You May Also Like",
+      recommendationsText: "A few more pieces to explore.",
     },
     cart: {
       title: "Your cart",
@@ -1411,7 +1413,10 @@ export const translations = {
 const displayTranslations = new Map();
 function indexDisplayText(english, ukrainian) {
   for (const key of Object.keys(english)) {
-    if (typeof english[key] === "string" && typeof ukrainian?.[key] === "string") {
+    if (
+      typeof english[key] === "string" &&
+      typeof ukrainian?.[key] === "string"
+    ) {
       displayTranslations.set(english[key], ukrainian[key]);
     } else if (english[key] && typeof english[key] === "object") {
       indexDisplayText(english[key], ukrainian?.[key]);
