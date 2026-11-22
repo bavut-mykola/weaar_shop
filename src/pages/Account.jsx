@@ -66,14 +66,14 @@ function Account({
         </div>
 
         <div className="account-menu">
-          <div className="account-menu-item">
+          <Link to={"/order-history"} className="account-menu-item">
             <img src={ordersIcon} alt="" className="account-menu-icon" />
             <div className="account-menu-copy">
               <p>{text.account.orders}</p>
               <span>{text.account.ordersDescription}</span>
             </div>
             <span className="account-menu-arrow">›</span>
-          </div>
+          </Link>
 
           <Link to={"/cart"} className="account-menu-item">
             <img src={cartIcon} alt="" className="account-menu-icon" />

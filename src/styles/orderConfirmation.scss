@@ -7,7 +7,7 @@
   color: $color-black;
   font-family: $font-main;
 
-  strong { font-family: $font-main; font-weight: 700; }
+  strong { font-family: $font-main; font-weight: $font-weight-regular; }
 
   &, *, *::before, *::after { box-sizing: border-box; }
 }
@@ -18,7 +18,8 @@
 
   h1 {
     margin: 0;
-    font-family: $font-logo;
+    font-family: $font-main;
+    font-weight: $font-weight-regular;
     font-size: clamp(28px, 3.5vw, 48px);
     line-height: 1.2;
     overflow-wrap: anywhere;
@@ -39,10 +40,9 @@
 .order-confirmation-card {
   min-width: 0;
   padding: 30px;
-  border-radius: 12px;
   background: $color-white;
 
-  h2 { margin: 0; padding-bottom: 28px; border-bottom: 1px solid $color-gray; font-size: 20px; line-height: 1.4; }
+  h2 { margin: 0; padding-bottom: 28px; border-bottom: 1px solid $color-gray; font: $font-weight-regular 20px/1.4 $font-main; }
 }
 
 .order-confirmation-details {
@@ -60,7 +60,7 @@
   align-items: center;
   gap: 16px;
   & + & { margin-top: 24px; }
-  img, .order-confirmation-image-placeholder { width: 88px; height: 112px; border-radius: 12px; object-fit: contain; }
+  img, .order-confirmation-image-placeholder { width: 88px; height: 112px; object-fit: contain; }
   h3 { margin: 0; font-size: 16px; font-weight: $font-weight-regular; overflow-wrap: anywhere; }
   p { margin: 8px 0 12px; color: $color-gray-text; font-size: 14px; }
   strong { font-size: 18px; }
@@ -92,7 +92,6 @@
   justify-content: center;
   padding: 12px 18px;
   border: 1px solid $color-black;
-  border-radius: 8px;
   background: $color-black;
   color: $color-white;
   font: 16px $font-main;

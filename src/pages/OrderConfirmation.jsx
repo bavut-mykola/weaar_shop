@@ -1,19 +1,20 @@
 import { translateProductText } from "../locales/productTranslations";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import { API_URL } from "../api";
 import { getGuestId } from "../utils/guestCart";
 import "../styles/orderConfirmation.scss";
-import { translations, translateDisplay } from "../locales/translations";
-
-const money = (value) =>
-  value !== null && value !== undefined && Number.isFinite(Number(value))
-    ? `$${Number(value).toFixed(2)}`
-    : text.common.unavailable;
+import { translations } from "../locales/translations";
 
 function OrderConfirmation({ language }) {
   const text = translations[language];
+  const confirmation = text.orderConfirmation;
+  const money = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value))
+      ? `$${Number(value).toFixed(2)}`
+      : text.common.unavailable;
   const { orderId } = useParams();
+  const fromHistory = useLocation().state?.fromHistory === true;
   const validId =
     /^\d+$/.test(orderId || "") &&
     Number.isSafeInteger(Number(orderId)) &&
@@ -31,18 +32,19 @@ function OrderConfirmation({ language }) {
           headers: { "X-Guest-ID": getGuestId() },
           signal: controller.signal,
         });
+        if (controller.signal.aborted) return;
         if (!response.ok) {
-          throw new Error(
-            response.status === 404
-              ? "This order could not be found for your account or guest session."
-              : "We couldn't load your order. Please try again later.",
-          );
+          setResult({
+            id: orderId,
+            error: response.status === 404 ? "notFound" : "loadError",
+          });
+          return;
         }
         const data = await response.json();
+        if (controller.signal.aborted) return;
         if (!data.order || !Array.isArray(data.items)) {
-          throw new Error(
-            "The order details are unavailable. Please try again later.",
-          );
+          setResult({ id: orderId, error: "detailsUnavailable" });
+          return;
         }
         if (!controller.signal.aborted) setResult({ id: orderId, data });
         const productIds = [
@@ -74,9 +76,9 @@ function OrderConfirmation({ language }) {
         });
         if (!controller.signal.aborted)
           setResult({ id: orderId, data: { ...data, items } });
-      } catch (error) {
+      } catch {
         if (!controller.signal.aborted)
-          setResult({ id: orderId, error: error.message });
+          setResult({ id: orderId, error: "loadError" });
       }
     }
     loadOrder();
@@ -85,19 +87,19 @@ function OrderConfirmation({ language }) {
 
   const current = result?.id === orderId ? result : null;
   const error = !validId
-    ? "This link is missing a valid order number. Please check your confirmation link."
-    : current?.error;
+    ? confirmation.invalidLink
+    : confirmation[current?.error];
   const data = error ? undefined : current?.data;
   const order = data?.order;
   const delivery =
     order?.delivery_method === "post_office"
-      ? "Post office"
+      ? text.checkout.postOffice
       : order?.delivery_method === "home_delivery"
-        ? "Home delivery"
+        ? text.checkout.homeDelivery
         : text.common.unavailable;
   const address =
     order?.delivery_method === "post_office"
-      ? [order.city, order.branch_number && `Branch No. ${order.branch_number}`]
+      ? [order.city, order.branch_number && confirmation.branch(order.branch_number)]
           .filter(Boolean)
           .join(", ")
       : [order?.city, order?.address].filter(Boolean).join(", ");
@@ -105,7 +107,7 @@ function OrderConfirmation({ language }) {
     (sum, item) => sum + Number(item.unit_price) * Number(item.quantity),
     0,
   );
-  // Match the current checkout rules using saved order quantities and prices.
+
   const discountPercent =
     subtotal >= 30000 ? 15 : subtotal >= 2100 ? 10 : subtotal >= 1600 ? 5 : 0;
   const discount = (subtotal * discountPercent) / 100;
@@ -121,15 +123,17 @@ function OrderConfirmation({ language }) {
       <header className="order-confirmation-header">
         <h1 id="order-confirmation-title">
           {data
-            ? text.orderConfirmation.confirmed
+            ? fromHistory
+              ? confirmation.details
+              : text.orderConfirmation.confirmed
             : error
-              ? "ORDER UNAVAILABLE"
-              : "ORDER DETAILS"}
+              ? confirmation.unavailable
+              : confirmation.details}
         </h1>
         <p>
           {data
             ? text.orderConfirmation.thankYou
-            : error || "Loading your order…"}
+            : error || confirmation.loading}
         </p>
         {order && (
           <p className="order-confirmation-number">
@@ -156,11 +160,15 @@ function OrderConfirmation({ language }) {
             <dl className="order-confirmation-details">
               <div>
                 <dt>{text.orderConfirmation.status}</dt>
-                <dd>{translateDisplay(order.status || "Confirmed", language)}</dd>
+                <dd>
+                  {confirmation.statuses[order.status?.toLowerCase()] ??
+                    order.status ??
+                    confirmation.confirmedStatus}
+                </dd>
               </div>
               <div>
                 <dt>{text.orderConfirmation.deliveryMethod}</dt>
-                <dd>{translateDisplay(delivery, language)}</dd>
+                <dd>{delivery}</dd>
               </div>
               <div>
                 <dt>{text.orderConfirmation.deliveryAddress}</dt>
@@ -203,8 +211,10 @@ function OrderConfirmation({ language }) {
                   <div>
                     <h3>{item.product_name}</h3>
                     <p>
-                      {[translateProductText(item.color, language), item.size].filter(Boolean).join(" – ")} ·
-                      Qty: {item.quantity}
+                      {[translateProductText(item.color, language), item.size]
+                        .filter(Boolean)
+                        .join(" – ")}{" "}
+                      · {confirmation.itemQuantity(item.quantity)}
                     </p>
                     <strong translate="no">
                       {money(Number(item.unit_price) * Number(item.quantity))}
@@ -212,7 +222,9 @@ function OrderConfirmation({ language }) {
                   </div>
                 </article>
               ))}
-              {data.items.length === 0 && <p>{text.orderConfirmation.noItems}</p>}
+              {data.items.length === 0 && (
+                <p>{text.orderConfirmation.noItems}</p>
+              )}
             </div>
             <dl className="order-confirmation-totals">
               <div>
@@ -220,7 +232,7 @@ function OrderConfirmation({ language }) {
                 <dd translate="no">{money(subtotal)}</dd>
               </div>
               <div>
-                <dt>Discount ({discountPercent}%)</dt>
+                <dt>{text.common.discount} ({discountPercent}%)</dt>
                 <dd className="order-confirmation-discount" translate="no">
                   −{money(discount)}
                 </dd>

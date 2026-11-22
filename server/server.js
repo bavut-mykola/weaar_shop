@@ -1866,6 +1866,50 @@ app.get("/api/orders/:id", async (req, res) => {
   }
 });
 
+app.get("/api/order/history", async (req, res) => {
+  const accountId = req.session.accountId;
+
+  if (!accountId) {
+    return res.status(401).json({ message: "No account found" });
+  }
+
+  try {
+    const orderHistoryResult = await sessionPool.query(
+      `
+          SELECT
+              o.id,
+              o.created_at,
+              o.total_price,
+              COALESCE((
+                SELECT json_agg(json_build_object(
+                  'quantity', item.quantity,
+                  'image', (
+                    SELECT i.image_url
+                    FROM product_colors AS c
+                    JOIN product_images AS i ON i.color_id = c.id
+                    WHERE c.product_id = item.product_id
+                      AND c.name = item.color
+                    ORDER BY CASE WHEN i.side = 'front' THEN 0 ELSE 1 END
+                    LIMIT 1
+                  )
+                ))
+                FROM order_items AS item
+                WHERE item.order_id = o.id
+              ), '[]'::json) AS items
+          FROM orders AS o
+          WHERE o.user_id = $1
+          ORDER BY o.created_at DESC
+      `,
+      [accountId],
+    );
+
+    return res.json(orderHistoryResult.rows);
+  } catch (error) {
+    console.error("Error retrieving order history:", error);
+    return res.status(500).json({ message: "Failed to retrieve order history" });
+  }
+});
+
 app.get("/api/cart/recommendations", async (req, res) => {
   const { cartOwnerId, cartOwnerColumn, error } = getCartOwner(req);
 

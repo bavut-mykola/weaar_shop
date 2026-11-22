@@ -237,7 +237,7 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
     }
 
     const orderData = {
-      email: email,
+      email: isAuthenticated ? userEmail : email,
       phone: phone ? phone : null,
       deliveryMethod: deliveryPlace,
       city: city,

@@ -16,6 +16,7 @@ import ProductPage from "./pages/ProductPage";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import OrderConfirmation from "./pages/OrderConfirmation";
+import OrderHistory from "./pages/OrderHistory";
 import Auth from "./components/Auth";
 import Account from "./pages/Account";
 import AccountSettings from "./pages/AccountSettings";
@@ -299,6 +300,7 @@ function App() {
               />
             }
           />
+          <Route path="/order-history" element={<OrderHistory />} />
         </Routes>
       </main>
       <Footer language={language} />
