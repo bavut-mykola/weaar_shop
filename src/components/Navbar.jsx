@@ -70,7 +70,7 @@ function Navbar({
             {text.navbar.catalog}
           </Link>
           <a
-            href="/#collection"
+            href="/spotlight"
             className="nav-link"
             onClick={() => setISBurgerClicked(false)}
           >
@@ -116,7 +116,11 @@ function Navbar({
                   : "#"
               }
             >
-              <img src={searchIcon} alt={text.navbar.searchIcon} className="search-icon" />
+              <img
+                src={searchIcon}
+                alt={text.navbar.searchIcon}
+                className="search-icon"
+              />
             </Link>
             <input
               type="text"
@@ -135,7 +139,11 @@ function Navbar({
         <Link
           to={"/cart"}
           className="cart-button-link"
-          aria-label={cartCount > 0 ? text.navbar.cartWithCount(cartCount) : text.navbar.cart}
+          aria-label={
+            cartCount > 0
+              ? text.navbar.cartWithCount(cartCount)
+              : text.navbar.cart
+          }
         >
           <img src={cartIcon} alt={text.navbar.cart} className="head-btn" />
           {cartCount > 0 && <span className="cart-count">{cartCount}</span>}

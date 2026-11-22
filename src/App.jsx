@@ -21,6 +21,7 @@ import Auth from "./components/Auth";
 import Account from "./pages/Account";
 import AccountSettings from "./pages/AccountSettings";
 import ContactMenu from "./components/ContactMenu";
+import Spotlight from "./pages/Spotlight";
 import { contactInfo } from "./data/contactInfo";
 
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
@@ -301,6 +302,7 @@ function App() {
             }
           />
           <Route path="/order-history" element={<OrderHistory />} />
+          <Route path="/spotlight" element={<Spotlight />} />
         </Routes>
       </main>
       <Footer language={language} />

@@ -1,0 +1,59 @@
+[
+  {
+    "productId": 39,
+    "name": "Patchwork Baggy Jeans",
+    "price": 1899,
+    "textTheme": "light",
+    "colors": [
+      {
+        "name": "Black",
+        "value": "#1A1A1A",
+        "spotlightImage": "/spotlight-images/spotlight-jeans1.png"
+      },
+      {
+        "name": "Acid Wash",
+        "value": "#9AAEC1",
+        "spotlightImage": "/spotlight-images/spotlight-jeans2.png"
+      },
+      {
+        "name": "Dark Green Camouflage",
+        "value": "#3B4D3C",
+        "spotlightImage": "/spotlight-images/spotlight-jeans3.png"
+      }
+    ],
+    "order": 1
+  },
+  {
+    "productId": 35,
+    "name": "Vintage Flare Denim Jeans",
+    "price": 1899,
+    "textTheme": "dark",
+    "colors": [
+      {
+        "name": "Black",
+        "value": "#1A1A1A",
+        "spotlightImage": "/spotlight-images/spotlight-flared-jeans2.png"
+      },
+      {
+        "name": "Grey",
+        "value": "#9E9E9E",
+        "spotlightImage": "/spotlight-images/spotlight-flared-jeans1.png"
+      }
+    ],
+    "order": 2
+  },
+  {
+    "productId": 62,
+    "name": "Contrast Collar Bomber Jacket",
+    "price": 2799,
+    "textTheme": "light",
+    "colors": [
+      {
+        "name": "Black",
+        "value": "#1A1A1A",
+        "spotlightImage": "/spotlight-images/spotlight-jacket.png"
+      }
+    ],
+    "order": 3
+  }
+]
