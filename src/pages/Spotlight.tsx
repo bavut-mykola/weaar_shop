@@ -7,7 +7,7 @@ function Spotlight() {
 
   async function loadProducts() {
     try {
-      const res = await fetch(`/public/spotlight.json`);
+      const res = await fetch("/spotlight.json");
       const data = await res.json();
 
       setProducts(data);
