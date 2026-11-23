@@ -690,24 +690,24 @@
       }
     }
     .search-input {
-      height: 60px;
+      height: 42px;
       font-size: calc(#{$font-size-18} - 4px);
       padding: 0 52px;
     }
     .search-icon {
-      width: 30px;
-      height: 30px;
+      width: 20px;
+      height: 20px;
       left: 20px;
     }
-    .nav-links {
-      order: 1;
-      flex-direction: column;
-      gap: 18px;
-      margin: 28px 8px 0;
+    .app-shell .nav-links {
+      flex-direction: row;
+      margin: 0;
+      gap: 20px;
     }
     .nav-link {
       font-size: $font-size-26;
     }
+
     .footer {
       padding: 26px 0 24px;
     }

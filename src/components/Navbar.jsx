@@ -105,9 +105,6 @@ function Navbar({
         </span>
 
         <div className="search-box">
-          <div className="search-title">
-            <h3>{text.navbar.searchTitle}</h3>
-          </div>
           <div className="search">
             <Link
               to={
