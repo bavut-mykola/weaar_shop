@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { API_URL } from "../api";
+import { translateDisplay } from "../locales/translations";
 import { getGuestId } from "../utils/guestCart";
 import "../styles/reviews.scss";
 
@@ -24,6 +25,12 @@ type Review = {
 
 const copy = {
   en: {
+    leaveReview: "Leave a review",
+    yourRating: "Your rating",
+    yourName: "Your name *",
+    yourReview: "Your review *",
+    sending: "Sending your review",
+    stars: (value: number) => `${value} ${value === 1 ? "star" : "stars"}`,
     title: "Reviews",
     loading: "Loading reviews…",
     empty: "No reviews yet.",
@@ -33,6 +40,12 @@ const copy = {
     rating: (value: number) => `${value} out of 5 stars`,
   },
   uk: {
+    leaveReview: "Залишити відгук",
+    yourRating: "Ваша оцінка",
+    yourName: "Ваше ім’я *",
+    yourReview: "Ваш відгук *",
+    sending: "Надсилання відгуку",
+    stars: (value: number) => `${value} ${value === 1 ? "зірка" : value === 5 ? "зірок" : "зірки"}`,
     title: "Відгуки",
     loading: "Завантаження відгуків…",
     empty: "Відгуків поки немає.",
@@ -264,7 +277,7 @@ function Reviews({ productId, language = "en" }: ReviewsProps) {
                     review.text}
                 </p>
                 <p className="product-reviews__date">
-                  {new Date(review.created_at).toLocaleDateString("en-GB", {
+                  {new Date(review.created_at).toLocaleDateString(language === "uk" ? "uk-UA" : "en-GB", {
                     day: "2-digit",
                     month: "2-digit",
                     year: "2-digit",
@@ -305,19 +318,19 @@ function Reviews({ productId, language = "en" }: ReviewsProps) {
           sendReview(e);
         }}
       >
-        <h2 className="review-form__title">Leave a review</h2>
+        <h2 className="review-form__title">{text.leaveReview}</h2>
 
         <div
           className="review-form__stars"
           role="group"
-          aria-label="Your rating"
+          aria-label={text.yourRating}
         >
           {[1, 2, 3, 4, 5].map((star) => (
             <button
               className="review-form__star"
               type="button"
               key={star}
-              aria-label={`${star} ${star === 1 ? "star" : "stars"}`}
+              aria-label={text.stars(star)}
               onClick={() => {
                 if (rating === star) {
                   setRating(0);
@@ -332,7 +345,7 @@ function Reviews({ productId, language = "en" }: ReviewsProps) {
         </div>
 
         <div className="review-form__field review-form__field--name">
-          <label htmlFor="review-name">Your name *</label>
+          <label htmlFor="review-name">{text.yourName}</label>
           <input
             id="review-name"
             name="name"
@@ -352,7 +365,7 @@ function Reviews({ productId, language = "en" }: ReviewsProps) {
         </div>
 
         <div className="review-form__field">
-          <label htmlFor="review-text">Your review *</label>
+          <label htmlFor="review-text">{text.yourReview}</label>
           <textarea
             id="review-text"
             name="review"
@@ -366,7 +379,7 @@ function Reviews({ productId, language = "en" }: ReviewsProps) {
 
         {reviewError && (
           <p className="review-form__error" role="alert">
-            {reviewError}
+            {translateDisplay(reviewError, language)}
           </p>
         )}
         <button
@@ -374,10 +387,10 @@ function Reviews({ productId, language = "en" }: ReviewsProps) {
           type="submit"
           disabled={isSubmitting}
           aria-busy={isSubmitting}
-          aria-label={isSubmitting ? "Sending your review" : undefined}
+          aria-label={isSubmitting ? text.sending : undefined}
         >
           {isSubmitting && <span className="review-form__spinner" aria-hidden="true" />}
-          Leave a review
+          {text.leaveReview}
         </button>
       </form>
     </section>

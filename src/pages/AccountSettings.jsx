@@ -229,7 +229,7 @@ function AccountSettings({
             ) : (
               <span
                 className="account-settings-value"
-                data-tooltip="Edit name"
+                data-tooltip={text.accountSettings.editName}
                 onClick={() => {
                   setIsNameClicked(true);
                   setIsPhoneClicked(false);
@@ -273,7 +273,7 @@ function AccountSettings({
               <div>
                 <span
                   className="account-settings-value"
-                  data-tooltip="Edit mobile number"
+                  data-tooltip={text.accountSettings.editMobileNumber}
                   onClick={() => {
                     setIsPhoneClicked(true);
                     setIsNameClicked(false);
@@ -292,7 +292,7 @@ function AccountSettings({
               className="account-settings-delete"
               onClick={() => setIsDeleteConfirmationOpen(true)}
             >
-              DELETE ACCOUNT
+              {text.accountSettings.deleteAccountButton}
             </button>
           </div>
         </div>

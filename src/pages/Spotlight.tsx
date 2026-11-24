@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { translations } from "../locales/translations";
+import { translateProductText } from "../locales/productTranslations";
 import "../styles/spotlight.scss";
 
-function Spotlight() {
+function Spotlight({ language }: { language: "en" | "uk" }) {
+  const text = translations[language].spotlight;
   const [products, setProducts] = useState<product[]>([]);
 
   async function loadProducts() {
@@ -40,11 +43,8 @@ function Spotlight() {
   return (
     <section className="spotlight-main">
       <header className="spotlight-header">
-        <h2>The Peak Collection</h2>
-        <p>
-          The absolute peak of our design. The most powerful and carefully
-          crafted pieces by WEA.R
-        </p>
+        <h2>{text.title}</h2>
+        <p>{text.description}</p>
       </header>
 
       <div className="spotlight-products-box">
@@ -65,10 +65,16 @@ function Spotlight() {
                 <div className="bottom-left-info">
                   {p.colors.length > 1 ? (
                     <div>
-                      <h3>{p.colors[selectedColor[p.productId] ?? 0]?.name}</h3>
+                      <h3>
+                        {translateProductText(
+                          p.colors[selectedColor[p.productId] ?? 0]?.name,
+                          language,
+                        )}
+                      </h3>
                       {p.colors.map((c, index) => (
                         <button
                           className="product-color"
+                          aria-label={translateProductText(c.name, language)}
                           key={c.value}
                           onClick={() => {
                             setSelectedColor((prev) => ({
@@ -88,7 +94,7 @@ function Spotlight() {
                     to={`/catalog/product/${p.productId}`}
                     className="product-button"
                   >
-                    Browse Product
+                    {text.browseProduct}
                   </Link>
                 </div>
               </div>

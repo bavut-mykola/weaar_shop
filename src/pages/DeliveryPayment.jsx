@@ -8,9 +8,9 @@ function DeliveryPayment({ language }) {
     <article className="delivery-payment">
       <header className="delivery-payment__intro">
         <h1>
-          Delivery &amp;
+          {text.deliveryPayment.title[0]}
           <br />
-          payment
+          {text.deliveryPayment.title[1]}
         </h1>
         <span className="delivery-payment__accent" aria-hidden="true" />
         <p>
@@ -126,9 +126,9 @@ function DeliveryPayment({ language }) {
             {text.deliveryPayment.importantItems[6]}
           </li>
           <li>
-            If you have any questions, visit our{" "}
-            <Link to="/support">{text.deliveryPayment.supportLink}</Link> or use the contact details
-            in the footer.
+            {text.deliveryPayment.supportBefore}
+            <Link to="/support">{text.deliveryPayment.supportLink}</Link>
+            {text.deliveryPayment.supportAfter}
           </li>
         </ul>
       </section>

@@ -311,8 +311,8 @@ function App() {
               />
             }
           />
-          <Route path="/order-history" element={<OrderHistory />} />
-          <Route path="/spotlight" element={<Spotlight />} />
+          <Route path="/order-history" element={<OrderHistory language={language} />} />
+          <Route path="/spotlight" element={<Spotlight language={language} />} />
         </Routes>
       </main>
       <Footer language={language} />

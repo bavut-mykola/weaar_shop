@@ -16,11 +16,11 @@ const Footer = ({ language }) => {
           <img src="/the_main_logo.svg" alt="WEA.R" className="footer__logo" />
 
           <p className="footer__description">
-            Simple everyday clothes
+            {text.footer.description[0]}
             <br />
-            designed to fit your unique style
+            {text.footer.description[1]}
             <br />
-            and bring comfort to your routine.
+            {text.footer.description[2]}
           </p>
 
           <div className="footer__socials">
@@ -82,9 +82,9 @@ const Footer = ({ language }) => {
       <div className="footer__statement">
         <p className="footer__tagline">{text.home.tagline}</p>
         <p className="footer__statement-copy">
-          Modern, minimal and comfortable clothing for everyday life.
+          {text.footer.statement[0]}
           <br />
-          Discover new collections, timeless essentials and your next favorite pieces at W.EAR.
+          {text.footer.statement[1]}
         </p>
       </div>
 

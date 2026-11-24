@@ -79,12 +79,9 @@ function PrivacyPolicy({ language }) {
         {text.privacyPolicy.profileManagement}
       </p>
       <p>
-        Some information, such as order records or operational logs, may exist
-        separately from your profile. This page does not promise that deleting
-        an account immediately removes every related record or backup. For
-        questions about stored information, corrections or deletion, use the
-        contact options described on the <Link to="/support">{text.privacyPolicy.supportLink}</Link>
-        . Do not send sensitive information with your initial request.
+        {text.privacyPolicy.retention[0]}
+        <Link to="/support">{text.privacyPolicy.retention[1]}</Link>
+        {text.privacyPolicy.retention[2]}
       </p>
 
       <h2>{text.privacyPolicy.privacyTitle}</h2>
@@ -94,10 +91,9 @@ function PrivacyPolicy({ language }) {
 
       <h2>{text.privacyPolicy.updatesTitle}</h2>
       <p>
-        If you are unsure how a feature uses information, visit our
-        <Link to="/support"> {text.privacyPolicy.supportLink}</Link> and use the contact options
-        listed on the site. Explain which feature your question concerns so it
-        can be understood without sharing unnecessary personal details.
+        {text.privacyPolicy.questions[0]}
+        <Link to="/support">{text.privacyPolicy.questions[1]}</Link>
+        {text.privacyPolicy.questions[2]}
       </p>
       <p>
         {text.privacyPolicy.updates}

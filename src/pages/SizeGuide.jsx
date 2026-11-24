@@ -116,7 +116,10 @@ function SizeGuide({ language }) {
           className="size-guide__table-scroll"
           tabIndex={0}
           role="region"
-          aria-label={`${translateDisplay(category, language)} measurements in ${unit === "cm" ? "centimetres" : "inches"}`}
+          aria-label={text.sizeGuide.measurements(
+            translateDisplay(category, language),
+            unit === "cm" ? text.sizeGuide.centimetres : text.sizeGuide.inches,
+          )}
         >
           <table>
             <thead>

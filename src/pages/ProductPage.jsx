@@ -564,7 +564,7 @@ function ProductPage({ refreshCart, language }) {
             <div className="carousel-buttons">
               <button
                 className="left-carousel-btn"
-                aria-label="Previous product"
+                aria-label={text.common.previousProduct}
                 disabled={
                   leftCarouselDisabled || recomendedProducts.length <= 4
                 }
@@ -574,7 +574,7 @@ function ProductPage({ refreshCart, language }) {
               </button>
               <button
                 className="right-carousel-btn"
-                aria-label="Next product"
+                aria-label={text.common.nextProduct}
                 disabled={
                   rightCarouselDisabled || recomendedProducts.length <= 4
                 }

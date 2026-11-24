@@ -132,7 +132,7 @@ function Home({ language }) {
               className="home-categories__card"
               key={key}
               to={`/catalog?category=${encodeURIComponent(key)}`}
-              aria-label={`Shop ${translateDisplay(label, language)}`}
+              aria-label={text.home.shopCategory(translateDisplay(label, language))}
             >
               <img
                 className={`home-categories__image${key === "hoodies" || key === "outerwear" ? " home-categories__image--contain" : ""}`}

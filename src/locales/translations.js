@@ -8,9 +8,27 @@
 // Link labels are plain text: keep <Link> elements in JSX when connecting the copy.
 // Language switching and persistence are managed by App.
 
+const ukrainianPluralRules = new Intl.PluralRules("uk");
+
 export const translations = {
   en: {
+    spotlight: {
+      title: "The Peak Collection",
+      description: "The absolute peak of our design. The most powerful and carefully crafted pieces by WEA.R",
+      browseProduct: "Browse Product",
+    },
+    orderHistory: {
+      title: "Order History",
+      description: "View and track your past orders with WEAR.",
+      loading: "Loading orders…",
+      empty: "You haven’t placed any orders yet.",
+      order: (id) => `Order #WEAR-${id}`,
+      viewOrder: (id) => `View order #WEAR-${id}`,
+      itemCount: (count) => `${count} ${count === 1 ? "item" : "items"}`,
+    },
     common: {
+      nextProduct: "Next product",
+      previousProduct: "Previous product",
       home: "Home",
       catalog: "Catalog",
       cart: "Cart",
@@ -75,8 +93,15 @@ export const translations = {
       party: "Party",
     },
     footer: {
-      description:
-        "Simple everyday clothes designed to fit your unique style and bring comfort to your routine.",
+      description: [
+        "Simple everyday clothes",
+        "designed to fit your unique style",
+        "and bring comfort to your routine.",
+      ],
+      statement: [
+        "Modern, minimal and comfortable clothing for everyday life.",
+        "Discover new collections, timeless essentials and your next favorite pieces at W.EAR.",
+      ],
       catalog: "Catalog",
       services: "Services",
       about: "About Us",
@@ -274,6 +299,8 @@ export const translations = {
         "Have a question about a product or your order? Use the contact information in the footer to get in touch. Include the product name or, if you’ve already placed an order, your order reference to help us understand your question.",
     },
     checkout: {
+      demoWarning: "W.EAR is a demonstration website created for educational purposes. No real payments are processed. Please use fictional payment details and do not enter your actual card information.",
+      demoTitle: "Demo Checkout",
       title: "CHECKOUT",
       intro: "Complete your details to place your order.",
       contactDetails: "CONTACT DETAILS",
@@ -384,6 +411,7 @@ export const translations = {
       cancelMobileNumber: "Cancel mobile number editing",
       close: "Close account settings",
       deleteAccount: "Delete account",
+      deleteAccountButton: "DELETE ACCOUNT",
       confirmDelete: "Do you want to remove your account?",
       saveChanges: "SAVE CHANGES",
       deleteError: "Failed to delete account",
@@ -436,6 +464,7 @@ export const translations = {
       unitLabel: "Measurement unit",
       cm: "cm",
       in: "in",
+      measurements: (category, unit) => `${category} measurements in ${unit}`,
       centimetres: "centimetres",
       inches: "inches",
       size: "Size",
@@ -566,7 +595,7 @@ export const translations = {
         "Your feedback also helps identify parts of the shopping experience that could be clearer. If a description leaves you with questions or a page is difficult to use, explain what you were trying to do and what happened instead. Mention whether you were using a phone, tablet or computer and which browser you used. Clear, practical details make it easier to understand the problem and help you find a way forward. Whatever brings you here, our aim is to make your next step easier to understand.",
     },
     deliveryPayment: {
-      title: "Delivery & payment",
+      title: ["Delivery &", "payment"],
       delivery: "Delivery",
       postOffice: "Post office",
       homeDelivery: "Home delivery",
@@ -702,18 +731,43 @@ export const translations = {
         "Google sign-in, when enabled, involves a connection to Google. Review the information shown in the sign-in flow before continuing. A delivery carrier’s name or a payment option shown in this demo does not by itself mean your information has been sent to that service.",
       profileManagement:
         "You can review and edit the profile fields available in your account settings. The site also offers an account deletion action. Removing an account and clearing your browser’s site data are different actions: browser settings affect information on your device, while account deletion acts on the application’s account records.",
-      retention:
-        "Some information, such as order records or operational logs, may exist separately from your profile. This page does not promise that deleting an account immediately removes every related record or backup. For questions about stored information, corrections or deletion, use the contact options described on the Support page. Do not send sensitive information with your initial request.",
+      retention: [
+        "Some information, such as order records or operational logs, may exist separately from your profile. This page does not promise that deleting an account immediately removes every related record or backup. For questions about stored information, corrections or deletion, use the contact options described on ",
+        "the Support page",
+        ". Do not send sensitive information with your initial request.",
+      ],
       protectDetails:
         "Use fictional information while exploring this demonstration. If you create a demo password, choose one you do not use elsewhere. Sign out after using a shared device and review saved browser data before leaving it for another person to use. No online application can offer an absolute guarantee against every security risk.",
-      questions:
-        "If you are unsure how a feature uses information, visit our Support page and use the contact options listed on the site. Explain which feature your question concerns so it can be understood without sharing unnecessary personal details.",
+      questions: [
+        "If you are unsure how a feature uses information, visit our ",
+        "Support page",
+        " and use the contact options listed on the site. Explain which feature your question concerns so it can be understood without sharing unnecessary personal details.",
+      ],
       updates:
         "This page should be updated when the site’s account, storage, checkout or connected-service features change. Before using a new feature, review the information shown alongside it and the current version of this page.",
     },
   },
   uk: {
+    spotlight: {
+      title: "Колекція Peak",
+      description: "Вершина нашого дизайну. Найвиразніші та ретельно продумані речі від WEA.R.",
+      browseProduct: "Переглянути товар",
+    },
+    orderHistory: {
+      title: "Історія замовлень",
+      description: "Переглядайте та відстежуйте свої попередні замовлення в WEAR.",
+      loading: "Завантаження замовлень…",
+      empty: "Ви ще не зробили жодного замовлення.",
+      order: (id) => `Замовлення № WEAR-${id}`,
+      viewOrder: (id) => `Переглянути замовлення № WEAR-${id}`,
+      itemCount: (count) => {
+        const forms = { one: "товар", few: "товари", many: "товарів", other: "товару" };
+        return `${count} ${forms[ukrainianPluralRules.select(count)]}`;
+      },
+    },
     common: {
+      nextProduct: "Наступний товар",
+      previousProduct: "Попередній товар",
       home: "Головна",
       catalog: "Каталог",
       cart: "Кошик",
@@ -788,8 +842,15 @@ export const translations = {
       party: "Для вечірок",
     },
     footer: {
-      description:
-        "Простий одяг на щодень, що підкреслює ваш стиль і дарує комфорт.",
+      description: [
+        "Простий одяг на щодень,",
+        "що підкреслює ваш стиль",
+        "і дарує комфорт.",
+      ],
+      statement: [
+        "Сучасний, мінімалістичний і зручний одяг на щодень.",
+        "Відкривайте нові колекції, базові речі поза часом і нові улюблені моделі у W.EAR.",
+      ],
       catalog: "Каталог",
       services: "Інформація",
       about: "Про нас",
@@ -959,6 +1020,8 @@ export const translations = {
       care: "Догляд",
       keepBrowsing: "Продовжити перегляд",
       goToCart: "Перейти до кошика",
+      recommendations: "Вам також може сподобатися",
+      recommendationsText: "Ще кілька речей, які можуть вам сподобатися.",
       frontImageAlt: (name) => `${name}: вигляд спереду`,
       backImageAlt: (name) => `${name}: вигляд ззаду`,
     },
@@ -986,6 +1049,8 @@ export const translations = {
         "Маєте запитання про товар або замовлення? Скористайтеся контактами внизу сторінки. Вкажіть назву товару або номер уже оформленого замовлення, щоб ми могли краще зрозуміти ваше запитання.",
     },
     checkout: {
+      demoWarning: "W.EAR — демонстраційний сайт, створений для навчання. Справжні платежі не проводяться. Використовуйте вигадані платіжні дані й не вводьте дані своєї картки.",
+      demoTitle: "Демонстраційне оформлення замовлення",
       title: "ОФОРМЛЕННЯ ЗАМОВЛЕННЯ",
       intro: "Заповніть дані для оформлення замовлення.",
       contactDetails: "КОНТАКТНІ ДАНІ",
@@ -1096,6 +1161,7 @@ export const translations = {
       cancelMobileNumber: "Скасувати редагування номера",
       close: "Закрити налаштування облікового запису",
       deleteAccount: "Видалити обліковий запис",
+      deleteAccountButton: "ВИДАЛИТИ ОБЛІКОВИЙ ЗАПИС",
       confirmDelete: "Ви хочете видалити свій обліковий запис?",
       saveChanges: "ЗБЕРЕГТИ ЗМІНИ",
       deleteError: "Не вдалося видалити обліковий запис",
@@ -1147,6 +1213,7 @@ export const translations = {
       unitLabel: "Одиниця вимірювання",
       cm: "см",
       in: "дюйми",
+      measurements: (category, unit) => `Виміри в ${unit} для категорії «${category}»`,
       centimetres: "сантиметрах",
       inches: "дюймах",
       size: "Розмір",
@@ -1275,7 +1342,7 @@ export const translations = {
         "Ваші відгуки допомагають зрозуміти, що можна зробити зручнішим. Якщо опис викликає запитання або сторінкою складно користуватися, розкажіть, що ви намагалися зробити та що сталося натомість. Вкажіть пристрій — телефон, планшет чи комп’ютер — і браузер. Конкретні деталі допоможуть зрозуміти проблему й знайти рішення. Ми прагнемо зробити ваш наступний крок зрозумілішим.",
     },
     deliveryPayment: {
-      title: "Доставка й оплата",
+      title: ["Доставка й", "оплата"],
       delivery: "Доставка",
       postOffice: "До відділення",
       homeDelivery: "Кур’єрська доставка",
@@ -1288,7 +1355,7 @@ export const translations = {
       cash: "Оплата при отриманні",
       onlinePayment: "Онлайн-оплата",
       importantTitle: "Важлива інформація",
-      supportLink: "сторінка підтримки",
+      supportLink: "сторінку підтримки",
       importantItems: [
         "Перед оформленням перевірте вибрані розміри, кольори й кількості.",
         "Уважно перевірте ім’я отримувача, номер телефону та місце доставки.",
@@ -1413,12 +1480,18 @@ export const translations = {
         "Вхід через Google, якщо його ввімкнено, передбачає з’єднання з Google. Перед продовженням перегляньте інформацію на екрані входу. Назва перевізника чи спосіб оплати, показані в демоверсії, самі по собі не означають, що ваші дані було передано цьому сервісу.",
       profileManagement:
         "У налаштуваннях облікового запису можна переглянути й змінити доступні поля профілю. Сайт також пропонує видалення облікового запису. Це відрізняється від очищення даних сайту в браузері: налаштування браузера впливають на інформацію на вашому пристрої, а видалення облікового запису — на його записи в застосунку.",
-      retention:
-        "Деяка інформація, зокрема записи замовлень і технічні журнали, може зберігатися окремо від профілю. Ця сторінка не обіцяє, що видалення облікового запису негайно видалить усі пов’язані записи чи резервні копії. Із запитаннями про збережені дані, їх виправлення або видалення скористайтеся контактами, описаними на сторінці підтримки. Не надсилайте конфіденційну інформацію в першому зверненні.",
+      retention: [
+        "Деяка інформація, зокрема записи замовлень і технічні журнали, може зберігатися окремо від профілю. Ця сторінка не обіцяє, що видалення облікового запису негайно видалить усі пов’язані записи чи резервні копії. Із запитаннями про збережені дані, їх виправлення або видалення скористайтеся контактами, описаними на ",
+        "сторінці підтримки",
+        ". Не надсилайте конфіденційну інформацію в першому зверненні.",
+      ],
       protectDetails:
         "Випробовуючи демонстраційний магазин, використовуйте вигадані дані. Для демонстраційного пароля оберіть такий, який не використовуєте деінде. Після роботи на спільному пристрої вийдіть з облікового запису й перевірте збережені дані браузера перед передачею пристрою іншій людині. Жоден онлайн-застосунок не може гарантувати абсолютного захисту від усіх ризиків.",
-      questions:
-        "Якщо не впевнені, як певна функція використовує інформацію, відвідайте сторінку підтримки й скористайтеся контактами на сайті. Поясніть, якої функції стосується питання, щоб його можна було зрозуміти без зайвих персональних даних.",
+      questions: [
+        "Якщо не впевнені, як певна функція використовує інформацію, відвідайте ",
+        "сторінку підтримки",
+        " й скористайтеся контактами на сайті. Поясніть, якої функції стосується питання, щоб його можна було зрозуміти без зайвих персональних даних.",
+      ],
       updates:
         "Цю сторінку слід оновлювати, коли змінюються функції облікового запису, зберігання даних, оформлення замовлення чи підключених сервісів. Перед використанням нової функції перегляньте супровідну інформацію та поточну версію цієї сторінки.",
     },
@@ -1440,6 +1513,45 @@ function indexDisplayText(english, ukrainian) {
   }
 }
 indexDisplayText(translations.en, translations.uk);
+// These strings come from form and API responses in both source languages.
+const errorTranslations = new Map([
+  ["Enter your name, review, and a star rating.", "Вкажіть ім’я, напишіть відгук і поставте оцінку."],
+  ["Failed to send your review", "Не вдалося надіслати відгук."],
+  ["Failed to leave a review", "Не вдалося залишити відгук."],
+  ["You have already reviewed this product", "Ви вже залишили відгук про цей товар."],
+  ["User or guest identification is missing", "Не вдалося ідентифікувати користувача або гостя."],
+  ["Invalid id", "Недійсний ідентифікатор товару."],
+  ["invalid user name", "Введіть ім’я завдовжки до 50 символів."],
+  ["invalid review text", "Введіть текст відгуку."],
+  ["invalid rating", "Виберіть оцінку від 1 до 5 зірок."],
+  ["no product found", "Товар не знайдено."],
+  ["Enter your email and password", "Введіть email і пароль"],
+  ["Please enter a valid email address", "Введіть коректний email"],
+  ["Password must contain 8 to 128 characters", "Пароль має містити від 8 до 128 символів"],
+  ["An account with this email already exists.", "Акаунт із таким email уже існує"],
+  ["Account created successfully, but automatic login failed. Please log in manually.", "Обліковий запис створено, але автоматичний вхід не вдався. Увійдіть вручну."],
+  ["Server error. Please try again later.", "Помилка сервера. Спробуйте пізніше"],
+  ["Invalid email or password", "Неправильна електронна пошта або пароль."],
+  ["Login failed", "Не вдалося увійти."],
+  ["Invalid request origin", "Недійсне джерело запиту."],
+  ["Google sign-in is not configured yet.", "Вхід через Google ще не налаштовано."],
+  ["Invalid delivery method", "Недійсний спосіб доставки."],
+  ["Branch number is required", "Вкажіть номер відділення."],
+  ["address is required", "Вкажіть адресу доставки."],
+  ["Invalid payment method", "Недійсний спосіб оплати."],
+  ["Failed to place order", "Не вдалося оформити замовлення."],
+  ["Cart owner ID is missing", "Не вдалося визначити власника кошика."],
+  ["Invalid guest ID", "Недійсний ідентифікатор гостя."],
+  ["Invalid quantity", "Недійсна кількість товару."],
+  ["Not enough stock", "Недостатньо товару на складі"],
+  ["Server error", "Помилка сервера"],
+]);
+const englishErrors = new Map(
+  Array.from(errorTranslations, ([english, ukrainian]) => [ukrainian, english]),
+);
+
 export function translateDisplay(value, language) {
-  return language === "uk" ? (displayTranslations.get(value) ?? value) : value;
+  return language === "uk"
+    ? (displayTranslations.get(value) ?? errorTranslations.get(value) ?? value)
+    : (englishErrors.get(value) ?? value);
 }

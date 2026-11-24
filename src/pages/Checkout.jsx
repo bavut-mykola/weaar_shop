@@ -262,7 +262,7 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
       const result = await res.json();
 
       if (!res.ok) {
-        setSubmitError(result.message);
+        setSubmitError(result.message || result.error || "Something went wrong. Please try again.");
         return;
       }
 
@@ -792,7 +792,7 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
                   <h3 className="checkout-product-name">{p.name}</h3>
                   <p className="checkout-product-variant">{`${translateProductText(p.color, language)} - ${p.size}`}</p>
                 </div>
-                <span className="checkout-product-quantity">x{p.quantity}</span>
+                <span className="checkout-product-quantity">{text.checkout.itemQuantity(p.quantity)}</span>
                 <span
                   className="checkout-product-price"
                   translate="no"
@@ -803,7 +803,7 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
           <div className="summary-price-info-boxe">
             <div className="summary-info">
               <p>{text.common.subtotal}</p>
-              <p>Discount(-{discount}%)</p>
+              <p>{text.common.discountWithPercent(discount)}</p>
               <p>{text.common.deliveryFee}</p>
             </div>
             <div className="summary-prices" translate="no">
@@ -830,12 +830,8 @@ function Checkout({ userEmail, isAuthenticated, refreshCart, language }) {
         >
           ×
         </span>
-        <h2>Demo Checkout</h2>
-        <p>
-          W.EAR is a demonstration website created for educational purposes. No
-          real payments are processed. Please use fictional payment details and
-          do not enter your actual card information.
-        </p>
+        <h2>{text.checkout.demoTitle}</h2>
+        <p>{text.checkout.demoWarning}</p>
       </div>
     </div>
   );

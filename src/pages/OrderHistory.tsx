@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { API_URL } from "../api";
+import { translations } from "../locales/translations";
 import packageIcon from "../assets/icons/package.svg";
 import "../styles/orderHistory.scss";
 
@@ -14,7 +15,8 @@ type Order = {
   }[];
 };
 
-function OrderHistory() {
+function OrderHistory({ language }: { language: "en" | "uk" }) {
+  const text = translations[language].orderHistory;
   const [orders, setOrders] = useState<Order[]>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -47,12 +49,12 @@ function OrderHistory() {
   return (
     <section className="order-history-main">
       <header className="order-header">
-        <h1>Order History</h1>
-        <p>View and track your past orders with WEAR.</p>
+        <h1>{text.title}</h1>
+        <p>{text.description}</p>
       </header>
 
-      {isLoading && <p role="status">Loading orders…</p>}
-      {orders?.length === 0 && <p>You haven’t placed any orders yet.</p>}
+      {isLoading && <p role="status">{text.loading}</p>}
+      {orders?.length === 0 && <p>{text.empty}</p>}
 
       <div className="orders-box">
         {orders?.map((order) => {
@@ -66,9 +68,9 @@ function OrderHistory() {
           return (
             <article className="order-box" key={order.id}>
               <div className="order-card-heading">
-                <h2>Order #WEAR-{order.id}</h2>
+                <h2>{text.order(order.id)}</h2>
                 <time dateTime={order.created_at}>
-                  {new Date(order.created_at).toLocaleDateString("en-US", {
+                  {new Date(order.created_at).toLocaleDateString(language === "uk" ? "uk-UA" : "en-US", {
                     dateStyle: "medium",
                   })}
                 </time>
@@ -92,7 +94,7 @@ function OrderHistory() {
                 )}
               </div>
               <span className="order-item-count">
-                {count} {count === 1 ? "item" : "items"}
+                {text.itemCount(count)}
               </span>
               <div className="order-card-total">
                 <strong className="order-total">
@@ -101,7 +103,7 @@ function OrderHistory() {
                 <Link
                   className="order-details-link"
                   to={`/order-confirmation/${order.id}`}
-                  aria-label={`View order #WEAR-${order.id}`}
+                  aria-label={text.viewOrder(order.id)}
                   state={{ fromHistory: true }}
                 />
               </div>
