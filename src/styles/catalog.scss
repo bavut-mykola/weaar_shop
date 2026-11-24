@@ -1029,6 +1029,25 @@ input[type="range"] {
     }
   }
 
+  #catalog-filter {
+    top: 80px;
+
+    .catalog-filter__mobile-header {
+      margin-bottom: 8px;
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .catalog-filter__title-mobile {
+      margin: 0;
+      visibility: visible;
+    }
+
+    .catalog-filter__mobile-header + .catalog-filter__section > .catalog-filter__title {
+      display: none;
+    }
+  }
+
   .catalog-filter__close {
     display: grid;
     width: 30px;

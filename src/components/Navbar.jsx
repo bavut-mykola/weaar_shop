@@ -14,6 +14,7 @@ function Navbar({
   onContactClick,
   language,
   setLanguage,
+  isFilterOpen,
 }) {
   const text = translations[language];
 
@@ -64,7 +65,7 @@ function Navbar({
 
       const scrollValue = Math.abs(currentScroll - previousScroll);
 
-      if (scrollValue <= 5) {
+      if (scrollValue <= 10) {
         return;
       } else {
         previousScroll = currentScroll;
@@ -101,7 +102,7 @@ function Navbar({
       </div>
 
       <nav
-        className={`navigation ${isBurgerClicked ? "opened" : ""} ${isScrolling ? "navigation-close" : ""}`}
+        className={`navigation ${isBurgerClicked ? "opened" : ""} ${isScrolling ? "navigation-close" : ""} ${isFilterOpen ? "navigation-close" : ""}`}
       >
         <ul className="nav-links">
           <Link

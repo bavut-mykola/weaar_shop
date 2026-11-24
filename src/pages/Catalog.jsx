@@ -10,7 +10,7 @@ import { translations, translateDisplay } from "../locales/translations";
 
 const sortOptions = ["More Popular", "More Expensive", "Cheaper"];
 
-function Catalog({ language }) {
+function Catalog({ language, setIsFilterOpen, isFilterOpen }) {
   const text = translations[language];
   const [searchParams] = useSearchParams();
   const initialCategory =
@@ -18,11 +18,18 @@ function Catalog({ language }) {
       (category) => category.key === searchParams.get("category"),
     )?.label ?? null;
 
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isFiltered, setIsFiltered] = useState(Boolean(initialCategory));
 
   const [isLoading, setIsLoading] = useState(false);
   const [isFailedToLoad, setIsFailedToLoad] = useState(false);
+
+  useEffect(() => {
+    if (isFilterOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [isFilterOpen]);
 
   const [isTryingAgain, setIsTryingAgain] = useState(false);
 

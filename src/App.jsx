@@ -175,6 +175,8 @@ function App() {
     );
   }
 
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+
   return (
     <div className="app-shell">
       <Navbar
@@ -184,6 +186,7 @@ function App() {
         onContactClick={handleContactOpen}
         language={language}
         setLanguage={setLanguage}
+        isFilterOpen={isFilterOpen}
       />
       <ContactMenu
         isOpen={isContactMenuOpen}
@@ -246,7 +249,14 @@ function App() {
           />
           <Route
             path="/catalog"
-            element={<Catalog key={location.search} language={language} />}
+            element={
+              <Catalog
+                key={location.search}
+                language={language}
+                setIsFilterOpen={setIsFilterOpen}
+                isFilterOpen={isFilterOpen}
+              />
+            }
           />
           <Route
             path="/search"
