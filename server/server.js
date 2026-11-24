@@ -279,6 +279,65 @@ async function mergeGuestCart(guestId, accountId, existingClient = null) {
   }
 }
 
+let isRunning = false;
+
+async function removeExpiredCartItems() {
+  if (isRunning) return;
+  isRunning = true;
+
+  let client;
+  try {
+    client = await sessionPool.connect();
+
+    await client.query(`BEGIN`);
+
+    const cartItemsResult = await client.query(
+      `
+          SELECT * FROM cart
+          WHERE expires_at <= NOW()
+          FOR UPDATE
+      `,
+    );
+
+    for (const item of cartItemsResult.rows) {
+      const updaatedQuantityResult = await client.query(
+        `
+            UPDATE product_inventory
+            SET quantity = quantity + $1
+            WHERE product_id = $2
+            AND color_id = $3
+            AND size_id = $4
+        `,
+        [item.quantity, item.product_id, item.color_id, item.size_id],
+      );
+
+      const deleteQuery = await client.query(
+        `
+            DELETE FROM cart
+            WHERE id = $1
+        `,
+        [item.id],
+      );
+    }
+
+    await client.query(`COMMIT`);
+  } catch (error) {
+    if (client) {
+      await client.query(`ROLLBACK`);
+    }
+    console.error(error);
+  } finally {
+    if (client) {
+      client.release();
+    }
+    isRunning = false;
+  }
+}
+
+setInterval(() => {
+  removeExpiredCartItems();
+}, 60000);
+
 app.use("/uploads", express.static(uploadDir));
 
 app.get("/api/products", async (req, res) => {
@@ -1906,7 +1965,9 @@ app.get("/api/order/history", async (req, res) => {
     return res.json(orderHistoryResult.rows);
   } catch (error) {
     console.error("Error retrieving order history:", error);
-    return res.status(500).json({ message: "Failed to retrieve order history" });
+    return res
+      .status(500)
+      .json({ message: "Failed to retrieve order history" });
   }
 });
 
