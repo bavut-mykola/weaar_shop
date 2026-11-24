@@ -717,19 +717,19 @@
   color: $color-black;
   background: transparent;
   text-align: left;
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 
   &:hover,
   &:focus-visible {
     color: $color-gray-text;
     background: transparent;
-    text-decoration: underline;
   }
 }
 
 @media (max-width: 420px) {
   .cart-skeleton {
-    padding: 58px 16px 28px;
+    padding: 98px 16px 28px;
   }
 
   .skeleton-cart-title {
@@ -751,7 +751,11 @@
 
   .cart-title {
     margin-bottom: 16px;
-    padding: 58px 16px 0;
+    padding: 98px 16px 0;
+  }
+
+  .cart-empty-state {
+    margin-top: 134px;
   }
 
   .cart-main-box {

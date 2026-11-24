@@ -48,6 +48,8 @@ function App() {
     () => localStorage.getItem("demoNoticeDismissed") !== "true",
   );
 
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -174,8 +176,6 @@ function App() {
       />
     );
   }
-
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   return (
     <div className="app-shell">
