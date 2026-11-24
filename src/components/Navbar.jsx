@@ -29,6 +29,7 @@ function Navbar({
   function handleKeyDown(e) {
     if (searchterm !== "" && e.key === "Enter") {
       navigate(`/search?query=${encodeURIComponent(searchterm)}`);
+      setSearchTerm("");
       setISBurgerClicked(false);
     }
   }
@@ -38,6 +39,45 @@ function Navbar({
       setSearchTerm("");
     }
   }, [locPath]);
+
+  const [isMobile, setIsMobile] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 420);
+  }, [window.innerWidth]);
+
+  useEffect(() => {
+    if (!isMobile) return;
+
+    let previousScroll = window.scrollY;
+    let scrollTimer;
+
+    function doScroll() {
+      clearTimeout(scrollTimer);
+
+      scrollTimer = setTimeout(() => {
+        setIsScrolling(false);
+      }, 300);
+
+      const currentScroll = window.scrollY;
+
+      const scrollValue = Math.abs(currentScroll - previousScroll);
+
+      if (scrollValue <= 5) {
+        return;
+      } else {
+        previousScroll = currentScroll;
+        setIsScrolling(true);
+      }
+    }
+
+    window.addEventListener("scroll", doScroll);
+
+    return () => {
+      window.removeEventListener("scroll", doScroll);
+    };
+  }, [isMobile]);
 
   return (
     <header className="head">
@@ -60,7 +100,9 @@ function Navbar({
         </Link>
       </div>
 
-      <nav className={`navigation ${isBurgerClicked ? "opened" : ""}`}>
+      <nav
+        className={`navigation ${isBurgerClicked ? "opened" : ""} ${isScrolling ? "navigation-close" : ""}`}
+      >
         <ul className="nav-links">
           <Link
             to="/catalog"
@@ -104,7 +146,7 @@ function Navbar({
           </button>
         </span>
 
-        <div className="search-box">
+        <div className={`search-box`}>
           <div className="search">
             <Link
               to={
@@ -112,6 +154,7 @@ function Navbar({
                   ? `/search?query=${encodeURIComponent(searchterm)}`
                   : "#"
               }
+              onClick={() => [setSearchTerm("")]}
             >
               <img
                 src={searchIcon}

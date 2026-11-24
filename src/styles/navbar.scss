@@ -357,7 +357,10 @@
     visibility: visible;
     opacity: 1;
     transform: none;
-    transition: none;
+    // Match the top inset to the upward translation to keep the clip edge below the header.
+    clip-path: inset(0 0 0 0);
+    transition: transform 250ms ease-in-out, clip-path 250ms ease-in-out,
+      opacity 250ms ease-in-out;
   }
 
   // CLOSED MENU
@@ -382,6 +385,8 @@
     grid-template-rows: auto auto;
     column-gap: 12px;
     row-gap: 16px;
+
+    opacity: 1;
   }
 
   // LINKS
@@ -443,6 +448,15 @@
     min-width: 0;
     margin: 0;
     padding: 0;
+
+    transition: 0.5s ease-in-out;
+    opacity: 1;
+  }
+
+  .app-shell .head .navigation.navigation-close {
+    transform: translateY(-100%);
+    clip-path: inset(100% 0 0 0);
+    opacity: 0;
   }
 
   .app-shell .head .navigation .search-title {
