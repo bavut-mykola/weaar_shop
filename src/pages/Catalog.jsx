@@ -261,30 +261,50 @@ function Catalog({ language, setIsFilterOpen, isFilterOpen }) {
           aria-labelledby="catalog-title"
         >
           {isLoading ? (
-            <div className="catalog-skeleton">
-              <div className="skeleton-left-box">
-                <div className="catalog-skeleton-title"></div>
-                <div className="filter-skeleton-box"></div>
-              </div>
+            <>
+              <div className="catalog-skeleton" aria-hidden="true">
+                <div className="skeleton-left-box">
+                  <div className="catalog-skeleton-title"></div>
+                  <div className="filter-skeleton-box"></div>
+                </div>
 
-              <div className="skeleton-right-box">
+                <div className="skeleton-right-box">
+                  <div className="top-right-skeleton-box">
+                    <div className="top-skeleton"></div>
+                    <div className="top-skeleton"></div>
+                  </div>
+
+                  <div className="skeleton-products-box">
+                    {[1, 2, 3, 4, 5, 6].map((p) => (
+                      <div className="product-skeleton-box" key={p}>
+                        <div className="skeleton-image"></div>
+                        <div className="skeleton-name"></div>
+                        <div className="skeleton-rating"></div>
+                        <div className="skeleton-price"></div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div className="mobile-catalog-skeleton" aria-hidden="true">
+                <div className="catalog-skeleton-title"></div>
                 <div className="top-right-skeleton-box">
                   <div className="top-skeleton"></div>
                   <div className="top-skeleton"></div>
                 </div>
-
-                <div className="skeleton-products-box">
-                  {[1, 2, 3, 4, 5, 6].map((p) => (
-                    <div className="product-skeleton-box">
+                <div className="products-container">
+                  {[1, 2, 3, 4].map((p) => (
+                    <div className="product-skeleton-box" key={p}>
                       <div className="skeleton-image"></div>
                       <div className="skeleton-name"></div>
                       <div className="skeleton-rating"></div>
                       <div className="skeleton-price"></div>
+                      <div className="mobile-skeleton-button"></div>
                     </div>
                   ))}
                 </div>
               </div>
-            </div>
+            </>
           ) : (
             <>
               {!hasNoFilterResults && (
