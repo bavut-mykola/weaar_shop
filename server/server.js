@@ -2333,6 +2333,33 @@ app.post("/api/products/:id/reviews", async (req, res) => {
   }
 });
 
+app.get("/api/admin/check", async (req, res) => {
+  const accountId = req.session?.accountId;
+
+  if (!accountId)
+    return res.status(401).json({ message: "user is not logged in" });
+
+  try {
+    const usersResult = await sessionPool.query(
+      `
+          SELECT id, role FROM accounts
+          WHERE id = $1
+          AND role = 'admin'
+      `,
+      [accountId],
+    );
+
+    if (usersResult.rows.length === 0) {
+      return res.status(403).json({ message: "user dont have permission" });
+    }
+
+    return res.status(200).json({ isAdmin: true });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "пішов нахуй" });
+  }
+});
+
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {

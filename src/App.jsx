@@ -22,9 +22,10 @@ import Account from "./pages/Account";
 import AccountSettings from "./pages/AccountSettings";
 import ContactMenu from "./components/ContactMenu";
 import Spotlight from "./pages/Spotlight";
+import AdminDashboard from "./pages/AdminDashboard";
 import { contactInfo } from "./data/contactInfo";
 
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { Route, Routes, useLocation, useMatch, useNavigate } from "react-router-dom";
 import "./App.css";
 
 import { API_URL } from "./api";
@@ -51,6 +52,7 @@ function App() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const location = useLocation();
+  const isAdminDashboard = useMatch("/adminDashboard");
   const navigate = useNavigate();
 
   function handleContactOpen() {
@@ -179,15 +181,17 @@ function App() {
 
   return (
     <div className="app-shell">
-      <Navbar
-        cartCount={cartCount}
-        isAuthenticated={isAuthenticated}
-        isContactMenuOpen={isContactMenuOpen}
-        onContactClick={handleContactOpen}
-        language={language}
-        setLanguage={setLanguage}
-        isFilterOpen={isFilterOpen}
-      />
+      {!isAdminDashboard && (
+        <Navbar
+          cartCount={cartCount}
+          isAuthenticated={isAuthenticated}
+          isContactMenuOpen={isContactMenuOpen}
+          onContactClick={handleContactOpen}
+          language={language}
+          setLanguage={setLanguage}
+          isFilterOpen={isFilterOpen}
+        />
+      )}
       <ContactMenu
         isOpen={isContactMenuOpen}
         onClose={handleContactClose}
@@ -228,6 +232,7 @@ function App() {
       )}
       <main className="app-content" aria-label={text.app.mainContent}>
         <Routes>
+          <Route path="/adminDashboard" element={<AdminDashboard />} />
           <Route path="/" element={<Home language={language} />} />
           <Route path="/about" element={<About language={language} />} />
           <Route path="/support" element={<Support language={language} />} />
@@ -311,11 +316,17 @@ function App() {
               />
             }
           />
-          <Route path="/order-history" element={<OrderHistory language={language} />} />
-          <Route path="/spotlight" element={<Spotlight language={language} />} />
+          <Route
+            path="/order-history"
+            element={<OrderHistory language={language} />}
+          />
+          <Route
+            path="/spotlight"
+            element={<Spotlight language={language} />}
+          />
         </Routes>
       </main>
-      <Footer language={language} />
+      {!isAdminDashboard && <Footer language={language} />}
     </div>
   );
 }
