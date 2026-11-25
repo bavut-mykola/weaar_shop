@@ -2360,6 +2360,81 @@ app.get("/api/admin/check", async (req, res) => {
   }
 });
 
+app.get("/api/admin/dashboard", async (req, res) => {
+  const accountId = req.session?.accountId;
+
+  if (!accountId)
+    return res.status(401).json({ message: "user is not logged in" });
+
+  try {
+    const usersResult = await sessionPool.query(
+      `
+          SELECT id, role FROM accounts
+          WHERE id = $1
+          AND role = 'admin'
+      `,
+      [accountId],
+    );
+
+    if (usersResult.rows.length === 0) {
+      return res.status(403).json({ message: "user dont have permission" });
+    }
+
+    const orderResult = await sessionPool.query(
+      `
+          SELECT COUNT(*) FROM orders
+      `,
+    );
+    const accountsResult = await sessionPool.query(
+      `
+          SELECT COUNT(*) FROM accounts
+          WHERE role != 'admin'
+      `,
+    );
+    const productsResult = await sessionPool.query(
+      `
+          SELECT COUNT(*) FROM products
+      `,
+    );
+    const reviewsResult = await sessionPool.query(
+      `
+          SELECT COUNT(*) FROM product_reviews
+      `,
+    );
+
+    const salesResult = await sessionPool.query(`
+        SELECT
+            TO_CHAR(days.date, 'DD.MM') AS date,
+            COALESCE(SUM(orders.total_price), 0)::float8 AS revenue
+        FROM generate_series(
+            CURRENT_DATE - INTERVAL '29 days',
+            CURRENT_DATE,
+            INTERVAL '1 day'
+        ) AS days(date)
+        LEFT JOIN orders
+            ON DATE(orders.created_at) = days.date::date
+        GROUP BY days.date
+        ORDER BY days.date
+    `);
+
+    const ordersCount = Number(orderResult.rows[0].count);
+    const accountsCount = Number(accountsResult.rows[0].count);
+    const productsCount = Number(productsResult.rows[0].count);
+    const reviewsCount = Number(reviewsResult.rows[0].count);
+
+    return res.status(200).json({
+      ordersCount,
+      accountsCount,
+      productsCount,
+      reviewsCount,
+      sales: salesResult.rows,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "fuck u" });
+  }
+});
+
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {

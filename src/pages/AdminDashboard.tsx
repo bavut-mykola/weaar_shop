@@ -2,6 +2,15 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "../styles/adminDashboard.scss";
 import { API_URL } from "../api";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid,
+  ResponsiveContainer,
+} from "recharts";
 
 export default function AdminDashboard() {
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
@@ -40,6 +49,47 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     getadmin();
+  }, []);
+
+  const [orders, setOrders] = useState<number>(0);
+  const [accounts, setAccounts] = useState<number>(0);
+  const [products, setProducts] = useState<number>(0);
+  const [reviews, setReviews] = useState<number>(0);
+
+  type Sale = {
+    date: string;
+    revenue: number;
+  };
+
+  const [sales, setSales] = useState<Sale[]>([]);
+
+  async function getInformation() {
+    try {
+      const res = await fetch(`${API_URL}/api/admin/dashboard`, {
+        credentials: "include",
+      });
+
+      if (!res.ok) {
+        throw new Error("suck dick");
+      }
+
+      const data = await res.json();
+
+      console.log(data);
+
+      setSales(data.sales);
+
+      setOrders(data.ordersCount);
+      setAccounts(data.accountsCount);
+      setProducts(data.productsCount);
+      setReviews(data.reviewsCount);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getInformation();
   }, []);
   return (
     <>
@@ -106,20 +156,40 @@ export default function AdminDashboard() {
 
               <div className="admin-summary">
                 <section>
-                  <img src="" alt="" />
-                  <h3>Total Orders</h3>
+                  <span className="admin-summary-icon">
+                    <img src="" alt="" />
+                  </span>
+                  <div>
+                    <h3>Total Orders</h3>
+                    <p className="admin-summary-total">{orders}</p>
+                  </div>
                 </section>
                 <section>
-                  <img src="" alt="" />
-                  <h3>Customers</h3>
+                  <span className="admin-summary-icon">
+                    <img src="" alt="" />
+                  </span>
+                  <div>
+                    <h3>Customers</h3>
+                    <p className="admin-summary-total">{accounts}</p>
+                  </div>
                 </section>
                 <section>
-                  <img src="" alt="" />
-                  <h3>Products</h3>
+                  <span className="admin-summary-icon">
+                    <img src="" alt="" />
+                  </span>
+                  <div>
+                    <h3>Products</h3>
+                    <p className="admin-summary-total">{products}</p>
+                  </div>
                 </section>
                 <section>
-                  <img src="" alt="" />
-                  <h3>Reviews</h3>
+                  <span className="admin-summary-icon">
+                    <img src="" alt="" />
+                  </span>
+                  <div>
+                    <h3>Reviews</h3>
+                    <p className="admin-summary-total">{reviews}</p>
+                  </div>
                 </section>
               </div>
 
@@ -129,6 +199,31 @@ export default function AdminDashboard() {
                   aria-labelledby="admin-sales-title"
                 >
                   <h3 id="admin-sales-title">Sales Overview</h3>
+                  <ResponsiveContainer width="100%" height={300}>
+                    <LineChart data={sales}>
+                      <CartesianGrid vertical={false} stroke="#E5E5E5" />
+                      <XAxis
+                        dataKey="date"
+                        axisLine={false}
+                        tickLine={false}
+                        tick={{ fontSize: 12, fill: "#777777" }}
+                      />
+                      <YAxis
+                        axisLine={false}
+                        tickLine={false}
+                        tick={{ fontSize: 12, fill: "#777777" }}
+                      />
+                      <Tooltip />
+                      <Line
+                        dataKey="revenue"
+                        stroke="#222222"
+                        strokeWidth={2}
+                        type="monotone"
+                        dot={false}
+                        activeDot={{ r: 5 }}
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
                 </section>
 
                 <section
@@ -136,7 +231,7 @@ export default function AdminDashboard() {
                   aria-labelledby="admin-quick-actions-title"
                 >
                   <h3 id="admin-quick-actions-title">Quick Actions</h3>
-                  <button className="admin-quick-action-primary" type="button">
+                  <button type="button">
                     <img src="" alt="" />
                     Add New Product
                   </button>
