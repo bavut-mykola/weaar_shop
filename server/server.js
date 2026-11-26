@@ -2417,10 +2417,48 @@ app.get("/api/admin/dashboard", async (req, res) => {
         ORDER BY days.date
     `);
 
+    const recentOrdersResult = await sessionPool.query(
+      `
+          SELECT id, user_id, guest_id, total_price, status, created_at,
+           CASE 
+            WHEN user_id IS NULL THEN 'Guest'
+            ELSE 'User'
+          END AS customer_type
+          FROM orders
+          ORDER BY created_at DESC
+          LIMIT 5
+
+      `,
+    );
+
+    const lowStockResult = await sessionPool.query(
+      `
+          SELECT
+            products.id AS product_id,
+            products.name AS product_name,
+            product_colors.name AS color,
+            product_sizes.size,
+            product_inventory.quantity
+          FROM product_inventory
+          JOIN product_colors
+          ON product_inventory.color_id = product_colors.id
+          JOIN product_sizes
+          ON product_inventory.size_id = product_sizes.id
+          JOIN products
+          ON product_colors.product_id = products.id
+          WHERE quantity <= 5
+          ORDER BY product_inventory.quantity
+          LIMIT 5
+      `,
+    );
+
     const ordersCount = Number(orderResult.rows[0].count);
     const accountsCount = Number(accountsResult.rows[0].count);
     const productsCount = Number(productsResult.rows[0].count);
     const reviewsCount = Number(reviewsResult.rows[0].count);
+
+    const recentOrders = recentOrdersResult.rows;
+    const lowStock = lowStockResult.rows;
 
     return res.status(200).json({
       ordersCount,
@@ -2428,6 +2466,8 @@ app.get("/api/admin/dashboard", async (req, res) => {
       productsCount,
       reviewsCount,
       sales: salesResult.rows,
+      recentOrders,
+      lowStock,
     });
   } catch (error) {
     console.error(error);

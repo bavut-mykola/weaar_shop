@@ -23,6 +23,7 @@ import AccountSettings from "./pages/AccountSettings";
 import ContactMenu from "./components/ContactMenu";
 import Spotlight from "./pages/Spotlight";
 import AdminDashboard from "./pages/AdminDashboard";
+import AdminProducts from "./pages/AdminProducts";
 import { contactInfo } from "./data/contactInfo";
 
 import { Route, Routes, useLocation, useMatch, useNavigate } from "react-router-dom";
@@ -233,6 +234,7 @@ function App() {
       <main className="app-content" aria-label={text.app.mainContent}>
         <Routes>
           <Route path="/adminDashboard" element={<AdminDashboard />} />
+          <Route path="/adminProducts" element={<AdminProducts />} />
           <Route path="/" element={<Home language={language} />} />
           <Route path="/about" element={<About language={language} />} />
           <Route path="/support" element={<Support language={language} />} />

@@ -61,7 +61,25 @@ export default function AdminDashboard() {
     revenue: number;
   };
 
+  type RecentOrders = {
+    id: number;
+    customer_type: "Guest" | "User";
+    total_price: number | string;
+    status: string;
+    created_at: string;
+  };
+
+  type LowStock = {
+    product_id: number;
+    product_name: string;
+    color: string;
+    size: string;
+    quantity: number;
+  };
+
   const [sales, setSales] = useState<Sale[]>([]);
+  const [recentOrders, setRecentOrders] = useState<RecentOrders[]>([]);
+  const [lowStock, setLowStock] = useState<LowStock[]>([]);
 
   async function getInformation() {
     try {
@@ -78,6 +96,8 @@ export default function AdminDashboard() {
       console.log(data);
 
       setSales(data.sales);
+      setRecentOrders(data.recentOrders);
+      setLowStock(data.lowStock);
 
       setOrders(data.ordersCount);
       setAccounts(data.accountsCount);
@@ -267,13 +287,24 @@ export default function AdminDashboard() {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>{/* Order number */}</td>
-                        <td>{/* Customer */}</td>
-                        <td>{/* Total */}</td>
-                        <td>{/* Status */}</td>
-                        <td>{/* Date */}</td>
-                      </tr>
+                      {recentOrders.map((order) => (
+                        <tr key={order.id}>
+                          <td>#{order.id}</td>
+                          <td>{order.customer_type}</td>
+                          <td>${Number(order.total_price).toFixed(2)}</td>
+                          <td>{order.status}</td>
+                          <td>
+                            {new Date(order.created_at).toLocaleDateString(
+                              "en-US",
+                              {
+                                month: "short",
+                                day: "numeric",
+                                year: "numeric",
+                              },
+                            )}
+                          </td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </section>
@@ -287,16 +318,20 @@ export default function AdminDashboard() {
                     <thead>
                       <tr>
                         <th scope="col">Product</th>
+                        <th scope="col">Color</th>
                         <th scope="col">Size</th>
                         <th scope="col">Stock</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>{/* Product */}</td>
-                        <td>{/* Size */}</td>
-                        <td>{/* Stock */}</td>
-                      </tr>
+                      {lowStock.map((item) => (
+                        <tr key={JSON.stringify([item.product_id, item.color, item.size])}>
+                          <td>{item.product_name}</td>
+                          <td>{item.color}</td>
+                          <td>{item.size}</td>
+                          <td>{item.quantity}</td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </section>

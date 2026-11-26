@@ -1,0 +1,200 @@
+@use "variables" as *;
+
+.admin-products {
+  display: grid;
+  grid-template-columns: min(100%, 260px) minmax(0, 1fr);
+  min-height: 100vh;
+  background: $color-white;
+  color: $color-black;
+  font: 14px/1.4 Arial, sans-serif;
+
+  .admin-products-content {
+    h1, h2, h3, p { margin: 0; }
+    h2 { font-size: 16px; }
+    h3 { font-size: 14px; }
+  }
+
+  button, select, input, textarea {
+    font: inherit;
+    color: inherit;
+  }
+
+  button, select, input:not([type="checkbox"]), textarea {
+    box-sizing: border-box;
+    border: 1px solid $color-gray;
+    border-radius: 3px;
+    background: $color-white;
+  }
+
+  button {
+    padding: 6px 14px;
+    cursor: pointer;
+  }
+
+  label > input:not([type="checkbox"]), select, textarea {
+    display: block;
+    width: 100%;
+    margin-top: 6px;
+    padding: 8px 12px;
+  }
+
+  textarea { resize: vertical; }
+}
+
+.admin-products-content { padding: 12px 24px 16px; }
+
+.admin-products-heading {
+  padding-bottom: 12px;
+  border-bottom: 1px solid $color-gray;
+
+  h1 { font-size: 26px; font-weight: 500; }
+  p { color: $color-gray-text; }
+}
+
+.admin-products-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
+  gap: 24px;
+  margin: 18px 0 16px;
+}
+
+.admin-products-basic {
+  display: grid;
+  align-content: start;
+  gap: 18px;
+  padding-right: 22px;
+  border-right: 1px solid $color-gray;
+}
+
+.admin-products-fields, .admin-products-descriptions {
+  display: grid;
+  gap: 18px 24px;
+}
+
+.admin-products-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.admin-products-descriptions {
+  padding-top: 24px;
+  border-top: 1px solid $color-gray;
+}
+
+.admin-products-details {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+.admin-products-images {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 6px;
+
+  label {
+    min-width: 0;
+    padding: 12px;
+    border: 1px dashed $color-gray;
+    border-radius: 5px;
+  }
+
+  input { cursor: pointer; }
+}
+
+.admin-products-colors {
+  padding-top: 6px;
+  border-top: 1px solid $color-gray;
+
+  > button { width: min(100%, 190px); text-align: left; }
+}
+
+.admin-products-color {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 5px 0 7px;
+}
+
+.admin-products-sizes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.admin-products-inventory {
+  width: 100%;
+  margin-top: 4px;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 11px;
+
+  th, td { padding: 4px; border-block: 1px solid $color-gray; }
+  th:first-child { text-align: left; }
+  input { width: 100%; padding: 3px; text-align: center; }
+}
+
+.admin-products-attributes {
+  margin-top: 2px;
+  border: 1px solid $color-gray;
+
+  details + details { border-top: 1px solid $color-gray; }
+
+  summary {
+    padding: 4px 14px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+
+  input {
+    width: calc(100% - 28px);
+    margin: 4px 14px 10px;
+    padding: 6px 8px;
+  }
+}
+
+.admin-products-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid $color-gray;
+
+  button { min-width: 92px; padding: 7px 14px; }
+
+  button:last-child {
+    border-color: $color-black;
+    background: $color-black;
+    color: $color-white;
+  }
+}
+
+@media (max-width: 900px) {
+  .admin-products-columns { grid-template-columns: minmax(0, 1fr); }
+  .admin-products-basic { padding-right: 0; border-right: 0; }
+}
+
+@media (max-width: 560px) {
+  .admin-products { grid-template-columns: minmax(0, 1fr); }
+  .admin-products-content { padding-inline: 14px; }
+}
+
+.admin-products {
+  button, input, select, textarea, summary {
+    transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+  }
+
+  button:hover, summary:hover {
+    border-color: $color-black;
+    background-color: $color-black;
+    color: $color-white;
+  }
+
+  input:hover, select:hover, textarea:hover, .admin-products-images label:hover {
+    border-color: $color-gray-line;
+  }
+
+  .admin-products-actions button:last-child:hover {
+    background-color: $color-white;
+    color: $color-black;
+  }
+}
